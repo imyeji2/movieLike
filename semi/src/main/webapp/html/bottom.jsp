@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-
-
-%>
+<h1>pull 테스트</h1>
 </body>
 </html>
