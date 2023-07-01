@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+/*전체 페이지 기본 속성(default) 변경 금지*/
+body{
+	font-family: RobotoInCjk, "Noto Sans KR", 
+	"Apple SD Gothic Neo", "Nanum Gothic", 
+	"Malgun Gothic", sans-serif;
+	background: #101322;
+	color:#fff;
+	padding-top:65px;
+}
+
+ul,li{
+	margin:0px;
+	padding:0px;
+}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+}
+
+a:hover{
+    color: #fff;
+}
+
+
+.f_left{
+	float: left;
+}
+
+.f_right{
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+
+p{
+	margin:0 auto;
+}
+
+
+
+
+/*header css*/
+header{
+	height: 65px;
+	position: fixed;
+    top: 0px;
+    left: 0px;
+ 	right: 0;
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    border-bottom:1px solid rgba(60,60,60,0.5);
+    background: #101322;
+    overflow: hidden;
+}
+
+header a:hover{
+    color: #13C181;
+}
+
+header ul{
+	list-style: none;
+	line-height: 65px;
+}
+
+
+header li{
+	float: left;
+	margin-left: 30px;
+}
+
+.header_menu{
+	margin:15px 10px 0px 10px;
+}
+.serch_box{
+	width:230px;
+	background:#4b4e60;
+	overflow: hidden;
+	padding:5px 10px 5px 10px;
+	border-radius:5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.serch_img{
+	width:24px;
+	margin-right: 10px;
+}
+
+.header_serch{
+	width:150px;
+	border:0px;
+	background-color:#4b4e60;
+}
+
+.serch_txt{
+	background:#4b4e60;
+	line-height: 24px;
+	border: 0px;
+	outline: none;
+}
+
+.login_btn{
+	width:100px;
+	line-height: 32px;
+	background: #13C181;
+	border-radius:5px 5px 5px 5px;
+	color:#fff;
+	border: 0px;
+}
+
+
+
+/*body css*/
+
+section{
+	width: 100%;
+	padding:30px 80px 30px 80px;	
+}
+
+
+#main{
+	.main_box{
+		width:90%;
+		margin:0 auto;
+	}
+	
+	/*영화 제목*/
+	.main_title{
+		font-size:1.5em;
+		font-weight:700;
+		margin:3% 0% 1% 1%;
+	}
+	
+	/*영화 1개 box*/
+	.main_box1{
+		width:19%;
+		margin:0% 0.5% 0% 0.5%;
+	}
+
+	.main_poster img{
+		width:100%;
+	}
+	
+	
+	/*메인 슬라이드 prev ,next 버튼*/
+	.main_prev_btn{
+		left:-10%;
+		height:80%;
+	}
+	.main_prev_btn img{
+		width:34px;
+	}
+	
+	.main_next_btn{
+		right:-10%;
+		height:80%;
+	}
+	.main_next_btn img{
+		width:34px;
+	}
+	
+	
+	/*영화 정보*/
+	.main_movie_info{
+		font-size:15px;
+	}
+	
+	.main_movie_info{
+		margin-top:10px;
+	}
+	
+	.movie_info1{
+		font-weight: 700;
+		margin-bottom:5px;
+	}
+	
+	.movie_info2{
+		font-size:13px;
+		margin-bottom:4px;
+	}
+}
+
+
+/*footer css*/
+
+footer{
+	font-size: 13px;
+	background: #212436;
+	padding:30px 50px 50px 50px;
+	font-weight: bold;
+	color:#767e8a;
+}
+footer a{
+	color: #767e8a;
+}
+
+footer a:hover{
+	color: #767e8a;
+	
+}
+
+.footer_div{
+	margin-top:10px;
+}
