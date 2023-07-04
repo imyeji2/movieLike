@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/memList.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/DCSS/memList.css" />
 <script type="text/javascript" src = "../../js/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
