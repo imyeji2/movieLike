@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="inc/top.jsp" %>    
 <script>
-
+수정
 	$(function(){
 		$('.main_box1').hover(function() {
 			  $(this).css("cursor", "pointer");
