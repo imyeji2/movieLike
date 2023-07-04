@@ -5,7 +5,7 @@ myPageBody{
 }
 nav{
 	margin-top:10px;
-	position: absolute;	
+	width:100%;
 }
 
 #bodyBar nav a {
@@ -21,11 +21,11 @@ nav{
 #horizontal-underline{
 	position: absolute;
     left:0;
-    height: 5px;
-    border-radius: 3px;
+    height: 7px;
+    border-radius: 2px;
     transition: 0.7s;
     background: white;
-    margin-top:5px;
+    margin-top:1px;
 }
 #myPageMain {
 	background: #101322;
@@ -34,7 +34,7 @@ nav{
 }
 
 .main {
-	background: #232a4d;
+	background: rgb(28, 34, 62);
 	width: 50%;
 	margin: 0 auto;
 }
@@ -64,7 +64,7 @@ nav{
 }
 
 #bodyBar {
-	height: 52px;
+	height: 48px;
 	display: flex;
 	justify-content: center;
 }
@@ -75,17 +75,38 @@ nav{
 	display: flex;
 }
 .content{
+	margin-top : 15px;
 	width: 100%;
 	height: 100%;
-	background: #232a4d;
 	display: flex;
 }
 
-.table table-darknavy table-hover th,th,td{
-	border: 1px solid #232a4d;
-	color : white;
-	text-align: center;
+#myPageMenu{
+	margin-top : 0px;
+	display: flex;
+	justify-content: center;
 }
-
-
+.refund{
+	border: none;
+	background: none;
+	color:white;
+	
+}
+.dateCol{
+	width : 20%;
+}
+.content table{
+	width:90%;
+	margin-left : 5%;
+	justify-content: center;
+}
+.content table th{
+	border-bottom : 1px grey solid;
+}
+.content table td{
+	border-bottom : 1px grey solid;
+}
+.content table tr{
+	border-bottom : 1px grey solid;
+}
 

@@ -1,3 +1,14 @@
+<%@page import="com.semi.point.model.PointDAO"%>
+<%@page import="com.semi.payHistory.model.PayHistoryDAO"%>
+<%@page import="java.util.Map.Entry"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="com.semi.payHistory.model.PayHistoryVO"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.point.model.PointVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -16,8 +27,24 @@
 <link href="custom.css" rel="stylesheet">
 <%@ include file="../inc/top.jsp"%>
 </head>
-<%
 
+<%
+	PointDAO pointDao = new PointDAO();
+	PayHistoryDAO payHistoryDao = new PayHistoryDAO(); 
+
+	String userid = "testId";
+	List<PointVO> pointList = new ArrayList<>();
+	Map<PayHistoryVO, Integer> historyList = new HashMap<>();
+	 
+	try{
+	 pointList = pointDao.selectPointByUserid(userid);
+	 historyList = payHistoryDao.selectHistoryByUserid(userid);
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+	
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <body id = "myPageBody">
 	<div id="myPageMain">
@@ -51,34 +78,42 @@
 					<!-- 영화 구매 이력 -->
 					<table class="table table-dark table-hover">
 						<tr>
-							<th class ="dateCol">영화결제일</th><th>금액</th><th>구분</th>
+							<th class ="dateCol">영화결제일</th><th>결제번호</th><th>금액</th><th>영화번호</th>
 						</tr>
-						<tr>
-							<td>1</td><td>1</td><td>1</td>
-						</tr>
-						<tr>
-							<td>2</td><td>2</td><td>2</td>
-						</tr>
-						<tr>
-							<td>3</td><td>3</td><td>3</td>
-						</tr>
+						<%
+						if(historyList != null && !historyList.isEmpty()){
+							for(Entry<PayHistoryVO, Integer> elem : historyList.entrySet()){
+				            	PayHistoryVO vo = elem.getKey();
+								int price = elem.getValue();%>
+								<tr>
+									<td><%=sdf.format(vo.getHisRegdate()) %></td><td><%=vo.getHisNo() %></td><td><%=price %></td><td><%=vo.getMovieNo() %></td>
+								</tr>
+							<%}
+						}%>
 					</table>
 				</div>
 				<div class = "content" style = "display : none" id = "popcorn">
 					<!-- 팝콘 충전/환불 이력 -->
 					<table class="table table-dark table-hover">
 						<tr>
-							<th class ="dateCol">팝콘충전일</th><th>금액</th><th>구분</th>
+							<th class ="dateCol">팝콘충전일</th><th>금액</th><th>구분</th><th>환불</th>
 						</tr>
-						<tr>
-							<td>1</td><td>1</td><td>1</td>
-						</tr>
-						<tr>
-							<td>2</td><td>2</td><td>2</td>
-						</tr>
-						<tr>
-							<td>3</td><td>3</td><td>3</td>
-						</tr>
+						<%
+						if(pointList != null && !pointList.isEmpty()){
+							for(int i = 0; i < pointList.size(); i++){
+							PointVO vo = pointList.get(i);%>
+								<tr>
+									<td><%=sdf.format(vo.getPointRegdate()) %></td>
+									<td><%=vo.getPointPrice() %></td>
+									<td><%=vo.getPointKind() %></td>
+									<td>
+										<%if(vo.getPointKind().equals("구매") ){ %>
+											<button class = "refund">환불</button>
+										<%}%>
+									</td>
+								</tr>								
+							<%}
+						}%>
 					</table>
 				</div>
 				<div class = "content" style = "display : none" id = "review">
