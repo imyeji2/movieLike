@@ -41,9 +41,7 @@
 <title>무비라이크-관리자 페이지</title>
 </head>
 <body>
- <div class="wrap">
     <aside id="admin_menu">
-    
 	   	<div class="admin_menu_box">
 	   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_movie.svg" name="movie" alt="영화관리아이콘 ">
 	   		<span style="margin-left:20px"><a href="#">영화 관리</a></span>
