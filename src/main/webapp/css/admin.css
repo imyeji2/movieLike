@@ -76,6 +76,7 @@ section{
 
 /*admin 메뉴 css*/
 #admin_menu{
+	
 	.admin_menu_box{
 		line-height: 50px;
 	}
