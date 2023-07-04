@@ -1,0 +1,5 @@
+@charset "EUC-KR";
+
+.content_box>select {
+	width:200px;
+}
