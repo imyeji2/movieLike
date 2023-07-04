@@ -104,7 +104,7 @@
 		    				<img src="images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
-		    				<p class="movie_info1">미션임파서블 : 데드 레코..</p>
+		    				<p class="movie_info1">미션임파서블 : 데드 레코...</p>
 		    				<p class="movie_info2">
 			    				<span>2023</span>
 			    				<span>&middot;</span>
