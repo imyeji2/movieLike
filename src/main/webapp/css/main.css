@@ -120,11 +120,11 @@ header li{
 
 section{
 	width: 100%;
-	padding:30px 80px 30px 80px;	
 }
 
 
 #main{
+	
 	.main_box{
 		width:90%;
 		margin:0 auto;

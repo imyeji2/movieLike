@@ -89,7 +89,6 @@ header h2{
 #admin_menu{
 	color:#fff;
 
-
 	.admin_menu_box{
 		line-height: 50px;
 	}
@@ -128,8 +127,6 @@ header h2{
 }
 
 /*영화 관리 css*/
-
-
 #movieWrite{
 	color:#222;
 	
