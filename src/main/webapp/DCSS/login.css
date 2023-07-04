@@ -54,3 +54,14 @@ p {
     display: inline;
     margin-left: 150px;
 }
+
+input[type="submit"] {
+    width: 90%;
+    height: 55px;
+    border-radius: 8px;
+    border: 1px;
+    background-color: #13C181;
+    color: white;
+    margin-left: 25px;
+    margin-top: 25px;
+}

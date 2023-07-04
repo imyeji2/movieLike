@@ -30,7 +30,9 @@
 			<input type="password" class="form-control" id="floatingPassword" placeholder="Password"> 
 			<label for="floatingPassword">Password</label>
 		</div>
-	
+		<div class = "submit">
+			<input type="submit" value="로그인" name = "login">
+		</div>
 		<hr>
 		<a href = "find.jsp" id = "find">아이디/비밀번호 찾기</a>
 		<p>계정이 없으신가요?</p>
