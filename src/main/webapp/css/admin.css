@@ -9,8 +9,9 @@ body{
 	font-family: RobotoInCjk, "Noto Sans KR", 
 	"Apple SD Gothic Neo", "Nanum Gothic", 
 	"Malgun Gothic", sans-serif;
-	background: #101322;
-	color:#fff;
+	background:#f3f3f3;
+	/*background: #101322;*/
+	color:#333;
 }
 
 
@@ -59,7 +60,6 @@ aside{
 	width:20%;
 	height: 100%;
 	background-color: #232a31;
-	height: 100%;
 	display: inline-block;
 	float: right;
 	padding:1% 0% 1% 0%;
@@ -73,10 +73,18 @@ section{
 	
 }
 
+header{
+	width:100%;
+	height:60px;
+	background:#101322 ;
+}
+
 
 /*admin 메뉴 css*/
 #admin_menu{
-	
+	color:#fff;
+
+
 	.admin_menu_box{
 		line-height: 50px;
 	}
@@ -115,6 +123,21 @@ section{
 }
 
 /*영화 관리 css*/
-#admin_movie{
+
+
+#movieWrite{
+	color:#222;
 	
+	.movieList_top{
+		height:65px;
+		background: #0f1926;
+	}
+	
+	.moviList_content{
+		padding:50px 50px 50px 50px;
+	}
+	
+	.content_box{
+		background-color: #fff;
+	}
 }
