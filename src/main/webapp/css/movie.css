@@ -2,6 +2,8 @@
 
 
 #movieDetail{
+	
+	/* 영화 head 부분 */
 	.movie_top{
 		margin:0 auto;
 		width:100%;
@@ -16,25 +18,176 @@
 		
 	}
 	
-	.movie_info{
+	.movie_info_txt{
+		width: 100%;
 		position: absolute;
-		top: 0px;
-		left: 30px;
-		color: black;
+		top: 250px;
+		color: #ffffff;
+	}
 	
+	
+	.movie_info_txt h1{
+		font-size: 36px;
+	    font-weight: 700;
+	    line-height: 36px;
+	    margin-left: 40px;
+	}
+	
+	.movie_info_txt p{
+		width:90%;
+		font-size: 15px;
+   		line-height: 18px;
+   		margin:5px 10px 0px 40px;
+	}
+	
+	
+
+
+
+	/* 영화 상세 설명 부분*/
+	
+	.movie_info{
+		width: 90%;
+		overflow: hidden;
+		margin: 0 auto;
+		padding:80px 0px 80px 0px;
+		
+	}
+	
+	.movie_info_left{
+		width:20%;
+		float: left;
+		
+	}
+	
+	.movie_info_left img{
+		width:100%
+	}
+	
+	.movie_info_right{
+		width:80%;
+		float: left;
+		
+	}
+	
+	.movie_info_grade{
+		width:90%;
+		margin-left:40px;
+		border-top:1px solid #606060;
+		font-size: 30px;
+		line-height: 80px;
+		font-weight: 800;
+	}	
+	
+	
+	.movie_info_detail{
+		width:90%;
+		font-size: 15px;
+   		margin-left:40px;
+   		padding-top:15px;
+		line-height: 25px;
+		border-top:1px solid #606060;
+		font-size: 15px;
+		font-weight: 500;
+		
+	}
+	
+	.movi_info_btn{
+		height: 70px;
+		margin: 30px 0px 0px 40px;
+	}
+	
+	.movie_buy_btn{
+
+		width: 250px;
+		height: 50px;
+		background:#13C181;
+		text-align: center;
+		line-height: 50px;
+		float: left;
+	}
+	
+	.movie_pick_btn img{
+		width: 60px;
+		height: 50px;
+		margin-left: 20px;
+		float: left;
 		
 	}
 	
 
+	
+	/*영화 출연진 부분*/
 	.movie_actor{
-		height:400px;
-		background: pink;
+		width: 90%;
+		margin: 0 auto;
+		padding:30px 0px 20px 0px;
+		font-weight: 500;
+		border-top: 1px solid #222328;
+	}
+	
+	.movie_box_size{
+		width: 90%;
+		margin:0 auto;	
+	}
+	
+	.box_control{
+		overflow: hidden;
+	}
+
+	.movie_actor_box{
+		width: 20%;
+		height: 100%;
+		float: left;
+		background: red;
+		overflow: hidden;
+	}
+	
+	.movie_actor_box1{
+		width: 30%;
+		float: left;
+	}
+	
+	.movie_actor_box1 img{
+		width: 100%;
+	}
+	
+	.movie_actor_box2{
+		width: 70%;
+		overflow: hidden;
+		height: 100%;
+	}
+	
+	.actor_name{
+		height: 100%;
 		
 	}
 	
+	
+	
+	
+	
+	/*영화 예고편 부분*/
+	
+	.movie_video{
+		width: 90%;
+		margin: 0 auto;
+		padding:30px 0px 20px 0px;	
+	
+	}
+	
+	.movie_tit{
+		padding: 10px;
+		border-top: 1px solid #606060;		
+		border-bottom: 1px solid #606060;	
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 30px;
+	}
+	
 	.movie_player{
-		width:1200px;
-		height:700px;
+		width:100%;
+		height: 800px;
 		margin:0 auto;
 		padding:30px 0px 30px 0px;
 	}
@@ -44,10 +197,29 @@
 	  height: 100%;
 		
 	}
-	
+
+/*영화 코멘트 css*/
 	.movie_review{
+		width:90%;
+		margin:0 auto;
 		height: 700px;
 	}
+	
+	.movie_review_box{
+		overflow: hidden;
+		padding: 30px 0px 30px 0px;
+	}
+	
+	.movie_review_conbox{
+		width:24%;
+		height: 300px;
+		margin:0% 0.5% 0% 0.5%;
+		border-radius: 20px;
+		background: #1c1b1e;;
+		float: left;
+	}
+	
+	
 	
 	
 }
