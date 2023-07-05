@@ -47,7 +47,7 @@ public class PayHistoryDAO {
 				vo.setUserId(rs.getString("userid"));
 				vo.setHisRegdate(rs.getTimestamp("hisRegdate"));
 				
-				int price = dao.searchPayment(vo.getMovieNo()).getPrice();
+				int price = dao.selectByMovieNo(vo.getMovieNo()).getPrice();
 				map.put(vo, price);
 			}
 			System.out.println("영화 구매 이력 조회 결과 list = " + map + "매개변수 userid = " + userid );

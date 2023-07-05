@@ -10,6 +10,8 @@
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <!-- 생성 css -->
+<link href="custom.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/custom.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movie.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/main.css" />
 <style type="text/css">

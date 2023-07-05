@@ -7,7 +7,7 @@ public class PointService {
 	
 	private PointDAO pointDao;
 
-	public PointService(PointDAO pointDao) {
+	public PointService() {
 		pointDao = new PointDAO();
 	}
 	

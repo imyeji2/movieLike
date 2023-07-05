@@ -8,7 +8,7 @@ public class PayHistoryService {
 
 	private PayHistoryDAO pointHistoryDao;
 	
-	public PayHistoryService(PayHistoryDAO pointHistoryDao) {
+	public PayHistoryService() {
 		pointHistoryDao = new PayHistoryDAO();
 	}
 	public Map<PayHistoryVO, Integer> selectHistoryByUserid(String userid) throws SQLException{

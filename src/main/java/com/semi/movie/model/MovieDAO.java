@@ -14,7 +14,7 @@ public class MovieDAO {
 		pool = new ConnectionPoolMgr();
 	}
 	
-	public MovieVO searchPayment(int movieNo) throws SQLException {
+	public MovieVO selectByMovieNo(int movieNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
