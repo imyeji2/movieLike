@@ -36,6 +36,11 @@
 			$('.admin_menu_box_in').slideToggle();
 		});
 		
+	/* 	var body = document.body,
+		html = document.documentElement;
+		var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight )-60;
+		$('aside').css('height',height);
+ */
 	});
 </script>
 <title>무비라이크-관리자 페이지</title>
@@ -47,6 +52,7 @@
 				<img src="<%=request.getContextPath()%>/images/logo.png">
 			</div>
 		</header>
+		<div class="admin_content">
 		    <aside id="admin_menu">
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_movie.svg" name="movie" alt="영화관리아이콘 ">
