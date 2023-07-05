@@ -12,7 +12,9 @@
 				</div>
 				
 				<div class="top_box">
-					<span id="span_notice">공지사항</span> | <span id="span_faq">FAQ</span>
+					<div class="top_text">
+						<span id="span_notice">공지사항</span> | <span id="span_faq">FAQ</span>
+					</div>			
 				</div>
 				
 				<div class="content_box">
@@ -27,7 +29,30 @@
 					  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 					  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 					</div>
+					
+					<table border="1px" align="center">
+						<colgroup>
+					      <col style="width:10%;" />
+					      <col style="width:50%;" />
+					      <col style="width:10%;" />
+					      <col style="width:10%;" />
+					      <col style="width:10%;" />      
+					      <col style="width:10%;" />      
+					   </colgroup>
+					   <thead>
+					     <tr>
+					       <th scope="col">번호</th>
+					       <th scope="col">제목</th>
+					       <th scope="col">댓글수</th>
+					       <th scope="col">작성일</th>
+					       <th scope="col">조회</th>
+					       <th scope="col">관리</th>
+					     </tr>
+					   </thead> 
+						
+					</table>
 				</div>
+				
 				
 				
 			</article>
