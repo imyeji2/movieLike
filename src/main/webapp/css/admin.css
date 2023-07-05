@@ -66,12 +66,21 @@ aside{
 }
 
 section{
+<<<<<<< HEAD
    width:80%;
    height: 100%;
    display: inline-block;
    position: absolute;
    padding:80px 50px 30px 50px;
    
+=======
+	width:80%;
+	height: 100%;
+	display: inline-block;
+	position: absolute;
+	padding:40px 40px 40px 40px;
+	
+>>>>>>> 0e43ccf49343023904739e5f855fb7dc992f2c6a
 }
 
 header{
@@ -89,6 +98,7 @@ header h2{
 #admin_menu{
    color:#fff;
 
+<<<<<<< HEAD
 
    .admin_menu_box{
       line-height: 50px;
@@ -145,4 +155,113 @@ header h2{
    .content_box{
       background-color: #fff;
    }
+=======
+	.admin_menu_box{
+		line-height: 50px;
+	}
+	
+	.admin_menu_box img{
+		margin-left: 20px;
+	}
+	
+	
+	.admin_menu_box_hover{
+		background: #fff;
+	}
+	
+	.admin_menu_box_hover a{
+		color:#232a31
+	}
+	
+	.admin_menu_box_in{
+		line-height: 50px;
+		background:#27363f;
+		padding:0px 50px 0px 30px;
+		color:#fff;
+	
+	}
+	
+	.admin_menu_box_in a:hover{
+		color:#fff;
+		text-decoration:underline;
+	}
+	
+	.admin_menu_box2{
+		line-height: 50px;
+	}
+	
+	
+}
+
+/*영화 관리 css*/
+#movieList{
+	color:#222;
+	
+	.movieList_top{
+		height:65px;
+		background: #0f1926;
+	}
+	
+	.moviList_content{
+		padding:50px 50px 50px 50px;
+	}
+	
+	.content_box{
+		background-color: #fff;
+	}
+	
+}
+
+
+
+/*영화 등록 css*/
+#movieWrite{
+	color: #333;;
+	
+	.movieWrite_box{
+		margin-top:10px;
+	}
+	.movieWrite_box{
+		
+	}
+	.movieWrite_box1{
+		border-top:1px solid #b9b9b9;
+		border-left: 1px solid #b9b9b9;
+		border-right: 1px solid #b9b9b9;
+	}
+	
+	.movieWrite_box_in{
+		overflow: hidden;
+		color: gray;
+		display: flex;
+		border-bottom:1px solid #b9b9b9;
+		border-collapse: collapse;
+		
+	}
+	
+	.movieWrite_box_in_left{
+		width:300px;
+		padding: 5px 10px 5px 10px;
+		background-color: #e0e0e0;
+		text-align: center;
+		vertical-align:middle;
+		float: left;
+		order: 1;
+		
+	}
+	
+	.movieWrite_box_in_right{
+		width:90%;
+		padding: 5px 10px 5px 10px;
+		float: left;
+		order: 2;
+	}
+	
+	
+	.movieWrite_box_in_right textarea{
+		width:100%;
+		height: 100px;
+	}
+		
+>>>>>>> 0e43ccf49343023904739e5f855fb7dc992f2c6a
 }

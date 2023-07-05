@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
-<link rel="stylesheet" type="text/css" href="../../css/dami.css" />
+
 <script type="text/javascript" src = "../../js/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -17,7 +17,7 @@
 	
 	<section id="noticeList">
 			<article id="notice_content">
-				<h1>공지/FAQ 등록</h1>
+				<h2>공지/FAQ 등록</h2>
 				
 				<div class="top_btn">
 					<button type="button" class="btn btn-primary">+ 등록하기</button>
