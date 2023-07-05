@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* 관리자페이지 - 공지사항/FAQ */
 #noticeList {
 	.content_box>select {
 		width:180px;
@@ -11,7 +12,7 @@
 	
 	.top_btn {
 	    float: right;
-	    margin-top: -47px;
+	    margin-top: -18px;
 	}
 	
 	.notice_box {
@@ -25,9 +26,9 @@
 	}
 	
 	.top_text {
-		font-size: 22px;
+		font-size: 20px;
 		padding-left: 25px;
-	    padding-top: 10px;
+	    padding-top: 15px;
 	}
 	
 	.content_box {
@@ -37,6 +38,14 @@
 	
 	.input-group.mb-3 {
 		width: 450px;
+	}
+	
+	.table {
+		width: 96%;
+	}
+	
+	.table.table.table-bordered {
+		margin: 0 auto;
 	}
 	
 	.notice_edit_btn .notice_delete_btn {
@@ -55,4 +64,17 @@
 	    --bs-btn-disabled-border-color: #6c757d;
 	    --bs-gradient: none;
 	}
+	
+	.input-group.mb-3  {
+		width: 450px;
+	    float: left;
+	    margin-left: 28px;
+	    margin-top: 15px;
+	}
+	
+	.ed_btn > .btn.btn-outline-secondary {
+		float: right;
+   		margin-right: 10px;
+	}
+	
 }
