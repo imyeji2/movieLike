@@ -224,7 +224,7 @@
 		</article>
 		<article class="main_box">
 			<p class="main_title">박스오피스 top10</p>
-			<div id="carouselExampleInterval2" class="carousel slide" data-bs-ride="carousel">
+			<div id="carouselExampleInterval2" class="carousel slide" data-bs-ride="false">
 			  <div class="carousel-inner">
 			    <div class="carousel-item active" data-bs-interval="3000">
 			    
