@@ -1,0 +1,19 @@
+@charset "EUC-KR";
+
+.content_box>select {
+	width:200px;
+}
+
+.content_box>title_search {
+	width:250px;
+}
+
+.top_btn {
+    float: right;
+}
+
+.top_box {
+	background: #fafafa;
+	border: solid 1px #e5e5e5;
+	height: 60px;
+}

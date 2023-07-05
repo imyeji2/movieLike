@@ -2,27 +2,28 @@
 
 /*전체 페이지 기본 속성(default) 변경 금지*/
 html, body{
-	height: 100%;
+   height: 100%;
 }
 
 body{
-	font-family: RobotoInCjk, "Noto Sans KR", 
-	"Apple SD Gothic Neo", "Nanum Gothic", 
-	"Malgun Gothic", sans-serif;
-	background: #101322;
-	color:#fff;
+   font-family: RobotoInCjk, "Noto Sans KR", 
+   "Apple SD Gothic Neo", "Nanum Gothic", 
+   "Malgun Gothic", sans-serif;
+   background:#eeeeee;
+   /*background: #101322;*/
+   color:#333;
 }
 
 
 ul,li{
-	margin:0px;
-	padding:0px;
+   margin:0px;
+   padding:0px;
 }
 
 a{
-	text-decoration: none;
-	cursor: pointer;
-	color: #fff;
+   text-decoration: none;
+   cursor: pointer;
+   color: #fff;
 }
 
 a:hover{
@@ -31,90 +32,117 @@ a:hover{
 
 
 .f_left{
-	float: left;
+   float: left;
 }
 
 .f_right{
-	float: right;
+   float: right;
 }
 
 .clear{
-	clear: both;
+   clear: both;
 }
 
 p{
-	margin:0 auto;
+   margin:0 auto;
 }
 
 
 
 /*관리자 css*/
 .wrap{
-	position: relative;
-	height: 100%;
+   position: relative;
+   height: 100%;
 }
 
 
 aside{
-	width:20%;
-	height: 100%;
-	background-color: #232a31;
-	height: 100%;
-	display: inline-block;
-	float: right;
-	padding:1% 0% 1% 0%;
+   width:20%;
+   height: 100%;
+   background-color: #232a31;
+   display: inline-block;
+   float: right;
+   padding:1% 0% 1% 0%;
 }
 
 section{
-	width:80%;
-	height: 100%;
-	display: inline-block;
-	position: absolute;
-	
+   width:80%;
+   height: 100%;
+   display: inline-block;
+   position: absolute;
+   padding:80px 50px 30px 50px;
+   
 }
 
+header{
+   width:100%;
+   height:60px;
+   background:#101322 ;
+}
+
+
+header h2{
+   font-weight: 600;
+}
 
 /*admin 메뉴 css*/
 #admin_menu{
-	
-	.admin_menu_box{
-		line-height: 50px;
-	}
-	
-	.admin_menu_box img{
-		margin-left: 20px;
-	}
-	
-	
-	.admin_menu_box_hover{
-		background: #fff;
-	}
-	
-	.admin_menu_box_hover a{
-		color:#232a31
-	}
-	
-	.admin_menu_box_in{
-		line-height: 50px;
-		background:#27363f;
-		padding:0px 50px 0px 30px;
-		color:#fff;
-	
-	}
-	
-	.admin_menu_box_in a:hover{
-		color:#fff;
-		text-decoration:underline;
-	}
-	
-	.admin_menu_box2{
-		line-height: 50px;
-	}
-	
-	
+   color:#fff;
+
+
+   .admin_menu_box{
+      line-height: 50px;
+   }
+   
+   .admin_menu_box img{
+      margin-left: 20px;
+   }
+   
+   
+   .admin_menu_box_hover{
+      background: #fff;
+   }
+   
+   .admin_menu_box_hover a{
+      color:#232a31
+   }
+   
+   .admin_menu_box_in{
+      line-height: 50px;
+      background:#27363f;
+      padding:0px 50px 0px 30px;
+      color:#fff;
+   
+   }
+   
+   .admin_menu_box_in a:hover{
+      color:#fff;
+      text-decoration:underline;
+   }
+   
+   .admin_menu_box2{
+      line-height: 50px;
+   }
+   
+   
 }
 
 /*영화 관리 css*/
-#admin_movie{
-	
+
+
+#movieWrite{
+   color:#222;
+   
+   .movieList_top{
+      height:65px;
+      background: #0f1926;
+   }
+   
+   .moviList_content{
+      padding:50px 50px 50px 50px;
+   }
+   
+   .content_box{
+      background-color: #fff;
+   }
 }
