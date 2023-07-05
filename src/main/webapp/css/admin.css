@@ -49,6 +49,7 @@ p{
 
 
 
+
 /*관리자 css*/
 .wrap{
 	position: relative;
@@ -149,7 +150,11 @@ header h2{
 
 /*영화 등록 css*/
 #movieWrite{
-	color: #333;;
+	color: #333;
+	
+	.movieWrite_wrap{
+		padding-bottom: 150px;
+	}
 	
 	.movieWrite_box{
 		margin-top:10px;
@@ -191,18 +196,46 @@ header h2{
 		order: 2;
 	}
 	
+	.info_txt{
+		width:700px;
+		border: 0px;
+		outline: none;
+		background-color: #f3f3f3;
+	}
+	
 	
 	.movieWrite_box_in_right textarea{
 		width:100%;
 		height: 100px;
 	}
 	
-	.movie_serch_btn{
-		width:100px;
+	.movie_btn{
+		width:90px;
 		height: 40px;
-		background: #637dea;
-		border:0px;
+		font-size: 15px;
+		background: #264dff;
+		position: relative;
+		top:20px;
+		border: 0px;
 		color:#fff;
+		float: right;
+	}
+	
+	/*하단 버튼*/
+	
+	.btn_grop{
+		width:160px;
+		margin:0 auto;
+		padding-top:30px;
+	}
+	
+	.btn_grop_input{
+		width:70px;
+		height: 40px;
+		background:#264dff ;
+		border: 0px;
+		color:#fff;
+		margin: 0px 5px 0px 0px;
 	}
 		
 }
