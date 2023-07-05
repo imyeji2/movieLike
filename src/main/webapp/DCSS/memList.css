@@ -1,0 +1,22 @@
+@charset "UTF-8";
+article {
+    display: flex;
+    justify-content: right;
+}
+
+input[type="submit"] {
+    border-radius: 6px;
+    border: 1px solid silver;
+}
+
+input[type="button"] {
+    border-radius: 6px;
+    border: 1px solid silver;
+}
+
+.table {
+    border: 1px solid silver;
+    margin-top: 35px;
+    text-align: center;
+    border-radius: 6px;
+}
