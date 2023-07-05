@@ -124,7 +124,7 @@
 							<input type="tel" class="form-control" id="registerBirth" placeholder="예) 19990101" maxlength="8"> 
 							<label for="registerBirth">생년월일 (8글자)</label>
 						</div>
-						<button class="confirm" type="submit">확인</button>
+						<button class="confirm" type="button">확인</button>
 					</form>
 				</div>
 				
@@ -149,6 +149,36 @@
 	$('.register-btn').click(function(){
 		$('.login').hide();
 		$('.register').show();
+	});
+	
+	$('.confirm').click(function(){
+		let id = $('#registerId').val();
+		let pass = $('#registerPassword').val();
+		let name = $('#registerName').val();
+		let man = $('#man').is(':checked');
+		let woman = $('#woman').is(':checked');
+		let birth = $('#registerBirth').val();
+		
+		if ( id == '') {
+			alert('이메일을 확인해주세요');
+			return false;
+		}else if ( pass == "" ) {
+			alert('비밀번호를 확인해주세요');
+			return false;
+		}else if ( name == "" || name.length < 2 ) {
+			alert('이름을 확인해주세요');
+			return false;
+		}else if ( man == false && woman == false ) {
+			alert('성별을 선택해주세요');
+			return false;
+		}else if ( birth == '' || birth.length < 8 ) {
+			alert('생년월일을 확인해주세요');
+			return false;
+		}else {
+			alert('회원가입이 완료되었습니다');
+			$('.register').hide();
+			$('.login').show();
+		}
 	});
 </script>
 	
