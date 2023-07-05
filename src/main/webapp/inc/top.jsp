@@ -15,9 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/movie.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/main.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/DCSS/login.css" >
-<style type="text/css">
 
-</style>
 <title>무비라이크-영화를 좋아하는 사람들을 위한 무비 라이크</title>
 </head>
 <body>
