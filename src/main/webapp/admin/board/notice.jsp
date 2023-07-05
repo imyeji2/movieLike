@@ -12,14 +12,16 @@
 				</div>
 				
 				<div class="top_box">
-					<span id="span_notice">공지사항</span> | <span id="span_faq">FAQ</span>
+					<div class="top_text">
+						<span id="span_notice">공지사항</span> | <span id="span_faq">FAQ</span>
+					</div>			
 				</div>
 				
 				<div class="content_box">
 					<select class="form-select" aria-label="Default select example">
 					  <option selected>정렬 순서</option>
 					  <option value="1">최신순</option>
-					  <option value="2">댓글순</option>
+					  <option value="2">오래된순</option>
 					  <option value="3">조회수순</option>
 					</select>
 					
@@ -27,7 +29,53 @@
 					  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 					  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 					</div>
+					
+					<table class="table table-bordered">
+					  <colgroup>
+					      <col style="width:10%;" />
+					      <col style="width:50%;" />
+					      <col style="width:10%;" />
+					      <col style="width:10%;" />      
+					      <col style="width:10%;" />      
+					   </colgroup>
+					  <thead>
+					    <tr>
+					      <th scope="col">번호</th>
+					      <th scope="col">제목</th>
+					      <th scope="col">작성일</th>
+					      <th scope="col">조회</th>
+					      <th scope="col">관리</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>공지</td>
+					      <td>2023-07-05</td>
+					      <td>128</td>
+					      <td><input type="button" class="notice_edit" value="수정"> 
+					      <input type="button" class="notice_delete" value="삭제"> </td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>공지</td>
+					      <td>2023-06-24</td>
+					      <td>184</td>
+					      <td><input type="button" class="notice_edit" value="수정"> 
+					      <input type="button" class="notice_delete" value="삭제"> </td>
+					    </tr>
+					    <tr>
+					      <th scope="row">3</th>
+					      <td>공지</td>
+					      <td>2023-06-18</td>
+					      <td>251</td>
+					      <td><input type="button" class="notice_edit" value="수정"> 
+					      <input type="button" class="notice_delete" value="삭제"> </td>
+					    </tr>
+					  </tbody>
+					</table>
 				</div>
+				
 				
 				
 			</article>
