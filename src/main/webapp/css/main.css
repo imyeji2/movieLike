@@ -114,6 +114,10 @@ header li{
 	border: 0px;
 }
 
+.logo_img{
+	height: 65px;
+}
+
 
 
 /*body css*/
@@ -124,7 +128,7 @@ section{
 
 
 #main{
-	
+	overflow: hidden;
 	.main_box{
 		width:90%;
 		margin:0 auto;
