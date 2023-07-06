@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+.myPageSection {
+   height:1500px;
+   
+   .myPageMain {
+   height: 700px;
+   background: #101322;
+   }
+
+   .main {
+   background: rgb(28, 34, 62);
+   width: 50%;
+   margin: 0 auto;
+   }
+   .myInfo {
+   background: white;
+   }
+
+   .myPageBody {
+      display: flex;
+   }
+   
+   .content {
+      margin-top: 15px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+   }
+   
+   .refund {
+      border: none;
+      background:none;
+      color:green;
+      font-weight: bold;
+   }
+   
+   .dateCol {
+      width: 20%;
+   }
+   
+   .content table {
+      width: 90%;
+      margin-left: 5%;
+      justify-content: center;
+   }
+   
+   .content table th {
+      border-bottom: 1px grey solid;
+      background: #00E676;
+   }
+   
+   .content table td {
+      border-bottom: 1px grey solid;
+   }
+   
+   .content table tr {
+      border-bottom: 1px grey solid;
+   }
+   .jjimMovie{
+      
+   }
+   .card{
+      display:inline-block;
+      width : 40%;
+      height:20%;
+      margin: 10px;
+   }
+   
+}
+
+#myPageHeader {
+   margin-bottom: 5px;
+   position: relative;
+   height: 330px;
+   }
+
+   #myPageBody{
+   height: 1169px;
+   
+   }
+
+
+#bodyBar nav a { margin-left :18px;
+   margin-right: 18px;
+   align-items: center;
+   font-size: 21px;
+   margin-top: 12px;
+   color: white;
+   text-decoration-line: none;
+}
+#horizontal-underline {
+   position: absolute;
+   left: 0;
+   height: 7px;
+   border-radius: 2px;
+   transition: 0.7s;
+   background: white;
+   margin-top: 1px;
+}
+
+#profileImg {
+   border-radius: 30%;
+   background: white;
+   height: 120px;
+   width: 120px;
+   float: right;
+   margin-right: 20px;
+   margin-top: 60px;
+}
+
+#bodyBar {
+   height: 48px;
+   display: flex;
+   justify-content: center;
+}
+
+#myPageMenu {
+   margin-top: 0px;
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+   width: 100%;
+}
+

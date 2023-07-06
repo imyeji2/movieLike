@@ -66,7 +66,7 @@
 					</svg>
 				</div>
 				<div id = "logo">
-					<img src = "../images/logo.png">
+					<img src = "<%=request.getContextPath() %>/images/logo-black.png">
 				</div>
 				
 				<!-- 로그인 -->
