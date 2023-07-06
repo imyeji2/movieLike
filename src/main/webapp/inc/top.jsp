@@ -81,7 +81,7 @@
 							<label for="floatingPassword">비밀번호</label>
 						</div>
 						<div class = "submit">
-							<input type="submit" value="로그인" name = "login">
+							<input type="submit" value="로그인" class = "login-bt">
 						</div>
 					</form>
 					<div class="members">
@@ -151,12 +151,12 @@
 	});
 	
 	$('.confirm').click(function(){
-		let id = $('#registerId').val();
-		let pass = $('#registerPassword').val();
-		let name = $('#registerName').val();
-		let man = $('#man').is(':checked');
-		let woman = $('#woman').is(':checked');
-		let birth = $('#registerBirth').val();
+		var id = $('#registerId').val();
+		var pass = $('#registerPassword').val();
+		var name = $('#registerName').val();
+		var man = $('#man').is(':checked');
+		var woman = $('#woman').is(':checked');
+		var birth = $('#registerBirth').val();
 		
 		if ( id == '') {
 			alert('이메일을 확인해주세요');
@@ -178,6 +178,21 @@
 			$('.register').hide();
 			$('.login').show();
 		}
+	});
+	
+	$('.login-bt').click(function(){
+		
+		var floatingInput = $('#floatingInput').val();		
+		var floatingPassword = $('#floatingPassword').val();		
+		
+		if(floatingInput == ''){
+			alert('이메일을 확인해주세요');
+			return false;
+		}else if(floatingPassword == ''){
+			alert('비밀번호를 확인해주세요');
+			return false;
+		}
+		
 	});
 </script>
 	
