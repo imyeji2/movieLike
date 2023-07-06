@@ -115,8 +115,7 @@
 			</article>
 			
 	</section> 
-	
-
-
+   </div><!-- admin_menu->aside, session 감싸는 div -->   
+</div><!-- admin_menu->wrap -->
 </body>
 </html>
