@@ -1,3 +1,7 @@
+<%@page import="com.semi.board.model.BoardVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.semi.board.model.BoardDAO"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -26,7 +30,7 @@
 
 <body>
 
-<%
+<%-- <%
 request.setCharacterEncoding("utf-8");
 	String keyword=request.getParameter("searchKeyword");
 	String condition=request.getParameter("searchCondition");
@@ -39,7 +43,6 @@ request.setCharacterEncoding("utf-8");
 		e.printStackTrace();
 	}
 
-	//3
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	//검색창(keyword) null이면 공백으로 처리
@@ -68,7 +71,7 @@ request.setCharacterEncoding("utf-8");
 
 	//페이지당 글 리스트 시작 번호
 	int num = totalRecord - curPos;
-%>
+%> --%>
 
 	<section id="noticeList">
 			<article id="notice_content">
@@ -118,18 +121,52 @@ request.setCharacterEncoding("utf-8");
 						      <th scope="col">조회수</th>
 						    </tr>
 						  </thead>
-						  <tbody>
-						  
-						    <tr style="text-align: center">
-						      <th><input type="checkbox"></th>
-						      <th scope="row">1</th>
-						      <td style="text-align: left"><a href="#"></a>공지</td>
-						      <td>2023-07-05</td>
-						      <td>128</td>
-						    </tr>
-						 
-						  </tbody>
-						</table>
+						<tbody>
+
+							<tr style="text-align: center">
+								<th><input type="checkbox"></th>
+								<th scope="row">1</th>
+								<td style="text-align: left"><a href="#"></a>공지</td>
+								<td>2023-07-05</td>
+								<td>128</td>
+							</tr>
+							<%-- <%
+							if (list == null || list.isEmpty()) {
+							%>
+							<tr>
+								<td colspan="6" class="align_center">글이 존재하지 않습니다.</td>
+							</tr>
+							<%
+							} else {
+							%>
+							<!--게시판 내용 반복문 시작  -->
+							<%
+							//10번씩만 반복
+							for (int i = 0; i < pageSize; i++) {
+								if (num < 1)
+									break;
+
+								BoardVO vo = list.get(curPos++);
+								num--;
+							%>
+							<tr style="text-align: center">
+								<td><%=vo.getBoardNo()%></td>
+								<td style="text-align: left"><a
+									href="countUpdate.jsp?no=<%=vo.getBoardNo()%>"><%=vo.getTitle()%></a>
+								</td>
+								<td><%=vo.getName()%></td>
+								<td><%=sdf.format(vo.getRegdate())%></td>
+								<td><%=vo.getReadcount()%></td>
+							</tr>
+							<%
+							} //for
+							%>
+							<!--반복처리 끝  -->
+							<%
+							} //if
+							%> --%>
+						</tbody>
+					</table>
 						
 						<div class="bottom_input">
 							<div class="input-group mb-3">
