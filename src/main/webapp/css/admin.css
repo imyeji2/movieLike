@@ -87,6 +87,11 @@ header h2{
 	font-weight: 600;
 }
 
+
+.logo_img{
+	height: 65px;
+}
+
 /*admin 메뉴 css*/
 #admin_menu{
 	color:#fff;
@@ -242,5 +247,8 @@ header h2{
 	.btn_grop_input:hover {
 		background:#0b5ed7;
 	}
+	
+	
+	
 	
 }

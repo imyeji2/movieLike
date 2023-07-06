@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 기본 js -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/movieAPI.js"></script>
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <!-- 생성 css -->
@@ -25,7 +26,7 @@
 			<ul>
 				<li>
 					<a href="<%=request.getContextPath()%>/index.jsp">
-						<img src="<%=request.getContextPath()%>/images/logo.png" alt="로고"/>
+						<img src="<%=request.getContextPath()%>/images/logo-white.png" alt="로고" class="logo_img"/>
 					</a>
 				</li>
 				<li><a href="#">로맨스</a></li>

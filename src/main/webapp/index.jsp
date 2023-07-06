@@ -119,7 +119,7 @@
 			    </div><!-- carousel-item -->
 			    <div class="carousel-item" data-bs-interval="3000">
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/엘리멘탈.jpg">
 		    			</div><!-- main_poster -->
 		    			<div class="main_movie_info">
@@ -137,7 +137,7 @@
 		    			</div><!-- main_movie_info -->
 		    		</div><!-- main_box1_margin -->
 		    		<div class="main_box1 f_left">
-		    			<div div class="main_poster">
+		    			<div div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Indiana_Jones_and_the_Dial_of_Destiny.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -155,7 +155,7 @@
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/The_Roundup.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -173,7 +173,7 @@
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/SpiderMan_Across_the_Spider_Verse.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -191,7 +191,7 @@
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>	
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -222,15 +222,17 @@
 			  </button>
 			</div>
 		</article>
+
+
 		<article class="main_box">
-			<p class="main_title">박스오피스 top10</p>
+			<p class="main_title">여름밤 맥주와 함께하는 로맨스🍻</p>
 			<div id="carouselExampleInterval2" class="carousel slide" data-bs-ride="false">
 			  <div class="carousel-inner">
 			    <div class="carousel-item active" data-bs-interval="3000">
 			    
-		    		<div class="main_box1 mb_margin f_left">
+		    		<div class="main_box1 f_left">
 		    			<input type="hidden" name="movieNo" value="1">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/엘리멘탈.jpg">
 		    			</div><!-- main_poster -->
 		    			<div class="main_movie_info">
@@ -241,15 +243,11 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 31%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
 		    			</div><!-- main_movie_info -->
 		    		</div><!-- main_box1_margin -->
-		    		<div class="main_box1 mb_margin f_left">
+		    		<div class="main_box1 f_left">
 		    			<input type="hidden" name="movieNo" value="2">
-		    			<div div class="main_poster">
+		    			<div div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Indiana_Jones_and_the_Dial_of_Destiny.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -260,15 +258,12 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.3</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 19%</span>
-		    					<span>누적관객 24만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>
-		    		<div class="main_box1 mb_margin f_left">
+		    		<div class="main_box1 f_left">
 		    			<input type="hidden" name="movieNo" value="3">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/The_Roundup.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -279,14 +274,11 @@
 			    				<span>한국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.1</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 9.1%</span>
-		    					<span>누적관객 997만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>
-		    		<div class="main_box1 mb_margin f_left">
-		    			<div class="main_poster">
+		    		<div class="main_box1 f_left">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/SpiderMan_Across_the_Spider_Verse.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -297,35 +289,29 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 4.3</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 8.7%</span>
-		    					<span>누적관객 50만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>	
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
-		    				<p class="movie_info1">미션임파서블 : 데드 레코..</p>
+		    				<p class="movie_info1">미션임파서블 : 데드 레코...</p>
 		    				<p class="movie_info2">
 			    				<span>2023</span>
 			    				<span>&middot;</span>
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 7.6%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>			    				    					    					    	
 			    </div><!-- carousel-item -->
 			    <div class="carousel-item" data-bs-interval="3000">
-		    		<div class="main_box1 mb_margin f_left">
-		    			<div class="main_poster">
-		    				<img src="images/movie/Elemental.jpg">
+		    		<div class="main_box1 f_left">
+		    			<div class="main_poster img-thumbnail">
+		    				<img src="images/movie/엘리멘탈.jpg">
 		    			</div><!-- main_poster -->
 		    			<div class="main_movie_info">
 		    				<p class="movie_info1">엘리멘탈</p>
@@ -335,14 +321,11 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 31%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->
 		    		</div><!-- main_box1_margin -->
-		    		<div class="main_box1 mb_margin f_left">
-		    			<div div class="main_poster">
+		    		<div class="main_box1 f_left">
+		    			<div div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Indiana_Jones_and_the_Dial_of_Destiny.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -353,14 +336,11 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.3</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 19%</span>
-		    					<span>누적관객 24만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>
-		    		<div class="main_box1 mb_margin f_left">
-		    			<div class="main_poster">
+		    		<div class="main_box1 f_left">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/The_Roundup.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -371,14 +351,11 @@
 			    				<span>한국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.1</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 9.1%</span>
-		    					<span>누적관객 997만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/SpiderMan_Across_the_Spider_Verse.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -389,14 +366,11 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 4.3</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 8.7%</span>
-		    					<span>누적관객 50만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>	
 		    		<div class="main_box1 f_left">
-		    			<div class="main_poster">
+		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
 		    			</div>
 		    			<div class="main_movie_info">
@@ -407,10 +381,7 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 7.6%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
+
 		    			</div><!-- main_movie_info -->		    			
 		    		</div>	
 			    </div>
@@ -428,5 +399,5 @@
 			</div>
 		</article>		
 	</section>
-	
+	<br><br><br><Br><br>
 <%@ include file="inc/bottom.jsp" %>	

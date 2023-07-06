@@ -17,6 +17,7 @@ public class MovieVO {
 	private int directorNo1;         
 	private int directorNo2;         
 	private String movieStatus;
+	private String stilcut;
 	
 	public MovieVO() {
 		super();
@@ -24,7 +25,7 @@ public class MovieVO {
 
 	public MovieVO(int movieNo, int genreNo, String title, String runningTime, String synop, String poster, String url,
 			int price, Timestamp opendate, int ageRate, Timestamp regdate, int directorNo1, int directorNo2,
-			String movieStatus) {
+			String movieStatus, String stilcut) {
 		super();
 		this.movieNo = movieNo;
 		this.genreNo = genreNo;
@@ -40,6 +41,7 @@ public class MovieVO {
 		this.directorNo1 = directorNo1;
 		this.directorNo2 = directorNo2;
 		this.movieStatus = movieStatus;
+		this.stilcut = stilcut;
 	}
 
 	public int getMovieNo() {
@@ -154,11 +156,21 @@ public class MovieVO {
 		this.movieStatus = movieStatus;
 	}
 
+	public String getStilcut() {
+		return stilcut;
+	}
+
+	public void setStilcut(String stilcut) {
+		this.stilcut = stilcut;
+	}
+
 	@Override
 	public String toString() {
 		return "MovieVO [movieNo=" + movieNo + ", genreNo=" + genreNo + ", title=" + title + ", runningTime="
 				+ runningTime + ", synop=" + synop + ", poster=" + poster + ", url=" + url + ", price=" + price
 				+ ", opendate=" + opendate + ", ageRate=" + ageRate + ", regdate=" + regdate + ", directorNo1="
-				+ directorNo1 + ", directorNo2=" + directorNo2 + ", movieStatus=" + movieStatus + "]";
+				+ directorNo1 + ", directorNo2=" + directorNo2 + ", movieStatus=" + movieStatus + ", stilcut=" + stilcut
+				+ "]";
 	}
+
 }
