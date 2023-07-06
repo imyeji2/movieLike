@@ -26,3 +26,9 @@ function showContent(num){
 		}
 	}
 }
+function pageup(num){
+	num++;
+}
+function pagedown(num){
+	num--;
+}
