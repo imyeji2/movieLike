@@ -149,51 +149,61 @@ header h2{
 
 /*영화 등록 css*/
 #movieWrite{
-   color: #333;;
-   
-   .movieWrite_box{
-      margin-top:10px;
-   }
-   .movieWrite_box{
-      
-   }
-   .movieWrite_box1{
-      border-top:1px solid #b9b9b9;
-      border-left: 1px solid #b9b9b9;
-      border-right: 1px solid #b9b9b9;
-   }
-   
-   .movieWrite_box_in{
-      overflow: hidden;
-      color: gray;
-      display: flex;
-      border-bottom:1px solid #b9b9b9;
-      border-collapse: collapse;
-      
-   }
-   
-   .movieWrite_box_in_left{
-      width:300px;
-      padding: 5px 10px 5px 10px;
-      background-color: #e0e0e0;
-      text-align: center;
-      vertical-align:middle;
-      float: left;
-      order: 1;
-      
-   }
-   
-   .movieWrite_box_in_right{
-      width:90%;
-      padding: 5px 10px 5px 10px;
-      float: left;
-      order: 2;
-   }
-   
-   
-   .movieWrite_box_in_right textarea{
-      width:100%;
-      height: 100px;
-   }
-      
+
+	color: #333;;
+	
+	.movieWrite_box{
+		margin-top:10px;
+	}
+	.movieWrite_box p{
+		padding: 0px 5px 5px 5px;
+		font-weight: 500;
+	}
+	.movieWrite_box1{
+		border-top:1px solid #b9b9b9;
+		border-left: 1px solid #b9b9b9;
+		border-right: 1px solid #b9b9b9;
+	}
+	
+	.movieWrite_box_in{
+		overflow: hidden;
+		
+		color: gray;
+		display: flex;
+		border-bottom:1px solid #b9b9b9;
+		border-collapse: collapse;
+		
+	}
+	
+	.movieWrite_box_in_left{
+		width:300px;
+		background-color: #e0e0e0;
+		text-align: center;
+		vertical-align:middle;
+		float: left;
+		order: 1;
+		padding:10px 10px 10px 10px;
+		
+	}
+	
+	.movieWrite_box_in_right{
+		padding:10px 10px 10px 10px;
+		float: left;
+		order: 2;
+	}
+	
+	
+	.movieWrite_box_in_right textarea{
+		width:100%;
+		height: 100px;
+	}
+	
+	.movie_serch_btn{
+		width:100px;
+		height: 40px;
+		background: #637dea;
+		border:0px;
+		color:#fff;
+	}
+
 }
