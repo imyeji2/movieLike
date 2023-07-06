@@ -29,6 +29,11 @@
 		font-size: 20px;
 		padding-left: 25px;
 	    padding-top: 15px;
+	    
+	}
+	
+	.span_notice{
+	cursor: pointer;
 	}
 	
 	.content_box {
@@ -38,6 +43,10 @@
 	
 	.input-group.mb-3 {
 		width: 450px;
+	}
+	
+	.search_result {
+		height: 42px;
 	}
 	
 	.table {
@@ -66,15 +75,34 @@
 	}
 	
 	.input-group.mb-3  {
-		width: 450px;
-	    float: left;
-	    margin-left: 28px;
-	    margin-top: 15px;
+		width: 300px;
+   		margin: 0 auto;
 	}
 	
-	.ed_btn > .btn.btn-outline-secondary {
+	.ed_btn {
+		position: relative;
+	    float: right;
+	    top: -58px;
+	    padding-right: 28px;
+	}
+	
+	.bottom_input {
+		margin: 0 auto;
+		overflow: hidden;
+		padding-top: 30px
+	}
+	
+	.left{
+		float: left;
+	}
+	
+	.rigth{
 		float: right;
-   		margin-right: 10px;
+	}
+	
+	.clear{
+		clear: both;
+	
 	}
 	
 }
