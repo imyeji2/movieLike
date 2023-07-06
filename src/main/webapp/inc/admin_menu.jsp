@@ -49,7 +49,7 @@
 <body>
 	<div class="wrap"><!-- 전체 div -->
 		<header>
-			<div>
+			<div class="img_logo">
 				<img src="<%=request.getContextPath()%>/images/logo.png">
 			</div>
 		</header>
