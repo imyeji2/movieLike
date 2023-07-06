@@ -2,29 +2,28 @@
 
 /*전체 페이지 기본 속성(default) 변경 금지*/
 html, body{
-	margin: 0 auto;
+   margin: 0 auto;
 }
 
 body{
-
-	font-family: RobotoInCjk, "Noto Sans KR", 
-	"Apple SD Gothic Neo", "Nanum Gothic", 
-	"Malgun Gothic", sans-serif;
-	background:#f3f3f3;
-	color:#333;
+   font-family: RobotoInCjk, "Noto Sans KR", 
+   "Apple SD Gothic Neo", "Nanum Gothic", 
+   "Malgun Gothic", sans-serif;
+   background:#f3f3f3;
+   color:#333;
 
 }
 
 
 ul,li{
-	margin:0px;
-	padding:0px;
+   margin:0px;
+   padding:0px;
 }
 
 a{
-	text-decoration: none;
-	cursor: pointer;
-	color: #fff;
+   text-decoration: none;
+   cursor: pointer;
+   color: #fff;
 }
 
 a:hover{
@@ -33,19 +32,19 @@ a:hover{
 
 
 .f_left{
-	float: left;
+   float: left;
 }
 
 .f_right{
-	float: right;
+   float: right;
 }
 
 .clear{
-	clear: both;
+   clear: both;
 }
 
 p{
-	margin:0 auto;
+   margin:0 auto;
 }
 
 
@@ -53,54 +52,49 @@ p{
 
 /*관리자 css*/
 .admin_content{
-	width: 100%;
+   width: 100%;
     display: flex;
-	padding-top:60px;
-	min-height: 100vh;
+   padding-top:60px;
+   min-height: 100vh;
 }
 
 aside{
-	width:20%;;
-	background-color: #232a31;
-	float: left;
-	padding:1% 0% 1% 0%;
-	box-sizing: border-box;
+   width:20%;;
+   background-color: #232a31;
+   float: left;
+   padding:1% 0% 1% 0%;
+   box-sizing: border-box;
 }
 
 section{
-
-	width:80%;
-	float: left;
-	padding:40px 40px 20px 40px;
-	box-sizing: border-box;
-
+   width:80%;
+   float: left;
+   padding:40px 40px 20px 40px;
+   box-sizing: border-box;
+   
 }
 
 header{
-	width:100%;
-	height:60px;
-	background:#101322 ;
-	position: fixed;
-	z-index: 99;
+   width:100%;
+   height:60px;
+   background:#101322 ;
+   position: fixed;
+   z-index: 99;
 }
 
 
 header h2{
-	font-weight: 600;
+   font-weight: 600;
 }
 
 
-<<<<<<< HEAD
-=======
 .logo_img{
-	height: 65px;
+   height: 65px;
 }
 
->>>>>>> 34b8db0c4f20b0fd769eb7980fb14aa09c4a8c22
 /*admin 메뉴 css*/
 #admin_menu{
-	color:#fff;
-
+   color:#fff;
 
    .admin_menu_box{
       line-height: 50px;
@@ -135,12 +129,12 @@ header h2{
    .admin_menu_box2{
       line-height: 50px;
    }
-
+   
+   
 }
 
 /*영화 관리 css*/
 #movieList{
-
    color:#222;
    
    .movieList_top{
@@ -155,102 +149,106 @@ header h2{
    .content_box{
       background-color: #fff;
    }
-
+   
 }
 
 
 
 /*영화 등록 css*/
 #movieWrite{
-	.movieWrite_box{
-		margin-top:10px;
-	}
-	.movieWrite_box p{
-		padding: 0px 5px 5px 5px;
-		font-weight: 500;
-	}
-	
-	.movieWrite_box a{
-		color:#333;
-	}
-	
-	.movieWrite_box a:hover{
-		text-decoration: underline;
-	}
-	.movieWrite_box1{
-		border-top:1px solid #b9b9b9;
-		border-left: 1px solid #b9b9b9;
-		border-right: 1px solid #b9b9b9;
-	}
-	
-	.movieWrite_box_in{
-		overflow: hidden;
-		color: gray;
-		display: flex;
-		border-bottom:1px solid #b9b9b9;
-		border-collapse: collapse;
-		line-height: 25px;
-		
-	}
-	
-	.movieWrite_box_in_left{
-		width:20%;
-		background-color: #e0e0e0;
-		text-align: center;
-		vertical-align:middle;
-		float: left;
-		order: 1;
-		padding:10px 10px 10px 10px;
-		
-	}
-	
-	.movieWrite_box_in_right{
-		width: 80%;
-		padding:1% 0.5% 1% 0.5%;
-		float: left;
-		order: 2;
-	}
-	
-	.info_txt{
-		border: 0px;
-		outline: none;
-		background-color: #f3f3f3;
-	}
-	
-	.movie_btn{
-		position: relative;
-		top:20px;
-		border: 0;
-		float: right;
-	}
-	
-	/*하단 버튼*/
-	
-	.btn_grop{
-		width:180px;
-		margin:0 auto;
-		padding-top:30px;
-	}
-	
-	.btn_grop_input{
-		width:80px;
-		height:35px;
-		background:#0d6efd ;
-		border: 0px;
-		color:#fff;
-		margin: 0px 5px 0px 0px;
-		border-radius: 8px;
-	}
-
-	.btn_grop_input:hover {
-		background:#0b5ed7;
-	}
-<<<<<<< HEAD
-
-=======
-	
-	
-	
-	
->>>>>>> 34b8db0c4f20b0fd769eb7980fb14aa09c4a8c22
+   color: #333;
+   
+   .movieWrite_wrap{
+      width: 90%;
+      padding-bottom:50px;
+      margin :0 auto;
+   }
+   
+   .movieWrite_box{
+      margin-top:10px;
+   }
+   .movieWrite_box p{
+      padding: 0px 5px 5px 5px;
+      font-weight: 500;
+   }
+   
+   .movieWrite_box a{
+      color:#333;
+   }
+   
+   .movieWrite_box a:hover{
+      text-decoration: underline;
+   }
+   .movieWrite_box1{
+      border-top:1px solid #b9b9b9;
+      border-left: 1px solid #b9b9b9;
+      border-right: 1px solid #b9b9b9;
+   }
+   
+   .movieWrite_box_in{
+      overflow: hidden;
+      color: gray;
+      display: flex;
+      border-bottom:1px solid #b9b9b9;
+      border-collapse: collapse;
+      line-height: 25px;
+      
+   }
+   
+   .movieWrite_box_in_left{
+      width:20%;
+      background-color: #e0e0e0;
+      text-align: center;
+      vertical-align:middle;
+      float: left;
+      order: 1;
+      padding:10px 10px 10px 10px;
+      
+   }
+   
+   .movieWrite_box_in_right{
+      width: 80%;
+      padding:1% 0.5% 1% 0.5%;
+      float: left;
+      order: 2;
+   }
+   
+   .info_txt{
+      border: 0px;
+      outline: none;
+      background-color: #f3f3f3;
+   }
+   
+   .movie_btn{
+      position: relative;
+      top:20px;
+      border: 0;
+      float: right;
+   }
+   
+   /*하단 버튼*/
+   
+   .btn_grop{
+      width:180px;
+      margin:0 auto;
+      padding-top:30px;
+   }
+   
+   .btn_grop_input{
+      width:80px;
+      height:35px;
+      background:#0d6efd ;
+      border: 0px;
+      color:#fff;
+      margin: 0px 5px 0px 0px;
+      border-radius: 8px;
+   }
+   
+   .btn_grop_input:hover {
+      background:#0b5ed7;
+   }
+   
+   
+   
+   
 }
