@@ -1,8 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
+
+	<section id="movieWrite">
+
+		<article class="moviList_content">
+			
+			<h1>영화 리스트</h1>
+			
+			<div class="content_box">
+			
+			asd
+			</div>
+		</article>
+		
+	<div><!-- 전체div -->
+		<div class="movieWrite_box"> <!-- 상단 타이틀 div -->
+			<h4>영화 등록</h4>
+			<p>영화관리>영화등록</p>
+		</div>
+
 <script type="text/javascript">
 	$(function(){
+
 		
 		$('.movie_btn').click(function(){
 			var type=$(this).attr('name');
@@ -34,6 +54,14 @@
 					<div class="movieWrite_box_in">
 						<div class="movieWrite_box_in_left">줄거리</div>
 						<div class="movieWrite_box_in_right">
+							<textarea>
+							</textarea>
+						</div>
+					</div>					
+				</div>
+		
+		</div>
+	</div>
 							asldkalksjdlkasjdakjsdladjlkasjdaksdj<br>
 							asldkalksjdlkasjdakjsdladjlkasjdaksdj<br>
 							asldkalksjdlkasjdakjsdladjlkasjdaksdj<br>
@@ -64,6 +92,13 @@
 						<div class="movieWrite_box_in_right">
 							<input class="form-control info_txt" type="text" placeholder="팝콘가를 입력하세요" name="price">
 						</div>
+					</div>					
+				</div>
+		
+		</div>
+	</div>
+	</section> 
+</div>
 					</div><!-- movieWrite_box_in -->
 					<div class="movieWrite_box_in">
 						<div class="movieWrite_box_in_left">예고편URL</div>
@@ -111,6 +146,10 @@
 					
 				<div class="movieWrite_box1">														
 				</div><!-- movieWrite_box1 -->
+		</div><!-- movieWrite_box -->							
+	</div><!-- 전체div -->
+	</section> 
+</div>
 			</div><!-- movieWrite_box -->
 			<br>
 			<div class="btn_grop">
