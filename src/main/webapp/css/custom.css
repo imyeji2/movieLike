@@ -71,6 +71,14 @@
    
 }
 
+svg.bi.bi-gear {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
 #myPageHeader {
    margin-bottom: 5px;
    position: relative;
@@ -106,9 +114,8 @@
    background: white;
    height: 120px;
    width: 120px;
-   float: right;
-   margin-right: 20px;
-   margin-top: 60px;
+   float: left;
+   margin: 100px 60px;
 }
 
 #bodyBar {
@@ -124,4 +131,5 @@
    margin-top: 10px;
    width: 100%;
 }
+
 
