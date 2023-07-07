@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+#myPageSection {
+	padding-bottom:100%;
+	
+	.myPageMain {
+  height: 700px; 
+   background: #101322;
+   }
+
+   .main {
+   background: rgb(28, 34, 62);
+   width: 50%;
+   margin: 0 auto;
+   padding-bottom:50px;
+   }
+   .myInfo {
+   background: white;
+   }
+
+ 
+   .mainContent{
+   padding-bottom:100px;
+   }
+   .content {
+      margin-top: 25px;
+      justify-content: center;
+      padding-bottom:50px;
+   }
+   
+   .refund {
+     border: none;
+      background:limegreen;
+      color:floralwhite;
+      font-weight: bold;
+      width: 100px;
+   }
+   .content table {
+      width: 90%;
+      margin-left: 5%;
+      justify-content: center;
+   }
+   .dateCol {
+      width: 20%;
+   }
+   
+  .content table th {
+      border-bottom: 1px grey solid;
+		font-size: 21px;
+      text-align: center;
+   }
+   
+   .content table td {
+      border-bottom: 1px grey solid;
+		font-size: 15px;
+      text-align: center;
+   }
+   
+   .content table tr {
+      border-bottom: 1px grey solid;
+   }
+   .card{
+	display:inline-block;	
+	width : 30%;
+    height:5%;
+    margin:10px;
+   }
+      .myPageNav{
+	   margin-top: 15px;
+	   
+   }
+   .phppot-container{
+		width: 50%;
+		padding:0;
+   }
+}
+
+svg.bi.bi-gear {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+#bodyBar {
+   height: 48px;
+}
+
+#myPageMenu {
+   margin-top: 0px;
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+   width: 100%;
+}
+
+#myPageHeader {
+   margin-bottom: 14px;
+   position: relative;
+   height: 330px;
+   }
+
+#profileImg {
+   border-radius: 30%;
+   background: white;
+   height: 120px;
+   width: 120px;
+   float: left;
+   margin: 100px 60px;
+}
+   #myPageBody{
+		
+	}
+
+#jjim{
+	padding: 2%;
+}
+#bodyBar nav a {
+	margin-left :18px;
+   margin-right: 18px;
+   align-items: center;
+   font-size: 21px;
+   font-weight: 600;
+   margin-top: 12px;
+   color: white;
+   text-decoration-line: none;
+}
+#horizontal-underline {
+   position: absolute;
+   left: 0;
+   height: 7px;
+   border-radius: 2px;
+   transition: 0.7s;
+   background: white;
+   margin-top: 10px;
+}
+#pie-chart{
+	width:50%;
+	height: 50%;
+}
