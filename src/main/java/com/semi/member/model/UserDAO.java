@@ -51,4 +51,38 @@ public class UserDAO {
 		} 
 		
 	}
+	
+	public int duplicatedId(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select count(*) from userinfo where userid = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			int result = 0;
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				int cnt = rs.getInt(1);
+				
+				if(cnt>0) {
+					result = UserService.UNUSABLE_ID;//이미있음
+				}else {
+					result = UserService.USABLE_ID;// 없음 사용가능
+				}
+			}
+			System.out.println("중복확인 결과 : " + result + ", 매개변수 id : " + userId);
+			
+			return result;
+		}finally {
+			pool.dbClose(rs, ps, con);
+			
+		}
+		
+	}
 }

@@ -43,6 +43,6 @@
 	request.setAttribute("msg", msg);
 	request.setAttribute("url", url);
 %>
-<jsp:forward page="../inc/message.jsp"></jsp:forward>
+<jsp:forward page="<%=request.getContextPath() %>/inc/message.jsp"></jsp:forward>
 </body>
 </html>

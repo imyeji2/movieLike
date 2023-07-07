@@ -1,3 +1,4 @@
+<%@page import="com.semi.member.model.UserService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <!-- 서다희 작업 -->
@@ -55,6 +56,10 @@
                   <div class="form-floating">
                      <input type="password" class="form-control" id="registerPassword" name = "pwd" placeholder="비밀번호를 입력해주세요"> 
                      <label for="registerPassword">비밀번호</label>
+                  </div>
+                  <div class="form-floating">
+                     <input type="password" class="form-control" id="registerPassword2" name = "pwd2" placeholder="비밀번호를 입력해주세요"> 
+                     <label for="registerPassword">비밀번호 확인</label>
                   </div>
                   <div class="match">
                      <div class="form-floating">
@@ -131,6 +136,10 @@
          alert('생년월일을 확인해주세요');
          return false;
       }
+      
+    $('#registerId').on('blur',function(){
+   	
+    }) 
       
 /*       else {
          alert('회원가입이 완료되었습니다');
