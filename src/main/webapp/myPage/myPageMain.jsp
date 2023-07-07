@@ -35,15 +35,27 @@
 	Map<PayHistoryVO, Integer> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
+	Map<String, Integer> chartMap = new HashMap<>();
 	 
 	try{
 	 pointList = pointService.selectPointByUserid(userid);
 	 historyList = payHistoryService.selectHistoryByUserid(userid);
 	 reviewMap = reviewService.selectByUserId(userid);
 	 pickMap = pickService.selectPickByUserId(userid);
+	 chartMap = payHistoryService.chartValue(userid);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
+	StringBuilder labels = new StringBuilder();
+	StringBuilder values = new StringBuilder();
+	if(chartMap != null && !chartMap.isEmpty()){
+		for(Entry<String, Integer> elem : chartMap.entrySet()){
+			labels.append("'" + elem.getKey() + "',");
+			values.append(elem.getValue()+ ",");
+		}
+	}
+	 labels.deleteCharAt(labels.length() - 1);
+     values.deleteCharAt(values.length() - 1);
 	
 	int totalHistoryRecord=pointList.size();
 	int pageSize=0;
@@ -70,6 +82,7 @@
 			        <a href="javascript:void(0);" onclick = "showContent(2);">구매이력</a>
 			        <a href="javascript:void(0);" onclick = "showContent(3);">팝콘(충전/이력)</a>
 			        <a href="javascript:void(0);" onclick = "showContent(4);">리뷰관리</a>
+			        <a href="javascript:void(0);" onclick="showContent(5);">통계</a>
 		        <div id="horizontal-underline"></div>
 		   	 </nav>
 			</div>
@@ -83,7 +96,7 @@
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
 				            	PickVO PickVo = elem.getKey();
-								MovieVO title = elem.getValue();%>
+				            	MovieVO title = elem.getValue();%>
 								<div class="card"">
 			  						<img src="..." class="card-img-top" alt="...">
 								  		<div class="card-body">
@@ -156,10 +169,39 @@
 						}%>
 					</table>
 				</div>
+				<div class="content" style="display: none" id="statistics">
+					<div class="phppot-container">
+						<div>
+							<canvas id="pie-chart"></canvas>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script 
+	src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+<script>
+new Chart(document.getElementById("pie-chart"), {
+	type : 'pie',
+	data : {
+		labels : [<%=labels.toString()%>],
+		datasets : [ {
+			backgroundColor : [ "#51EAEA", "#FCDDB0",
+					"#FF9D76", "#FB3569", "#82CD47" ],
+			data : [<%=values%>]
+		} ]
+	},
+	options : {
+		title : {
+			display : true,
+			text : 'Chart JS Pie Chart Example'
+		}
+	}
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script src="myPage.js"></script>
+<script src="myPageBarAni.js"></script>
 <%@ include file="../inc/bottom.jsp"%>

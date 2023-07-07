@@ -13,6 +13,8 @@ public class PayHistoryService {
 	}
 	public Map<PayHistoryVO, Integer> selectHistoryByUserid(String userid) throws SQLException{
 		return pointHistoryDao.selectHistoryByUserid(userid);
-		
+	}
+	public Map<String, Integer> chartValue(String userid) throws SQLException{
+		return pointHistoryDao.chartValue(userid);
 	}
 }
