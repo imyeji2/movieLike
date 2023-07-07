@@ -10,8 +10,8 @@
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <!-- 생성 css -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/dami.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
 <style type="text/css">
 
 </style>
@@ -37,6 +37,11 @@
 			$('.admin_menu_box_in').slideToggle();
 		});
 		
+	/* 	var body = document.body,
+		html = document.documentElement;
+		var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight )-60;
+		$('aside').css('height',height);
+ */
 	});
 </script>
 <title>무비라이크-관리자 페이지</title>
@@ -45,13 +50,15 @@
 	<div class="wrap"><!-- 전체 div -->
 		<header>
 			<div>
-				<img src="<%=request.getContextPath()%>/images/logo.png">
+				<img src="<%=request.getContextPath()%>/images/logo-white.png" class="logo_img">
+
 			</div>
 		</header>
+		<div class="admin_content">
 		    <aside id="admin_menu">
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_movie.svg" name="movie" alt="영화관리아이콘 ">
-			   		<span style="margin-left:20px"><a href="#">영화 관리</a></span>
+			   		<span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/movie/movieList.jsp">영화 관리</a></span>
 			   	</div>
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_main.svg" name="main" alt="메인관리아이콘 ">
@@ -63,7 +70,7 @@
 			   	</div>	
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_board.svg" name="board" alt="게시판관리아이콘 ">
-			   		<span style="margin-left:20px"><a href="#">공지/FAQ등록</a></span>
+			   		<span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/notice.jsp">공지/FAQ등록</a></span>
 			   	</div>	
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_review.svg" name="review" alt="리뷰관리아이콘 ">
@@ -96,5 +103,6 @@
 			  		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_logout.svg" name="logout" alt="통계관리아이콘 ">
 			  		<span style="margin-left:20px"><a href="#">로그아웃</a></span>
 			   	</div> 
-		    </aside> 	 		   	   	   	   				
+		    </aside> 
+		    	 		   	   	   	   				
 		    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

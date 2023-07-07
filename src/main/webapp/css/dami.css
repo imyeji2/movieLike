@@ -1,56 +1,108 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
-.content_box>select {
-	width:180px;
-}
-
-.content_box>title_search {
-	width:250px;
-}
-
-.top_btn {
-    float: right;
-    margin-top: -47px;
-}
-
-.notice_box {
-	margin-top: 40px;
-}
-
-.top_box {
-	background: #fafafa;
-	border: solid 1px #e5e5e5;
-	height: 60px;
-}
-
-.top_text {
-	font-size: 22px;
-	padding-left: 25px;
-    padding-top: 10px;
-}
-
-.content_box {
-	background: white;
-	height: 700px;
-}
-
-.input-group.mb-3 {
-	width: 450px;
-}
-
-.notice_edit_btn .notice_delete_btn {
-	--bs-btn-color: #6c757d;
-    --bs-btn-border-color: #6c757d;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #6c757d;
-    --bs-btn-hover-border-color: #6c757d;
-    --bs-btn-focus-shadow-rgb: 108,117,125;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #6c757d;
-    --bs-btn-active-border-color: #6c757d;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #6c757d;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #6c757d;
-    --bs-gradient: none;
+/* 관리자페이지 - 공지사항/FAQ */
+#noticeList {
+	.content_box>select {
+		width:180px;
+	}
+	
+	.content_box>title_search {
+		width:250px;
+	}
+	
+	.top_btn {
+	    float: right;
+	    margin-top: -18px;
+	}
+	
+	.notice_box {
+		margin-top: 40px;
+	}
+	
+	.top_box {
+		background: #fafafa;
+		border: solid 1px #e5e5e5;
+		height: 60px;
+	}
+	
+	.top_text {
+		font-size: 20px;
+		padding-left: 25px;
+	    padding-top: 15px;
+	    
+	}
+	
+	.span_notice{
+	cursor: pointer;
+	}
+	
+	.content_box {
+		background: white;
+		height: 700px;
+	}
+	
+	.input-group.mb-3 {
+		width: 600px;
+	}
+	
+	.search_result {
+		height: 42px;
+	}
+	
+	.table {
+		width: 96%;
+	}
+	
+	.table.table.table-bordered {
+		margin: 0 auto;
+	}
+	
+	.notice_edit_btn .notice_delete_btn {
+		--bs-btn-color: #6c757d;
+	    --bs-btn-border-color: #6c757d;
+	    --bs-btn-hover-color: #fff;
+	    --bs-btn-hover-bg: #6c757d;
+	    --bs-btn-hover-border-color: #6c757d;
+	    --bs-btn-focus-shadow-rgb: 108,117,125;
+	    --bs-btn-active-color: #fff;
+	    --bs-btn-active-bg: #6c757d;
+	    --bs-btn-active-border-color: #6c757d;
+	    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	    --bs-btn-disabled-color: #6c757d;
+	    --bs-btn-disabled-bg: transparent;
+	    --bs-btn-disabled-border-color: #6c757d;
+	    --bs-gradient: none;
+	}
+	
+	.input-group.mb-3  {
+		width: 300px;
+   		margin: 0 auto;
+	}
+	
+	.ed_btn {
+		position: relative;
+	    float: right;
+	    top: -58px;
+	    padding-right: 28px;
+	}
+	
+	.bottom_input {
+		margin: 0 auto;
+		overflow: hidden;
+		padding-top: 30px
+	}
+	
+	.left{
+		float: left;
+	}
+	
+	.rigth{
+		float: right;
+	}
+	
+	.clear{
+		clear: both;
+	
+	}
+	
 }

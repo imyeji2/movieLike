@@ -31,51 +31,44 @@
    }
    
    .refund {
-     border: none;
-      background:limegreen;
-      color:floralwhite;
+      border: none;
+      background:none;
+      color:green;
       font-weight: bold;
-      width: 100px;
    }
+   
+   .dateCol {
+      width: 20%;
+   }
+   
    .content table {
       width: 90%;
       margin-left: 5%;
       justify-content: center;
    }
-   .dateCol {
-      width: 20%;
-   }
    
-  .content table th {
+   .content table th {
       border-bottom: 1px grey solid;
-		font-size: 24px;
-      text-align: center;
+      background: #00E676;
    }
    
    .content table td {
       border-bottom: 1px grey solid;
-		font-size: 21px;
-      text-align: center;
    }
    
    .content table tr {
       border-bottom: 1px grey solid;
    }
+   .jjimMovie{
+      
+   }
    .card{
       display:inline-block;
       width : 40%;
-      height:5%;
+      height:20%;
       margin: 10px;
-      overflow: hidden;
    }
-      .myPageNav{
-	   margin-top: 15px;
-	   
-   }
-   .phppot-container{
-		width: 50%;
-	    justify-content: center;
-   }
+   
 }
 
 svg.bi.bi-gear {
@@ -85,6 +78,46 @@ svg.bi.bi-gear {
     right: 20px;
     top: 20px;
 }
+
+#myPageHeader {
+   margin-bottom: 5px;
+   position: relative;
+   height: 330px;
+   }
+
+   #myPageBody{
+   height: 1169px;
+   
+   }
+
+
+#bodyBar nav a { margin-left :18px;
+   margin-right: 18px;
+   align-items: center;
+   font-size: 21px;
+   margin-top: 12px;
+   color: white;
+   text-decoration-line: none;
+}
+#horizontal-underline {
+   position: absolute;
+   left: 0;
+   height: 7px;
+   border-radius: 2px;
+   transition: 0.7s;
+   background: white;
+   margin-top: 1px;
+}
+
+#profileImg {
+   border-radius: 30%;
+   background: white;
+   height: 120px;
+   width: 120px;
+   float: left;
+   margin: 100px 60px;
+}
+
 #bodyBar {
    height: 48px;
    display: flex;
@@ -99,46 +132,4 @@ svg.bi.bi-gear {
    width: 100%;
 }
 
-#myPageHeader {
-   margin-bottom: 14px;
-   position: relative;
-   height: 330px;
-   }
 
-#profileImg {
-   border-radius: 30%;
-   background: white;
-   height: 120px;
-   width: 120px;
-   float: left;
-   margin: 100px 60px;
-}
-   #myPageBody{
-   height: 1169px;
-   
-   }
-
-
-#bodyBar nav a {
-	margin-left :18px;
-   margin-right: 18px;
-   align-items: center;
-   font-size: 21px;
-   font-weight: 600;
-   margin-top: 12px;
-   color: white;
-   text-decoration-line: none;
-}
-#horizontal-underline {
-   position: absolute;
-   left: 0;
-   height: 7px;
-   border-radius: 2px;
-   transition: 0.7s;
-   background: white;
-   margin-top: 1px;
-}
-#pie-chart{
-	width:700px;
-	height: 700px;
-}
