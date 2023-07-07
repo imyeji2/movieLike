@@ -64,8 +64,18 @@
 							<span class="span_notice">공지사항 등록</span>
 						</div>			
 					</div> 
-				
+					
 					<div class="content_box">
+						<div class="textDiv">
+							<div class="text_title">	
+					            <label for="title">제목</label>
+					            <input type="text" id="title" name="title" class="infobox" value="" />
+					         </div>
+					         <div class="text_name">
+					            <label for="name">작성자 ID</label>
+					            <input type="text" id="name" name="name" class="infobox" value=""/>
+					         </div>
+					      </div>
 						<div class="textarea_box">
 							<form action="" method="post">
 								<textarea name="text" id="editor"></textarea>
@@ -78,7 +88,6 @@
 						</div>
 					</div>	
 				</div>
-				
 	</section> 
    </div><!-- admin_menu->aside, session 감싸는 div -->   
 </div><!-- admin_menu->wrap -->

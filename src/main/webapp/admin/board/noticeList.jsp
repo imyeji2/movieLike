@@ -29,6 +29,7 @@
 		$('#button-delete').click(function(){
 			if(confirm('정말 삭제하시겠습니까?')){
 				return false;
+			}
 		});
 			
 	});
@@ -138,7 +139,7 @@ request.setCharacterEncoding("utf-8");
 						      <th scope="col">선택</th>
 						      <th scope="col">번호</th>
 						      <th scope="col">제목</th>
-						      <th scope="col">작성일</th>
+						      <th scope="col">등록일</th>
 						      <th scope="col">조회수</th>
 						    </tr>
 						  </thead>

@@ -149,7 +149,7 @@
 	
 	.content_box {
 		background: white;
-		height: 550px;
+		height: 700px;
 	}
 	
 	.table {
@@ -170,6 +170,34 @@
 		margin: 0 auto;
 		padding: 40px;
 	}
+	
+	.textDiv > * {
+    	margin-left: 65px;
+    	font-style: bold;
+	}
+	
+	.textDiv {
+    	margin-right: 20px;
+    	padding-top: 35px;
+    	
+	}
+	
+	.text_title {
+    	margin-bottom: 15px;
+	}
+	
+	.text_title #title {
+    	margin-left: 55px;
+    	width: 500px;
+    	border: solid 1px #9d9d9d;
+	}
+	
+	.text_name #name {
+    	margin-left: 16px;
+    	width: 500px;
+    	border: solid 1px #9d9d9d;
+	}
+
 }
 
 #noticeDetail {

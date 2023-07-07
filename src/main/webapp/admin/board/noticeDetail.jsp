@@ -29,7 +29,7 @@
 								<span class="sp1">제목</span> <span>공지</span>
 							</div>
 							<div>
-								<span class="sp1">작성자</span> <span>관리자01</span>
+								<span class="sp1">작성자 ID</span> <span>admin01</span>
 							</div>
 							<div>
 								<span class="sp1">등록일</span> <span>2023-07-07</span>
