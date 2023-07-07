@@ -22,8 +22,15 @@
 			$(this).css('font-weight', 'bold');
 		});
 		
+		$('.top_btn').click(function(){
+			location.href = 'noticeWrite.jsp';
+		});
 		
-		
+		$('#button-delete').click(function(){
+			if(confirm('정말 삭제하시겠습니까?')){
+				return false;
+		});
+			
 	});
 
 </script>
@@ -75,10 +82,11 @@ request.setCharacterEncoding("utf-8");
 
 	<section id="noticeList">
 			<article id="notice_content">
-				<h2>공지/FAQ 등록</h2>
+				<h2>공지/FAQ</h2>
 				
 				<div class="top_btn">
-					<button type="button" class="btn btn-primary">+ 등록하기</button>
+					<button type="button" class="btn btn-primary">
+						<a href="noticeWrite.jsp"></a>+ 등록하기</button>
 				</div>
 				
 				<div class="notice_box">
@@ -100,9 +108,22 @@ request.setCharacterEncoding("utf-8");
 						
 						<div class="search_result">           
 							<%-- <%if(keyword!=null && !keyword.isEmpty()){%>
-							   <p> 검색어: <%=keyword %>, <%=totalRecord %>건 검색 되었습니다.</p> 
+							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
 							<%} %> --%>
 						</div>
+						
+						<div class="bottom_input">
+							<div class="input-group" style="width:350px; margin: 0 auto">
+							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+							  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+							</div>
+							
+							<div class="ed_btn">
+								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
+								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
+							</div>
+						</div>
+						
 						
 						<table class="table table-bordered">
 						  <colgroup>
@@ -126,10 +147,10 @@ request.setCharacterEncoding("utf-8");
 							<tr style="text-align: center">
 								<th><input type="checkbox"></th>
 								<th scope="row">1</th>
-								<td style="text-align: left"><a href="#"></a>공지</td>
+								<td style="text-align: left"><a href="#">공지</a></td>
 								<td>2023-07-05</td>
 								<td>128</td>
-							</tr>
+							</tr> 
 							<%-- <%
 							if (list == null || list.isEmpty()) {
 							%>
@@ -150,13 +171,13 @@ request.setCharacterEncoding("utf-8");
 								num--;
 							%>
 							<tr style="text-align: center">
+								<th><input type="checkbox"></th>
 								<td><%=vo.getBoardNo()%></td>
 								<td style="text-align: left"><a
-									href="countUpdate.jsp?no=<%=vo.getBoardNo()%>"><%=vo.getTitle()%></a>
+									href="countUpdate.jsp?no=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
 								</td>
-								<td><%=vo.getName()%></td>
-								<td><%=sdf.format(vo.getRegdate())%></td>
-								<td><%=vo.getReadcount()%></td>
+								<td><%=sdf.format(vo.getBoardRegdate())%></td>
+								<td><%=vo.getBoardStatus()%></td>
 							</tr>
 							<%
 							} //for
@@ -167,20 +188,27 @@ request.setCharacterEncoding("utf-8");
 							%> --%>
 						</tbody>
 					</table>
-						
-						<div class="bottom_input">
-							<div class="input-group mb-3">
-							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
-							  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-							</div>
-							
-							<div class="ed_btn">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
-								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
-							</div>
+						<div class="page_box">
+							<nav aria-label="page">
+								<ul class="pagination">
+									<li class="page-item disabled"><a class="page-link">Previous</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">1</a></li>
+									<li class="page-item active" aria-current="page"><a
+										class="page-link" href="#">2</a></li>
+									<li class="page-item" aria-current="page"><a
+										class="page-link" href="#">3</a></li>
+									<li class="page-item" aria-current="page"><a
+										class="page-link" href="#">4</a></li>
+									<li class="page-item" aria-current="page"><a
+										class="page-link" href="#">5</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item"><a class="page-link" href="#">Next</a>
+									</li>
+								</ul>
+							</nav>
 						</div>
-						
-					</div>
+					
 				</div>
 				
 				

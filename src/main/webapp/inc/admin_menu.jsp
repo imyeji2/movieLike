@@ -50,7 +50,7 @@
 	<div class="wrap"><!-- 전체 div -->
 		<header>
 			<div class="img_logo">
-				<img src="<%=request.getContextPath()%>/images/logo.png">
+				<%-- <img src="<%=request.getContextPath()%>/images/logo.png"> --%>
 			</div>
 		</header>
 		<div class="admin_content">
@@ -69,7 +69,7 @@
 			   	</div>	
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_board.svg" name="board" alt="게시판관리아이콘 ">
-			   		<span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/notice.jsp">공지/FAQ등록</a></span>
+			   		<span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/notice.jsp">공지/FAQ</a></span>
 			   	</div>	
 			   	<div class="admin_menu_box">
 			   		<img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_review.svg" name="review" alt="리뷰관리아이콘 ">
