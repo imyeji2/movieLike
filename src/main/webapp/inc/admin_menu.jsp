@@ -49,13 +49,9 @@
 <body>
 	<div class="wrap"><!-- 전체 div -->
 		<header>
-<<<<<<< HEAD
-			<div class="img_logo">
-				<img src="<%=request.getContextPath()%>/images/logo.png">
-=======
 			<div>
 				<img src="<%=request.getContextPath()%>/images/logo-white.png" class="logo_img">
->>>>>>> 34b8db0c4f20b0fd769eb7980fb14aa09c4a8c22
+
 			</div>
 		</header>
 		<div class="admin_content">

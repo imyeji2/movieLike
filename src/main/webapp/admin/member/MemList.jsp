@@ -7,16 +7,19 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
 
+<style>
+
+
+
+</style>
 <script type="text/javascript">
 	$(function(){
-		//글 리스트 호버 
 		$('.content_box tbody tr').hover(function(){
 			$(this).css('background','#f8f9fa');
 		},function(){
 			$(this).css('background','');
 		});
 		
-		//공지사항|FAQ 선택시 볼드
 		$('.top_text').find('span').click(function(){
 			$('.top_text').find('span').css('font-weight','')
 			$(this).css('font-weight', 'bold');
@@ -74,7 +77,14 @@
 						</tr>
 					</tbody>
 				</table>
-						
+					<div class="select-box">
+						<select class="form-select" aria-label="Default select example">
+						  <option selected>정렬 순서</option>
+						  <option value="1">최신순</option>
+						  <option value="2">오래된순</option>
+						  <option value="3">조회수순</option>
+						</select>
+					</div>
 						<div class="bottom_input">
 							<div class="input-group mb-3">
 							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
