@@ -70,11 +70,11 @@
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_board.svg" name="board" alt="게시판관리아이콘 ">
-                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/notice.jsp">공지/FAQ등록</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/noticeList.jsp">공지/FAQ등록</a></span>
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_review.svg" name="review" alt="리뷰관리아이콘 ">
-                  <span style="margin-left:20px"><a href="#">리뷰 관리</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/review.jsp">리뷰 관리</a></span>
                </div>   
                <div class="admin_menu_box" id="statistics">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_statistics.svg" name="statistics" alt="통계관리아이콘 ">
