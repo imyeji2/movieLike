@@ -1,7 +1,3 @@
-<%@page import="com.semi.board.model.BoardVO"%>
-<%@page import="java.util.List"%>
-<%@page import="com.semi.board.model.BoardDAO"%>
-<%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,16 +10,6 @@
 			$(this).css('background','#f8f9fa');
 		},function(){
 			$(this).css('background','');
-		});
-		
-		//공지사항|FAQ 선택시 볼드
-		$('.top_text').find('span').click(function(){
-			$('.top_text').find('span').css('font-weight','')
-			$(this).css('font-weight', 'bold');
-		});
-		
-		$('.top_btn').click(function(){
-			location.href = 'noticeWrite.jsp';
 		});
 		
 		$('#button-delete').click(function(){
@@ -83,38 +69,31 @@ request.setCharacterEncoding("utf-8");
 
 	<section id="noticeList">
 			<article id="notice_content">
-				<h2>공지/FAQ</h2>
-				
-				<div class="top_btn">
-					<button type="button" class="btn btn-primary">
-						<a href="noticeWrite.jsp"></a>+ 등록하기</button>
-				</div>
+				<h2>리뷰 관리</h2>
 				
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text">
-							<span class="span_notice"><a href="#"></a>공지사항</span> | 
-							<span class="span_notice"><a href="#"></a>FAQ</span>
+							<span class="span_notice"><a href="#"></a>리뷰 관리</span>
 						</div>			
 					</div> 
 
-					
-					<div class="content_box">
-						<!-- <select class="form-select" aria-label="Default select example">
-						  <option selected>정렬 순서</option>
-						  <option value="1">최신순</option>
-						  <option value="2">오래된순</option>
-						  <option value="3">조회수순</option>
-						</select> -->
 						
+					<div class="content_box">
 						<div class="search_result">           
 							<%-- <%if(keyword!=null && !keyword.isEmpty()){%>
 							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
 							<%} %> --%>
 						</div>
 						
-						<div class="bottom_input">
-							<div class="input-group" style="width:350px; margin: 0 auto">
+						<div class="search_input">
+							<select class="form-select" aria-label="Default select example">
+							  <option value="1">영화</option>
+							  <option value="2">카테고리</option>
+							  <option value="3">작성자</option>
+							</select>
+							
+							<div class="input-group" style="width:370px">
 							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 							</div>
@@ -125,31 +104,32 @@ request.setCharacterEncoding("utf-8");
 							</div>
 						</div>
 						
-						
 						<table class="table table-bordered">
 						  <colgroup>
-						      <col style="width:7%;" />
-						      <col style="width:10%;" />
-						      <col style="width:60%;" />
+						      <col style="width:5%;" />
+						      <col style="width:5%;" />
+						      <col style="width:30%;" />
+						      <col style="width:30%;" />      
 						      <col style="width:15%;" />      
-						      <col style="width:10%;" />      
+						      <col style="width:15%;" />      
 						   </colgroup>
 						  <thead class="table-light">
 						    <tr style="text-align: center">
 						      <th scope="col">선택</th>
 						      <th scope="col">번호</th>
+						      <th scope="col">영화</th>
 						      <th scope="col">제목</th>
+						      <th scope="col">작성자</th>
 						      <th scope="col">등록일</th>
-						      <th scope="col">조회수</th>
 						    </tr>
 						  </thead>
 						<tbody>
-
 							<tr style="text-align: center">
 								<th><input type="checkbox"></th>
 								<th scope="row">1</th>
 								<td style="text-align: left"><a href="#">공지</a></td>
-								<td>2023-07-05</td>
+								<td style="text-align: left"><a href="#">2023-07-05</td>
+								<td>128</td>
 								<td>128</td>
 							</tr> 
 							<%-- <%

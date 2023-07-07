@@ -55,6 +55,11 @@
 	
 	.table.table.table-bordered {
 		margin: 0 auto;
+		color: black;
+	}
+	
+	.table a {
+	    color: black;
 	}
 	
 	.notice_edit_btn .notice_delete_btn {
@@ -73,23 +78,16 @@
 	    --bs-btn-disabled-border-color: #6c757d;
 	    --bs-gradient: none;
 	}
-	
-	.input-group.mb-3  {
-		width: 300px;
-   		margin: 0 auto;
-	}
-	
+
 	.ed_btn {
 		position: relative;
 	    float: right;
-	    top: -58px;
+	    top: -40px;
 	    padding-right: 28px;
 	}
 	
-	.bottom_input {
+	.search_input {
 		margin: 0 auto;
-		overflow: hidden;
-		padding-top: 30px
 	}
 	
 	.left{
@@ -104,5 +102,168 @@
 		clear: both;
 	
 	}
+	
+	.page_box{
+		width:350px;
+		margin:0 auto;
+		text-align: center;
+		padding-top: 30px;
+	}
+	
+	.form-select {
+		width: 140px;
+		text-align: center;
+		margin-left: 30px;
+    	float: left;
+	}
+	
+}
+
+#noticeWrite {
+	
+	.content_box>select {
+		width:180px;
+	}
+	
+	.content_box>title_search {
+		width:250px;
+	}
+	
+	.top_btn {
+	    float: right;
+	    margin-top: -18px;
+	}
+	
+	.notice_box {
+		margin-top: 40px;
+	}
+	
+	.top_box {
+		background: #fafafa;
+		border: solid 1px #e5e5e5;
+		height: 60px;
+	}
+	
+	.top_text {
+		font-size: 20px;
+		padding-left: 25px;
+	    padding-top: 15px;
+	}
+	
+	.span_notice{
+		cursor: pointer;
+	}
+	
+	.content_box {
+		background: white;
+		height: 700px;
+	}
+	
+	.table {
+		width: 96%;
+	}
+	
+	.table.table.table-bordered {
+		margin: 0 auto;
+		color: black;
+	}
+	
+	.table a {
+	    color: black;
+	}
+	
+	.textarea_box {
+		width: 96%;
+		margin: 0 auto;
+		padding: 40px;
+	}
+	
+	.textDiv > * {
+    	margin-left: 65px;
+    	font-style: bold;
+	}
+	
+	.textDiv {
+    	margin-right: 20px;
+    	padding-top: 35px;
+    	
+	}
+	
+	.text_title {
+    	margin-bottom: 15px;
+	}
+	
+	.text_title #title {
+    	margin-left: 55px;
+    	width: 500px;
+    	border: solid 1px #9d9d9d;
+	}
+	
+	.text_name #name {
+    	margin-left: 16px;
+    	width: 500px;
+    	border: solid 1px #9d9d9d;
+	}
+
+}
+
+#noticeDetail {
+	
+	.content_box>select {
+		width:180px;
+	}
+	
+	.content_box>title_search {
+		width:250px;
+	}
+	
+	.top_btn {
+	    float: right;
+	    margin-top: -18px;
+	}
+	
+	.notice_box {
+		margin-top: 40px;
+	}
+	
+	.top_box {
+		background: #fafafa;
+		border: solid 1px #e5e5e5;
+		height: 60px;
+	}
+	
+	.top_text {
+		font-size: 20px;
+		padding-left: 25px;
+	    padding-top: 15px;
+	    
+	}
+	
+	.span_notice{
+	cursor: pointer;
+	}
+	
+	.content_box {
+		background: white;
+		height: 700px;
+	}
+	
+	.table {
+		width: 96%;
+	}
+	
+	.table.table.table-bordered {
+		margin: 0 auto;
+		color: black;
+	}
+	
+	.table a {
+	    color: black;
+	}
+	
+}
+
+#review {
+	
 	
 }
