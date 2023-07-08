@@ -137,7 +137,7 @@
 						<img src="../images/movie/poster/그시절, 우리가 좋아했던 소녀_포스터.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
-							<h4 class="card-title" style="color: black;"><%=title.getTitle() %></h4>
+							<h3 class="card-title" style="color: black;"><%=title.getTitle() %></h3>
 							<p class="card-text" style="color: black;">시놉시스가 들어갈 자리 입니다</p>
 							<a href="#" class="btn btn-primary">리뷰보러가기</a>
 						</div>
@@ -228,30 +228,37 @@
 				<!-- 리뷰 목록 -->
 				<div class="content" style="display: block" id="statistics">
 					<div  class = "briefStatisticBlock">
-						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
-							<h4>가장 많이 본 장르</h4>
-						</div>
-						<div style="width:50%;" class = "bsb"><h4><%=mostWatchedGenre %></h4></div>
 						
-						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
-							<h4>총 시청</h4>
-						</div>
-						<div style="width:50%;" class = "bsb"><h4><%=totalView%>편</h4></div>
 						
-						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
-							<h4>마지막 시청</h4>
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>총 시청</h3>
 						</div>
-						<div style="width:50%;" class = "bsb"><h4><%=lastWatchedMovie%></h4></div>
+						<div style="width:50%;" class = "bsb"><h3><%=totalView%>편</h3></div>
+						
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>많이 본 장르</h3>
+						</div>
+						<div style="width:50%;" class = "bsb"><h3><%=mostWatchedGenre %></h3></div>
+						
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>마지막 시청</h3>
+						</div>
+						<div style="width:50%;" class = "bsb"><h3><%=lastWatchedMovie%></h3></div>
 
-						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
-							<h4>전체 튀긴 팝콘</h4>
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>전체 튀긴 팝콘</h3>
 						</div>
-						<div style="width:50%;" class = "bsb"><h4><%=df.format(usedPopcorn/100)%></h4></div>
+						<div style="width:50%;" class = "bsb"><h3><%=df.format(usedPopcorn/100)%></h3></div>
 					</div>
 					
 					<div class="phppot-container">
 						<div>
-							<canvas id="pie-chart"  style="height:20vw; width:20vw;"></canvas>
+							<canvas id="doughnut-chart"  style="height:20vw; width:20vw;"></canvas>
+						</div>
+					</div>
+					<div class="phppot-container">
+						<div>
+							<canvas id="bar-chart"  style="height:20vw; width:20vw;"></canvas>
 						</div>
 					</div>
 				</div>
@@ -267,22 +274,67 @@
 	src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
 <script>
 //통계 그래프 생성하는 자바스크립트메서드
-new Chart(document.getElementById("pie-chart"), {
-	type : 'pie',	//그래프 타입 : 파이차트
+new Chart(document.getElementById("doughnut-chart"), {
+	type : 'doughnut',	//그래프 타입 : 파이차트
 	data : {
 		labels : [<%=labels.toString()%>],	//영화 장르(통계에 사용될 데이터의 이름들)
 		datasets : [ {
-			backgroundColor : [ "#51EAEA", "#FCDDB0",
-					"#FF9D76", "#FB3569", "#82CD47" ],
+			backgroundColor : [ 
+				"rgba(255, 99, 132, 0.5)",
+				"rgba(54, 162, 235, 0.5)",
+				"rgba(255, 206, 86, 0.5)",
+				"rgba(75, 192, 192, 0.5)",
+				"rgba(153, 102, 255, 0.5)",
+				"rgba(255, 159, 64, 0.5)"],
+			borderColor : [
+				"rgba(255, 99, 132, 1)",
+				"rgba(54, 162, 235, 1)",
+				"rgba(255, 206, 86, 1)",
+				"rgba(75, 192, 192, 1)",
+				"rgba(153, 102, 255, 1)",
+				"rgba(255, 159, 64, 1)"],
 			data : [<%=values%>]		//데이터의 수치들
 		} ]
 	},
 	options : {
 		responsive: false,
-		title : {
-			display : true,
-			text : 'Chart JS Pie Chart Example'
+		scale:{
+			y:{
+				beginzero:true
+			}
 		}
+	}
+});
+new Chart(document.getElementById("bar-chart"), {
+	type : 'bar',	//그래프 타입 : 파이차트
+	data : {
+		labels : [<%=labels.toString()%>],	//영화 장르(통계에 사용될 데이터의 이름들)
+		datasets : [ {
+			backgroundColor : [ 
+				"rgba(255, 99, 132, 0.7)",
+				"rgba(54, 162, 235, 0.7)",
+				"rgba(255, 206, 86, 0.7)",
+				"rgba(75, 192, 192, 0.7)",
+				"rgba(153, 102, 255, 0.7)",
+				"rgba(255, 159, 64, 0.7)"],
+			borderColor : [
+				"rgba(255, 99, 132, 1)",
+				"rgba(54, 162, 235, 1)",
+				"rgba(255, 206, 86, 1)",
+				"rgba(75, 192, 192, 1)",
+				"rgba(153, 102, 255, 1)",
+				"rgba(255, 159, 64, 1)"],
+			data : [<%=values%>],	//데이터의 수치들
+			label :'장르별 영화 감상 비율'
+		} ]
+	},
+	options : {
+		responsive: false,
+			scale:{
+				y:{
+					beginzero:true
+				}
+			}
 	}
 });
 </script>

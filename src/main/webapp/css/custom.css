@@ -128,15 +128,27 @@
 	}
 	
 	.phppot-container{
-	   display: inline-block;
+	  display: inline-table;
+	   width: 46%;
+	   padding : 2% 2% 3% 3%;
+	   border: 1px solid white;
+	   border-radius: 1rem;
+	   box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+	   
+	  
+   }
+   /*
+    	display: inline-block;
 	   border: 5px double green;
 	   width: 50%;
 	   padding : 2% 2% 3% 3%
-   }
+   */
    .briefStatisticBlock{
-	    display: inline-block;
+	    display: contents;
     	width: 49%;
-    	padding: 2% 0% 1% 1%
+    	padding: 2% 0% 1% 1%;
+    	font-weight: bold;
+    	
    }
    .bsb{
 	   margin-bottom: 4%;
