@@ -60,6 +60,10 @@ header{
     overflow: hidden;
 }
 
+header nav{
+	width:60%;
+}
+
 header a:hover{
     color: #13C181;
 }
