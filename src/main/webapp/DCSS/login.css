@@ -206,3 +206,24 @@
 .confirm:hover {
 	opacity: 0.8;
 }
+
+.firstdiv {
+    display: flex;
+    height: 55px;
+}
+
+input#registerId {
+    width: 97%;
+}
+
+.dup {
+    width: 103px;
+}
+
+input.dupbt {
+	height: 58px;
+    width: 100px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
