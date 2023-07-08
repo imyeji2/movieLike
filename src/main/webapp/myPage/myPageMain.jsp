@@ -54,18 +54,20 @@
 			values.append(elem.getValue()+ ",");
 		}
 	}
+	if(labels != null && !labels.isEmpty()){
 	 labels.deleteCharAt(labels.length() - 1);
      values.deleteCharAt(values.length() - 1);
+	}
 	
-	int totalHistoryRecord=pointList.size();
-	int pageSize=0;
+
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <section id="myPageSection">
 	<div class="myPageMain">
-		<div id="myPageHeader" class="main" style="overflow: hidden">
+		<div id="myPageHeader" class="main">
+			
 			<div id="setting">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
@@ -76,6 +78,9 @@
 				</svg>
 			</div>
 			<div id="profileImg"></div>
+			<div style="height: 100%; width : 100%;">
+				<img src="../images/login-bg.png" class="profileBackground">
+			</div>
 		</div>
 		<div id="myPageBody" class="main">
 			<div id="bodyBar">
@@ -91,10 +96,22 @@
 			</div>
 			<div class="mainContent">
 				<div class="content" style="display: none" id="myInfo">
-					<!-- 정보수정 -->
+					<div class="myInfocheck">
+						<h1>비밀번호 확인</h1>
+						<form class="was-validated">
+						  <div class="mb-3">
+							    <label for="validationTextarea" class="form-label">비밀번호</label>
+							    <input type = "password" class="form-control" id="validationTextarea" placeholder="비밀번호를 입력하세요" required></textarea>
+							    <div class="invalid-feedback">
+							      	당신의 현재 비밀번호를 입력하세요
+							    </div>
+						  </div>
+						  <button type="button" class="btn btn-success btn-lg">확인</button>
+					</div>
 				</div>
+					<!-- 정보수정 -->
 				<div class="content" style="display: none" id="jjim">
-					<!-- 찜목록 -->
+			
 					<%
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
@@ -112,8 +129,9 @@
 					<%}
 						}%>
 				</div>
+						<!-- 찜목록 -->
 				<div class="content" style="display: none" id="payHistory">
-					<!-- 영화 구매 이력 -->
+					
 					<table style="height:100%"
 						class="table table-striped table-bordered table-hover table-light thead-dark">
 						<tr>
@@ -137,8 +155,9 @@
 						}%>
 					</table>
 				</div>
+				<!-- 영화 구매 이력 -->
 				<div class="content" style="display: none" id="popcorn">
-					<!-- 팝콘 충전/환불 이력 -->
+					
 					<table
 						class="table table-striped table-bordered table-hover table-light">
 						<tr>
@@ -148,9 +167,9 @@
 							<th>환불</th>
 						</tr>
 						<%
-						pageSize = 15;
+						//pageSize = 15;
 						if(pointList != null && !pointList.isEmpty()){
-							for(int i = 0; i < pageSize; i++){
+							for(int i = 0; i < pointList.size(); i++){
 							PointVO vo = pointList.get(i);%>
 						<tr>
 							<td><%=sdf.format(vo.getPointRegdate()) %></td>
@@ -165,8 +184,8 @@
 						}%>
 					</table>
 				</div>
+				<!-- 팝콘 충전/환불 이력 -->
 				<div class="content" style="display: none" id="review">
-					<!-- 리뷰 목록 -->
 					<table
 						class="table table-striped table-bordered table-hover table-light thead-dark">
 						<tr>
@@ -186,13 +205,15 @@
 						}%>
 					</table>
 				</div>
-				<div class="content" style="display: none" id="statistics">
+				<!-- 리뷰 목록 -->
+				<div class="content" style="display: block" id="statistics">
 					<div class="phppot-container">
 						<div>
-							<canvas id="pie-chart"></canvas>
+							<canvas id="pie-chart"  style="height:25vw; width:25vw"></canvas>
 						</div>
 					</div>
 				</div>
+				<!-- 통계 -->
 			</div>
 		</div>
 	</div>
@@ -203,17 +224,19 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
 <script>
+//통계 그래프 생성하는 자바스크립트메서드
 new Chart(document.getElementById("pie-chart"), {
-	type : 'pie',
+	type : 'pie',	//그래프 타입 : 파이차트
 	data : {
-		labels : [<%=labels.toString()%>],
+		labels : [<%=labels.toString()%>],	//영화 장르(통계에 사용될 데이터의 이름들)
 		datasets : [ {
 			backgroundColor : [ "#51EAEA", "#FCDDB0",
 					"#FF9D76", "#FB3569", "#82CD47" ],
-			data : [<%=values%>]
+			data : [<%=values%>]		//데이터의 수치들
 		} ]
 	},
 	options : {
+		responsive: false,
 		title : {
 			display : true,
 			text : 'Chart JS Pie Chart Example'
@@ -221,9 +244,6 @@ new Chart(document.getElementById("pie-chart"), {
 	}
 });
 </script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
+
 <script src="myPageBarAni.js"></script>
 <%@ include file="../inc/bottom.jsp"%>
