@@ -198,21 +198,23 @@ svg.bi.bi-gear {
 	padding: 2%;
 }
 #bodyBar nav a {
-	margin-left :18px;
-   margin-right: 18px;
-   align-items: center;
-   font-size: 21px;
-   font-weight: 600;
-   margin-top: 12px;
-   color: white;
-   text-decoration-line: none;
+	    margin-left: 18px;
+    margin-right: 18px;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bolder;
+    margin-top: 12px;
+    color: lightblue;
+    text-decoration-line: none;
 }
 #horizontal-underline {
-   position: absolute;
-   left: 0;
-   height: 7px;
-   border-radius: 2px;
-   transition: 0.7s;
-   background: white;
-   margin-top: 10px;
+    position: absolute;
+    left: 0;
+    height: 9px;
+    border-radius: 2px;
+    border: 1px solid white;
+    transition: 0.7s;
+    background: lightblue;
+    margin-top: 10px;
+    box-shadow: 0 0 7px white;
 }
