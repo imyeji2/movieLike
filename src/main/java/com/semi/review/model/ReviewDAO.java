@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class ReviewDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs= null;
-		Map<ReviewVO,String> map = new HashMap<>();
+		Map<ReviewVO,String> map = new LinkedHashMap<ReviewVO, String>();
 		MovieService movieService = new MovieService();
 		try {
 			con = pool.getConnection();

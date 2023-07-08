@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.semi.review.model.ReviewService"%>
 <%@page import="com.semi.payHistory.model.PayHistoryService"%>
 <%@page import="com.semi.point.model.PointService"%>
@@ -32,7 +33,7 @@
 	PickService pickService = new PickService();
 	
 	List<PointVO> pointList = new ArrayList<>();
-	Map<PayHistoryVO, Integer> historyList = new HashMap<>();
+	Map<PayHistoryVO, String> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
 	Map<String, Integer> chartMap = new HashMap<>();
@@ -46,12 +47,25 @@
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
+	
+	
+	int mostWatchedGenreVal = 0;	//가장 많이 본 장르의 시청 수치
+	String mostWatchedGenre = ""; 	//가장 많이 본 장르명
+	int totalView = 0;				//여태 시청한 모든 영화 수
+	String lastWatchedMovie = "";
+	int usedPopcorn = 0;
+	
 	StringBuilder labels = new StringBuilder();
 	StringBuilder values = new StringBuilder();
 	if(chartMap != null && !chartMap.isEmpty()){
 		for(Entry<String, Integer> elem : chartMap.entrySet()){
 			labels.append("'" + elem.getKey() + "',");
 			values.append(elem.getValue()+ ",");
+			totalView += elem.getValue();
+			if(mostWatchedGenreVal < elem.getValue()){
+				mostWatchedGenreVal = elem.getValue();
+				mostWatchedGenre = elem.getKey();
+			}
 		}
 	}
 	if(labels != null && !labels.isEmpty()){
@@ -60,7 +74,7 @@
 	}
 	
 
-	
+	DecimalFormat df = new DecimalFormat("#,###");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
@@ -78,6 +92,9 @@
 				</svg>
 			</div>
 			<div id="profileImg"></div>
+			<div class="profileLogo">
+				<img src="../images/logo-white.png" style = "height: 100%; widows: 100%;">
+			</div>
 			<div style="height: 100%; width : 100%;">
 				<img src="../images/login-bg.png" class="profileBackground">
 			</div>
@@ -111,7 +128,6 @@
 				</div>
 					<!-- 정보수정 -->
 				<div class="content" style="display: none" id="jjim">
-			
 					<%
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
@@ -121,7 +137,7 @@
 						<img src="../images/movie/poster/그시절, 우리가 좋아했던 소녀_포스터.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
-							<h5 class="card-title" style="color: black;"><%=title.getTitle() %></h5>
+							<h4 class="card-title" style="color: black;"><%=title.getTitle() %></h4>
 							<p class="card-text" style="color: black;">시놉시스가 들어갈 자리 입니다</p>
 							<a href="#" class="btn btn-primary">리뷰보러가기</a>
 						</div>
@@ -138,17 +154,20 @@
 							<th class="dateCol">영화결제일</th>
 							<th>결제번호</th>
 							<th>금액</th>
-							<th>영화번호</th>
+							<th>영화제목</th>
 						</tr>
 						<%
 						if(historyList != null && !historyList.isEmpty()){
-							for(Entry<PayHistoryVO, Integer> elem : historyList.entrySet()){
+							for(Entry<PayHistoryVO, String> elem : historyList.entrySet()){
 				            	PayHistoryVO vo = elem.getKey();
-								int price = elem.getValue();%>
+								String title = elem.getValue();
+								lastWatchedMovie = elem.getValue();
+								%>
+								
 						<tr>
 							<td><%=sdf.format(vo.getHisRegdate()) %></td>
 							<td><%=vo.getHisNo() %></td>
-							<td><%=price %></td>
+							<td><%=title %></td>
 							<td><%=vo.getMovieNo() %></td>
 						</tr>
 						<%}
@@ -170,7 +189,8 @@
 						//pageSize = 15;
 						if(pointList != null && !pointList.isEmpty()){
 							for(int i = 0; i < pointList.size(); i++){
-							PointVO vo = pointList.get(i);%>
+							PointVO vo = pointList.get(i);
+							usedPopcorn += vo.getPointPrice();%>
 						<tr>
 							<td><%=sdf.format(vo.getPointRegdate()) %></td>
 							<td><%=vo.getPointPrice() %></td>
@@ -207,9 +227,31 @@
 				</div>
 				<!-- 리뷰 목록 -->
 				<div class="content" style="display: block" id="statistics">
+					<div  class = "briefStatisticBlock">
+						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
+							<h4>가장 많이 본 장르</h4>
+						</div>
+						<div style="width:50%;" class = "bsb"><h4><%=mostWatchedGenre %></h4></div>
+						
+						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
+							<h4>총 시청</h4>
+						</div>
+						<div style="width:50%;" class = "bsb"><h4><%=totalView%>편</h4></div>
+						
+						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
+							<h4>마지막 시청</h4>
+						</div>
+						<div style="width:50%;" class = "bsb"><h4><%=lastWatchedMovie%></h4></div>
+
+						<div style="width:48%; border-right: white solid 2px;" class = "bsb">
+							<h4>전체 튀긴 팝콘</h4>
+						</div>
+						<div style="width:50%;" class = "bsb"><h4><%=df.format(usedPopcorn/100)%></h4></div>
+					</div>
+					
 					<div class="phppot-container">
 						<div>
-							<canvas id="pie-chart"  style="height:25vw; width:25vw"></canvas>
+							<canvas id="pie-chart"  style="height:20vw; width:20vw;"></canvas>
 						</div>
 					</div>
 				</div>

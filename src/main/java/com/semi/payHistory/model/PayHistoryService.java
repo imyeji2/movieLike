@@ -11,7 +11,7 @@ public class PayHistoryService {
 	public PayHistoryService() {
 		pointHistoryDao = new PayHistoryDAO();
 	}
-	public Map<PayHistoryVO, Integer> selectHistoryByUserid(String userid) throws SQLException{
+	public Map<PayHistoryVO, String> selectHistoryByUserid(String userid) throws SQLException{
 		return pointHistoryDao.selectHistoryByUserid(userid);
 	}
 	public Map<String, Integer> chartValue(String userid) throws SQLException{
