@@ -8,16 +8,12 @@
 </head>
 <body>
 <%
-	//실제 물리적 저장 경로
-	String location = request.getContextPath()+"/images/movie/actor";
-	//최대사이즈
-	int maxSize = 1* 1024 * 1024; 
-	//인코딩
-	String encoding="utf-8";
-	
-
-
+	String msg = (String)request.getAttribute("msg");
+	String url = (String)request.getAttribute("url");
 %>
-
+<script type="text/javascript">
+	alert('<%=msg%>');
+	location.href="<%=url%>";
+</script>
 </body>
 </html>

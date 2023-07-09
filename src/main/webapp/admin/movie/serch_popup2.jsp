@@ -13,22 +13,13 @@
 <!-- 부트스트랩 반응형에 필요 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 기본 js -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.7.0.min.js"></script>
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <!-- 생성 css -->
 <%
 	//1.파라미터 받기
 	String type=request.getParameter("type");
-
-	//if(type==null||type.isEmpty()){
-		
-		/*<script type="text/javascript">
-			alert("잘못된 접근입니다.");
-			self.close();
-		</script>
-	}*/
-	
 	String title="";
 	
 	if(type.equals("actor")){
@@ -36,7 +27,6 @@
 	}else if(type.equals("director")){
 		title="감독";
 	}
-
 %>
 
 <title><%=title%> 검색</title>
@@ -44,8 +34,15 @@
 <script>
 
 $(function(){
+	
+	
 	$('#add').click(function(){
-		var popup = window.open('addPopUp.jsp?type=<%=type%>', 'add', 'width=600px,height=350px,scrollbars=yes');
+		var chkCount = $('input[name=chk]:checked').length; 
+		if(chkCount>0){
+			alert("선택을 해제해 주세요");
+		}else{
+			var popup = window.open('addPeoplePopUp.jsp?type=<%=type%>', 'add', 'width=600px,height=350px,scrollbars=yes');
+		}
 	});
 	
 	$('#checkAll').click(function(){
@@ -54,7 +51,32 @@ $(function(){
 		}else{
 			$("input[name=chk]").prop("checked", false);
 		}
+	})
+	
+	
+	$('#eidt').click(function(){
+		var chkCount = $('input[name=chk]:checked').length; 
+		var chkArr = $('input[name=chk]:checked').attr('id');
+		if(chkCount>1){
+			alert("수정할 항목을 하나만 선택해 주세요");
+		}else if(chkCount<=0){
+			alert("수정할 항목을 선택해주세요");
+		}else{
+			var popup = window.open('addPeoplePopUp.jsp?no='+chkArr+'&type=<%=type%>', 'edit', 'width=600px,height=350px,scrollbars=yes');
+			
+		}
 	});
+	
+	$('#del').click(function(){
+		var chkCount = $('input[name=chk]:checked').length; 
+		var chk = $('input[name=chk]:checked').attr('id');
+		if(chkCount<=0){
+			alert("수정할 항목을 선택해주세요");
+		}else{
+			$('form').submit();
+		}
+	});
+	
 });
 </script>
 
@@ -107,7 +129,7 @@ $(function(){
 	}
 	
 	.serch_left_box{
-		width:550px;
+		width:480px;
 		float: left;
 		margin-top:1px;
 	
@@ -151,18 +173,19 @@ $(function(){
 %>
 <div class="warp">
 	<h5><%=title %> 검색</h5>
-	<form name="movie_info">
-		<div class="serch_left_box">
-			<div class="input-group mb-3">
-				 <input type="text" class="form-control" placeholder="<%=title%>명을 입력하세요" aria-label="serchtxt" aria-describedby="button-addon2">
-				 <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-			</div>	
+	<div class="serch_left_box">
+		<div class="input-group mb-3">
+			 <input type="text" class="form-control" placeholder="<%=title%>명을 입력하세요" aria-label="serchtxt" aria-describedby="button-addon2">
+			 <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 		</div>	
-		<div class="del_btn_box">
-			<input type="button" class="popup_btn btn btn-primary" id="add" value="추가">
-			<input type="button" class="popup_btn btn btn-primary" value="삭제">
-		</div>
-		<div class="serch_tabel">
+	</div>	
+	<div class="del_btn_box">
+		<input type="button" class="popup_btn btn btn-primary" id="add" value="추가">
+		<input type="button" class="popup_btn btn btn-primary" id="eidt" value="수정">
+		<input type="button" class="popup_btn btn btn-primary" id="del" value="삭제">
+	</div>
+	<div class="serch_tabel">
+		<form name="delFrm" method="post" action="peopleDelete.jsp?type=<%=type%>">
 			<table class="table table-hover" style="text-align:center;">
 			  <thead>
 			    <tr>
@@ -176,7 +199,7 @@ $(function(){
 	    	
 				<%}else if(type.equals("director")){%>
 				  <th scope="col">
-				  	<input class="form-check-input" type="checkbox" id="flexCheckDefault">
+				  	<input class="form-check-input" type="checkbox" name="no" id="<%=vo.getActorNo()%>">
 				  </th>
 			      <th scope="col">감독이름</th>
 			      <th scope="col">필모리스트</th>			      	
@@ -200,12 +223,12 @@ $(function(){
 				<tr>
 				  <td class="text-truncate">
 				  	<input class="form-check-input" type="checkbox"  name="chk" id="<%=vo.getActorNo()%>">
+				  	<input type="hidden" name="actorNo" value="<%=vo.getActorNo()%>">
 				  </td>				
 				  <td class="text-truncate" style="max-width: 100px;">
 				  	<img src="../../images/movie/actor/<%=vo.getActorImg()%>" style="width:50px">
 				  </td>
 			      <td class="text-truncate" style="max-width: 150px;"><a href="#"><%=vo.getActorName()%></a></td>
-
 			    </tr>		    	
 				<%
 				
@@ -214,36 +237,36 @@ $(function(){
 				%>
 	    		    	    		    		    		    
 			  </tbody>
-			</table>			
+			</table>	
+		</form>
+	</div>
+	<div class="popup_footer">
+		<div class="page_box">
+			<nav aria-label="page">
+				<ul class="pagination">
+					<li class="page-item disabled">
+			     		<a class="page-link">Previous</a>
+			    	</li>
+			    	<li class="page-item"><a class="page-link" href="#">1</a></li>
+			    	<li class="page-item active" aria-current="page">
+			     		<a class="page-link" href="#">2</a>
+			    	</li>
+			    	<li class="page-item" aria-current="page">
+			     		<a class="page-link" href="#">3</a>
+			    	</li>
+			    	<li class="page-item" aria-current="page">
+			     		<a class="page-link" href="#">4</a>
+			    	</li>
+			    	<li class="page-item" aria-current="page">
+			     		<a class="page-link" href="#">5</a>
+			    	</li>		    			    			    	
+			   		<li class="page-item">
+			      		<a class="page-link" href="#">Next</a>
+			   		</li>
+			  	</ul>
+			</nav>
 		</div>
-		<div class="popup_footer">
-			<div class="page_box">
-				<nav aria-label="page">
-					<ul class="pagination">
-						<li class="page-item disabled">
-				     		<a class="page-link">Previous</a>
-				    	</li>
-				    	<li class="page-item"><a class="page-link" href="#">1</a></li>
-				    	<li class="page-item active" aria-current="page">
-				     		<a class="page-link" href="#">2</a>
-				    	</li>
-				    	<li class="page-item" aria-current="page">
-				     		<a class="page-link" href="#">3</a>
-				    	</li>
-				    	<li class="page-item" aria-current="page">
-				     		<a class="page-link" href="#">4</a>
-				    	</li>
-				    	<li class="page-item" aria-current="page">
-				     		<a class="page-link" href="#">5</a>
-				    	</li>		    			    			    	
-				   		<li class="page-item">
-				      		<a class="page-link" href="#">Next</a>
-				   		</li>
-				  	</ul>
-				</nav>
-			</div>
-		</div><!-- popup_footer, page번호 버튼 -->
-	</form>	
+	</div><!-- popup_footer, page번호 버튼 -->
 </div>
 
 </body>

@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
+
+<!-- 
+	영화 등록 기능 정리
+	1. 영화 검색 버튼누르면 팝업 -> 영화 진흥원 api에서 정보 받아와서 항목 선택하면 등록 폼에 데이터 뿌려줌(영화 정보 항목들)
+	2. 카테고리 추가 -> 추가 버튼 누르면 팝업으로 카테고리 리스트 보여주고, 등록, 수정, 삭제 가능(중복 카테고리 등록 불가)
+	3. 배우 등록 ->버튼 클릭시 팝업으로 배우 리스트 보여주고/배우 검색/배우등록(중복 등록 불가)->이름, 이미지 넣어서/수정/삭제 가능
+	 -> 등록할 배우 선택하면 팝업 닫히고 등록 페이지 배우 항목에 해당 배우 추가
+	4. 감독 등록 ->버튼 클릭시 팝업으로 감독 리스트 보여주고/감독 검색/감독 등록(중복 등록 불가)->이름, 이미지 넣어서/수정/삭제 가능
+	-> 등록할 감독 선택하면 팝업 닫히고 등록 페이지 감독 항목에 해당 감독 추가
+	5. 등록 버튼 클릭시 -> 영화 정보 db에 저장되고 배우, 배우 항목들은 캐스팅 db에 저장됨
+
+
+ -->
 <script type="text/javascript">
 	$(function(){
 		$('.movie_btn').click(function(){
@@ -106,7 +119,7 @@
 				</div><!-- movieWrite_box -->	
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="actor" value="배우입력" >
+					<input type="button" class="movie_btn btn btn-primary" name="actor" value="배우등록" >
 					<p class="clear">출연진 정보</p>
 						
 					<div class="movieWrite_box1">															
@@ -114,7 +127,7 @@
 				</div><!-- movieWrite_box -->
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="director" value="감독입력" >
+					<input type="button" class="movie_btn btn btn-primary" name="director" value="감독등록" >
 					<p class="clear">감독 정보</p>
 						
 					<div class="movieWrite_box1">														
