@@ -16,17 +16,6 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String userId = request.getParameter("userId");
-	
-	int result = 0;
-	if(userId != null && !userId.isEmpty()){
-		try{
-			result = userService.duplicatedId(userId);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-	}
-	
 	String pwd = request.getParameter("pwd");
 	String name = request.getParameter("name");
 	String gender = request.getParameter("gender");

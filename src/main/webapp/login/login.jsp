@@ -1,6 +1,22 @@
 <%@page import="com.semi.member.model.UserService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	//쿠키 읽어오기
+	
+	String ck_value="";
+	Cookie[] ckArr = request.getCookies();
+	if(ckArr != null){
+		for(int i = 0; i < ckArr.length; i++){
+			String ck_name = ckArr[i].getName();
+			if(ck_name.equals("ck_userId")){
+				ck_value = ckArr[i].getValue();
+				break;
+			}
+		}
+	}
+
+%>
 <!-- 서다희 작업 -->
 <div class="popup members-popup">
 	<div class="popup-background"></div>
@@ -19,19 +35,18 @@
 
 			<!-- 로그인 -->
 			<div class="login">
-				<form>
+				<form name="frmLogin" method="post" action ="<%=request.getContextPath() %>/login/login_ok.jsp">
 					<div class="form-floating">
-						<input type="email" class="form-control" id="floatingInput"
-							placeholder="name@example.com"> <label
-							for="floatingInput">이메일 주소</label>
+						<input type="email" class="form-control" id="floatingInput" name ="userId" placeholder="name@example.com"> 
+						<label for="floatingInput">이메일 주소</label>
 					</div>
 					<div class="form-floating">
-						<input type="password" class="form-control" id="floatingPassword"
-							placeholder="Password"> <label for="floatingPassword">비밀번호</label>
+						<input type="password" class="form-control" id="floatingPassword" name = "pwd" placeholder="Password"> 
+						<label for="floatingPassword">비밀번호</label>
 					</div>
 					<div class="saveId">
-						<input type="checkbox" id="saveId-chk"> <label
-							for="saveId-chk" style="color: #000;">이 계정을 기억하시겠습니까?</label>
+						<input type="checkbox" id="saveId-chk" name ="chkSave"> 
+						<label for="saveId-chk" style="color: #000;">이 계정을 기억하시겠습니까?</label>
 					</div>
 					<div class="submit">
 						<input type="submit" value="로그인" class="login-bt">
@@ -48,35 +63,40 @@
 					</a>
 				</div>
 			</div>
-
+			
+			<!-- 약관동의 -->
+			<div class = "agreement">
+				<form>
+					<iframe src = "<%=request.getContextPath() %>/login/provision.html" ></iframe>
+					<br>
+					<input type="button" name="agree" id="chkagree" value="위 약관에 동의하며 회원가입 진행"> 
+				</form>
+			</div>
+			
 			<!-- 회원가입  -->
 			<div class="register">
-				<form name="frmRegist" method="post" action="login/regist_ok.jsp">
+				<form name="frmRegist" method="post" action="<%=request.getContextPath() %>/login/regist_ok.jsp">
 					<div class ="firstdiv">
 						<div class="form-floating">
-							<input type="email" class="form-control" id="registerId"
-								name="userId" placeholder="예) name@example.com"> <label
-								for="registerId">이메일 주소</label>
+							<input type="email" class="form-control" id="registerId" name="userId" placeholder="예) name@example.com"> 
+							<label for="registerId">이메일 주소</label>
 						</div>
 						<div class="dup">
 							<input type="button" class="dupbt" value="중복체크">
 						</div>	
 					</div>
 					<div class="form-floating">
-						<input type="password" class="form-control" id="registerPassword"
-							name="pwd" placeholder="비밀번호를 입력해주세요"> <label
-							for="registerPassword">비밀번호</label>
+						<input type="password" class="form-control" id="registerPassword" name="pwd" placeholder="비밀번호를 입력해주세요"> 
+						<label for="registerPassword">비밀번호</label>
 					</div>
 					<div class="form-floating">
-						<input type="password" class="form-control" id="registerPassword2"
-							name="pwd2" placeholder="비밀번호를 입력해주세요"> <label
-							for="registerPassword">비밀번호 확인</label>
+						<input type="password" class="form-control" id="registerPassword2" name="pwd2" placeholder="비밀번호를 입력해주세요"> 
+						<label for="registerPassword">비밀번호 확인</label>
 					</div>
 					<div class="match">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="registerName"
-								name="name" placeholder="예) 홍길동"> <label
-								for="registerName">이름</label>
+							<input type="text" class="form-control" id="registerName" name="name" placeholder="예) 홍길동"> 
+							<label for="registerName">이름</label>
 						</div>
 						<div class="gender">
 							<input type="radio" name="gender" id="man" value="남"> 
@@ -86,14 +106,13 @@
 						</div>
 					</div>
 					<div class="form-floating">
-						<input type="tel" class="form-control" id="registerBirth"
-							name="birth" placeholder="예) 19990101" maxlength="8"> <label
-							for="registerBirth">생년월일 (8글자)</label>
+						<input type="tel" class="form-control" id="registerBirth" name="birth" placeholder="예) 19990101" maxlength="8"> 
+						<label for="registerBirth">생년월일 (8글자)</label>
 					</div>
 					<button class="confirm" type="submit">회원가입</button>
 				</form>
 			</div>
-
+			
 		</div>
 	</div>
 </div>
@@ -102,6 +121,7 @@
 	$('.login_btn').click(function() {
 		$('.login').show();
 		$('.register').hide();
+		$('.agreement').hide();
 		$('.popup.members-popup').addClass('open');
 	});
 
@@ -114,8 +134,17 @@
 
 	$('.register-btn').click(function() {
 		$('.login').hide();
-		$('.register').show();
+		$('.register').hide();
+		$('.agreement').show();
 	});
+	
+	$('#chkagree').click(function(){
+		$('.login').hide();
+		$('.register').show();
+		$('.agreement').hide();
+		
+	})
+	
 
 	$('.confirm').click(function() {
 		var id = $('#registerId').val();

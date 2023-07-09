@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
+<%
+	String t_userId = (String)session.getAttribute("userId");
+	boolean t_isLogin = false;
+	if(t_userId != null && !t_userId.isEmpty()){ //로그인 된 경우
+		t_isLogin = true;
+	}
+	
+%>
 <meta charset="UTF-8">
 <!-- 부트스트랩 반응형에 필요 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +59,14 @@
 			</div><!-- serch_box -->
 			
 			<div class="f_left">
-				<input type="button" class="login_btn" value="로그인">
+				<%if(t_isLogin){ %>
+					<input type="button" class="mypage" value="Mypage">
+					<input type="button" class="logout_btn" value="Logout" 
+					onclick = "location.href='<%=request.getContextPath()%>/login/logout.jsp'">
+				
+				<%}else{ %>
+					<input type="button" class="login_btn" value="Login">
+				<%} %>
 			</div><!-- login_btn -->
 		</div><!-- header_menu -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

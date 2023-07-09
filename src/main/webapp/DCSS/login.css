@@ -188,7 +188,7 @@
 	color: #fff;
 }
 
-.confirm {
+.confirm ,input#chkagree {
 	display: block;
 	width: 100%;
 	text-align: center;
@@ -226,4 +226,10 @@ input.dupbt {
     background: #fff;
     border-radius: 5px;
     border: 1px solid #ced4da;
+}
+
+iframe {
+    border: 0;
+    width: 100%;
+    height: 500px;
 }

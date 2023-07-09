@@ -25,4 +25,7 @@ public class UserService {
 	public int duplicatedId(String userId) throws SQLException {
 		return dao.duplicatedId(userId);
 	}
+	public int checkLogin(String userId, String pwd) throws SQLException {
+		return dao.checkLogin(userId, pwd);
+	}
 }
