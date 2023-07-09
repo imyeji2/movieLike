@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.semi.review.model.ReviewService"%>
 <%@page import="com.semi.payHistory.model.PayHistoryService"%>
 <%@page import="com.semi.point.model.PointService"%>
@@ -32,7 +33,7 @@
 	PickService pickService = new PickService();
 	
 	List<PointVO> pointList = new ArrayList<>();
-	Map<PayHistoryVO, Integer> historyList = new HashMap<>();
+	Map<PayHistoryVO, String> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
 	Map<String, Integer> chartMap = new HashMap<>();
@@ -46,26 +47,41 @@
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
+	
+	
+	int mostWatchedGenreVal = 0;	//가장 많이 본 장르의 시청 수치
+	String mostWatchedGenre = ""; 	//가장 많이 본 장르명
+	int totalView = 0;				//여태 시청한 모든 영화 수
+	String lastWatchedMovie = "";
+	int usedPopcorn = 0;
+	
 	StringBuilder labels = new StringBuilder();
 	StringBuilder values = new StringBuilder();
 	if(chartMap != null && !chartMap.isEmpty()){
 		for(Entry<String, Integer> elem : chartMap.entrySet()){
 			labels.append("'" + elem.getKey() + "',");
 			values.append(elem.getValue()+ ",");
+			totalView += elem.getValue();
+			if(mostWatchedGenreVal < elem.getValue()){
+				mostWatchedGenreVal = elem.getValue();
+				mostWatchedGenre = elem.getKey();
+			}
 		}
 	}
+	if(labels != null && !labels.isEmpty()){
 	 labels.deleteCharAt(labels.length() - 1);
      values.deleteCharAt(values.length() - 1);
+	}
 	
-	int totalHistoryRecord=pointList.size();
-	int pageSize=0;
-	
+
+	DecimalFormat df = new DecimalFormat("#,###");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <section id="myPageSection">
 	<div class="myPageMain">
-		<div id="myPageHeader" class="main" style="overflow: hidden">
+		<div id="myPageHeader" class="main">
+			
 			<div id="setting">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
@@ -76,6 +92,12 @@
 				</svg>
 			</div>
 			<div id="profileImg"></div>
+			<div class="profileLogo">
+				<img src="../images/logo-white.png" style = "height: 100%; widows: 100%;">
+			</div>
+			<div style="height: 100%; width : 100%;">
+				<img src="../images/login-bg.png" class="profileBackground">
+			</div>
 		</div>
 		<div id="myPageBody" class="main">
 			<div id="bodyBar">
@@ -91,10 +113,21 @@
 			</div>
 			<div class="mainContent">
 				<div class="content" style="display: none" id="myInfo">
-					<!-- 정보수정 -->
+					<div class="myInfocheck">
+						<h1>비밀번호 확인</h1>
+						<form class="was-validated">
+						  <div class="mb-3">
+							    <label for="validationTextarea" class="form-label">비밀번호</label>
+							    <input type = "password" class="form-control" id="validationTextarea" placeholder="비밀번호를 입력하세요" required></textarea>
+							    <div class="invalid-feedback">
+							      	당신의 현재 비밀번호를 입력하세요
+							    </div>
+						  </div>
+						  <button type="button" class="btn btn-success btn-lg">확인</button>
+					</div>
 				</div>
+					<!-- 정보수정 -->
 				<div class="content" style="display: none" id="jjim">
-					<!-- 찜목록 -->
 					<%
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
@@ -104,7 +137,7 @@
 						<img src="../images/movie/poster/그시절, 우리가 좋아했던 소녀_포스터.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
-							<h5 class="card-title" style="color: black;"><%=title.getTitle() %></h5>
+							<h3 class="card-title" style="color: black;"><%=title.getTitle() %></h3>
 							<p class="card-text" style="color: black;">시놉시스가 들어갈 자리 입니다</p>
 							<a href="#" class="btn btn-primary">리뷰보러가기</a>
 						</div>
@@ -112,33 +145,38 @@
 					<%}
 						}%>
 				</div>
+						<!-- 찜목록 -->
 				<div class="content" style="display: none" id="payHistory">
-					<!-- 영화 구매 이력 -->
+					
 					<table style="height:100%"
 						class="table table-striped table-bordered table-hover table-light thead-dark">
 						<tr>
 							<th class="dateCol">영화결제일</th>
 							<th>결제번호</th>
 							<th>금액</th>
-							<th>영화번호</th>
+							<th>영화제목</th>
 						</tr>
 						<%
 						if(historyList != null && !historyList.isEmpty()){
-							for(Entry<PayHistoryVO, Integer> elem : historyList.entrySet()){
+							for(Entry<PayHistoryVO, String> elem : historyList.entrySet()){
 				            	PayHistoryVO vo = elem.getKey();
-								int price = elem.getValue();%>
+								String title = elem.getValue();
+								lastWatchedMovie = elem.getValue();
+								%>
+								
 						<tr>
 							<td><%=sdf.format(vo.getHisRegdate()) %></td>
 							<td><%=vo.getHisNo() %></td>
-							<td><%=price %></td>
+							<td><%=title %></td>
 							<td><%=vo.getMovieNo() %></td>
 						</tr>
 						<%}
 						}%>
 					</table>
 				</div>
+				<!-- 영화 구매 이력 -->
 				<div class="content" style="display: none" id="popcorn">
-					<!-- 팝콘 충전/환불 이력 -->
+					
 					<table
 						class="table table-striped table-bordered table-hover table-light">
 						<tr>
@@ -148,10 +186,11 @@
 							<th>환불</th>
 						</tr>
 						<%
-						pageSize = 15;
+						//pageSize = 15;
 						if(pointList != null && !pointList.isEmpty()){
-							for(int i = 0; i < pageSize; i++){
-							PointVO vo = pointList.get(i);%>
+							for(int i = 0; i < pointList.size(); i++){
+							PointVO vo = pointList.get(i);
+							usedPopcorn += vo.getPointPrice();%>
 						<tr>
 							<td><%=sdf.format(vo.getPointRegdate()) %></td>
 							<td><%=vo.getPointPrice() %></td>
@@ -165,8 +204,8 @@
 						}%>
 					</table>
 				</div>
+				<!-- 팝콘 충전/환불 이력 -->
 				<div class="content" style="display: none" id="review">
-					<!-- 리뷰 목록 -->
 					<table
 						class="table table-striped table-bordered table-hover table-light thead-dark">
 						<tr>
@@ -186,13 +225,44 @@
 						}%>
 					</table>
 				</div>
-				<div class="content" style="display: none" id="statistics">
+				<!-- 리뷰 목록 -->
+				<div class="content" style="display: block" id="statistics">
+					<div  class = "briefStatisticBlock">
+						
+						
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>총 시청</h3>
+						</div>
+						<div style="width:50%;" class = "bsb"><h3><%=totalView%>편</h3></div>
+						
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>많이 본 장르</h3>
+						</div>
+						<div style="width:50%;" class = "bsb"><h3><%=mostWatchedGenre %></h3></div>
+						
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>마지막 시청</h3>
+						</div>
+						<div style="width:50%;" class = "bsb"><h3><%=lastWatchedMovie%></h3></div>
+
+						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
+							<h3>전체 튀긴 팝콘</h3>
+						</div>
+						<div style="width:50%;" class = "bsb"><h3><%=df.format(usedPopcorn/100)%></h3></div>
+					</div>
+					
 					<div class="phppot-container">
 						<div>
-							<canvas id="pie-chart"></canvas>
+							<canvas id="doughnut-chart"  style="height:20vw; width:20vw;"></canvas>
+						</div>
+					</div>
+					<div class="phppot-container">
+						<div>
+							<canvas id="bar-chart"  style="height:20vw; width:20vw;"></canvas>
 						</div>
 					</div>
 				</div>
+				<!-- 통계 -->
 			</div>
 		</div>
 	</div>
@@ -203,27 +273,71 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
 <script>
-new Chart(document.getElementById("pie-chart"), {
-	type : 'pie',
+//통계 그래프 생성하는 자바스크립트메서드
+new Chart(document.getElementById("doughnut-chart"), {
+	type : 'doughnut',	//그래프 타입 : 파이차트
 	data : {
-		labels : [<%=labels.toString()%>],
+		labels : [<%=labels.toString()%>],	//영화 장르(통계에 사용될 데이터의 이름들)
 		datasets : [ {
-			backgroundColor : [ "#51EAEA", "#FCDDB0",
-					"#FF9D76", "#FB3569", "#82CD47" ],
-			data : [<%=values%>]
+			backgroundColor : [ 
+				"rgba(255, 99, 132, 0.5)",
+				"rgba(54, 162, 235, 0.5)",
+				"rgba(255, 206, 86, 0.5)",
+				"rgba(75, 192, 192, 0.5)",
+				"rgba(153, 102, 255, 0.5)",
+				"rgba(255, 159, 64, 0.5)"],
+			borderColor : [
+				"rgba(255, 99, 132, 1)",
+				"rgba(54, 162, 235, 1)",
+				"rgba(255, 206, 86, 1)",
+				"rgba(75, 192, 192, 1)",
+				"rgba(153, 102, 255, 1)",
+				"rgba(255, 159, 64, 1)"],
+			data : [<%=values%>]		//데이터의 수치들
 		} ]
 	},
 	options : {
-		title : {
-			display : true,
-			text : 'Chart JS Pie Chart Example'
+		responsive: false,
+		scale:{
+			y:{
+				beginzero:true
+			}
 		}
 	}
 });
+new Chart(document.getElementById("bar-chart"), {
+	type : 'bar',	//그래프 타입 : 파이차트
+	data : {
+		labels : [<%=labels.toString()%>],	//영화 장르(통계에 사용될 데이터의 이름들)
+		datasets : [ {
+			backgroundColor : [ 
+				"rgba(255, 99, 132, 0.7)",
+				"rgba(54, 162, 235, 0.7)",
+				"rgba(255, 206, 86, 0.7)",
+				"rgba(75, 192, 192, 0.7)",
+				"rgba(153, 102, 255, 0.7)",
+				"rgba(255, 159, 64, 0.7)"],
+			borderColor : [
+				"rgba(255, 99, 132, 1)",
+				"rgba(54, 162, 235, 1)",
+				"rgba(255, 206, 86, 1)",
+				"rgba(75, 192, 192, 1)",
+				"rgba(153, 102, 255, 1)",
+				"rgba(255, 159, 64, 1)"],
+			data : [<%=values%>],	//데이터의 수치들
+			label :'장르별 영화 감상 비율'
+		} ]
+	},
+	options : {
+		responsive: false,
+			scale:{
+				y:{
+					beginzero:true
+				}
+			}
+	}
+});
 </script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
+
 <script src="myPageBarAni.js"></script>
 <%@ include file="../inc/bottom.jsp"%>

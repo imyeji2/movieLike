@@ -169,7 +169,7 @@
 	display: none;
 }
 
-.register .match .gender label {
+.register .match .gender label, #btnChkId {
 	height: 58px;
 	width: 100px;
 	border: 1px solid #ced4da;
@@ -183,12 +183,12 @@
 	transition: all 0.15s;
 }
 
-.register .match .gender input:checked + label {
+.register .match .gender input:checked + label{
 	background-color: #13C181;
 	color: #fff;
 }
 
-.confirm {
+.confirm ,#chkagree {
 	display: block;
 	width: 100%;
 	text-align: center;
@@ -205,4 +205,31 @@
 
 .confirm:hover {
 	opacity: 0.8;
+}
+
+.firstdiv {
+    display: flex;
+    height: 55px;
+}
+
+input#registerId {
+    width: 97%;
+}
+
+.dup {
+    width: 103px;
+}
+
+input.dupbt {
+	height: 58px;
+    width: 100px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+iframe {
+    border: 0;
+    width: 100%;
+    height: 500px;
 }

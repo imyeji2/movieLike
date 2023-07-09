@@ -76,8 +76,39 @@ public class UserDAO {
 					result = UserService.USABLE_ID;// 없음 사용가능
 				}
 			}
-			System.out.println("중복확인 결과 : " + result + ", 매개변수 id : " + userId);
+			System.out.println("중복확인 결과 = " + result + ", 매개변수 id = " + userId);
 			
+			return result;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	public int checkLogin(String userId, String pwd) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select pwd from userinfo where userid =? and outdate is null";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			int result = 0;
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				String dbPwd = rs.getString(1);
+				if(dbPwd.equals(pwd)) {
+					result = UserService.LOGIN_OK; //성공
+				}else {
+					result = UserService.DISAGREE_PWD; //비번달라요
+				}
+			}else {
+				result = UserService.NONE_ID;//아이디 없음
+			}
+			System.out.println("로그인 결과, result = " + result + ", userid = " + userId + ", pwd = " + pwd);
 			return result;
 		}finally {
 			pool.dbClose(rs, ps, con);

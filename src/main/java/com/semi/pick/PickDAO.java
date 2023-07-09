@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class PickDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Map<PickVO, MovieVO> map = new HashMap();
+		Map<PickVO, MovieVO> map = new LinkedHashMap<PickVO, MovieVO>();
 		MovieService movieService = new MovieService();
 		try {
 			con = pool.getConnection();

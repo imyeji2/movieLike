@@ -109,7 +109,7 @@ header li{
    outline: none;
 }
 
-.login_btn{
+.login_btn, .logout_btn, .mypage{
    width:100px;
    line-height: 32px;
    background: #13C181;

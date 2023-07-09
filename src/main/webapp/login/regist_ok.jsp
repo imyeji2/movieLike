@@ -27,14 +27,14 @@
 	userVo.setGender(gender);
 	userVo.setBirth(birth);
 
-	String msg = "회원가입에 실패하셨습니다.", url = "login.jsp";
+	String msg = "회원가입에 실패하셨습니다.", url = "index.jsp";
 
 	try{
 		int cnt = userService.insertUser(userVo);
 		
 		if(cnt > 0){
 			msg = "회원가입 되었습니다.";
-			url = "login.jsp";
+			url = "index.jsp";
 		}
 		
 	}catch(SQLException e){
@@ -43,6 +43,6 @@
 	request.setAttribute("msg", msg);
 	request.setAttribute("url", url);
 %>
-<jsp:forward page="<%=request.getContextPath() %>/inc/message.jsp"></jsp:forward>
+<jsp:forward page="../inc/message.jsp"></jsp:forward>
 </body>
 </html>
