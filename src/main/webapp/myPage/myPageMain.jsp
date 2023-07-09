@@ -27,6 +27,16 @@
 $(document).ready(function() {
 	<%if(request.getParameter("historyPage") != null){%>
 		$('#payHistory').css('display', 'block');	
+		$('.content').not('#payHistory').css('display','none');
+	<%}else if(request.getParameter("reviewPage") != null){%>
+		$('#review').css('display', 'block');
+		$('.content').not('#review').css('display','none');
+	<%}else if(request.getParameter("popcornPage") != null){%>
+		$('#popcorn').css('display', 'block');
+		$('.content').not('#popcorn').css('display','none');
+	<%}else if(request.getParameter("jjimPage") != null){%>
+		$('#jjim').css('display', 'block');
+		$('.content').not('#jjim').css('display','none');
 	<%}%>
 	
 	  $('.page-link').click(function() {
@@ -232,7 +242,7 @@ $(document).ready(function() {
 						}%>
 
 					<!-- 페이징 처리 -->
-					<div class="pagination" id="">
+					<div class="pagination" style = "justify-content: center;">
 						<% if (jjimPage > 1) { %>
 							<a href="?jjimPage=<%= jjimPage - 1 %>" class="page-link">이전</a>
 						<% } %>
@@ -261,7 +271,8 @@ $(document).ready(function() {
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
 						          PayHistoryVO vo = elem.getKey();
-						          String title = elem.getValue();%>
+						          String title = elem.getValue();
+						          lastWatchedMovie = title;%>
 							    <tr>
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
 								      <td><%= vo.getHisNo() %></td>
@@ -272,7 +283,7 @@ $(document).ready(function() {
 					  </table>
 			  	
 					  <!-- 페이징 처리 -->
-					  <div class="pagination">
+					  <div class="pagination" style = "justify-content: center;">
 						    <% if (historyPage > 1) { %>
 						      		<a href="?historyPage=<%= historyPage - 1 %>" class="page-link">이전</a>
 						    <% } %>
@@ -317,7 +328,7 @@ $(document).ready(function() {
 					<%}
 						}%>
 				</table>
-				 <div class="pagination">
+				 <div class="pagination" style = "justify-content: center;">
 				    <% if (popcornPage > 1) { %>
 				      <a href="?popcornPage=<%= popcornPage - 1 %>" class="page-link">이전</a>
 				    <% } %>
@@ -354,7 +365,7 @@ $(document).ready(function() {
 						}%>
 				</table>
 				 <!-- 페이징 처리 -->
-				  <div class="pagination">
+				  <div class="pagination" style = "justify-content: center;">
 				    <% if (reviewPage > 1) { %>
 				      <a href="?reviewPage=<%= reviewPage - 1 %>" class="page-link">이전</a>
 				    <% } %>
@@ -371,7 +382,7 @@ $(document).ready(function() {
 				  </div>
 			</div>
 			<!-- 리뷰 목록 -->
-			<div class="content" style="display: block" id="statistics" style="<%= (currentPage == 5) ? "display: block" : "display: none" %>">
+			<div class="content" style="display: block" id="statistics">
 				<div class="briefStatisticBlock">
 					<div
 						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
