@@ -18,10 +18,10 @@
 	$(function(){
 		$('.movie_btn').click(function(){
 			if($(this).attr('name')==='movie'){
-				var popup = window.open('serch_popup.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
+				var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
 			}else{
 			var type=$(this).attr('name');
-			var popup = window.open('serch_popup2.jsp?type='+type, 'serch', 'width=800px,height=800px,scrollbars=yes');
+			var popup = window.open('serchActor.jsp?type='+type, 'serch', 'width=800px,height=800px,scrollbars=yes');
 			}
 		});
 	});

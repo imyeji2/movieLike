@@ -251,22 +251,11 @@ $(function(){
 	//일단 다른 기능들 추가 하고 수정예정
 	
 	String no=request.getParameter("no");
-	String type=request.getParameter("type");
 	
-	if(no==null||no.isEmpty()){
-		if(type==null||type.isEmpty()){
-%>
-		<script type="text/javascript">
-			alert("잘못된 접근입니다.");
-			self.close();
-		</script>	
-<%		
-		}
-	}
-	
+
 	boolean isEdit=false;
 	String txt="등록";
-	String url ="addPeople_ok.jsp";
+	String url ="addActor_ok.jsp";
 	String name="";
 	String img="";
 	String action="addPeople";
@@ -274,7 +263,7 @@ $(function(){
 	if(no!=null&&!no.isEmpty()){
 		isEdit=true;
 		txt = "수정";
-		url="editPeople_ok.jsp";
+		url="editActor_ok.jsp";
 		action="editPeple";
 	}
 	
@@ -291,10 +280,6 @@ $(function(){
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-
 	
 
 %>

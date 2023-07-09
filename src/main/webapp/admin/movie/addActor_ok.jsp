@@ -53,8 +53,6 @@
 			if(cnt>0){%>
 				<script type="text/javascript">
 					alert("등록이 완료되었습니다.");
-	/* 				var location="serch_pop2.jsp";
-					location.reload(); */
 					opener.parent.location.reload();
 					self.close();
 				</script>

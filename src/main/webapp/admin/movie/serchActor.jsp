@@ -17,19 +17,9 @@
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <!-- 생성 css -->
-<%
-	//1.파라미터 받기
-	String type=request.getParameter("type");
-	String title="";
-	
-	if(type.equals("actor")){
-		title="배우";
-	}else if(type.equals("director")){
-		title="감독";
-	}
-%>
 
-<title><%=title%> 검색</title>
+
+<title>배우 검색</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script>
 
@@ -41,7 +31,7 @@ $(function(){
 		if(chkCount>0){
 			alert("선택을 해제해 주세요");
 		}else{
-			var popup = window.open('addPeoplePopUp.jsp?type=<%=type%>', 'add', 'width=600px,height=350px,scrollbars=yes');
+			var popup = window.open('addActorPopUp.jsp?', 'add', 'width=600px,height=350px,scrollbars=yes');
 		}
 	});
 	
@@ -62,7 +52,7 @@ $(function(){
 		}else if(chkCount<=0){
 			alert("수정할 항목을 선택해주세요");
 		}else{
-			var popup = window.open('addPeoplePopUp.jsp?no='+chkArr+'&type=<%=type%>', 'edit', 'width=600px,height=350px,scrollbars=yes');
+			var popup = window.open('addActorPopUp.jsp?no='+chkArr, 'edit', 'width=600px,height=350px,scrollbars=yes');
 			
 		}
 	});
@@ -73,7 +63,11 @@ $(function(){
 		if(chkCount<=0){
 			alert("수정할 항목을 선택해주세요");
 		}else{
-			$('form').submit();
+			if(confirm("정말 삭제하시겠습니까?")){
+				$('form').submit(); 
+			}
+			    
+			
 		}
 	});
 	
@@ -172,10 +166,10 @@ $(function(){
 	
 %>
 <div class="warp">
-	<h5><%=title %> 검색</h5>
+	<h5>배우 검색</h5>
 	<div class="serch_left_box">
 		<div class="input-group mb-3">
-			 <input type="text" class="form-control" placeholder="<%=title%>명을 입력하세요" aria-label="serchtxt" aria-describedby="button-addon2">
+			 <input type="text" class="form-control" placeholder="배우명을 입력하세요" aria-label="serchtxt" aria-describedby="button-addon2">
 			 <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
 		</div>	
 	</div>	
@@ -185,26 +179,16 @@ $(function(){
 		<input type="button" class="popup_btn btn btn-primary" id="del" value="삭제">
 	</div>
 	<div class="serch_tabel">
-		<form name="delFrm" method="post" action="peopleDelete.jsp?type=<%=type%>">
+		<form name="delFrm" method="post" action="peopleDelete.jsp">
 			<table class="table table-hover" style="text-align:center;">
 			  <thead>
 			    <tr>
-			    <%if(type.equals("actor")){%>
 				  <th scope="col">
 				  	<input class="form-check-input" type="checkbox" id="checkAll">
 				  </th>
 				  <th scope="col">프로필</th>	
 			      <th scope="col">배우이름</th>
-			      	
-	    	
-				<%}else if(type.equals("director")){%>
-				  <th scope="col">
-				  	<input class="form-check-input" type="checkbox" name="no" id="<%=vo.getActorNo()%>">
-				  </th>
-			      <th scope="col">감독이름</th>
-			      <th scope="col">필모리스트</th>			      	
-				<%} %>
-			    </tr>
+			     </tr>
 			  </thead>
 			  <tbody>
 				<%
@@ -222,8 +206,7 @@ $(function(){
 				%>
 				<tr>
 				  <td class="text-truncate">
-				  	<input class="form-check-input" type="checkbox"  name="chk" id="<%=vo.getActorNo()%>">
-				  	<input type="hidden" name="actorNo" value="<%=vo.getActorNo()%>">
+				  	<input class="form-check-input" type="checkbox"  name="chk" value="<%=vo.getActorNo()%>">
 				  </td>				
 				  <td class="text-truncate" style="max-width: 100px;">
 				  	<img src="../../images/movie/actor/<%=vo.getActorImg()%>" style="width:50px">

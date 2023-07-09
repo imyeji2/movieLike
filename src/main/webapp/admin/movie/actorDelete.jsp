@@ -12,28 +12,19 @@
 <%
 	//1. 파라미터 받기
 	request.setCharacterEncoding("utf-8");
-	String[] arrNo = request.getParameterValues("actorNo");
-	
-	if(arrNo==null){
-%>
-	<script>
-		alert("접근할 수 없는 url입니다.");
-		history.back();
-	</script>
-<%		
-	}
+	String[] arrNo = request.getParameterValues("chk");
 	
 	try{
 		ActorService service = new ActorService();
 		int cnt=0;
 		for(int i=0; i<arrNo.length;i++){
-			cnt = service.deleteActor(Integer.parseInt(arrNo[i]));
+			cnt+= service.deleteActor(Integer.parseInt(arrNo[i]));
 		}
 		
 		if(cnt>0){%>
 			<script type="text/javascript">
 				alert("<%=cnt%>건이 삭제 되었습니다.");
-				location.href="serch_popup2.jsp";
+				location.href="serchActor.jsp";
 			</script>
 <% 
 		}else{%>

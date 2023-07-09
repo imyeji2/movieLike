@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
 
+<script>
+	function movie_write(){
+		location.href="movieWrite.jsp";
+	}
+</script>
+
 	<section id="noticeList">
 			<article id="notice_content">
 				<h2>영화 리스트</h2>
