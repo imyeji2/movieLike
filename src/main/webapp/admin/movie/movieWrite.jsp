@@ -16,19 +16,137 @@
  -->
 <script type="text/javascript">
 $(function(){
-	$('.movie_btn').click(function(){
-		if($(this).attr('name')==='movie'){
-			var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
-		}else{
-		var type=$(this).attr('name');
-		var popup = window.open('serch'+type+'.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
-		}
+	
+	$('#addMovie').click(function(){
+		var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
 	});
 	
-	$('input[name=Director]').click(function(){
-		var cnt = $(this).fint('.movieWrite_box_in').length();		
-		alert(cnt);
-	})
+	$('#addActor').click(function(){
+		var popup = window.open('serchActor.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
+	});
+	
+	$('#addDirector').click(function(){
+		var cnt = $('#directorBox').find('.movieWrite_box_in').length;	
+		if(cnt==2){
+			alert('더 이상 등록할 수 없습니다.');
+			return false;
+		}else{
+			var popup = window.open('serchDirector.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
+		}
+	});	
+	
+	
+	$('#saveMovie').click(function(){
+		if($('#movie_tit').val().length<1){
+			alert("제목을 입력하세요");
+			$('#movie_tit').focus();
+			return false;
+		}
+		
+		if($('#synop').val().length<1){
+			alert("줄거리를 입력하세요");
+			$('#synop').focus();
+			return false;
+		}
+
+		if($('#runningTiem').val().length<1){
+			alert("상영시간을 입력하세요");
+			$('#runningTiem').focus();
+			return false;
+		}
+		
+		if($('#openDate').val().length<1){
+			alert("개봉연도를 입력하세요");
+			$('#openDate').focus();
+			return false;
+		}		
+
+		if($('#ageRate').val().length<1){
+			alert("연령가를 입력하세요");
+			$('#ageRate').focus();
+			return false;
+		}			
+
+		if($('#price').val().length<1){
+			alert("팝콘가를 입력하세요");
+			$('#price').focus();
+			return false;
+		}	
+
+
+
+		if($('#url').val().length<1){
+			alert("예고편 주소를 입력하세요");
+			$('#url').focus();
+			return false;
+		}
+
+		
+		if (!$('#stilcut').val()) {
+			alert("스틸컷을 첨부해주세요");
+			$('#stilcut').focus()
+			return false;
+		} else if ($("#stilcut").val() != "") {
+			var ext = $("#stilcut").val().split(".").pop().toLowerCase();
+			if ($.inArray(ext, ["jpg", "jpeg", "png", "gif"]) == -1) {
+				alert("이미지 파일만 등록 가능합니다.");
+				$("#stilcut").val("");
+				$('#stilcut').focus();
+				return false;
+			}
+		}
+		
+		var maxSize = 1 * 1024 * 1024; // 1MB
+		var fileSize = $("#stilcut")[0].files[0].size;
+		
+		if (fileSize > maxSize) {
+			alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
+			$("#stilcut").val("");
+			$('#stilcut').focus();
+			return false;
+		}
+		
+		
+		
+		if (!$('#poster').val()) {
+			alert("포스터를 첨부해주세요");
+			$('#stilcut').focus()
+			return false;
+		} else if ($("#poster").val() != "") {
+			var ext = $("#poster").val().split(".").pop().toLowerCase();
+			if ($.inArray(ext, ["jpg", "jpeg", "png", "gif"]) == -1) {
+				alert("이미지 파일만 등록 가능합니다.");
+				$("#poster").val("");
+				$('#poster').focus();
+				return false;
+			}
+		}
+		
+		var maxSize = 1 * 1024 * 1024; // 1MB
+		var fileSize = $("#poster")[0].files[0].size;
+		
+		if (fileSize > maxSize) {
+			alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
+			$("#poster").val("");
+			$('#poster').focus();
+			return false;
+		}		
+
+		if($('#actorBox').find('.movieWrite_box_in').length==0){
+			alert("배우를 등록해주세요");
+			$('#directorBox').focus()
+			return false;
+		}
+		
+		
+		if($('#directorBox').find('.movieWrite_box_in').length==0){
+			alert("감독을 등록해주세요");
+			$('#directorBox').focus()
+			return false;
+		}
+		
+
+	});
 });
 
 </script>
@@ -40,7 +158,7 @@ $(function(){
 			</div>
 			<form name="movieWrite" method="post" action="movieWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="movie" value="영화 검색" >
+					<input type="button" class="movie_btn btn btn-primary" name="movie" value="영화 검색" id="addMovie">
 					<p class="clear">영화 정보</p>
 		
 					<div class="movieWrite_box1">
@@ -73,7 +191,7 @@ $(function(){
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">연령가</div>
-							<div class="movieWrite_box_in_right" id="ageRate">
+							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
 								placeholder="연령가를 입력하세요" name="title" id="ageRate">								
 							</div>
@@ -88,32 +206,32 @@ $(function(){
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">팝콘금액</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control info_txt" type="text" placeholder="팝콘가를 입력하세요" name="price">
+								<input class="form-control info_txt" type="text" placeholder="팝콘가를 입력하세요" name="price" id="price">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">예고편URL</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control info_txt info_txt"  type="text" placeholder="URL을 입력하세요" name="url">
+								<input class="form-control info_txt info_txt"  type="text" placeholder="URL을 입력하세요" name="url" id="url">
 							</div><!-- movieWrite_box_in_right -->
 						</div><!-- movieWrite_box_in -->			
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">스틸이미지</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control" type="file" id="formFile">
+								<input class="form-control" type="file" id="stilcut">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">포스터이미지</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control" type="file" id="formFile">
+								<input class="form-control" type="file" id="poster">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
 								<div class="movieWrite_box_in_right1">
-									<select class="form-select form-select-sm">
+									<select class="form-select form-select-sm" id="genreNo">
 										<option selected>로맨스</option>
 										<option value="1">액션</option>
 										<option value="2">공포</option>
@@ -131,7 +249,7 @@ $(function(){
 				</div><!-- movieWrite_box -->	
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="Actor" value="배우등록" >
+					<input type="button" class="movie_btn btn btn-primary" name="Actor" value="배우등록" id="addActor">
 					<p class="clear">출연진 정보</p>
 						
 					<div class="movieWrite_box1" id="actorBox">
@@ -141,7 +259,7 @@ $(function(){
 				
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="Director" value="감독등록" >
+					<input type="button" class="movie_btn btn btn-primary" name="Director" value="감독등록" id="addDirector">
 					<p class="clear">감독 정보</p>
 						
 					<div class="movieWrite_box1" id="directorBox">														
@@ -149,7 +267,7 @@ $(function(){
 				</div><!-- movieWrite_box -->
 				<br>
 				<div class="btn_grop">
-					<input type="submit" class="btn_grop_input" value="등록">
+					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
 					<input type="button" class="btn_grop_input" value="삭제">
 				</div>
 			</form>		
