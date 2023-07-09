@@ -60,7 +60,7 @@
 			
 			<div class="f_left">
 				<%if(t_isLogin){ %>
-					<input type="button" class="mypage" value="Mypage">
+					<input type="button" class="mypage" value="Mypage" onclick = "location.href='<%=request.getContextPath()%>/myPage/myPageMain.jsp'">
 					<input type="button" class="logout_btn" value="Logout" 
 					onclick = "location.href='<%=request.getContextPath()%>/login/logout.jsp'">
 				

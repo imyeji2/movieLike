@@ -169,7 +169,7 @@
 	display: none;
 }
 
-.register .match .gender label {
+.register .match .gender label, #btnChkId {
 	height: 58px;
 	width: 100px;
 	border: 1px solid #ced4da;
@@ -183,12 +183,12 @@
 	transition: all 0.15s;
 }
 
-.register .match .gender input:checked + label {
+.register .match .gender input:checked + label{
 	background-color: #13C181;
 	color: #fff;
 }
 
-.confirm ,input#chkagree {
+.confirm ,#chkagree {
 	display: block;
 	width: 100%;
 	text-align: center;

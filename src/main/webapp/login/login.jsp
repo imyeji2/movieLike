@@ -37,7 +37,7 @@
 			<div class="login">
 				<form name="frmLogin" method="post" action ="<%=request.getContextPath() %>/login/login_ok.jsp">
 					<div class="form-floating">
-						<input type="email" class="form-control" id="floatingInput" name ="userId" placeholder="name@example.com"> 
+						<input type="email" class="form-control" id="floatingInput" name ="userId" placeholder="name@example.com" value ="<%=ck_value%>"> 
 						<label for="floatingInput">이메일 주소</label>
 					</div>
 					<div class="form-floating">
@@ -45,7 +45,8 @@
 						<label for="floatingPassword">비밀번호</label>
 					</div>
 					<div class="saveId">
-						<input type="checkbox" id="saveId-chk" name ="chkSave"> 
+						<input type="checkbox" id="saveId-chk" name ="chkSave" <%if(ck_value != null && !ck_value.isEmpty()){ %>
+							checked = "checked" <%} %>> 
 						<label for="saveId-chk" style="color: #000;">이 계정을 기억하시겠습니까?</label>
 					</div>
 					<div class="submit">
@@ -82,7 +83,7 @@
 							<label for="registerId">이메일 주소</label>
 						</div>
 						<div class="dup">
-							<input type="button" class="dupbt" value="중복체크">
+							<input type="button" id = "btnChkId" value="중복체크">
 						</div>	
 					</div>
 					<div class="form-floating">
@@ -112,11 +113,12 @@
 					<button class="confirm" type="submit">회원가입</button>
 				</form>
 			</div>
-			
+			<input type ="text" name="chkId" id="chkId">
 		</div>
 	</div>
 </div>
 </div>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/user.js"></script>
 <script>
 	$('.login_btn').click(function() {
 		$('.login').show();
@@ -156,29 +158,40 @@
 
 		if (id == '' || !id.includes('@')) {
 			alert('이메일을 확인해주세요');
+			$('#registerId').focus();
 			return false;
 		}
 
 		if (pass == "") {
 			alert('비밀번호를 확인해주세요');
+			$('#registerPassword').focus();
 			return false;
 		}
 
 		if (name == "" || name.length < 2) {
 			alert('이름을 확인해주세요');
+			$('#registerName').focus();
 			return false;
 		}
 
 		if (man == false && woman == false) {
 			alert('성별을 선택해주세요');
+			$('#gender').focus();
 			return false;
 		}
 
 		if (birth == '' || birth.length < 8) {
 			alert('생년월일을 확인해주세요');
+			$('#registerBirth').focus();
 			return false;
 		}
 
+		if($('#chkId').val()!='Y'){
+	         alert('아이디 중복확인을 해주세요.');
+	         $('#btnChkId').focus();
+	         return false;
+	    }
+		
 		/*       else {
 		 alert('회원가입이 완료되었습니다');
 		 $('.register').hide();
