@@ -15,18 +15,23 @@
 
  -->
 <script type="text/javascript">
-	$(function(){
-		$('.movie_btn').click(function(){
-			if($(this).attr('name')==='movie'){
-				var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
-			}else{
-			var type=$(this).attr('name');
-			var popup = window.open('serch'+type+'.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
-			}
-		});
+$(function(){
+	$('.movie_btn').click(function(){
+		if($(this).attr('name')==='movie'){
+			var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
+		}else{
+		var type=$(this).attr('name');
+		var popup = window.open('serch'+type+'.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
+		}
 	});
+	
+	$('input[name=Director]').click(function(){
+		var cnt = $(this).fint('.movieWrite_box_in').length();		
+		alert(cnt);
+	})
+});
 
-	</script>
+</script>
 		<section id="movieWrite">
 		<div class="movieWrite_wrap"><!-- 전체div -->
 			<div class="movieWrite_box"> <!-- 상단 타이틀 div -->
@@ -107,12 +112,19 @@
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
-							<select class="form-select form-select-sm">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
+								<div class="movieWrite_box_in_right1">
+									<select class="form-select form-select-sm">
+										<option selected>로맨스</option>
+										<option value="1">액션</option>
+										<option value="2">공포</option>
+										<option value="3">SF</option>
+										<option value="4">코미디</option>
+										<option value="5">애니</option>
+									</select>
+								</div>
+								<div class="movieWrite_box_in_right2">
+									<input type="button" name="addCategory" value="카테고리 추가">
+								</div>
 							</div>
 						</div><!-- movieWrite_box_in -->															
 					</div><!-- movieWrite_box1 -->
@@ -122,15 +134,17 @@
 					<input type="button" class="movie_btn btn btn-primary" name="Actor" value="배우등록" >
 					<p class="clear">출연진 정보</p>
 						
-					<div class="movieWrite_box1">															
-					</div><!-- movieWrite_box1 -->
+					<div class="movieWrite_box1" id="actorBox">
+					
+					</div><!-- movieWrite_box1 -->												
 				</div><!-- movieWrite_box -->
+				
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
 					<input type="button" class="movie_btn btn btn-primary" name="Director" value="감독등록" >
 					<p class="clear">감독 정보</p>
 						
-					<div class="movieWrite_box1">														
+					<div class="movieWrite_box1" id="directorBox">														
 					</div><!-- movieWrite_box1 -->
 				</div><!-- movieWrite_box -->
 				<br>
@@ -140,7 +154,7 @@
 				</div>
 			</form>		
 		</div><!-- 전체div movieWrite_wrap-->
-		</section> 
+	</section> 
 	</div><!-- admin_menu->aside, session 감싸는 div -->	
 </div><!-- admin_menu->wrap -->
 

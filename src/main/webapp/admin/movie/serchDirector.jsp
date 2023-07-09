@@ -73,7 +73,23 @@ $(function(){
 		}
 	});
 	
+	
 });
+
+function sendWrite(no, name, img) {
+	  var htmlContent = 
+	    '<div class="movieWrite_box_in">' +
+	      '<div class="movieWrite_box_in_left">' +
+	        '<img src="../../images/movie/director/' + img + '" style="width: 60px;">' +
+	        '<input type="hidden" name="actorNo" value="' + no + '">' +
+	      '</div>' +
+	      '<div class="movieWrite_box_in_right" style="line-height: 65px;">' + name + '</div>' +
+	    '</div>';
+
+	  $(opener.document).find('#directorBox').append(htmlContent);
+	  self.close();
+	}
+
 </script>
 
 <style type="text/css">
@@ -213,7 +229,11 @@ $(function(){
 				  <td class="text-truncate" style="max-width: 100px;">
 				  	<img src="../../images/movie/director/<%=vo.getDirectorImg()%>" style="width:50px">
 				  </td>
-			      <td class="text-truncate" style="max-width: 150px;"><a href="#"><%=vo.getDirectorName()%></a></td>
+			      <td class="text-truncate" style="max-width: 150px;">
+					<a href="#" onclick="sendWrite(<%=vo.getDirectorNo()%>, '<%=vo.getDirectorName()%>', '<%=vo.getDirectorImg()%>');">
+					  <%=vo.getDirectorName()%>
+					</a>
+			      </td>
 			    </tr>		    	
 				<%
 				
