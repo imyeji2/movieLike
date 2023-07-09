@@ -10,7 +10,6 @@ public class DirectorService {
 		directorDao = new DirectorDAO();
 	}
 	
-	
 	public int insertDirector(DirectorVO vo) throws SQLException {
 		return directorDao.insertDirector(vo);
 	}
@@ -19,4 +18,16 @@ public class DirectorService {
 		return directorDao.selectDirectorAll();
 	}
 	
+	public DirectorVO selectByDirectorNo(int no) throws SQLException {
+		return directorDao.selectByDirectorNo(no);
+	}
+	
+	
+	public int updateDirector(DirectorVO vo) throws SQLException {
+		return directorDao.updateDirector(vo);
+	}
+	
+	public int deleteDirector(int dirctorNo) throws SQLException {
+		return directorDao.deleteDirector(dirctorNo);
+	}
 }

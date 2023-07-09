@@ -19,7 +19,7 @@
 
 
 	//실제 물리적 저장 경로
-	String location = "C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\actor";
+	String location = "C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\director";
 	System.out.println(location);
 	//최대사이즈
 	int maxSize = 1* 1024 * 1024; 

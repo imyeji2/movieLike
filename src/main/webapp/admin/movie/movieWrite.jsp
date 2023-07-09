@@ -21,7 +21,7 @@
 				var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
 			}else{
 			var type=$(this).attr('name');
-			var popup = window.open('serchActor.jsp?type='+type, 'serch', 'width=800px,height=800px,scrollbars=yes');
+			var popup = window.open('serch'+type+'.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
 			}
 		});
 	});
@@ -119,7 +119,7 @@
 				</div><!-- movieWrite_box -->	
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="actor" value="배우등록" >
+					<input type="button" class="movie_btn btn btn-primary" name="Actor" value="배우등록" >
 					<p class="clear">출연진 정보</p>
 						
 					<div class="movieWrite_box1">															
@@ -127,7 +127,7 @@
 				</div><!-- movieWrite_box -->
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-					<input type="button" class="movie_btn btn btn-primary" name="director" value="감독등록" >
+					<input type="button" class="movie_btn btn btn-primary" name="Director" value="감독등록" >
 					<p class="clear">감독 정보</p>
 						
 					<div class="movieWrite_box1">														

@@ -2,7 +2,7 @@ package com.semi.director.model;
 
 public class DirectorVO {
 	private int directorNo;
-	private String driectorName;
+	private String directorName;
 	private String directorImg;
 	
 	public DirectorVO() {
@@ -10,10 +10,10 @@ public class DirectorVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DirectorVO(int directorNo, String driectorName, String directorImg) {
+	public DirectorVO(int directorNo, String directorName, String directorImg) {
 		super();
 		this.directorNo = directorNo;
-		this.driectorName = driectorName;
+		this.directorName = directorName;
 		this.directorImg = directorImg;
 	}
 
@@ -25,12 +25,12 @@ public class DirectorVO {
 		this.directorNo = directorNo;
 	}
 
-	public String getDriectorName() {
-		return driectorName;
+	public String getDirectorName() {
+		return directorName;
 	}
 
-	public void setDriectorName(String driectorName) {
-		this.driectorName = driectorName;
+	public void setDirectorName(String directorName) {
+		this.directorName = directorName;
 	}
 
 	public String getDirectorImg() {
@@ -43,11 +43,11 @@ public class DirectorVO {
 
 	@Override
 	public String toString() {
-		return "DirectorVO [directorNo=" + directorNo + ", driectorName=" + driectorName + ", directorImg="
+		return "DirectorVO [directorNo=" + directorNo + ", directorName=" + directorName + ", directorImg="
 				+ directorImg + "]";
 	}
-	
-	
+
+
 	
 	
 }

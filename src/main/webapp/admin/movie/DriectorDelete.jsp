@@ -1,3 +1,4 @@
+<%@page import="com.semi.director.model.DirectorService"%>
 <%@page import="com.semi.actor.model.ActorService"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,10 +16,10 @@
 	String[] arrNo = request.getParameterValues("chk");
 	int reuslt=0;
 	try{
-		ActorService service = new ActorService();
+		DirectorService service = new DirectorService();
 		int cnt=0;
 		for(int i=0; i<arrNo.length;i++){
-			cnt= service.deleteActor(Integer.parseInt(arrNo[i]));
+			cnt= service.deleteDirector(Integer.parseInt(arrNo[i]));
 			reuslt++;
 		}
 		
