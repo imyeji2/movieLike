@@ -22,9 +22,31 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/top.jsp"%>
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type = "text/javascript">
+$(document).ready(function() {
+	<%if(request.getParameter("historyPage") != null){%>
+		$('#payHistory').css('display', 'block');	
+	<%}%>
+	
+	  $('.page-link').click(function() {
+	    var targetId = $(this).data('target'); // data-target 속성의 값 가져오기
+	    $('.content').not(targetId).hide(); // 선택한 div를 제외한 나머지 div 숨김 처리
+	    $(targetId).show(); // 선택한 div만 보이도록 처리
+	    
+	    // 페이지 이동 처리 (현재 페이지 URL에 쿼리 파라미터 추가)
+	    var page = $(this).data('page');
+	    var url = window.location.href.split('?')[0]; // 현재 페이지 URL에서 기존 쿼리 파라미터 제거
+	    window.location.href = url + '?page=' + page; // 쿼리 파라미터 추가하여 페이지 이동
+	  });
+	});
+</script>
 <%
+  int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 0;
+%>
+<%
+	
+
 	String userid = "testId";
 
 	PointService pointService = new PointService();
@@ -72,16 +94,79 @@
 	 labels.deleteCharAt(labels.length() - 1);
      values.deleteCharAt(values.length() - 1);
 	}
-	
+	%>
 
-	DecimalFormat df = new DecimalFormat("#,###");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-%>
+
+<!-- 테이블 1: 찜목록 -->
+<%
+	  int jjimPageSize = 10; // 찜목록 페이지당 표시할 항목 수
+	  int jjimTotalCount = pickMap.size(); // 찜목록 총 항목 수
+	  int jjimTotalPage = (int) Math.ceil((double) jjimTotalCount / jjimPageSize); // 찜목록 총 페이지 수
+	  int jjimPage = (request.getParameter("jjimPage") != null) ? Integer.parseInt(request.getParameter("jjimPage")) : 1; // 현재 찜목록 페이지
+
+	  // 현재 페이지에 해당하는 데이터 추출
+	  List<Entry<PickVO, MovieVO>> jjimDataList = new ArrayList<>(pickMap.entrySet());
+	  int jjimStartIndex = (jjimPage - 1) * jjimPageSize;
+	  int jjimEndIndex = Math.min(jjimStartIndex + jjimPageSize, jjimTotalCount);
+	  List<Entry<PickVO, MovieVO>> jjimPageData = jjimDataList.subList(jjimStartIndex, jjimEndIndex);
+	%>
+
+<!-- 테이블 2: 구매이력 -->
+<%
+	  int historyPageSize = 10; // 구매이력 페이지당 표시할 항목 수
+	  int historyTotalCount = historyList.size(); // 구매이력 총 항목 수
+	  int historyTotalPage = (int) Math.ceil((double) historyTotalCount / historyPageSize); // 구매이력 총 페이지 수
+	  int historyPage = (request.getParameter("historyPage") != null) ? Integer.parseInt(request.getParameter("historyPage")) : 1; // 현재 구매이력 페이지
+		
+	  
+	  
+	  
+	  // 현재 페이지에 해당하는 데이터 추출
+	  List<Entry<PayHistoryVO, String>> historyDataList = new ArrayList<>(historyList.entrySet());
+	  int historyStartIndex = (historyPage - 1) * historyPageSize;
+	  int historyEndIndex = Math.min(historyStartIndex + historyPageSize, historyTotalCount);
+	  List<Entry<PayHistoryVO, String>> historyPageData = historyDataList.subList(historyStartIndex, historyEndIndex);
+	%>
+
+<!-- 테이블 3: 팝콘 충전/환불 이력 -->
+<%
+	  int popcornPageSize = 10; // 팝콘 충전/환불 이력 페이지당 표시할 항목 수
+	  int popcornTotalCount = pointList.size(); // 팝콘 충전/환불 이력 총 항목 수
+	  int popcornTotalPage = (int) Math.ceil((double) popcornTotalCount / popcornPageSize); // 팝콘 충전/환불 이력 총 페이지 수
+	  int popcornPage = (request.getParameter("popcornPage") != null) ? Integer.parseInt(request.getParameter("popcornPage")) : 1; // 현재 팝콘 충전/환불 이력 페이지
+
+	  // 현재 페이지에 해당하는 데이터 추출
+	  int popcornStartIndex = (popcornPage - 1) * popcornPageSize;
+	  int popcornEndIndex = Math.min(popcornStartIndex + popcornPageSize, popcornTotalCount);
+	  List<PointVO> popcornPageData = pointList.subList(popcornStartIndex, popcornEndIndex);
+	%>
+
+<!-- 테이블 4: 리뷰 목록 -->
+<%
+	  int reviewPageSize = 10; // 리뷰 목록 페이지당 표시할 항목 수
+	  int reviewTotalCount = reviewMap.size(); // 리뷰 목록 총 항목 수
+	  int reviewTotalPage = (int) Math.ceil((double) reviewTotalCount / reviewPageSize); // 리뷰 목록 총 페이지 수
+	  int reviewPage = (request.getParameter("reviewPage") != null) ? Integer.parseInt(request.getParameter("reviewPage")) : 1; // 현재 리뷰 목록 페이지
+		
+	  // 현재 페이지에 해당하는 데이터 추출
+	  List<Entry<ReviewVO, String>> reviewDataList = new ArrayList<>(reviewMap.entrySet());
+	  int reviewStartIndex = (reviewPage - 1) * reviewPageSize;
+	  int reviewEndIndex = Math.min(reviewStartIndex + reviewPageSize, reviewTotalCount);
+	  List<Entry<ReviewVO, String>> reviewPageData = reviewDataList.subList(reviewStartIndex, reviewEndIndex);
+	%>
+<%
+		DecimalFormat df = new DecimalFormat("#,###");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	%>
+
+
+
+
 
 <section id="myPageSection">
 	<div class="myPageMain">
 		<div id="myPageHeader" class="main">
-			
+
 			<div id="setting">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
@@ -93,41 +178,42 @@
 			</div>
 			<div id="profileImg"></div>
 			<div class="profileLogo">
-				<img src="../images/logo-white.png" style = "height: 100%; widows: 100%;">
+				<img src="../images/logo-white.png"
+					style="height: 100%; widows: 100%;">
 			</div>
-			<div style="height: 100%; width : 100%;">
+			<div style="height: 100%; width: 100%;">
 				<img src="../images/login-bg.png" class="profileBackground">
 			</div>
 		</div>
 		<div id="myPageBody" class="main">
 			<div id="bodyBar">
 				<nav id="myPageMenu">
-					<a href="javascript:void(0);" onclick="showContent(0);">내정보수정</a> <a
-						href="javascript:void(0);" onclick="showContent(1);">찜목록</a> <a
-						href="javascript:void(0);" onclick="showContent(2);">구매이력</a> <a
-						href="javascript:void(0);" onclick="showContent(3);">팝콘(충전/이력)</a>
-					<a href="javascript:void(0);" onclick="showContent(4);">리뷰관리</a> <a
-						href="javascript:void(0);" onclick="showContent(5);">통계</a>
+					<a href="javascript:void(0)" onclick="showContent(0);">내정보수정</a> <a
+						href="javascript:void(0)" onclick="showContent(1);">찜목록</a> <a
+						href="javascript:void(0)" onclick="showContent(2);">구매이력</a> <a
+						href="javascript:void(0)" onclick="showContent(3);">팝콘(충전/이력)</a>
+					<a href="javascript:void(0)" onclick="showContent(4);">리뷰관리</a> 
+					<a href="javascript:void(0)" onclick="showContent(5);">통계</a>
 					<div id="horizontal-underline"></div>
 				</nav>
 			</div>
 			<div class="mainContent">
-				<div class="content" style="display: none" id="myInfo">
+				<div class="content" style="display: none" id="myInfo" style="<%= (currentPage == 0) ? "display: block" : "display: none" %>">
 					<div class="myInfocheck">
 						<h1>비밀번호 확인</h1>
 						<form class="was-validated">
-						  <div class="mb-3">
-							    <label for="validationTextarea" class="form-label">비밀번호</label>
-							    <input type = "password" class="form-control" id="validationTextarea" placeholder="비밀번호를 입력하세요" required></textarea>
-							    <div class="invalid-feedback">
-							      	당신의 현재 비밀번호를 입력하세요
-							    </div>
-						  </div>
-						  <button type="button" class="btn btn-success btn-lg">확인</button>
+							<div class="mb-3">
+								<label for="validationTextarea" class="form-label">비밀번호</label>
+								<input type="password" class="form-control"
+									id="validationTextarea" placeholder="비밀번호를 입력하세요" required>
+								</textarea>
+								<div class="invalid-feedback">당신의 현재 비밀번호를 입력하세요</div>
+							</div>
+							<button type="button" class="btn btn-success btn-lg">확인</button>
 					</div>
 				</div>
-					<!-- 정보수정 -->
-				<div class="content" style="display: none" id="jjim">
+				<!-- 정보수정 -->
+				<div class="content" style="display: none" id="jjim" style="<%= (currentPage == 1) ? "display: block" : "display: none" %>">
 					<%
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
@@ -144,127 +230,201 @@
 					</div>
 					<%}
 						}%>
+
+					<!-- 페이징 처리 -->
+					<div class="pagination" id="">
+						<% if (jjimPage > 1) { %>
+							<a href="?jjimPage=<%= jjimPage - 1 %>" class="page-link">이전</a>
+						<% } %>
+						<% for (int i = 1; i <= jjimTotalPage; i++) { %>
+							<% if (jjimPage == i) { %>
+								<span class="page-link current"><%= i %></span>
+							<% } else { %>
+								<a href="?jjimPage=<%= i %>&" class="page-link"><%= i %></a>
+							<% } %>
+						<% } %>
+						<% if (jjimPage < jjimTotalPage) { %>
+							<a href="?jjimPage=<%= jjimPage + 1 %>" class="page-link">다음</a>
+						<% } %>
+					</div>
 				</div>
-						<!-- 찜목록 -->
-				<div class="content" style="display: none" id="payHistory">
-					
-					<table style="height:100%"
-						class="table table-striped table-bordered table-hover table-light thead-dark">
-						<tr>
-							<th class="dateCol">영화결제일</th>
-							<th>결제번호</th>
-							<th>금액</th>
-							<th>영화제목</th>
-						</tr>
-						<%
-						if(historyList != null && !historyList.isEmpty()){
-							for(Entry<PayHistoryVO, String> elem : historyList.entrySet()){
-				            	PayHistoryVO vo = elem.getKey();
-								String title = elem.getValue();
-								lastWatchedMovie = elem.getValue();
-								%>
-								
-						<tr>
-							<td><%=sdf.format(vo.getHisRegdate()) %></td>
-							<td><%=vo.getHisNo() %></td>
-							<td><%=title %></td>
-							<td><%=vo.getMovieNo() %></td>
-						</tr>
-						<%}
-						}%>
-					</table>
-				</div>
-				<!-- 영화 구매 이력 -->
-				<div class="content" style="display: none" id="popcorn">
-					
-					<table
-						class="table table-striped table-bordered table-hover table-light">
-						<tr>
-							<th class="dateCol">팝콘충전일</th>
-							<th>금액</th>
-							<th>구분</th>
-							<th>환불</th>
-						</tr>
-						<%
+			</div>
+			<!-- 찜목록 -->
+			<!-- 테이블 2: 구매이력 -->
+			<div class="content" style="display: none" id="payHistory" style="<%= (currentPage == 2) ? "display: block" : "display: none" %>">
+				  <table class="table table-striped table-bordered table-hover table-light thead-dark">
+					    <tr>
+						      <th class="dateCol">영화결제일</th>
+						      <th>결제번호</th>
+						      <th>금액</th>
+						      <th>영화제목</th>
+					    </tr>
+						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
+						          PayHistoryVO vo = elem.getKey();
+						          String title = elem.getValue();%>
+							    <tr>
+								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
+								      <td><%= vo.getHisNo() %></td>
+								      <td><%= title %></td>
+								      <td><%= vo.getMovieNo() %></td>
+							    </tr>
+						    <% } %>
+					  </table>
+			  	
+					  <!-- 페이징 처리 -->
+					  <div class="pagination">
+						    <% if (historyPage > 1) { %>
+						      		<a href="?historyPage=<%= historyPage - 1 %>" class="page-link">이전</a>
+						    <% } %>
+						    <% for (int i = 1; i <= historyTotalPage; i++) { %>
+						      <% if (historyPage == i) { %>
+							        	<span class="page-link current"><%= i %></span>
+							      <% } else { %>
+							        	<a href="?historyPage=<%= i %>" class="page-link"><%= i %></a>
+							      <% } %>
+						    <% } %>
+						    <% if (historyPage < historyTotalPage) { %>
+						      		<a href="?historyPage=<%= historyPage + 1 %>" class="page-link">다음</a>
+						    <% } %>
+					  </div>
+			</div>
+			<!-- 영화 구매 이력 -->
+			<div class="content" style="display: none" id="popcorn" style="<%= (currentPage == 3) ? "display: block" : "display: none" %>">
+
+				<table
+					class="table table-striped table-bordered table-hover table-light">
+					<tr>
+						<th class="dateCol">팝콘충전일</th>
+						<th>금액</th>
+						<th>구분</th>
+						<th>환불</th>
+					</tr>
+					<%
 						//pageSize = 15;
 						if(pointList != null && !pointList.isEmpty()){
 							for(int i = 0; i < pointList.size(); i++){
 							PointVO vo = pointList.get(i);
 							usedPopcorn += vo.getPointPrice();%>
-						<tr>
-							<td><%=sdf.format(vo.getPointRegdate()) %></td>
-							<td><%=vo.getPointPrice() %></td>
-							<td><%=vo.getPointKind() %></td>
-							<td>
-								<%if(vo.getPointKind().equals("충전") ){ %>
-								<button class="refund">환불</button> <%}%>
-							</td>
-						</tr>
-						<%}
+					<tr>
+						<td><%=sdf.format(vo.getPointRegdate()) %></td>
+						<td><%=vo.getPointPrice() %></td>
+						<td><%=vo.getPointKind() %></td>
+						<td>
+							<%if(vo.getPointKind().equals("충전") ){ %>
+							<button class="refund">환불</button> <%}%>
+						</td>
+					</tr>
+					<%}
 						}%>
-					</table>
-				</div>
-				<!-- 팝콘 충전/환불 이력 -->
-				<div class="content" style="display: none" id="review">
-					<table
-						class="table table-striped table-bordered table-hover table-light thead-dark">
-						<tr>
-							<th>영화이름</th>
-							<th>리뷰내용(간소화)</th>
-						</tr>
-						<%
+				</table>
+				 <div class="pagination">
+				    <% if (popcornPage > 1) { %>
+				      <a href="?popcornPage=<%= popcornPage - 1 %>" class="page-link">이전</a>
+				    <% } %>
+				    <% for (int i = 1; i <= popcornTotalPage; i++) { %>
+				      <% if (popcornPage == i) { %>
+				        <span class="page-link current"><%= i %></span>
+				      <% } else { %>
+				        <a href="?popcornPage=<%= i %>" class="page-link"><%= i %></a>
+				      <% } %>
+				    <% } %>
+				    <% if (popcornPage < popcornTotalPage) { %>
+				      <a href="?popcornPage=<%= popcornPage + 1 %>" class="page-link">다음</a>
+				    <% } %>
+			  	</div>
+			</div>
+			<!-- 팝콘 충전/환불 이력 -->
+			<div class="content" style="display: none" id="review" style="<%= (currentPage == 4) ? "display: block" : "display: none" %>">
+				<table
+					class="table table-striped table-bordered table-hover table-light thead-dark">
+					<tr>
+						<th>영화이름</th>
+						<th>리뷰내용(간소화)</th>
+					</tr>
+					<%
 						if(reviewMap != null && !reviewMap.isEmpty()){
 							for(Entry<ReviewVO, String> elem : reviewMap.entrySet()){
 				            	ReviewVO vo = elem.getKey();
 								String movieTitle = elem.getValue();%>
-						<tr>
-							<td><%=movieTitle %></td>
-							<td><%=vo.getComments() %></td>
-						</tr>
-						<%}
+					<tr>
+						<td><%=movieTitle %></td>
+						<td><%=vo.getComments() %></td>
+					</tr>
+					<%}
 						}%>
-					</table>
-				</div>
-				<!-- 리뷰 목록 -->
-				<div class="content" style="display: block" id="statistics">
-					<div  class = "briefStatisticBlock">
-						
-						
-						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
-							<h3>총 시청</h3>
-						</div>
-						<div style="width:50%;" class = "bsb"><h3><%=totalView%>편</h3></div>
-						
-						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
-							<h3>많이 본 장르</h3>
-						</div>
-						<div style="width:50%;" class = "bsb"><h3><%=mostWatchedGenre %></h3></div>
-						
-						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
-							<h3>마지막 시청</h3>
-						</div>
-						<div style="width:50%;" class = "bsb"><h3><%=lastWatchedMovie%></h3></div>
-
-						<div style="width:48%; border-right: white solid 7px; border-radius: 2px;" class = "bsb">
-							<h3>전체 튀긴 팝콘</h3>
-						</div>
-						<div style="width:50%;" class = "bsb"><h3><%=df.format(usedPopcorn/100)%></h3></div>
-					</div>
-					
-					<div class="phppot-container">
-						<div>
-							<canvas id="doughnut-chart"  style="height:20vw; width:20vw;"></canvas>
-						</div>
-					</div>
-					<div class="phppot-container">
-						<div>
-							<canvas id="bar-chart"  style="height:20vw; width:20vw;"></canvas>
-						</div>
-					</div>
-				</div>
-				<!-- 통계 -->
+				</table>
+				 <!-- 페이징 처리 -->
+				  <div class="pagination">
+				    <% if (reviewPage > 1) { %>
+				      <a href="?reviewPage=<%= reviewPage - 1 %>" class="page-link">이전</a>
+				    <% } %>
+				    <% for (int i = 1; i <= reviewTotalPage; i++) { %>
+				      <% if (reviewPage == i) { %>
+				        <span class="page-link current"><%= i %></span>
+				      <% } else { %>
+				        <a href="?reviewPage=<%= i %>" class="page-link"><%= i %></a>
+				      <% } %>
+				    <% } %>
+				    <% if (reviewPage < reviewTotalPage) { %>
+				      <a href="?reviewPage=<%= reviewPage + 1 %>" class="page-link">다음</a>
+				    <% } %>
+				  </div>
 			</div>
+			<!-- 리뷰 목록 -->
+			<div class="content" style="display: block" id="statistics" style="<%= (currentPage == 5) ? "display: block" : "display: none" %>">
+				<div class="briefStatisticBlock">
+					<div
+						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
+						class="bsb">
+						<h3>총 시청</h3>
+					</div>
+					<div style="width: 50%;" class="bsb">
+						<h3><%=totalView%>편
+						</h3>
+					</div>
+
+					<div
+						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
+						class="bsb">
+						<h3>많이 본 장르</h3>
+					</div>
+					<div style="width: 50%;" class="bsb">
+						<h3><%=mostWatchedGenre %></h3>
+					</div>
+
+					<div
+						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
+						class="bsb">
+						<h3>마지막 시청</h3>
+					</div>
+					<div style="width: 50%;" class="bsb">
+						<h3><%=lastWatchedMovie%></h3>
+					</div>
+
+					<div
+						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
+						class="bsb">
+						<h3>전체 튀긴 팝콘</h3>
+					</div>
+					<div style="width: 50%;" class="bsb">
+						<h3><%=df.format(usedPopcorn/100)%></h3>
+					</div>
+				</div>
+
+				<div class="phppot-container">
+					<div>
+						<canvas id="doughnut-chart" style="height: 20vw; width: 20vw;"></canvas>
+					</div>
+				</div>
+				<div class="phppot-container">
+					<div>
+						<canvas id="bar-chart" style="height: 20vw; width: 20vw;"></canvas>
+					</div>
+				</div>
+			</div>
+			<!-- 통계 -->
 		</div>
+	</div>
 	</div>
 
 </section>
