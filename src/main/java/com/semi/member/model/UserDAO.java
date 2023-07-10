@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +115,35 @@ public class UserDAO {
 			pool.dbClose(rs, ps, con);
 			
 		}
-		
+	}
+	public UserVO selectUserByUserId(String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		UserVO vo = null;
+		try {
+			con = pool.getConnection();
+			String sql = "select * from userinfo where userid = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String rsUserid = rs.getString("userid"); 
+				String name = rs.getString("name");
+				String pwd = rs.getString("pwd");
+				String gender = rs.getString("gender");
+				String birth = rs.getString("birth");
+				String profileImg = rs.getString("profileImg");
+				int point = rs.getInt("point");
+				Timestamp outdate = rs.getTimestamp("outdate");
+				
+				vo = new UserVO(rsUserid, name, pwd, gender, birth, profileImg, point, outdate);
+			}
+ 			System.out.println("사용자 정보 조회 결과 vo = " + vo + "매개변수 userid =" + userid);
+			return vo;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
 	}
 }

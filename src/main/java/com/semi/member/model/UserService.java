@@ -28,4 +28,7 @@ public class UserService {
 	public int checkLogin(String userId, String pwd) throws SQLException {
 		return dao.checkLogin(userId, pwd);
 	}
+	public UserVO selectUserByUserId(String userid) throws SQLException {
+		return dao.selectUserByUserId(userid);
+	}
 }

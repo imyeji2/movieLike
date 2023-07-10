@@ -1,3 +1,4 @@
+<%@page import="com.semi.member.model.UserVO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.semi.review.model.ReviewService"%>
 <%@page import="com.semi.payHistory.model.PayHistoryService"%>
@@ -65,25 +66,35 @@ $(document).ready(function() {
 <%
 	
 
-	String userid = "testId";
+	String userid = (String)session.getAttribute("userId");
+	if(userid == null || userid.isEmpty()){%>
+		<script>
+			alert('먼저 로그인 해주십시오');
+			location.href = "/semi/index.jsp";
+		</script>
+	<%}
+
 
 	PointService pointService = new PointService();
 	PayHistoryService payHistoryService = new PayHistoryService(); 
 	ReviewService reviewService = new ReviewService();
 	PickService pickService = new PickService();
+	UserService userService = new UserService();
 	
 	List<PointVO> pointList = new ArrayList<>();
 	Map<PayHistoryVO, String> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
 	Map<String, Integer> chartMap = new HashMap<>();
-	 
+	UserVO userVo = new UserVO();
+	
 	try{
 	 pointList = pointService.selectPointByUserid(userid);
 	 historyList = payHistoryService.selectHistoryByUserid(userid);
 	 reviewMap = reviewService.selectByUserId(userid);
 	 pickMap = pickService.selectPickByUserId(userid);
 	 chartMap = payHistoryService.chartValue(userid);
+	 userVo = userService.selectUserByUserId(userid);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -417,10 +428,27 @@ $(document).ready(function() {
 					<div
 						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
 						class="bsb">
+						<h3>보유중인 팝콘</h3>
+					</div>
+					<div style="width: 50%;" class="bsb">
+						<h3><%=userVo.getPoint()%>개</h3>
+					</div>
+
+					<div
+						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
+						class="bsb">
 						<h3>전체 튀긴 팝콘</h3>
 					</div>
 					<div style="width: 50%;" class="bsb">
-						<h3><%=df.format(usedPopcorn/100)%></h3>
+						<% if(usedPopcorn/100 == 0){%>
+							<h3>팝콘 상자가 텅...</h3>
+						<%}else if(usedPopcorn/100 > 1000){%>
+						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!</h3>
+						<%}else if(usedPopcorn/100 > 2000){%>
+						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!!</h3>
+						<%}else if(usedPopcorn/100 > 3000){%>
+						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!!</h3>
+						<%}%>
 					</div>
 				</div>
 
