@@ -1,3 +1,4 @@
+<%@page import="com.semi.actor.model.ActorService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.semi.movie.model.MovieVO"%>
 <%@page import="java.sql.SQLException"%>
@@ -16,7 +17,7 @@
 			history.go(-1);
 		</script>
 	<%}
-	
+	ActorService actorService = new ActorService();
 	MovieService movieService = new MovieService();
 	MovieVO vo = null;
 	try{
@@ -40,7 +41,8 @@
 			movieGenre = "애니";
 	}
 	
-	String actor1 = "";
+	
+	String actor1 = actorService.selectByActorNo(vo.get);
 	String actor2 = "";
 	
 	
