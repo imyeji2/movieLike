@@ -17,4 +17,12 @@ public class MovieService {
 	public List<MovieVO> selectMovieAll() throws SQLException{
 		return movieDao.selectMovieAll();
 	}
+	
+	public int insertMovie(MovieVO vo) throws SQLException {
+		return movieDao.insertMovie(vo);
+	}
+	
+	public MovieVO selectMovieByNo(String title) throws SQLException {
+		return movieDao.selectMovieByNo(title);
+	}
 }

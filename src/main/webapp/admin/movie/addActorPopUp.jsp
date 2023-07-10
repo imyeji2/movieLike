@@ -168,7 +168,7 @@ $(function(){
 			  data: { name: name }, // 전송할 데이터 (이름 변수 전달)
 			  success: function(result) {
 			    // 서버 응답 성공 시 실행할 함수
-			    if (result<0) {
+			    if (result=="0") {
 			        $('#actorFrm').submit();
 			    } else {
 			    	
@@ -181,6 +181,7 @@ $(function(){
 			    // 서버 응답 실패 시 실행할 함수
 			    alert('서버 오류가 발생했습니다.');
 			  }
+			  
 			});  
 
 	});
@@ -289,14 +290,13 @@ $(function(){
 <div class="warp">
 	<h5>배우 <%=txt %></h5>
 	<form id ="actorFrm" name="frmWrite" method="post" enctype="multipart/form-data" action="<%=url%>">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="hidden" name="actorNo" value=<%=no %>>
 		<input type="hidden" name="oldFileName" value="<%=img%>">
 		<div class="addPopBox">
 			<div class="infoBox">
 				<div class="infoBox_left">배우명</div>
 				<div class="infoBox_right">
-					<input class="form-control info_txt" type="text" placeholder="이름을 입력하세요" name="name" id="peopleName" value="<%=name%>">
+					<input class="form-control info_txt" type="text" placeholder="이름을 입력하세요" name="name" id="peopleName" value="<%=name%>" autocomplete="on">
 				</div>
 			</div>
 			<%if(!isEdit){ %>
