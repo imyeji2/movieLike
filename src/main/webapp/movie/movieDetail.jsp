@@ -1,3 +1,4 @@
+<%@page import="com.semi.director.model.DirectorService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.semi.casting.model.CastingVO"%>
@@ -24,6 +25,7 @@
 	CastingService castingService = new CastingService();
 	ActorService actorService = new ActorService();
 	MovieService movieService = new MovieService();
+	DirectorService directorService = new DirectorService();
 	MovieVO movieVo = null;
 	List<CastingVO> CastingList= null;
 	try{
@@ -50,12 +52,12 @@
 	StringBuilder actorSb = new StringBuilder();
 	if(CastingList != null && !CastingList.isEmpty()){	//캐스팅리스트가 존재한다면
 		for(CastingVO actors : CastingList){			//캐스팅리스트size만큼 반복
-			actorSb.append(actorService.selectByActorNo(actors.getActorNo()).getActorName() + ", ");
+			actorSb.append(actorService.selectByActorNo(actors.getActorNo()).getActorName()).append(", ");
 			// =>actorService의 번호로 배우 조회하는 메서드 => .getActorName 이용
 			// 반복문만큼 actorSb에 배우이름 + ", " append
 		}
 	}
-	actorSb.deleteCharAt(actorSb.length()-1);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
+	actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
 	
 	String content = movieVo.getSynop();				//시놉시스 줄 나눔
 	if(content!=null){  // \r\n  => <br>
@@ -66,6 +68,9 @@
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
 %>
+<script type="text/javascript">
+	
+</script>
    
 	<section id="movieDetail">
 		<article>
@@ -97,14 +102,14 @@
 						<p>상세 설명</p>
 						<%=content %>
 						<br>
-						<P>감독 : <%=movieVo.getDirectorNo1() %></P>		<!-- 영화 감독 -->
+						<P>감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo1()).getDirectorName() %></P>		<!-- 영화 감독 -->
 						<%if(movieVo.getDirectorNo2() > 0){ %>
-						<p>보조 감독 : <%=movieVo.getDirectorNo2() %></p>
+						<p>보조 감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo2()).getDirectorName() %></p>
 						<%} %>
 						<P>출연 : <%=actorSb %></P>						<!-- 출연 배우 !# 50번째줄에서 구함 #! -->
 					</div>
 					<div class="movi_info_btn"> 
-						<div class="movie_buy_btn">단건 구매 800팝콘</div>
+						<div class="movie_buy_btn"><a href ="buyMovie.jsp?no=<%=movieNo%>&userid=<%=userid%>">단건 구매 <%=movieVo.getPrice()/100 %>팝콘</a></div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
 							<img src="../images/like_off.svg">
 						</div>

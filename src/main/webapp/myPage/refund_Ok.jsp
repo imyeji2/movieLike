@@ -16,7 +16,7 @@
 	
 	PointService service = new PointService();
 	try{
-		int cnt = service.refundPoint(Integer.parseInt(no), Integer.parseInt(price));
+		int cnt = service.refundPoint(Integer.parseInt(no), Integer.parseInt(price),userid);
 		if(cnt > 0){%>
 			<script type = "text/javascript">
 				window.close();
