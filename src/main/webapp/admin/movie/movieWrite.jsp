@@ -158,6 +158,7 @@ $(function(){
 			</div>
 			<form name="movieWrite" method="post" action="movieWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
+				
 					<input type="button" class="movie_btn btn btn-primary" name="movie" value="영화 검색" id="addMovie">
 					<p class="clear">영화 정보</p>
 		

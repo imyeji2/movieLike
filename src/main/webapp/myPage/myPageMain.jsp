@@ -39,7 +39,7 @@ $(document).ready(function() {
 		$('.content').not('#jjim').css('display','none');
 	<%}%>
 	
-	  $('.page-link').click(function() {
+	$('*:not(span).page-link').click(function() {
 	    var targetId = $(this).data('target'); // data-target 속성의 값 가져오기
 	    $('.content').not(targetId).hide(); // 선택한 div를 제외한 나머지 div 숨김 처리
 	    $(targetId).show(); // 선택한 div만 보이도록 처리
@@ -209,18 +209,7 @@ $(document).ready(function() {
 			</div>
 			<div class="mainContent">
 				<div class="content" style="display: none" id="myInfo" style="<%= (currentPage == 0) ? "display: block" : "display: none" %>">
-					<div class="myInfocheck">
-						<h1>비밀번호 확인</h1>
-						<form class="was-validated">
-							<div class="mb-3">
-								<label for="validationTextarea" class="form-label">비밀번호</label>
-								<input type="password" class="form-control"
-									id="validationTextarea" placeholder="비밀번호를 입력하세요" required>
-								</textarea>
-								<div class="invalid-feedback">당신의 현재 비밀번호를 입력하세요</div>
-							</div>
-							<button type="button" class="btn btn-success btn-lg">확인</button>
-					</div>
+					<%@ include file="UserEdit.jsp" %>
 				</div>
 				<!-- 정보수정 -->
 				<div class="content" style="display: none" id="jjim" style="<%= (currentPage == 1) ? "display: block" : "display: none" %>">
@@ -266,7 +255,6 @@ $(document).ready(function() {
 					    <tr>
 						      <th class="dateCol">영화결제일</th>
 						      <th>결제번호</th>
-						      <th>금액</th>
 						      <th>영화제목</th>
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
@@ -275,9 +263,8 @@ $(document).ready(function() {
 						          lastWatchedMovie = title;%>
 							    <tr>
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
-								      <td><%= vo.getHisNo() %></td>
-								      <td><%= title %></td>
-								      <td><%= vo.getMovieNo() %></td>
+								      <td><%=vo.getHisNo() %></td>
+								      <td><%=title%></td>
 							    </tr>
 						    <% } %>
 					  </table>
