@@ -9,10 +9,9 @@ public class CastingService {
 	public CastingService() {
 		dao = new CastingDAO();
 	}
-	
+
 	public List<CastingVO> selectCastingByMovieNo(int movieNo) throws SQLException {
 		return dao.selectCastingByMovieNo(movieNo);
+
 	}
-	
-	
 }
