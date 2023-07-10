@@ -93,8 +93,8 @@ request.setCharacterEncoding("utf-8");
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text">
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/board/noticeList.jsp"></a>공지사항</span> | 
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/board/faqList.jsp"></a>FAQ</span>
+							<span class="span_notice"><a href="<%=request.getContextPath()%>/admin/board/noticeList.jsp">공지사항</a></span> | 
+							<span class="span_notice"><a href="<%=request.getContextPath()%>/admin/board/faqList.jsp">FAQ</a></span>
 						</div>			
 					</div> 
 

@@ -85,8 +85,31 @@ public class PayHistoryDAO {
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
-
-
+	}
+	/**
+	 * 영화 구입 메서드
+	 * @return
+	 * @throws SQLException 
+	 */
+	public int insertPayHistory(int movieNo, String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "insert into payhistory(hisno,movieno,userid)"
+					+ " values(payhistory_seq.nextval,?,?)";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, movieNo);
+			ps.setString(2, userid);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("영화 구매 결과 cnt = " + cnt + "매개변수 movieNo, userid = " + movieNo +", "+ userid);
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
 	}
 
 }

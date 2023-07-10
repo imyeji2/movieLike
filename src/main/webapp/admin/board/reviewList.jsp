@@ -127,8 +127,8 @@ request.setCharacterEncoding("utf-8");
 							<tr style="text-align: center">
 								<th><input type="checkbox"></th>
 								<th scope="row">1</th>
-								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">영화제목</a></td>
-								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">후기입니다..</td>
+								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">영화제목</a></td>
+								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">후기입니다..</td>
 								<td>ㅇㅇㅇ</td>
 								<td>2023-07-05</td>
 							</tr> 

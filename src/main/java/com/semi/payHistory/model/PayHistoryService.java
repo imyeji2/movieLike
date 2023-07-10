@@ -17,4 +17,7 @@ public class PayHistoryService {
 	public Map<String, Integer> chartValue(String userid) throws SQLException{
 		return pointHistoryDao.chartValue(userid);
 	}
+	public int insertPayHistory(int movieNo, String userid) throws SQLException {
+		return pointHistoryDao.insertPayHistory(movieNo, userid);
+	}
 }

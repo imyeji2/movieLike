@@ -28,7 +28,7 @@
 
  
    .mainContent{
-   padding-bottom:100px;
+   padding-bottom:10px;
    }
    .content {
     margin-top: 25px;
@@ -41,6 +41,13 @@
       color:floralwhite;
       font-weight: bold;
       width: 100px;
+   }
+   .refunded{
+	  border: none;
+      background:grey;
+      color:white;
+      font-weight: bold;
+      width: 100px;   
    }
    .content table {
       width: 90%;
@@ -149,7 +156,7 @@
     	
    }
    .bsb{
-	   margin-bottom: 4%;
+	   margin-bottom: 3%;
 	   display: inline-block;
 	   text-align: center;
    }

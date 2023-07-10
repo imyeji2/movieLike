@@ -1,3 +1,4 @@
+<%@page import="com.semi.member.model.UserVO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.semi.review.model.ReviewService"%>
 <%@page import="com.semi.payHistory.model.PayHistoryService"%>
@@ -40,7 +41,7 @@ $(document).ready(function() {
 		$('.content').not('#jjim').css('display','none');
 	<%}%>
 	
-	  $('.page-link').click(function() {
+	$('*:not(span).page-link').click(function() {
 	    var targetId = $(this).data('target'); // data-target 속성의 값 가져오기
 	    $('.content').not(targetId).hide(); // 선택한 div를 제외한 나머지 div 숨김 처리
 	    $(targetId).show(); // 선택한 div만 보이도록 처리
@@ -50,7 +51,15 @@ $(document).ready(function() {
 	    var url = window.location.href.split('?')[0]; // 현재 페이지 URL에서 기존 쿼리 파라미터 제거
 	    window.location.href = url + '?page=' + page; // 쿼리 파라미터 추가하여 페이지 이동
 	  });
+
+		$('.refund').click(function(){
+			var param = $(this).val();
+			window.open('refundPage.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
+		});
 	});
+	
+	
+	
 </script>
 <%
   int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 0;
@@ -58,25 +67,35 @@ $(document).ready(function() {
 <%
 	
 
-	String userid = "testId";
+	String userid = (String)session.getAttribute("userId");
+	if(userid == null || userid.isEmpty()){%>
+		<script>
+			alert('먼저 로그인 해주십시오');
+			location.href = "/semi/index.jsp";
+		</script>
+	<%}
+
 
 	PointService pointService = new PointService();
 	PayHistoryService payHistoryService = new PayHistoryService(); 
 	ReviewService reviewService = new ReviewService();
 	PickService pickService = new PickService();
+	UserService userService = new UserService();
 	
 	List<PointVO> pointList = new ArrayList<>();
 	Map<PayHistoryVO, String> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
 	Map<String, Integer> chartMap = new HashMap<>();
-	 
+	UserVO userVo = new UserVO();
+	
 	try{
 	 pointList = pointService.selectPointByUserid(userid);
 	 historyList = payHistoryService.selectHistoryByUserid(userid);
 	 reviewMap = reviewService.selectByUserId(userid);
 	 pickMap = pickService.selectPickByUserId(userid);
 	 chartMap = payHistoryService.chartValue(userid);
+	 userVo = userService.selectUserByUserId(userid);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -256,7 +275,6 @@ $(document).ready(function() {
 					    <tr>
 						      <th class="dateCol">영화결제일</th>
 						      <th>결제번호</th>
-						      <th>금액</th>
 						      <th>영화제목</th>
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
@@ -265,9 +283,8 @@ $(document).ready(function() {
 						          lastWatchedMovie = title;%>
 							    <tr>
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
-								      <td><%= vo.getHisNo() %></td>
-								      <td><%= title %></td>
-								      <td><%= vo.getMovieNo() %></td>
+								      <td><%=vo.getHisNo() %></td>
+								      <td><%=title%></td>
 							    </tr>
 						    <% } %>
 					  </table>
@@ -312,7 +329,14 @@ $(document).ready(function() {
 						<td><%=vo.getPointKind() %></td>
 						<td>
 							<%if(vo.getPointKind().equals("충전") ){ %>
-							<button class="refund">환불</button> <%}%>
+							<button class="refund" value="no=<%=vo.getPointno()%>&price=<%=vo.getPointPrice()%>&userid=<%=vo.getUserId()%>">
+								환불
+							</button> 
+							<%}else if(vo.getPointKind().equals("환불")){%>
+							<button class="refunded" disabled>
+								환불완료
+							</button>
+							<%} %>
 						</td>
 					</tr>
 					<%}
@@ -405,10 +429,27 @@ $(document).ready(function() {
 					<div
 						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
 						class="bsb">
+						<h3>보유중인 팝콘</h3>
+					</div>
+					<div style="width: 50%;" class="bsb">
+						<h3><%=userVo.getPoint()%>개</h3>
+					</div>
+
+					<div
+						style="width: 48%; border-right: white solid 7px; border-radius: 2px;"
+						class="bsb">
 						<h3>전체 튀긴 팝콘</h3>
 					</div>
 					<div style="width: 50%;" class="bsb">
-						<h3><%=df.format(usedPopcorn/100)%></h3>
+						<% if(usedPopcorn/100 == 0){%>
+							<h3>팝콘 상자가 텅...</h3>
+						<%}else if(usedPopcorn/100 > 1000){%>
+						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!</h3>
+						<%}else if(usedPopcorn/100 > 2000){%>
+						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!!</h3>
+						<%}else if(usedPopcorn/100 > 3000){%>
+						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!!</h3>
+						<%}%>
 					</div>
 				</div>
 
