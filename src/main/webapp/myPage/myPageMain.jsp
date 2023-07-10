@@ -68,13 +68,13 @@ $(document).ready(function() {
 	
 
 	String userid = (String)session.getAttribute("userId");
+
 	if(userid == null || userid.isEmpty()){%>
 		<script>
 			alert('먼저 로그인 해주십시오');
 			location.href = "/semi/index.jsp";
 		</script>
-	<%}
-
+	<%return;}
 
 	PointService pointService = new PointService();
 	PayHistoryService payHistoryService = new PayHistoryService(); 
