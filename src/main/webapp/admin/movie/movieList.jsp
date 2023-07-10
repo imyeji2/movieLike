@@ -1,3 +1,7 @@
+<%@page import="java.sql.Date"%>
+<%@page import="com.semi.movie.model.MovieVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.semi.movie.model.MovieService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
@@ -7,7 +11,14 @@
 		location.href="movieWrite.jsp";
 	}
 </script>
+<%
+	MovieService service = new MovieService();
+	List<MovieVO> list = null;
+	MovieVO vo=null;
+	list = service.selectMovieAll();
 
+%>
+						
 	<section id="noticeList">
 			<article id="notice_content">
 				<h2>영화 리스트</h2>
@@ -34,19 +45,34 @@
 						      <th scope="col">선택</th>
 						      <th scope="col">번호</th>
 						      <th scope="col">제목</th>
-						      <th scope="col">작성일</th>
-						      <th scope="col">조회수</th>
+						      <th scope="col">감독</th>
+						      <th scope="col">개봉일</th>
+						      <th scope="col">상태</th>
 						    </tr>
 						  </thead>
 						<tbody>
-
+						<%
+							if(list==null&&list.isEmpty()){%>
+								<tr style="text-align: center">
+									<td colspan="5">등록된 글이 없습니다.</td>
+								</tr>
+						<% }else{
+							for(int i=0; i<list.size();i++){
+								vo=list.get(i);
+								
+							
+						
+						%>
 							<tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<th scope="row">1</th>
-								<td style="text-align: left"><a href="#"></a>공지</td>
+								<td><input type="checkbox" name="check" value="<%=vo.getMovieNo()%>"></th>
+								<td scope="row"><%=i+1 %></th>
+								<td style="text-align: left"><a href="#"></a><%=vo.getTitle() %></td>
 								<td>2023-07-05</td>
 								<td>128</td>
-							</tr>						
+							</tr>		
+						<%} 
+						}
+						%>				
 						</tbody>
 					</table>
 						
