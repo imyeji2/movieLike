@@ -52,7 +52,7 @@ $(document).ready(function() {
 
 		$('.refund').click(function(){
 			var param = $(this).val();
-			window.open('refundPage.jsp?'+param, '_blank', 'width=500px,height=500px'); 
+			window.open('refundPage.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
 		});
 	});
 	
