@@ -74,7 +74,7 @@ request.setCharacterEncoding("utf-8");
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text">
-							<span class="span_notice"><a href="#"></a>리뷰 관리</span>
+							<span class="span_review">리뷰 관리</span>
 						</div>			
 					</div> 
 
@@ -118,7 +118,7 @@ request.setCharacterEncoding("utf-8");
 						      <th scope="col">선택</th>
 						      <th scope="col">번호</th>
 						      <th scope="col">영화</th>
-						      <th scope="col">제목</th>
+						      <th scope="col">리뷰</th>
 						      <th scope="col">작성자</th>
 						      <th scope="col">등록일</th>
 						    </tr>
@@ -127,10 +127,10 @@ request.setCharacterEncoding("utf-8");
 							<tr style="text-align: center">
 								<th><input type="checkbox"></th>
 								<th scope="row">1</th>
-								<td style="text-align: left"><a href="#">공지</a></td>
-								<td style="text-align: left"><a href="#">2023-07-05</td>
-								<td>128</td>
-								<td>128</td>
+								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">영화제목</a></td>
+								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">후기입니다..</td>
+								<td>ㅇㅇㅇ</td>
+								<td>2023-07-05</td>
 							</tr> 
 							<%-- <%
 							if (list == null || list.isEmpty()) {

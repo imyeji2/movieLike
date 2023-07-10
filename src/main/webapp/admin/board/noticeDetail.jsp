@@ -5,20 +5,19 @@
 
 <body>
 
-
 	<section id="noticeDetail">
 			<article id="detail_content">
 				<h2>공지/FAQ</h2>
 				
 				<div class="top_btn">
-					<button type="button" class="btn btn-primary">+ 등록하기</button>
+					<button type="button" class="btn btn-primary">목록</button>
 				</div>
 				
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text">
-							<span class="span_notice"><a href="#"></a>공지사항</span> | 
-							<span class="span_notice"><a href="#"></a>FAQ</span>
+							<span class="span_notice"><a href="<%=request.getContextPath()%>/board/noticeList.jsp"></a>공지사항</span> | 
+							<span class="span_notice"><a href="<%=request.getContextPath()%>/board/faqList.jsp"></a>FAQ</span>
 						</div>			
 					</div> 
 
