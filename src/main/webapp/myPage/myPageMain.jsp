@@ -39,7 +39,7 @@ $(document).ready(function() {
 		$('.content').not('#jjim').css('display','none');
 	<%}%>
 	
-	  $('.page-link').click(function() {
+	$('*:not(span).page-link').click(function() {
 	    var targetId = $(this).data('target'); // data-target 속성의 값 가져오기
 	    $('.content').not(targetId).hide(); // 선택한 div를 제외한 나머지 div 숨김 처리
 	    $(targetId).show(); // 선택한 div만 보이도록 처리
@@ -266,7 +266,6 @@ $(document).ready(function() {
 					    <tr>
 						      <th class="dateCol">영화결제일</th>
 						      <th>결제번호</th>
-						      <th>금액</th>
 						      <th>영화제목</th>
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
@@ -275,9 +274,8 @@ $(document).ready(function() {
 						          lastWatchedMovie = title;%>
 							    <tr>
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
-								      <td><%= vo.getHisNo() %></td>
-								      <td><%= title %></td>
-								      <td><%= vo.getMovieNo() %></td>
+								      <td><%=vo.getHisNo() %></td>
+								      <td><%=title%></td>
 							    </tr>
 						    <% } %>
 					  </table>
