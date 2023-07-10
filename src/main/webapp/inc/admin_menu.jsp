@@ -66,7 +66,7 @@
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_member.svg" name="member" alt="회원영관리아이콘 ">
-                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/member/MemList.jsp">회원 정보 관리</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/member/memberList.jsp">회원 정보 관리</a></span>
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_board.svg" name="board" alt="게시판관리아이콘 ">
