@@ -9,6 +9,8 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.0.min.js"></script>
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- ck에디터  -->
+<script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <!-- 생성 css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/dami.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
@@ -66,7 +68,7 @@
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_member.svg" name="member" alt="회원영관리아이콘 ">
-                  <span style="margin-left:20px"><a href="#">회원 정보 관리</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/member/memberList.jsp">회원 정보 관리</a></span>
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_board.svg" name="board" alt="게시판관리아이콘 ">

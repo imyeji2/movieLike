@@ -4,8 +4,8 @@ public class CastingVO {
 	private int castingNo;
 	private int actorNo;
 	private int movieNo;
-	
-	
+
+
 	public CastingVO() {
 
 	}
@@ -53,7 +53,5 @@ public class CastingVO {
 	public String toString() {
 		return "CastingVO [castingNo=" + castingNo + ", actorNo=" + actorNo + ", movieNo=" + movieNo + "]";
 	}
-	
-	
-	
+
 }

@@ -8,7 +8,7 @@ public class CastingService {
 	public CastingService() {
 		dao = new CastingDAO();
 	}
-	
+
 	public int insertCasting(CastingVO vo) throws SQLException {
 		return dao.insertCasting(vo);
 	}

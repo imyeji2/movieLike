@@ -1,14 +1,76 @@
+<%@page import="com.semi.actor.model.ActorService"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.semi.movie.model.MovieVO"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.movie.model.MovieService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jsp" %>    
+<%@ include file="../inc/top.jsp" %> 
+
+<%
+	String userid = (String)session.getAttribute("userId");
+	String movieNo = request.getParameter("movieno");
+	
+	if(movieNo == null || movieNo.isEmpty()){%>
+		<script>
+			alert('잘못된 URL입니다');
+			history.go(-1);
+		</script>
+	<%}
+	ActorService actorService = new ActorService();
+	MovieService movieService = new MovieService();
+	MovieVO vo = null;
+	try{
+		vo = movieService.selectByMovieNo(Integer.parseInt(movieNo));
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+	
+	String movieGenre = "";						//영화 장르 분류 !! 
+	if(vo.getGenreNo() == 1){					//이렇게 한 이유 : 영화 테이블은 장르번호컬럼밖에 없어서
+			movieGenre = "로맨스";
+	}else if(vo.getGenreNo() == 2){
+			movieGenre = "액션";
+	}else if(vo.getGenreNo() == 3){
+			movieGenre = "공포";
+	}else if(vo.getGenreNo() == 4){
+			movieGenre = "SF";
+	}else if(vo.getGenreNo() == 5){
+			movieGenre = "코미디";
+	}else if(vo.getGenreNo() == 6){
+			movieGenre = "애니";
+	}
+	
+	
+	String actor1 = actorService.selectByActorNo(vo.get);
+	String actor2 = "";
+	
+	
+	
+	
+	
+	
+	
+	
+	String content = vo.getSynop();				//시놉시스 줄 나눔
+	if(content!=null){  // \r\n  => <br>
+		content=content.replace("\r\n","<br>");
+	}else{
+		content="";
+	}
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
+%>
+   
 	<section id="movieDetail">
 		<article>
 			<div class="movie_top">
 				<img src="../images/movie/stillCut/그시절, 우리가 좋아했던 소녀, 스틸컷.jpg">
 				<div class="movie_info_txt">
-					<h1>그시절, 우리가 좋아했던 소녀</h1>
-					<p><span>15세 관람가</span></p>
-					<p><span>로맨스</span> | <span>2023</span> | <span>105분</span><p>		
+					<h1><%=vo.getTitle() %></h1>				<!-- 영화 제목 -->
+					<p><span><%=vo.getAgeRate() %></span></p>	<!-- 연령 고지 -->
+					<p><span><%=movieGenre %></span> | <span><%= sdf.format(vo.getOpendate())%></span> | <span><%=vo.getRunningTime() %></span><p>	
+					<!-- 순서대로   영화 장르 / 개봉일 / 러닝타임 -->	
 				</div>
 			</div>
 		</article>
@@ -28,13 +90,12 @@
 					</div>
 					<div class="movie_info_detail">
 						<p>상세 설명</p>
-						학교 대표 얼간이 커징텅과 친구들은 최고의 모범생 션자이를 좋아한다. <br>
-						수업 도중 사고를 친 커징텅은 션자이의 특별 감시를 받게 되고 둘은 점점 가까워진다.<br>
-						션자이에 대한 마음이 커진 커징텅은 자신만의 방식으로 고백을 하지만 션자이는 대답하지 않는다.<br>
-						그렇게 15년이 지나고, 두 사람은 다시 만나게 되는데…
-						<br><br>그 때 너도 나와 같은 마음이었을까?<br>
+						<%=content %>
 						<br>
-						<P>감독 : 구파도</P>
+						<P>감독 : <%=vo.getDirectorNo1() %></P>		<!-- 영화 감독 -->
+						<%if(vo.getDirectorNo2() > 0){ %>
+						<p>보조 감독 : <%=vo.getDirectorNo2() %></p>
+						<%} %>
 						<P>출연 : 가진동, 천옌시</P>
 					</div>
 					<div class="movi_info_btn"> 

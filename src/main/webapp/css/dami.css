@@ -176,19 +176,20 @@
 	}
 	
 	.textarea_box {
-		width: 96%;
+		width: 70%;
 		margin: 0 auto;
 		padding: 40px;
 	}
 	
 	.textDiv > * {
-    	margin-left: 65px;
+    	margin-left: 100px;
     	font-style: bold;
 	}
 	
 	.textDiv {
     	margin-right: 20px;
-    	padding-top: 35px;
+    	padding-top: 40px;
+    	padding-left: 155px;
     	
 	}
 	
@@ -252,7 +253,7 @@
 	}
 	
 	.table {
-		width: 96%;
+		width: 50%;
 	}
 	
 	.table.table.table-bordered {
@@ -262,6 +263,41 @@
 	
 	.table a {
 	    color: black;
+	}
+	
+	.content_box th {
+		text-align: center;
+		background: #f8f9fa;
+	}
+	
+	.content_box #in_text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	 	margin: -25px 0 0 -25px; 
+	}
+	
+	.content_box td {
+		text-align: left;
+	}
+	
+	.ed_btn {
+		padding: 40px;
+		padding-right: 360px;
+		margin-bottom: 10px;
+	}
+	
+	#button-delete {
+		float: right;
+		padding-left: 10px;
+	}
+	
+	#button-edit {
+		float: right;
+	}
+	
+	.ed_btn2 {
+		margin-right: 60px;
 	}
 	
 }

@@ -28,7 +28,7 @@
 
  
    .mainContent{
-   padding-bottom:100px;
+   padding-bottom:10px;
    }
    .content {
     margin-top: 25px;
@@ -41,6 +41,13 @@
       color:floralwhite;
       font-weight: bold;
       width: 100px;
+   }
+   .refunded{
+	  border: none;
+      background:grey;
+      color:white;
+      font-weight: bold;
+      width: 100px;   
    }
    .content table {
       width: 90%;
@@ -76,13 +83,13 @@
 	   margin-top: 15px;
 	   
    }
-      .form-floating{
+/*       .form-floating{
 	    width: 66%;
    		 height: auto;
     	margin: 26% 0% -47% -4%;
     	border: 7px green solid;
     	border-radius: 6%;	
-	  }
+	  } */
    .myInfocheck{
 		width: 59%;
 	    background-color: white;
@@ -91,9 +98,7 @@
 	    margin-left: 22%;
 	    margin-top: 9%;
    }
-   .form-label{
 
-  	 }
   .form-control.is-invalid, .was-validated .form-control:invalid {
 	    border-color: #dc3545;
 	    padding-right: calc(1.5em + 0.75rem);
@@ -151,7 +156,7 @@
     	
    }
    .bsb{
-	   margin-bottom: 4%;
+	   margin-bottom: 3%;
 	   display: inline-block;
 	   text-align: center;
    }
@@ -206,10 +211,10 @@ svg.bi.bi-gear {
 	padding: 2%;
 }
 #bodyBar nav a {
-	    margin-left: 18px;
+	margin-left: 18px;
     margin-right: 18px;
     align-items: center;
-    font-size: 26px;
+    font-size: 17px;
     font-weight: bolder;
     margin-top: 12px;
     color: lightblue;
@@ -225,4 +230,19 @@ svg.bi.bi-gear {
     background: lightblue;
     margin-top: 10px;
     box-shadow: 0 0 7px white;
+}
+
+form {
+    width: 100%;
+}
+.edit_user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ .form-floating {
+    height: auto;
+    margin: 20px 0;
+    border-radius: 6%;
 }
