@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.semi.casting.model.CastingVO"%>
+<%@page import="com.semi.casting.model.CastingService"%>
 <%@page import="com.semi.actor.model.ActorService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.semi.movie.model.MovieVO"%>
@@ -9,7 +13,7 @@
 
 <%
 	String userid = (String)session.getAttribute("userId");
-	String movieNo = request.getParameter("movieno");
+	String movieNo = request.getParameter("no");
 	
 	if(movieNo == null || movieNo.isEmpty()){%>
 		<script>
@@ -17,42 +21,43 @@
 			history.go(-1);
 		</script>
 	<%}
+	CastingService castingService = new CastingService();
 	ActorService actorService = new ActorService();
 	MovieService movieService = new MovieService();
-	MovieVO vo = null;
+	MovieVO movieVo = null;
+	List<CastingVO> CastingList= null;
 	try{
-		vo = movieService.selectByMovieNo(Integer.parseInt(movieNo));
+		movieVo = movieService.selectByMovieNo(Integer.parseInt(movieNo));
+		CastingList = castingService.selectCastingByMovieNo(Integer.parseInt(movieNo));
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
 	
 	String movieGenre = "";						//영화 장르 분류 !! 
-	if(vo.getGenreNo() == 1){					//이렇게 한 이유 : 영화 테이블은 장르번호컬럼밖에 없어서
+	if(movieVo.getGenreNo() == 1){					//이렇게 한 이유 : 영화 테이블은 장르번호컬럼밖에 없어서
 			movieGenre = "로맨스";
-	}else if(vo.getGenreNo() == 2){
+	}else if(movieVo.getGenreNo() == 2){
 			movieGenre = "액션";
-	}else if(vo.getGenreNo() == 3){
+	}else if(movieVo.getGenreNo() == 3){
 			movieGenre = "공포";
-	}else if(vo.getGenreNo() == 4){
+	}else if(movieVo.getGenreNo() == 4){
 			movieGenre = "SF";
-	}else if(vo.getGenreNo() == 5){
+	}else if(movieVo.getGenreNo() == 5){
 			movieGenre = "코미디";
-	}else if(vo.getGenreNo() == 6){
+	}else if(movieVo.getGenreNo() == 6){
 			movieGenre = "애니";
 	}
+	StringBuilder actorSb = new StringBuilder();
+	if(CastingList != null && !CastingList.isEmpty()){	//캐스팅리스트가 존재한다면
+		for(CastingVO actors : CastingList){			//캐스팅리스트size만큼 반복
+			actorSb.append(actorService.selectByActorNo(actors.getActorNo()).getActorName() + ", ");
+			// =>actorService의 번호로 배우 조회하는 메서드 => .getActorName 이용
+			// 반복문만큼 actorSb에 배우이름 + ", " append
+		}
+	}
+	actorSb.deleteCharAt(actorSb.length()-1);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
 	
-	
-	String actor1 = actorService.selectByActorNo(vo.get);
-	String actor2 = "";
-	
-	
-	
-	
-	
-	
-	
-	
-	String content = vo.getSynop();				//시놉시스 줄 나눔
+	String content = movieVo.getSynop();				//시놉시스 줄 나눔
 	if(content!=null){  // \r\n  => <br>
 		content=content.replace("\r\n","<br>");
 	}else{
@@ -67,9 +72,9 @@
 			<div class="movie_top">
 				<img src="../images/movie/stillCut/그시절, 우리가 좋아했던 소녀, 스틸컷.jpg">
 				<div class="movie_info_txt">
-					<h1><%=vo.getTitle() %></h1>				<!-- 영화 제목 -->
-					<p><span><%=vo.getAgeRate() %></span></p>	<!-- 연령 고지 -->
-					<p><span><%=movieGenre %></span> | <span><%= sdf.format(vo.getOpendate())%></span> | <span><%=vo.getRunningTime() %></span><p>	
+					<h1><%=movieVo.getTitle() %></h1>				<!-- 영화 제목 -->
+					<p><span><%=movieVo.getAgeRate() %></span></p>	<!-- 연령 고지 -->
+					<p><span><%=movieGenre %></span> | <span><%= sdf.format(movieVo.getOpendate())%></span> | <span><%=movieVo.getRunningTime() %></span><p>	
 					<!-- 순서대로   영화 장르 / 개봉일 / 러닝타임 -->	
 				</div>
 			</div>
@@ -92,11 +97,11 @@
 						<p>상세 설명</p>
 						<%=content %>
 						<br>
-						<P>감독 : <%=vo.getDirectorNo1() %></P>		<!-- 영화 감독 -->
-						<%if(vo.getDirectorNo2() > 0){ %>
-						<p>보조 감독 : <%=vo.getDirectorNo2() %></p>
+						<P>감독 : <%=movieVo.getDirectorNo1() %></P>		<!-- 영화 감독 -->
+						<%if(movieVo.getDirectorNo2() > 0){ %>
+						<p>보조 감독 : <%=movieVo.getDirectorNo2() %></p>
 						<%} %>
-						<P>출연 : 가진동, 천옌시</P>
+						<P>출연 : <%=actorSb %></P>						<!-- 출연 배우 !# 50번째줄에서 구함 #! -->
 					</div>
 					<div class="movi_info_btn"> 
 						<div class="movie_buy_btn">단건 구매 800팝콘</div>
@@ -174,7 +179,7 @@
 				<div class="movie_tit">예고편</div>
 			
 				<div class="movie_player">
-					<iframe src="https://www.youtube.com/embed/t7ZG1hbTudQ" frameborder="0"  allowfullscreen>
+					<iframe src="<%=movieVo.getUrl() %>" frameborder="0"  allowfullscreen>
 				   </iframe>
 				</div>
 			</div>

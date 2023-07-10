@@ -1,6 +1,7 @@
 package com.semi.casting.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class CastingService {
 	private CastingDAO dao;
@@ -9,7 +10,7 @@ public class CastingService {
 		dao = new CastingDAO();
 	}
 	
-	public CastingVO selectCastingByMovieNo(int movieNo) throws SQLException {
+	public List<CastingVO> selectCastingByMovieNo(int movieNo) throws SQLException {
 		return dao.selectCastingByMovieNo(movieNo);
 	}
 	
