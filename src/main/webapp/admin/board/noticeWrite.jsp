@@ -31,7 +31,7 @@
 </script>
 
 <style>
-  .ck-editor__editable { height: 400px; }
+  .ck-editor__editable { height: 500px; }
   .ck-content { font-size: 12px; }
 </style>
 
@@ -63,6 +63,7 @@
                   </div>         
                </div> 
                
+               
                <div class="content_box">
                   <div class="textDiv">
                      <div class="text_title">   
@@ -76,15 +77,22 @@
                      </div>
                   <div class="textarea_box">
                      <form action="" method="post">
-                        <textarea id="content" name="content" rows="40"></textarea>
+                        <textarea id="content" name="content" rows="40">
+                        <script>
+						$(function () {
+							CKEDITOR.replace('contents', {
+								filebrowserUploadUrl :'imgupload.jsp'
+							});
+						});
+						
+						CKEDITOR.config.extraPlugins = "base64image";
+						
+						</script>
+                        </textarea>
                      </form>
-                     
-                     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-                     <script>
-                        ClassicEditor.create(document.querySelector('#editor'));
-                     </script>
                   </div>
-               </div>   
+               </div>  
+               </table> 
             </div>
    </section> 
    </div><!-- admin_menu->aside, session 감싸는 div -->   
@@ -93,7 +101,9 @@
 
 CKEDITOR.replace( 'content', {
     
-   filebrowserImageUploadUrl: '/semi/admin/uploadIMG.php'
+   /* filebrowserImageUploadUrl: '/semi/admin/uploadIMG.php' */
+   filebrowserImageUploadUrl: '/semi/admin/board/img' 
+
     
 });
     
