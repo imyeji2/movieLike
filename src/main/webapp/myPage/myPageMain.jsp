@@ -50,6 +50,13 @@ $(document).ready(function() {
 	    window.location.href = url + '?page=' + page; // 쿼리 파라미터 추가하여 페이지 이동
 	  });
 	});
+	
+	$('.refund').click(function(){
+		var param = $(this).val();
+		window.open('/refundPage.jsp?'+param, 'width=500px,height=500px'); 
+	});
+	
+	
 </script>
 <%
   int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 0;
@@ -322,7 +329,7 @@ $(document).ready(function() {
 						<td><%=vo.getPointKind() %></td>
 						<td>
 							<%if(vo.getPointKind().equals("충전") ){ %>
-							<button class="refund">환불</button> <%}%>
+							<button class="refund" value="no=<%=vo.getPointno()%>&price=<%=vo.getPointPrice()%>">환불</button> <%}%>
 						</td>
 					</tr>
 					<%}
