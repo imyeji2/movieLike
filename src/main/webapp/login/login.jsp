@@ -198,12 +198,7 @@
 	         $('#btnChkId').focus();
 	         return false;
 	    }
-		
-		/*       else {
-		 alert('회원가입이 완료되었습니다');
-		 $('.register').hide();
-		 $('.login').show();
-		 } */
+
 	});
 	
 	$('#registerId').on('blur', function() {

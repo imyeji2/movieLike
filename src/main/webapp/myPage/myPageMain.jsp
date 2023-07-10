@@ -216,18 +216,7 @@ $(document).ready(function() {
 			</div>
 			<div class="mainContent">
 				<div class="content" style="display: none" id="myInfo" style="<%= (currentPage == 0) ? "display: block" : "display: none" %>">
-					<div class="myInfocheck">
-						<h1>비밀번호 확인</h1>
-						<form class="was-validated">
-							<div class="mb-3">
-								<label for="validationTextarea" class="form-label">비밀번호</label>
-								<input type="password" class="form-control"
-									id="validationTextarea" placeholder="비밀번호를 입력하세요" required>
-								</textarea>
-								<div class="invalid-feedback">당신의 현재 비밀번호를 입력하세요</div>
-							</div>
-							<button type="button" class="btn btn-success btn-lg">확인</button>
-					</div>
+					<%@ include file="UserEdit.jsp" %>
 				</div>
 				<!-- 정보수정 -->
 				<div class="content" style="display: none" id="jjim" style="<%= (currentPage == 1) ? "display: block" : "display: none" %>">

@@ -195,4 +195,39 @@ public class DirectorDAO {
 		}
 	}//deleteDirector
 	
+	/**
+	 * 감독 중복 검사
+	 * @param name
+	 * @return
+	 * @throws SQLException
+	 */
+	public int chekByDirectorName(String name) throws SQLException {
+		Connection con =null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select count(*) "
+					+ " from (select REPLACE (directorName,' ') name from director)"
+					+ " where name=REPLACE(?,' ')";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			
+			rs = ps.executeQuery();
+			int cnt =0;
+			if(rs.next()) {
+				 cnt = rs.getInt(1);
+			
+			}
+			
+			System.out.println("감독이름 중복 확인 결과 cnt="+cnt+", 매개변수 name="+name);
+			return cnt;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+		
+	}//chekByDirectorName
+	
 }

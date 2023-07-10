@@ -22,6 +22,10 @@ public class DirectorService {
 		return directorDao.selectByDirectorNo(no);
 	}
 	
+	public int chekByDirectorName(String name) throws SQLException {
+		return directorDao.chekByDirectorName(name);
+	}
+	
 	
 	public int updateDirector(DirectorVO vo) throws SQLException {
 		return directorDao.updateDirector(vo);
