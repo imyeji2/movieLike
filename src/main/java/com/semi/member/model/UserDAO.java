@@ -118,32 +118,31 @@ public class UserDAO {
 		}
 	}
 	public List<UserVO> selectAll(String keyword, String condition) throws SQLException{
-<<<<<<< HEAD
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		List<UserVO> list = new ArrayList<>();
-		
+
 		try {
 			//1
 			con = pool.getConnection();
-			
+
 			String sql = "select * from userinfo";
-			
+
 			if(keyword != null && !keyword.isEmpty()) {
 				sql += " where " + condition + " like '%' || ? || '%'";
 			}
 			sql += " order by name";
 			ps = con.prepareStatement(sql);
-			
+
 			if(keyword != null && !keyword.isEmpty()) {
 				ps.setString(1, keyword);
 			}
-			
+
 			//
 			rs=ps.executeQuery();
-			
+
 			while(rs.next()) {
 				String userId = rs.getString("userId");
 				String name = rs.getString("name");
@@ -153,9 +152,9 @@ public class UserDAO {
 				String profileimg = rs.getString("profileimg");
 				int point = rs.getInt("point");
 				Timestamp outdate = rs.getTimestamp("outdate");
-				
+
 				UserVO vo = new UserVO(userId, name, pwd, gender, birth, profileimg, 0, outdate);
-				
+
 				list.add(vo);
 			}
 			System.out.println("글 전체 조회 결과, list.size() = " + list.size() + 
@@ -166,39 +165,23 @@ public class UserDAO {
 		}
 	}
 	public UserVO selectUserByUserId(String userid) throws SQLException {
-=======
->>>>>>> branch 'master' of https://github.com/JOSiroo/SemiProject
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
-		List<UserVO> list = new ArrayList<>();
-		
+		UserVO vo = null;
 		try {
 			//1
 			con = pool.getConnection();
 			
-			String sql = "select * from userinfo";
+			String sql = "select * from userinfo where userid = ?";
 			
-			if(keyword != null && !keyword.isEmpty()) {
-				sql += " where " + condition + " like '%' || ? || '%'";
-			}
-			sql += " order by name";
 			ps = con.prepareStatement(sql);
-<<<<<<< HEAD
 			ps.setString(1, userid);
 			rs = ps.executeQuery();
-
-=======
-			
-			if(keyword != null && !keyword.isEmpty()) {
-				ps.setString(1, keyword);
-			}
 			
 			//
 			rs=ps.executeQuery();
 			
->>>>>>> branch 'master' of https://github.com/JOSiroo/SemiProject
 			while(rs.next()) {
 				String userId = rs.getString("userId");
 				String name = rs.getString("name");
@@ -208,19 +191,12 @@ public class UserDAO {
 				String profileimg = rs.getString("profileimg");
 				int point = rs.getInt("point");
 				Timestamp outdate = rs.getTimestamp("outdate");
-<<<<<<< HEAD
 
-				vo = new UserVO(rsUserid, name, pwd, gender, birth, profileImg, point, outdate);
-=======
 				
-				UserVO vo = new UserVO(userId, name, pwd, gender, birth, profileimg, 0, outdate);
-				
-				list.add(vo);
->>>>>>> branch 'master' of https://github.com/JOSiroo/SemiProject
+				vo = new UserVO(userId, name, pwd, gender, birth, profileimg, point, outdate);
 			}
-			System.out.println("글 전체 조회 결과, list.size() = " + list.size() + 
-					", 매개변수 keyword = " + keyword + ", condition = " + condition);
-			return list;
+			
+			return vo;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
