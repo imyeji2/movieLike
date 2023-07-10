@@ -42,6 +42,13 @@
       font-weight: bold;
       width: 100px;
    }
+   .refunded{
+	  border: none;
+      background:grey;
+      color:white;
+      font-weight: bold;
+      width: 100px;   
+   }
    .content table {
       width: 90%;
       margin-left: 5%;
