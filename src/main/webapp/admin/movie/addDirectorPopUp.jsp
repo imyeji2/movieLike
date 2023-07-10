@@ -162,22 +162,19 @@ $(function(){
 			$("#fileImg").val("");
 			return false;
 		}
-		  $('#actorFrm').submit(); 
-	/* 
  		var name=$('#peopleName').val();
 		$.ajax({
 			  type: 'POST',
-			  url: '/CheckActorServlet', // 서블릿 파일 경로
+			  url: 'serchDirector_ok.jsp', // 서블릿 파일 경로
 			  data: { name: name }, // 전송할 데이터 (이름 변수 전달)
 			  success: function(result) {
 			    // 서버 응답 성공 시 실행할 함수
-			    if (result < 1) {
-			      $('#actorFrm').submit();
-			    } else {
-			      if (!confirm('같은 이름의 배우가 있습니다. 등록하시겠습니까?')) {
-			        self.close();
-			      } else {
+			    if (result<0) {
 			        $('#actorFrm').submit();
+			    } else {
+			    	
+			      if (confirm('같은 이름의 감독이 있습니다. 등록하시겠습니까?')) {
+			    	  $('#actorFrm').submit();
 			      }
 			    }
 			  },
@@ -185,7 +182,7 @@ $(function(){
 			    // 서버 응답 실패 시 실행할 함수
 			    alert('서버 오류가 발생했습니다.');
 			  }
-			});  */
+			}); 
 
 	});
 	

@@ -103,9 +103,14 @@ public class ActorDAO {
 		
 		try {
 			con = pool.getConnection();
-			String sql = "select count(*)"
+			String sql = "select count(*) "
 					+ " from (select REPLACE (actorName,' ') name from actor)"
-					+ " where name like REPLACE('%'||?||'%',' ')";
+					+ " where name=REPLACE(?,' ')";
+			/*
+			 * String sql = "select count(*)" +
+			 * " from (select REPLACE (actorName,' ') name from actor)" +
+			 * " where name like REPLACE('%'||?||'%',' ')";
+			 */
 			ps = con.prepareStatement(sql);
 			ps.setString(1, name);
 			
