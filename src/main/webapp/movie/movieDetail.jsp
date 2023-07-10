@@ -100,7 +100,11 @@
 					</div>
 					<div class="movie_info_detail">
 						<p>상세 설명</p>
-						<%=content %>
+						학교 대표 얼간이 커징텅과 친구들은 최고의 모범생 션자이를 좋아한다. <br>
+						수업 도중 사고를 친 커징텅은 션자이의 특별 감시를 받게 되고 둘은 점점 가까워진다.<br>
+						션자이에 대한 마음이 커진 커징텅은 자신만의 방식으로 고백을 하지만 션자이는 대답하지 않는다.<br>
+						그렇게 15년이 지나고, 두 사람은 다시 만나게 되는데…
+						<br><br>그 때 너도 나와 같은 마음이었을까?<br>
 						<br>
 						<P>감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo1()).getDirectorName() %></P>		<!-- 영화 감독 -->
 						<%if(movieVo.getDirectorNo2() > 0){ %>

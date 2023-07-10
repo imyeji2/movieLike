@@ -14,4 +14,7 @@ public class CastingService {
 		return dao.selectCastingByMovieNo(movieNo);
 
 	}
+	public int insertCasting(CastingVO vo) throws SQLException {
+		return dao.insertCasting(vo);
+	}
 }
