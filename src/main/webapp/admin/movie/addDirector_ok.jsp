@@ -1,3 +1,4 @@
+<%@page import="com.semi.common.Utility"%>
 <%@page import="com.semi.director.model.DirectorService"%>
 <%@page import="com.semi.director.model.DirectorVO"%>
 <%@page import="com.semi.actor.model.ActorVO"%>
@@ -21,7 +22,7 @@
 <%	
 		
 		//실제 물리적 저장 경로
-		String location = "C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\director";
+		String location = Utility.DIRECTOR_PATH;
 		System.out.println(location);
 		//최대사이즈
 		int maxSize = 1* 1024 * 1024; 

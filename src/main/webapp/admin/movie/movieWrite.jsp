@@ -156,7 +156,7 @@ $(function(){
 				<h4>영화 등록</h4>
 				<p><a href="movieList.jsp">영화관리</a>>영화등록</p>
 			</div>
-			<form name="movieWrite" method="post" action="movieWrite_ok.jsp">
+			<form name="movieWrite" method="post" enctype="multipart/form-data" action="movieWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
 				
 					<input type="button" class="movie_btn btn btn-primary" name="movie" value="영화 검색" id="addMovie">
@@ -173,28 +173,28 @@ $(function(){
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">줄거리</div>
 							<div class="movieWrite_box_in_right">
-							<textarea class="form-control info_txt" id="synop" placeholder="줄거리를 입력하세요"></textarea>
+							<textarea class="form-control info_txt" id="synop" name="synop" placeholder="줄거리를 입력하세요"></textarea>
 							</div><!-- movieWrite_box_in_right -->
 						</div><!-- movieWrite_box_in -->			
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">상영시간</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="상영시간 입력하세요" name="title" id="runningTiem">		
+								placeholder="상영시간 입력하세요" name="runningTiem" id="runningTiem">		
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">개봉연도</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="개봉 연도를 입력하세요" name="title" id="openDate">	
+								placeholder="개봉 연도를 입력하세요" name="openDate" id="openDate">	
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">연령가</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="연령가를 입력하세요" name="title" id="ageRate">								
+								placeholder="연령가를 입력하세요" name="ageRate" id="ageRate">								
 							</div>
 						</div><!-- movieWrite_box_in -->		
 					</div><!-- movieWrite_box1 -->
@@ -219,26 +219,26 @@ $(function(){
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">스틸이미지</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control" type="file" id="stilcut">
+								<input class="form-control" type="file" id="stilcut" name="stilcut">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">포스터이미지</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control" type="file" id="poster">
+								<input class="form-control" type="file" id="poster" name="poster">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
 								<div class="movieWrite_box_in_right1">
-									<select class="form-select form-select-sm" id="genreNo">
-										<option selected>로맨스</option>
-										<option value="1">액션</option>
-										<option value="2">공포</option>
-										<option value="3">SF</option>
-										<option value="4">코미디</option>
-										<option value="5">애니</option>
+									<select class="form-select form-select-sm" id="genreNo" name="genreNo">
+										<option selected value="1">로맨스</option>
+										<option value="2">액션</option>
+										<option value="3">공포</option>
+										<option value="4">SF</option>
+										<option value="5">코미디</option>
+										<option value="6">애니</option>
 									</select>
 								</div>
 								<div class="movieWrite_box_in_right2">

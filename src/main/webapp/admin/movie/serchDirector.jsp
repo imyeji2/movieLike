@@ -81,7 +81,7 @@ function sendWrite(no, name, img) {
 	    '<div class="movieWrite_box_in">' +
 	      '<div class="movieWrite_box_in_left">' +
 	        '<img src="../../images/movie/director/' + img + '" style="width: 60px;">' +
-	        '<input type="hidden" name="actorNo" value="' + no + '">' +
+	        '<input type="hidden" name="directorNo" value="' + no + '">' +
 	      '</div>' +
 	      '<div class="movieWrite_box_in_right" style="line-height: 65px;">' + name + '</div>' +
 	    '</div>';
