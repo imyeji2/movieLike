@@ -113,7 +113,7 @@
 					<button class="confirm" type="submit">회원가입</button>
 				</form>
 			</div>
-			<input type ="text" name="chkId" id="chkId">
+			<input type ="hidden" name="chkId" id="chkId">
 		</div>
 	</div>
 </div>
@@ -151,6 +151,7 @@
 	$('.confirm').click(function() {
 		var id = $('#registerId').val();
 		var pass = $('#registerPassword').val();
+		var pass2 = $('#registerPassword2').val();
 		var name = $('#registerName').val();
 		var man = $('#man').is(':checked');
 		var woman = $('#woman').is(':checked');
@@ -165,6 +166,12 @@
 		if (pass == "") {
 			alert('비밀번호를 확인해주세요');
 			$('#registerPassword').focus();
+			return false;
+		}
+		
+		if (pass != pass2){
+			alert("비밀번호가 일치하지 않습니다.");
+			$('#registerPassword2').focus();
 			return false;
 		}
 
