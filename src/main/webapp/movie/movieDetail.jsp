@@ -68,8 +68,14 @@
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
 %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	
+$(function(){
+	$('.movie_buy_btn').click(function(){
+		var param = $('#buy_movie').val();
+		window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
+	});
+})
 </script>
    
 	<section id="movieDetail">
@@ -109,7 +115,12 @@
 						<P>출연 : <%=actorSb %></P>						<!-- 출연 배우 !# 50번째줄에서 구함 #! -->
 					</div>
 					<div class="movi_info_btn"> 
-						<div class="movie_buy_btn"><a href ="buyMovie.jsp?no=<%=movieNo%>&userid=<%=userid%>">단건 구매 <%=movieVo.getPrice()/100 %>팝콘</a></div> <!-- 실제금액/100 = 1팝콘 -->
+						<div class="movie_buy_btn">
+							<a href ="javascript:void(0)">
+								<input type="hidden" value="no=<%=movieNo%>&userid=<%=userid%>" id="buy_movie">
+								단건 구매 <%=movieVo.getPrice()/100 %>팝콘
+							</a>
+						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
 							<img src="../images/like_off.svg">
 						</div>
