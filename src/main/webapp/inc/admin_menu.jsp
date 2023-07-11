@@ -86,11 +86,11 @@
                <div class="admin_menu_box_in" id="board_menu">
 	                <div>
 	                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
-	                   <span><a href="#">공지사항</a></span>
+	                   <span><a href="<%=request.getContextPath()%>/admin/board/noticeList.jsp">공지사항</a></span>
 	                </div>
 	                <div>
 	                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
-	                   <span><a href="#">FAQ</a></span>
+	                   <span><a href="<%=request.getContextPath()%>/admin/board/faqList.jsp">FAQ</a></span>
 	                </div>
             
             	</div>

@@ -29,7 +29,9 @@
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
 							</div>
 							<div class="ed_btn2">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit"><a href="<%=request.getContextPath()%>/board/noticeEdit.jsp">수정</a></button>
+								<button class="btn btn-outline-secondary" type="button" id="button-edit" >
+									<a href="<%=request.getContextPath()%>/board/noticeEdit.jsp">수정</a>
+								</button>
 							</div>
 						</div>
 						
