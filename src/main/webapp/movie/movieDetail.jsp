@@ -1,3 +1,7 @@
+<%@page import="com.semi.pick.PickVO"%>
+<%@page import="com.semi.pick.PickService"%>
+<%@page import="com.semi.review.model.ReviewVO"%>
+<%@page import="com.semi.review.model.ReviewService"%>
 <%@page import="com.semi.director.model.DirectorService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -26,11 +30,18 @@
 	ActorService actorService = new ActorService();
 	MovieService movieService = new MovieService();
 	DirectorService directorService = new DirectorService();
+	ReviewService reviewService = new ReviewService();
+	PickService pickService = new PickService();
+	
 	MovieVO movieVo = null;
 	List<CastingVO> CastingList= null;
+	List<ReviewVO> reviewList = null;
+	List<PickVO> pickList = null;
 	try{
 		movieVo = movieService.selectByMovieNo(Integer.parseInt(movieNo));
 		CastingList = castingService.selectCastingByMovieNo(Integer.parseInt(movieNo));
+		reviewList = reviewService.selectByMovieNo(Integer.parseInt(movieNo));
+		pickList = pickService.selectPick(userid);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -65,6 +76,19 @@
 	}else{
 		content="";
 	}
+
+	boolean isPick = false;
+	if(pickList != null && !pickList.isEmpty()){
+		for(int i = 0; i < pickList.size(); i++){
+			if(pickList.get(i).getMovieNo() == Integer.parseInt(movieNo)){
+				isPick = true;	//찜 목록에 있다는 뜻
+			}
+		}
+	}
+	
+	
+	
+	
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
 %>
@@ -75,7 +99,10 @@ $(function(){
 		var param = $('#buy_movie').val();
 		window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
 	});
-})
+	function reloading(){
+		location.reload();
+	}
+});
 </script>
    
 	<section id="movieDetail">
@@ -122,7 +149,13 @@ $(function(){
 							</a>
 						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
-							<img src="../images/like_off.svg">
+							<a href = "javascript:void(0)">
+							<% if (isPick) { %>
+							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=2" onclick="reloading()"><img id="jjimStatus" src="../images/like_on.svg" ></a>
+							<% } else { %>
+							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=1" onclick="reloading()"><img id="jjimStatus" src="../images/like_off.svg"></a>
+							<% } %>
+							</a>
 						</div>
 					</div>
 				</div><!-- movie_info_right -->

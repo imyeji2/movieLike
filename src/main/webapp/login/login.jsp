@@ -68,7 +68,7 @@
 			<!-- 약관동의 -->
 			<div class = "agreement">
 				<form>
-					<iframe src = "<%=request.getContextPath() %>/login/provision.html" ></iframe>
+					<iframe src = "<%=request.getContextPath() %>/login/provision.html" width="100%" height="450px"></iframe>
 					<br>
 					<input type="button" name="agree" id="chkagree" value="위 약관에 동의하며 회원가입 진행"> 
 				</form>
