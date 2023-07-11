@@ -17,4 +17,7 @@ public class ReviewService {
 	public List<ReviewVO> selectByMovieNo(int movieNo) throws SQLException{
 		return reviewDao.selectByMovieNo(movieNo);
 	}
+	public boolean isReview(int movieno, String userid) throws SQLException {	
+		return reviewDao.isReview(movieno, userid);
+	}
 }

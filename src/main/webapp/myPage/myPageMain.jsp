@@ -291,6 +291,7 @@ $(document).ready(function() {
 						      <th class="dateCol">영화결제일</th>
 						      <th>결제번호</th>
 						      <th>영화제목</th>
+						      <th>리뷰관리</th>
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
 						          PayHistoryVO vo = elem.getKey();
@@ -300,6 +301,11 @@ $(document).ready(function() {
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
 								      <td><%=vo.getHisNo() %></td>
 								      <td><%=title%></td>
+								      <%if(reviewService.isReview(vo.getMovieNo(), userid)){%>
+								      <td> <button type="submit" class="btn btn-success">리뷰작성하기</button></td>
+								      <%}else{%>
+								      <td><button type="button" class="btn btn-light">취소</button></td>
+								      <%} %>
 							    </tr>
 						    <% } %>
 					  </table>
