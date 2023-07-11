@@ -14,11 +14,16 @@
 	String price = request.getParameter("price");
 	String userid = request.getParameter("userid");
 	
+	System.out.println(no);
+	System.out.println(price);
+	System.out.println(userid);
+	
 	PointService service = new PointService();
 	try{
 		int cnt = service.refundPoint(Integer.parseInt(no), Integer.parseInt(price),userid);
 		if(cnt > 0){%>
 			<script type = "text/javascript">
+				alert('환불 완료!!');
 				window.close();
 				window.opener.location.reload()
 			</script>
