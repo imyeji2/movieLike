@@ -1,7 +1,7 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.semi.board.model.BoardVO"%>
+<%@page import="com.semi.faq.model.FaqVO"%>
 <%@page import="java.util.List"%>
-<%@page import="com.semi.board.model.BoardDAO"%>
+<%@page import="com.semi.faq.model.FaqDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -55,10 +55,10 @@
 	String keyword=request.getParameter("searchKeyword"); //제목으로 검색 파라미터
 	
 	
-	BoardDAO boardDao = new BoardDAO();
-	List<BoardVO> list = new ArrayList<>();
+	FaqDAO faqDao = new FaqDAO();
+	List<FaqVO> list = new ArrayList<>();
 	try {
-		list = boardDao.selectAll(keyword);
+		list = faqDao.selectAll(keyword);
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
@@ -159,7 +159,7 @@
 							for (int i = 0; i < pageSize; i++) {
 								if (num < 1) break;
 
-								BoardVO vo = list.get(curPos++);
+								FaqVO vo = list.get(curPos++);
 								num--;
 							%>
 							<tr style="text-align: center">
