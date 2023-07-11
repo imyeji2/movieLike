@@ -19,9 +19,37 @@
 			$(this).css('background','');
 		});
 		
+		//수정버튼
+		
+		
+		//삭제 버튼
 		$('#button-delete').click(function(){
-			if(confirm('정말 삭제하시겠습니까?')){
-				return false;
+			// 체크된 체크박스의 값을 가져옴
+			var checkedIds = [];
+			$('input[type="checkbox"]:checked').each(function() {
+				checkedIds.push($(this).closest('tr').find('.user-id').text()); // 사용자 ID를 가져옴
+			});
+			
+			if(checkedIds.length === 0) {
+				alert('탈퇴할 회원을 선택해주세요.');
+				return;
+			}
+			
+			if(confirm('선택한 회원을 탈퇴처리할까요?')) {
+				// 폼을 동적으로 생성하여 데이터 전송
+				var form = document.createElement('form');
+				form.setAttribute('method', 'POST');
+				form.setAttribute('action', '<%=request.getContextPath()%>/admin/member/memDelete_ok.jsp');
+				
+				var hiddenField = document.createElement('input');
+				hiddenField.setAttribute('type', 'hidden');
+				hiddenField.setAttribute('name', 'userId');
+				hiddenField.setAttribute('value', checkedIds.join(','));
+				
+				form.appendChild(hiddenField);
+				
+				document.body.appendChild(form);
+				form.submit();
 			}
 		});
 			
@@ -68,6 +96,8 @@
 	int blockSize = 10; // 한 블럭에 보여줄 페이지 수
 
 	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
+	
+	
 
 %>
 
@@ -105,7 +135,7 @@
 								  <option value="outdate"
 								  		<% if("outdate".equals(condition)) {%> 
 								  			selected = "selected" <%} %>
-								  >활성여부</option>
+								  >탈퇴회원</option>
 								  
 								</select>
 								
@@ -123,12 +153,12 @@
 						<table class="table table-bordered">
 						  <colgroup>
 						      <col style="width:5%;" />
-						      <col style="width:20%;" />
-						      <col style="width:10%;" />
+						      <col style="width:25%;" />
+						      <col style="width:15%;" />
 						      <col style="width:10%;" />      
 						      <col style="width:20%;" />      
 						      <col style="width:10%;" />      
-						      <col style="width:25%;" />      
+						      <col style="width:20%;" />      
 						   </colgroup>
 						  <thead class="table-light">
 						    <tr style="text-align: center">
@@ -138,12 +168,12 @@
 						      <th scope="col">성별</th>
 						      <th scope="col">생년월일</th>
 						      <th scope="col">팝콘</th>
-						      <th scope="col">활성여부</th>
+						      <th scope="col">탈퇴일</th>
 						    </tr>
 						  </thead>
 						<tbody>
 						<%if(list == null || list.isEmpty()){ %>
-							<tr><td colspan="7" class = "align_center">글이 존재하지 않습니다.</td></tr>
+							<tr><td colspan="7" class = "align_center">회원이 존재하지 않습니다.</td></tr>
 						<%}else{ 
 						
 							int num = pageVo.getNum();
@@ -154,19 +184,21 @@
 								
 								UserVO vo = list.get(curPos++);
 								num--;	
-								
+							
+								//
+								if("outdate".equals(condition) && vo.getOutDate() == null){
+									continue;
+								}
 						%>
 							<tr style="text-align:center">
 								<td><input type="checkbox" id="chkid"></td>
-								<td><%=vo.getUserId() %></td>
+								<td class = "user-id"><%=vo.getUserId() %></td>
 								<td><%=vo.getName() %></a></td>
 								<td><%=vo.getGender() %></td>
 								<td><%=vo.getBirth() %></td>
 								<td><%=vo.getPoint() %></td>
 								<td><% if(vo.getOutDate() != null ){%>
-								N (<%=sdf.format(vo.getOutDate()) %>)
-								<%}else{%>
-								Y
+								<%=sdf.format(vo.getOutDate()) %>
 								<%} %></td>
 							</tr> 
 							

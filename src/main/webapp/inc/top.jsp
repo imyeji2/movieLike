@@ -39,12 +39,12 @@
 						<img src="<%=request.getContextPath()%>/images/logo-white.png" alt="로고" class="logo_img"/>
 					</a>
 				</li>
-				<li><a href="#">로맨스</a></li>
-				<li><a href="#">액션</a></li>
-				<li><a href="#">공포</a></li>
-				<li><a href="#">SF</a></li>
-				<li><a href="#">코미디</a></li>
-				<li><a href="#">애니</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?type=1">로맨스</a></li>
+				<li><a href="movieList.jsp?type=2">액션</a></li>
+				<li><a href="movieList.jsp?type=3">공포</a></li>
+				<li><a href="movieList.jsp?type=4">SF</a></li>
+				<li><a href="movieList.jsp?type=5">코미디</a></li>
+				<li><a href="movieList.jsp?type=6">애니</a></li>
 			</ul>
 		</nav>
 		

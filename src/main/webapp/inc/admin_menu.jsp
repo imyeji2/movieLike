@@ -25,19 +25,27 @@
       $('.admin_menu_box').hover(function(){
          var img =$(this).find('img').attr('name');
          $(this).addClass('admin_menu_box_hover');
-         $(this).find('span').css('color','#232a31')
          $(this).find('img').attr('src','<%=request.getContextPath()%>/images/admin/admin_menu_icon_'+img+'(b).svg');
 
       },function(){
          var img =$(this).find('img').attr('name');
          $(this).removeClass('admin_menu_box_hover');
-         $(this).find('span').css('color','#fff')
          $(this).find('img').attr('src','<%=request.getContextPath()%>/images/admin/admin_menu_icon_'+img+'.svg');
+      });
+     
+      
+      $('.admin_menu_box').click(function(){
+    	  $(this).addClass('admin_menu_box_hover');
       });
       
       $('#statistics').click(function(){
-         $('.admin_menu_box_in').slideToggle();
+         $('#statistics_menu').slideToggle();
+         
       });
+      
+      $('#board').click(function(){
+          $('#board_menu').slideToggle();
+       });      
       
    /*    var body = document.body,
       html = document.documentElement;
@@ -58,23 +66,36 @@
       </header>
       <div class="admin_content">
           <aside id="admin_menu">
-               <div class="admin_menu_box">
+               <div class="admin_menu_box" id="movie">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_movie.svg" name="movie" alt="영화관리아이콘 ">
                   <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/movie/movieList.jsp">영화 관리</a></span>
                </div>
-               <div class="admin_menu_box">
+               <div class="admin_menu_box" id="main">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_main.svg" name="main" alt="메인관리아이콘 ">
-                  <span style="margin-left:20px"><a href="#">메인페이지 관리</a></span>
+                  <span style="margin-left:20px"><a href="#">컬렉션 관리</a></span>
                </div>   
-               <div class="admin_menu_box">
+               <div class="admin_menu_box" id="member">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_member.svg" name="member" alt="회원영관리아이콘 ">
                   <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/member/memberList.jsp">회원 정보 관리</a></span>
                </div>   
-               <div class="admin_menu_box">
+               <div class="admin_menu_box" id="board">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_board.svg" name="board" alt="게시판관리아이콘 ">
-                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/noticeList.jsp">공지/FAQ등록</a></span>
+                  <span style="margin-left:20px"><a href="#">공지/FAQ등록</a></span>
                </div>   
-               <div class="admin_menu_box">
+               
+               <div class="admin_menu_box_in" id="board_menu">
+	                <div>
+	                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
+	                   <span><a href="#">공지사항</a></span>
+	                </div>
+	                <div>
+	                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
+	                   <span><a href="#">FAQ</a></span>
+	                </div>
+            
+            	</div>
+                
+               <div class="admin_menu_box" id="review">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_review.svg" name="review" alt="리뷰관리아이콘 ">
                   <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/reviewList.jsp">리뷰 관리</a></span>
                </div>   
@@ -83,7 +104,7 @@
                   <span style="margin-left:20px"><a href="#">통계</a></span>
                </div>
           
-              <div class="admin_menu_box_in">
+              <div class="admin_menu_box_in" id="statistics_menu">
                 <div>
                    <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
                    <span><a href="#">카테고리별</a></span>

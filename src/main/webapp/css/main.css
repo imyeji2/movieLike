@@ -175,13 +175,11 @@ section{
    
    
    /*영화 정보*/
-   .main_movie_info{
+  .main_movie_info{
       font-size:15px;
-   }
-   
-   .main_movie_info{
       margin-top:10px;
    }
+
    
    .movie_info1{
       font-weight: 700;
