@@ -56,8 +56,7 @@
 	<script>
 		$('.certi-btn').click( ()=>{
 			var certiPass = $('#certiPass').val();
-			
-			if ( certiPass == '' || certiPass != pwd) {
+			if ( certiPass == '') {
 				alert('비밀번호를 확인해주세요.')
 			}else {
 				$('.certification').hide();
