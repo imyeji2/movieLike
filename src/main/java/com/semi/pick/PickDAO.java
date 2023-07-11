@@ -65,7 +65,7 @@ public class PickDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<PickVO> list = null;
+		List<PickVO> list = new ArrayList<>();
 		MovieService movieService = new MovieService();
 		try {
 			con = pool.getConnection();
@@ -102,7 +102,7 @@ public class PickDAO {
 					+ " values(pick_seq.nextval,?,?,sysdate)";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, movieNo);
-			ps.setString(1, userid);
+			ps.setString(2, userid);
 			
 			int cnt = ps.executeUpdate();
 			
