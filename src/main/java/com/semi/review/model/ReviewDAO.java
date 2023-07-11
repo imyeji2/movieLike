@@ -92,6 +92,36 @@ public class ReviewDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	/**
+	 * 리뷰를 작성했는지 검사하는 메서드
+	 * @return
+	 * @throws SQLException 
+	 */
+	public boolean isReview(int movieno, String userid) throws SQLException {	
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = pool.getConnection();
+			String sql = "select count(reviewno) from review where movieno = ? and userid = ?";
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, movieno);
+			ps.setString(2, userid);
+			rs = ps.executeQuery();
+			if(!rs.next()) {
+				System.out.println("리뷰 없음");
+				return false;
+			}else {
+				System.out.println("리뷰 존재함");
+				return true;
+			}
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+		
+		
+	}
 }
 
 

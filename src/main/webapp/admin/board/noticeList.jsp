@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.semi.board.model.BoardVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.semi.board.model.BoardDAO"%>
@@ -31,22 +32,39 @@
 				return false;
 			}
 		});
+		
+		$('#button-delete').click(function(){
+			if(confirm("정말 삭제하시겠습니까?")){
+				$('form').submit(); 
+			}
+		});
 			
 	});
 
 </script>
+<style>
+	form {
+    	width: 1215.35px;
+	}
 
+	section {
+		width: 100%;
+	    padding: 40px 40px 20px 40px;
+	    box-sizing: border-box;
+	    margin: 0 auto;
+	}
+</style>
 <body>
 
 <%
 	request.setCharacterEncoding("utf-8");
-	String keyword=request.getParameter("searchKeyword");
-	String condition=request.getParameter("searchCondition");
+	String keyword=request.getParameter("searchKeyword"); //제목으로 검색 파라미터
+	
 	
 	BoardDAO boardDao = new BoardDAO();
-	List<BoardVO> list = null;
+	List<BoardVO> list = new ArrayList<>();
 	try {
-		list = boardDao.selectAll(keyword, condition);
+		list = boardDao.selectAll(keyword);
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
@@ -54,8 +72,7 @@
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	//검색창(keyword) null이면 공백으로 처리
-	if (keyword == null)
-		keyword = "";
+	if (keyword == null) keyword = "";
 
 	//페이징 처리
 	int currentPage = 1; //현재 페이지
@@ -80,7 +97,7 @@
 	//페이지당 글 리스트 시작 번호
 	int num = totalRecord - curPos;
 %>
-
+<form name="notice_frm" action="noticeList.jsp">
 	<section id="noticeList">
 			<article id="notice_content">
 				<h2>공지/FAQ</h2>
@@ -93,8 +110,7 @@
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text" >
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/admin/board/noticeList.jsp">공지사항</a></span> | 
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/admin/board/faqList.jsp">FAQ</a></span>
+							<span class="span_notice">공지사항</a></span>
 						</div>			
 					</div> 
 
@@ -102,15 +118,13 @@
 					<div class="content_box">
 						
 						<div class="search_result">           
-							<%if(keyword!=null && !keyword.isEmpty()){%>
-							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
-							<%} %>
 						</div>
 						
 						<div class="bottom_input">
 							<div class="input-group" style="width:350px; margin: 0 auto">
-							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
-							  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" 
+							  	aria-describedby="button-addon2" name="searchKeyword" title="검색어 입력" value="<%=keyword%>">
+							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							
 							<div class="ed_btn">
@@ -118,79 +132,90 @@
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
 							</div>
 						</div>
-						
-						
-						<table class="table table-bordered">
-						  <colgroup>
-						      <col style="width:6%;" />
-						      <col style="width:6%;" />
-						      <col style="width:50%;" />
-						      <col style="width:15%;" />      
-						      <col style="width:15%;" />      
-						      <col style="width:12%;" />      
-						   </colgroup>
-						  <thead class="table-light">
-						    <tr style="text-align: center">
-						      <th scope="col">선택</th>
-						      <th scope="col">번호</th>
-						      <th scope="col">제목</th>
-						      <th scope="col">작성자</th>
-						      <th scope="col">등록일</th>
-						      <th scope="col">조회수</th>
-						    </tr>
-						  </thead>
-						<tbody>
-
-							<%-- <tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<th scope="row">1</th>
-								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">공지</a></td>
-								<td>나다미</td>
-								<td>2023-07-05</td>
-								<td>128</td>
-							</tr>  --%>
-							<!--게시판 내용 반복문 시작  -->
-							<%
-							//10번씩만 반복
-							for (int i = 0; i < pageSize; i++) {
-								if (num < 1)
-									break;
-
-								BoardVO vo = list.get(curPos++);
-								num--;
-							%>
-							<tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<td><%=vo.getBoardNo()%></td>
-								<td style="text-align: left"><a
-									href="countUpdate.jsp?no=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
-								</td>
-								<td><%=sdf.format(vo.getBoardRegdate())%></td>
-								<td><%=vo.getBoardStatus()%></td>
-							</tr>
-							<%
-							} //for
-							%>
-							<!--반복처리 끝  -->
-						</tbody>
-					</table>
+						<div class="search_result">           
+							<%if(keyword!=null && !keyword.isEmpty()){%>
+							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
+							<%} %>
+						</div>
+						<form name="delFrm" method="post" action="noticeDelete.jsp">
+							<table class="table table-bordered">
+							  <colgroup>
+							      <col style="width:6%;" />
+							      <col style="width:6%;" />
+							      <col style="width:50%;" />
+							      <col style="width:15%;" />      
+							      <col style="width:15%;" />      
+							      <col style="width:12%;" />      
+							   </colgroup>
+							  <thead class="table-light">
+							    <tr style="text-align: center">
+							      <th scope="col">선택</th>
+							      <th scope="col">번호</th>
+							      <th scope="col">제목</th>
+							      <th scope="col">작성자</th>
+							      <th scope="col">등록일</th>
+							      <th scope="col">조회수</th>
+							    </tr>
+							  </thead>
+							<tbody>
+	
+								<!--게시판 내용 반복문 시작  -->
+								<%
+								//10번씩 반복
+								for (int i = 0; i < pageSize; i++) {
+									if (num < 1) break;
+	
+									BoardVO vo = list.get(curPos++);
+									num--;
+								%>
+								<tr style="text-align: center">
+									<th><input type="checkbox" name="chk"></th>
+									<td><%=vo.getBoardNo()%></td>
+									<td style="text-align: left; text-indent: 15px">
+									<a href="countUpdate.jsp?boardNo=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
+									</td>
+									<td><%=vo.getAdminID()%></td>
+									<td><%=sdf.format(vo.getBoardRegdate())%></td>
+									<td><%=vo.getBoardView()%></td>
+								</tr>
+								<%
+								} //for
+								%>
+								<!--반복처리 끝  -->
+							</tbody>
+						</table>
+					</form>
 						<div class="page_box">
 							<nav aria-label="page">
+								
 								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link">이전</a>
+								<%if(firstPage > 1){%>
+									<li class="page-item disabled">
+      									<a href="noticeList.jsp?currentPage=<%=firstPage-1%>&searchKeyword=<%=keyword %>">이전</a>
 									</li>
-									<li class="page-item active" aria-current="page"><a 
-										class="page-link" href="#">1</a></li>
-									<li class="page-item" ><a
-										class="page-link" href="#">2</a></li>
-									<li class="page-item" aria-current="page"><a
-										class="page-link" href="#">3</a></li>
-									<li class="page-item" aria-current="page"><a
-										class="page-link" href="#">4</a></li>
-									<li class="page-item" aria-current="page"><a
-										class="page-link" href="#">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">다음</a>
+									<%} %>
+                  
+								   <!-- [1][2][3][4][5]-->
+								   <%for(int i=firstPage ; i<=lastPage ; i++){
+								      if(i>totalPage) break;
+									  
+								      if(i==currentPage){ %>
+									<li class="page-item active" aria-current="page">
+									<a class="page-link"><%=i %></a>
 									</li>
+									<% }else{%>
+									<li class="page-item active" aria-current="page">
+										<a href="noticeList.jsp?currentPage=<%=i %>&searchKeyword=<%=keyword %>"><%=i %></a>
+									</li>
+									 <%}//if
+   									 }//for %>
+   									 
+   									 <!-- 다음 블럭으로 이동 -->
+   									<%if(lastPage < totalPage){%>
+									<li class="page-item">
+										<a class="page-link" href="noticeList.jsp?currentPage=<%=lastPage+1%>&searchKeyword=<%=keyword %>">다음</a>
+									</li>
+								<%} %>
 								</ul>
 							</nav>
 						</div>
@@ -201,6 +226,7 @@
 			</article>
 			
 	</section> 
+</form>
    </div><!-- admin_menu->aside, session 감싸는 div -->   
 </div><!-- admin_menu->wrap -->
 </body>

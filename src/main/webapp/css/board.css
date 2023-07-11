@@ -2,6 +2,8 @@
 
 /* 관리자페이지 - 공지사항/FAQ */
 #noticeList {
+
+
 	.content_box>select {
 		width:180px;
 	}
@@ -46,6 +48,7 @@
 	
 	.search_result {
 		height: 42px;
+		padding-left: 30px;
 	}
 	
 	.table {
@@ -119,6 +122,8 @@
 	.top_text a {
 	    color: black;
 	}	
+	
+	
 }
 
 #noticeWrite {
@@ -298,6 +303,7 @@
 	
 	#button-edit {
 		float: right;
+		color: #6c757d;
 	}
 	
 	.ed_btn2 {

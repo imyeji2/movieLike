@@ -56,10 +56,11 @@ $(document).ready(function() {
 			var param = $(this).val();
 			window.open('refundPage.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
 		});
-		$('#buyPopcorn').click(function){
-			var param = $(this).val();
-			window.open(window.open('refundPage.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');)
-		}
+		
+		$('#buyPopcorn').click(function(){
+			var param = $('#pop').val();
+			window.open('chargePopcorn.jsp?userid=' + param, '_blank', 'resizable=no,width=500,height=300');
+		});
 	});
 	
 	
@@ -90,7 +91,7 @@ $(document).ready(function() {
 	Map<PayHistoryVO, String> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
-	Map<String, Integer> chartMap = new HashMap<>();
+	Map<Integer, Integer> chartMap = new HashMap<>();
 	UserVO userVo = new UserVO();
 	
 	try{
@@ -106,7 +107,7 @@ $(document).ready(function() {
 	
 	
 	int mostWatchedGenreVal = 0;	//가장 많이 본 장르의 시청 수치
-	String mostWatchedGenre = ""; 	//가장 많이 본 장르명
+	int mostWatchedGenreNo = 0; 	//가장 많이 본 장르명
 	int totalView = 0;				//여태 시청한 모든 영화 수
 	String lastWatchedMovie = "";
 	int usedPopcorn = 0;
@@ -114,13 +115,13 @@ $(document).ready(function() {
 	StringBuilder labels = new StringBuilder();
 	StringBuilder values = new StringBuilder();
 	if(chartMap != null && !chartMap.isEmpty()){
-		for(Entry<String, Integer> elem : chartMap.entrySet()){
+		for(Entry<Integer, Integer> elem : chartMap.entrySet()){
 			labels.append("'" + elem.getKey() + "',");
 			values.append(elem.getValue()+ ",");
 			totalView += elem.getValue();
 			if(mostWatchedGenreVal < elem.getValue()){
 				mostWatchedGenreVal = elem.getValue();
-				mostWatchedGenre = elem.getKey();
+				mostWatchedGenreNo = elem.getKey();
 			}
 		}
 	}
@@ -128,6 +129,22 @@ $(document).ready(function() {
 	 labels.deleteCharAt(labels.length() - 1);
      values.deleteCharAt(values.length() - 1);
 	}
+	
+	String mostWatchedGenre = "";
+	if(mostWatchedGenreNo == 1){
+		mostWatchedGenre = "로맨스";
+	}else if(mostWatchedGenreNo == 2){
+		mostWatchedGenre = "액션";
+	}else if(mostWatchedGenreNo == 3){
+		mostWatchedGenre = "공포";
+	}else if(mostWatchedGenreNo == 4){
+		mostWatchedGenre = "SF";
+	}else if(mostWatchedGenreNo == 5){
+		mostWatchedGenre = "코미디";
+	}else if(mostWatchedGenreNo == 6){
+		mostWatchedGenre = "애니";
+	}
+	
 	%>
 
 
@@ -205,8 +222,9 @@ $(document).ready(function() {
 			<div style="height: 100%; width: 100%;">
 				<img src="../images/login-bg.png" class="profileBackground" style="position: absolute;">
 					<div class="popcornTxt">
-						<h4 class = "userInfoTxt">ID : <%=realUser%>팝콘 : <%=userVo.getPoint() %>개</h4>
-						<button type="button" class="btn btn-success" id = "buyPopcorn" value = "<%=userVo.getUserId()%>">팝콘충전</button>
+						<h4 class = "userInfoTxt">ID : <%=realUser%>팝콘 : <%=userVo.getPoint()/100 %>개</h4>
+						<button type="button" class="btn btn-success" id = "buyPopcorn">팝콘충전</button>
+						<input type="hidden" value="<%=userVo.getUserId()%>" id = "pop"> 
 					</div>
 				</div>
 			</div>
@@ -273,6 +291,7 @@ $(document).ready(function() {
 						      <th class="dateCol">영화결제일</th>
 						      <th>결제번호</th>
 						      <th>영화제목</th>
+						      <th>리뷰관리</th>
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
 						          PayHistoryVO vo = elem.getKey();
@@ -282,6 +301,11 @@ $(document).ready(function() {
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
 								      <td><%=vo.getHisNo() %></td>
 								      <td><%=title%></td>
+								      <%if(reviewService.isReview(vo.getMovieNo(), userid)){%>
+								      <td> <button type="submit" class="btn btn-success">리뷰작성하기</button></td>
+								      <%}else{%>
+								      <td><button type="button" class="btn btn-light">취소</button></td>
+								      <%} %>
 							    </tr>
 						    <% } %>
 					  </table>
@@ -429,7 +453,7 @@ $(document).ready(function() {
 						<h3>보유중인 팝콘</h3>
 					</div>
 					<div style="width: 50%;" class="bsb">
-						<h3><%=userVo.getPoint()%>개</h3>
+						<h3><%=userVo.getPoint()/100%>개</h3>
 					</div>
 
 					<div
@@ -446,7 +470,9 @@ $(document).ready(function() {
 						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!!</h3>
 						<%}else if(usedPopcorn/100 > 3000){%>
 						<h3><%=df.format(usedPopcorn/100)%>개나 튀겼어요!!</h3>
-						<%}%>
+						<%}else{%>
+							<h3><%=df.format(usedPopcorn/100)%>개 튀겼어요</h3>
+						<%} %>
 					</div>
 				</div>
 

@@ -35,4 +35,10 @@ public class UserService {
 	public UserVO selectUserByUserId(String userid) throws SQLException {
 		return dao.selectUserByUserId(userid);
 	}
+	public List<UserVO> selectOutUser() throws SQLException{
+		return dao.selectOutUser();
+	}
+	public int updateOutdate(String userId) throws SQLException {
+		return dao.updateOutdate(userId);
+	}
 }
