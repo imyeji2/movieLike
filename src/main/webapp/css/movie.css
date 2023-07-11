@@ -232,6 +232,7 @@
 		overflow: hidden;
 		padding:30px 10px 30px 10px;
 		margin: 0 auto;
+	
 		
 	}
 	
@@ -314,5 +315,41 @@
         display: -webkit-box;
         -webkit-line-clamp: 5 ;
         -webkit-box-orient: vertical;		
+	}
+	
+	
+	/*리스트 없을때 제공 화면*/
+	.moviListAlert{
+		padding: 5% 0px 5% 0px;
+		margin: 0px;
+		background-image:url('../images/login-bg.png');
+		background-size: cover;
+		height: 85vh;
+	}
+	
+	.moviListAlertInfo{
+		width:50%;
+		height: 90%;
+		background: #fff;
+		margin:0 auto;
+		border-radius: 50px 50px 50px 50px;
+		background: rgba(255, 255, 255, 0.8);
+		font-size:1.3em;
+		font-weight: 600;
+		text-align: center;
+		color:#363636;
+	}
+	
+	.moviListAlertInfo{
+		margin:0px auto;
+		padding: 7% 5% 7% 5%;
+	}
+	
+	.moviListAlertInfo1 img{
+		width:15%
+	}
+	
+	.moviListAlertInfo2 p{
+		padding-top:10px;
 	}
 }

@@ -39,12 +39,12 @@
 						<img src="<%=request.getContextPath()%>/images/logo-white.png" alt="로고" class="logo_img"/>
 					</a>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?type=1">로맨스</a></li>
-				<li><a href="movieList.jsp?type=2">액션</a></li>
-				<li><a href="movieList.jsp?type=3">공포</a></li>
-				<li><a href="movieList.jsp?type=4">SF</a></li>
-				<li><a href="movieList.jsp?type=5">코미디</a></li>
-				<li><a href="movieList.jsp?type=6">애니</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=1">로맨스</a></li>
+				<li><a href="movieList.jsp?genreNo=2">액션</a></li>
+				<li><a href="movieList.jsp?genreNo=3">공포</a></li>
+				<li><a href="movieList.jsp?genreNo=4">SF</a></li>
+				<li><a href="movieList.jsp?genreNo=5">코미디</a></li>
+				<li><a href="movieList.jsp?genreNo=6">애니</a></li>
 			</ul>
 		</nav>
 		
@@ -53,9 +53,11 @@
 				<div class="serch_img f_left">
 					<img src="<%=request.getContextPath()%>/images/serch.svg" alt="검색이미지">
 				</div>
-				<div class="header_serch f_left">
-					<input type="text" class="serch_txt" id="serch" placeholder="영화를 검색해보세요">
-				</div>
+				<form name="serch" method="">
+					<div class="header_serch f_left">
+						<input type="text" class="serch_txt" id="serch" placeholder="영화를 검색해보세요">
+					</div>
+				</form>
 			</div><!-- serch_box -->
 			
 			<div class="f_left">

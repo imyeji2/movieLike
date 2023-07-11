@@ -3,6 +3,7 @@ package com.semi.genre.model;
 public class GenreVO {
 	private int genreNo;
 	private String genreName;
+	
 	public GenreVO() {
 
 	}

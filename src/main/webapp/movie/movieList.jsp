@@ -1,3 +1,7 @@
+<%@page import="com.semi.movie.model.MovieListService"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.movie.model.MovieListVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>    
@@ -27,313 +31,92 @@
 	});
 	
 </script>
+
+<%
+	String genre = request.getParameter("genreNo");
+	if(genre==null||genre.isEmpty()){
+%>		
+	<script>
+		alert('잘못된 접근입니다.');
+		location.href='<%=request.getContextPath()%>/index.jsp';
+	</script>
+<%
+	return;	
+
+	}
+	MovieListService service = new MovieListService();
+	MovieListVO vo = null;
+	List<MovieListVO> list = null;
+	int line = 0;
+	int startPage=0;
+	int endPage=0;
+	
+	try{
+		list = service.selectMovieByGenre(Integer.parseInt(genre));
+		line = list.size()/6;
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+	
+	if(list==null||list.isEmpty()){%>
+	<section id="movieList" stlye="margin:0px;"><!-- 전체 페이지 제어 width:100%-->
+		<article class="moviListAlert">
+			<div class="moviListAlertInfo">
+				<div class="moviListAlertInfo1">
+					<img src="../images/popcorn.png">
+				</div>
+				<div class="moviListAlertInfo2">
+					<p>라이터들의 취향을 반영한 영화를 곧 상영 예정입니다.</p>
+					<p>팝콘과 함께 잠시만 기다려주세요.</p>
+				</div>
+			</div>
+		</article>
+	</section>
+		
+	<%}else{%>
 	<section id="movieList"><!-- 전체 페이지 제어 width:100%-->
 	<br><br><br>
+<%
+		for(int i=0;i<line+1;i++){	
+			startPage=i*6;
+			endPage = startPage+6;
+			if(endPage>=list.size()){
+				endPage=list.size();
+			}
+	%>
 		<article class="moviListBox"><!-- 리스트 중 1줄 width:80%-->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-							<p class="movieItemBox_hover_tit">스파이더맨 : 어크로스 더 유니버스</p>
-							<p class="movieItemBox_hover_genre">액션</p>
-							<p class="movieItemBox_hover_txt">스파이더맨 VS 스파이더맨?! 여러 성장통을 겪으며 새로운 스파이더맨이 된 ‘마일스 모랄레스’. 그 앞에 다른 평행세계의 스파이더우먼 ‘그웬’이 다시 나타난다. 모든 차원의 멀티버스 속 스파이더맨들을 만나게 되지만, 질서에 대한 신념이 부딪히며 예상치 못한 균열이 생기는데… 상상 그 이상을 넘어서는 멀티버스의 세계가 열린다!</p>
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->				
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->				
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						asd
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-		</article><!-- 리스트 중 1줄 -->
-		<article class="moviListBox"><!-- 리스트 중 1줄 width:80%-->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->				
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->				
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-		</article><!-- 리스트 중 1줄 -->
-		<article class="moviListBox"><!-- 리스트 중 1줄 width:80%-->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->				
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->				
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-			<div class="movieItemBox"><!-- 리스트 중 1개  -->
-				<div><!-- 기본box -->
-					<div class="movieImg img-thumbnail">
-						<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-						<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-						</div><!-- hover box -->	
-					</div>
-				</div>
-				<p class="movieItemBox_info1 text-truncate">스파이더맨 : 어크로스 더 유니버스</p>
-			</div><!-- 기본box -->
-		</article><!-- 리스트 중 1줄 -->				
+		<%
+				for(int j=startPage;j<endPage;j++){
+					vo = list.get(j);
+		%>
+			<a href="movieDetail.jsp?no=<%=vo.getMovieNo() %>">
+				<div class="movieItemBox"><!-- 리스트 중 1개  -->
+					<div><!-- 기본box -->
+						<div class="movieImg img-thumbnail">
+							<img src="../images/movie/poster/<%=vo.getPoster()%>">
+							<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
+								<p class="movieItemBox_hover_tit"><%=vo.getTitle() %></p>
+								<p class="movieItemBox_hover_genre"><%=vo.getGenreName() %></p>
+								<p class="movieItemBox_hover_txt"><%=vo.getSynop()%></p>
+							</div><!-- hover box -->	
+						</div>
+					</div><!-- 기본box -->
+					<p class="movieItemBox_info1 text-truncate"><%=vo.getTitle() %></p>
+				</div><!-- 리스트 중 1개 -->
+			</a>
+		<%	
+				}
+				
+			
+		%>	
+		</article><!-- 리스트 중 1줄 -->	
+
+		<%}%>
+	<br><br><br><Br><br>
 	</section><!-- 전체 페이지 제어 -->
-			<br><br><br><Br><br>
+	
+	<% }%>
+
+			
 <%@ include file="../inc/bottom.jsp" %>	
 
-		
-	<!-- 		    <div style="width:100%;">
-		    		<div class="main_box1 f_left">
-		    			<input type="hidden" name="movieNo" value="1">
-		    			<div class="main_poster img-thumbnail">
-		    				<img src="../images/movie/엘리멘탈.jpg">
-		    			</div>main_poster
-		    			<div class="main_movie_info">
-		    				<p class="movie_info1">엘리멘탈</p>
-		    				<p class="movie_info2">
-			    				<span>2023</span>
-			    				<span>&middot;</span>
-			    				<span>미국</span>
-		    				</p>
-		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 31%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
-		    			</div>main_movie_info
-		    		</div>main_box1_margin
-		    		<div class="main_box1 f_left">
-		    			<input type="hidden" name="movieNo" value="2">
-		    			<div div class="main_poster img-thumbnail">
-		    				<img src="../images/movie/Indiana_Jones_and_the_Dial_of_Destiny.jpg">
-		    			</div>
-		    			<div class="main_movie_info">
-		    				<p class="movie_info1">인디아나 존스 : 운명의 다이얼</p>
-		    				<p class="movie_info2">
-			    				<span>2023</span>
-			    				<span>&middot;</span>
-			    				<span>미국</span>
-		    				</p>
-		    				<p class="movie_info2">평균 ★ 3.3</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 19%</span>
-		    					<span>누적관객 24만명</span>
-		    				</p>
-		    			</div>main_movie_info		    			
-		    		</div>
-		    		<div class="main_box1 f_left">
-		    			<input type="hidden" name="movieNo" value="3">
-		    			<div class="main_poster img-thumbnail">
-		    				<img src="../images/movie/The_Roundup.jpg">
-		    			</div>
-		    			<div class="main_movie_info">
-		    				<p class="movie_info1">범죄도시3</p>
-		    				<p class="movie_info2">
-			    				<span>2023</span>
-			    				<span>&middot;</span>
-			    				<span>한국</span>
-		    				</p>
-		    				<p class="movie_info2">평균 ★ 3.1</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 9.1%</span>
-		    					<span>누적관객 997만명</span>
-		    				</p>
-		    			</div>main_movie_info		    			
-		    		</div>
-		    		<div class="main_box1 f_left">
-		    			<div class="main_poster img-thumbnail">
-		    				<img src="../images/movie/SpiderMan_Across_the_Spider_Verse.jpg">
-		    			</div>
-		    			<div class="main_movie_info">
-		    				<p class="movie_info1">스파이더맨:어크로스 더 유니버스</p>
-		    				<p class="movie_info2">
-			    				<span>2023</span>
-			    				<span>&middot;</span>
-			    				<span>미국</span>
-		    				</p>
-		    				<p class="movie_info2">평균 ★ 4.3</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 8.7%</span>
-		    					<span>누적관객 50만명</span>
-		    				</p>
-		    			</div>main_movie_info		    			
-		    		</div>	
-		    		<div class="main_box1 f_left">
-		    			<div class="main_poster img-thumbnail">
-		    				<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-		    			</div>
-		    			<div class="main_movie_info">
-		    				<p class="movie_info1">미션임파서블 : 데드 레코...</p>
-		    				<p class="movie_info2">
-			    				<span>2023</span>
-			    				<span>&middot;</span>
-			    				<span>미국</span>
-		    				</p>
-		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 7.6%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
-		    			</div>main_movie_info		    			
-		    		</div>		
-		    		<div class="main_box1 f_left">
-		    			<div class="main_poster img-thumbnail">
-		    				<img src="../images/movie/Mission_Impossible_Dead_Reckoning_PartOne.jpg">
-		    			</div>
-		    			<div class="main_movie_info">
-		    				<p class="movie_info1">미션임파서블 : 데드 레코...</p>
-		    				<p class="movie_info2">
-			    				<span>2023</span>
-			    				<span>&middot;</span>
-			    				<span>미국</span>
-		    				</p>
-		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    				<p class="movie_info2">
-		    					<span>예매율 7.6%</span>
-		    					<span>누적관객 169만명</span>
-		    				</p>
-		    			</div>main_movie_info		    			
-		    		</div>			    			    				    					    					    	
-			    </div>carousel-item -->
