@@ -58,9 +58,9 @@
 		Date date = inputFormat.parse(openDate);
 		Timestamp open = new Timestamp(date.getTime());
 
-		//감독은 배열로
+		//감독,배우는 배열로
 		String[] directorArr = multi.getParameterValues("directorNo");
-		
+		String[] actorArr = multi.getParameterValues("actorNo");
 		
 		MovieVO vo= new MovieVO();
 		vo.setTitle(title);
@@ -91,10 +91,13 @@
 			
 			//영화가 등록되면 캐스팅 등록
 			//배우 파라미터
-			String[] actorArr = multi.getParameterValues("actorNo");
+			
+			
+			
 		
 			int castingCnt=0;
 			for(int i=0;i<actorArr.length;i++){
+				System.out.println(actorArr[i]);
 				CastingService castingServ = new CastingService();
 				CastingVO castingVO = new CastingVO();
 				castingVO.setActorNo(Integer.parseInt(actorArr[i]));

@@ -158,7 +158,7 @@ public class MovieDAO {
 			}else {//감독이 2명일때
 				String sql="insert into movie(movieNo, genreNo, title, runningTime, synop, poster, stilCut,"
 						+ " URL, price,openDate, ageRate, directorNo1, directorNo2)"
-						+ " values(movie_seq.nextval,?,?,?,?,?,?,?,?,?,?,?);";
+						+ " values(movie_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?)";
 				ps = con.prepareStatement(sql);
 				ps.setInt(1, vo.getGenreNo());
 				ps.setString(2, vo.getTitle());
