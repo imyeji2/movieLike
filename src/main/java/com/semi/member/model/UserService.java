@@ -32,4 +32,7 @@ public class UserService {
 	public List<UserVO> selectAll(String keyword, String condition) throws SQLException{
 		return dao.selectAll(keyword, condition);
 	}
+	public UserVO selectUserByUserId(String userid) throws SQLException {
+		return dao.selectUserByUserId(userid);
+	}
 }

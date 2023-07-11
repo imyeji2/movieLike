@@ -1,14 +1,92 @@
+<%@page import="com.semi.director.model.DirectorService"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.semi.casting.model.CastingVO"%>
+<%@page import="com.semi.casting.model.CastingService"%>
+<%@page import="com.semi.actor.model.ActorService"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.semi.movie.model.MovieVO"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.movie.model.MovieService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jsp" %>    
+<%@ include file="../inc/top.jsp" %> 
+
+<%
+	String userid = (String)session.getAttribute("userId");
+	String movieNo = request.getParameter("no");
+	
+	if(movieNo == null || movieNo.isEmpty()){%>
+		<script>
+			alert('잘못된 URL입니다');
+			history.go(-1);
+		</script>
+	<%}
+	CastingService castingService = new CastingService();
+	ActorService actorService = new ActorService();
+	MovieService movieService = new MovieService();
+	DirectorService directorService = new DirectorService();
+	MovieVO movieVo = null;
+	List<CastingVO> CastingList= null;
+	try{
+		movieVo = movieService.selectByMovieNo(Integer.parseInt(movieNo));
+		CastingList = castingService.selectCastingByMovieNo(Integer.parseInt(movieNo));
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+	
+	String movieGenre = "";						//영화 장르 분류 !! 
+	if(movieVo.getGenreNo() == 1){					//이렇게 한 이유 : 영화 테이블은 장르번호컬럼밖에 없어서
+			movieGenre = "로맨스";
+	}else if(movieVo.getGenreNo() == 2){
+			movieGenre = "액션";
+	}else if(movieVo.getGenreNo() == 3){
+			movieGenre = "공포";
+	}else if(movieVo.getGenreNo() == 4){
+			movieGenre = "SF";
+	}else if(movieVo.getGenreNo() == 5){
+			movieGenre = "코미디";
+	}else if(movieVo.getGenreNo() == 6){
+			movieGenre = "애니";
+	}
+	StringBuilder actorSb = new StringBuilder();
+	if(CastingList != null && !CastingList.isEmpty()){	//캐스팅리스트가 존재한다면
+		for(CastingVO actors : CastingList){			//캐스팅리스트size만큼 반복
+			actorSb.append(actorService.selectByActorNo(actors.getActorNo()).getActorName()).append(", ");
+			// =>actorService의 번호로 배우 조회하는 메서드 => .getActorName 이용
+			// 반복문만큼 actorSb에 배우이름 + ", " append
+		}
+	}
+	actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
+	
+	String content = movieVo.getSynop();				//시놉시스 줄 나눔
+	if(content!=null){  // \r\n  => <br>
+		content=content.replace("\r\n","<br>");
+	}else{
+		content="";
+	}
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
+%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.movie_buy_btn').click(function(){
+		var param = $('#buy_movie').val();
+		window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
+	});
+})
+</script>
+   
 	<section id="movieDetail">
 		<article>
 			<div class="movie_top">
 				<img src="../images/movie/stillCut/그시절, 우리가 좋아했던 소녀, 스틸컷.jpg">
 				<div class="movie_info_txt">
-					<h1>그시절, 우리가 좋아했던 소녀</h1>
-					<p><span>15세 관람가</span></p>
-					<p><span>로맨스</span> | <span>2023</span> | <span>105분</span><p>		
+					<h1><%=movieVo.getTitle() %></h1>				<!-- 영화 제목 -->
+					<p><span><%=movieVo.getAgeRate() %></span></p>	<!-- 연령 고지 -->
+					<p><span><%=movieGenre %></span> | <span><%= sdf.format(movieVo.getOpendate())%></span> | <span><%=movieVo.getRunningTime() %></span><p>	
+					<!-- 순서대로   영화 장르 / 개봉일 / 러닝타임 -->	
 				</div>
 			</div>
 		</article>
@@ -28,17 +106,21 @@
 					</div>
 					<div class="movie_info_detail">
 						<p>상세 설명</p>
-						학교 대표 얼간이 커징텅과 친구들은 최고의 모범생 션자이를 좋아한다. <br>
-						수업 도중 사고를 친 커징텅은 션자이의 특별 감시를 받게 되고 둘은 점점 가까워진다.<br>
-						션자이에 대한 마음이 커진 커징텅은 자신만의 방식으로 고백을 하지만 션자이는 대답하지 않는다.<br>
-						그렇게 15년이 지나고, 두 사람은 다시 만나게 되는데…
-						<br><br>그 때 너도 나와 같은 마음이었을까?<br>
+						<%=content %>
 						<br>
-						<P>감독 : 구파도</P>
-						<P>출연 : 가진동, 천옌시</P>
+						<P>감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo1()).getDirectorName() %></P>		<!-- 영화 감독 -->
+						<%if(movieVo.getDirectorNo2() > 0){ %>
+						<p>보조 감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo2()).getDirectorName() %></p>
+						<%} %>
+						<P>출연 : <%=actorSb %></P>						<!-- 출연 배우 !# 50번째줄에서 구함 #! -->
 					</div>
 					<div class="movi_info_btn"> 
-						<div class="movie_buy_btn">단건 구매 800팝콘</div>
+						<div class="movie_buy_btn">
+							<a href ="javascript:void(0)">
+								<input type="hidden" value="no=<%=movieNo%>&userid=<%=userid%>" id="buy_movie">
+								단건 구매 <%=movieVo.getPrice()/100 %>팝콘
+							</a>
+						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
 							<img src="../images/like_off.svg">
 						</div>
@@ -113,7 +195,7 @@
 				<div class="movie_tit">예고편</div>
 			
 				<div class="movie_player">
-					<iframe src="https://www.youtube.com/embed/t7ZG1hbTudQ" frameborder="0"  allowfullscreen>
+					<iframe src="<%=movieVo.getUrl() %>" frameborder="0"  allowfullscreen>
 				   </iframe>
 				</div>
 			</div>

@@ -12,7 +12,7 @@
 <!-- ck에디터  -->
 <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <!-- 생성 css -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/dami.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
 <style type="text/css">
 
@@ -76,7 +76,7 @@
                </div>   
                <div class="admin_menu_box">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_review.svg" name="review" alt="리뷰관리아이콘 ">
-                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/review.jsp">리뷰 관리</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/board/reviewList.jsp">리뷰 관리</a></span>
                </div>   
                <div class="admin_menu_box" id="statistics">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_statistics.svg" name="statistics" alt="통계관리아이콘 ">

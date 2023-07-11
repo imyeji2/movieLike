@@ -99,7 +99,6 @@ request.setCharacterEncoding("utf-8");
 							</div>
 							
 							<div class="ed_btn">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
 							</div>
 						</div>
@@ -172,10 +171,11 @@ request.setCharacterEncoding("utf-8");
 						<div class="page_box">
 							<nav aria-label="page">
 								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link">Previous</a>
+									<li class="page-item disabled"><a class="page-link">이전</a>
 									</li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item active" aria-current="page"><a
+									<li class="page-item active" aria-current="page"><a 
+										class="page-link" href="#">1</a></li>
+									<li class="page-item" ><a
 										class="page-link" href="#">2</a></li>
 									<li class="page-item" aria-current="page"><a
 										class="page-link" href="#">3</a></li>
@@ -183,8 +183,7 @@ request.setCharacterEncoding("utf-8");
 										class="page-link" href="#">4</a></li>
 									<li class="page-item" aria-current="page"><a
 										class="page-link" href="#">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a>
+									<li class="page-item"><a class="page-link" href="#">다음</a>
 									</li>
 								</ul>
 							</nav>

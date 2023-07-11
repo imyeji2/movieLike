@@ -121,24 +121,63 @@ public class UserDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		List<UserVO> list = new ArrayList<>();
-		
+
 		try {
 			//1
 			con = pool.getConnection();
-			
+
 			String sql = "select * from userinfo";
-			
+
 			if(keyword != null && !keyword.isEmpty()) {
 				sql += " where " + condition + " like '%' || ? || '%'";
 			}
 			sql += " order by name";
 			ps = con.prepareStatement(sql);
-			
+
 			if(keyword != null && !keyword.isEmpty()) {
 				ps.setString(1, keyword);
 			}
+
+			//
+			rs=ps.executeQuery();
+
+			while(rs.next()) {
+				String userId = rs.getString("userId");
+				String name = rs.getString("name");
+				String pwd = rs.getString("pwd");
+				String gender = rs.getString("gender");
+				String birth = rs.getString("birth");
+				String profileimg = rs.getString("profileimg");
+				int point = rs.getInt("point");
+				Timestamp outdate = rs.getTimestamp("outdate");
+
+				UserVO vo = new UserVO(userId, name, pwd, gender, birth, profileimg, 0, outdate);
+
+				list.add(vo);
+			}
+			System.out.println("글 전체 조회 결과, list.size() = " + list.size() + 
+					", 매개변수 keyword = " + keyword + ", condition = " + condition);
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	public UserVO selectUserByUserId(String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		UserVO vo = null;
+		try {
+			//1
+			con = pool.getConnection();
+			
+			String sql = "select * from userinfo where userid = ?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
+			rs = ps.executeQuery();
 			
 			//
 			rs=ps.executeQuery();
@@ -152,14 +191,12 @@ public class UserDAO {
 				String profileimg = rs.getString("profileimg");
 				int point = rs.getInt("point");
 				Timestamp outdate = rs.getTimestamp("outdate");
+
 				
-				UserVO vo = new UserVO(userId, name, pwd, gender, birth, profileimg, 0, outdate);
-				
-				list.add(vo);
+				vo = new UserVO(userId, name, pwd, gender, birth, profileimg, point, outdate);
 			}
-			System.out.println("글 전체 조회 결과, list.size() = " + list.size() + 
-					", 매개변수 keyword = " + keyword + ", condition = " + condition);
-			return list;
+			
+			return vo;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
