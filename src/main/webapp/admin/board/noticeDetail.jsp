@@ -17,8 +17,7 @@
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text">
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/board/noticeList.jsp"></a>공지사항</span> | 
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/board/faqList.jsp"></a>FAQ</span>
+							<p>공지사항 > 상세보기</p> 
 						</div>			
 					</div> 
 
@@ -30,14 +29,14 @@
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
 							</div>
 							<div class="ed_btn2">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
+								<button class="btn btn-outline-secondary" type="button" id="button-edit"><a href="<%=request.getContextPath()%>/board/noticeEdit.jsp">수정</a></button>
 							</div>
 						</div>
 						
 						<table class="table table-bordered">
 						<colgroup>
-						      <col style="width:30%;" />
-						      <col style="width:70%;" />
+						      <col style="width:20%;" />
+						      <col style="width:80%;" />
 						</colgroup>
 							<tr>
 						      <th scope="col">번호</th>

@@ -253,7 +253,7 @@
 	}
 	
 	.table {
-		width: 50%;
+		width: 60%;
 	}
 	
 	.table.table.table-bordered {
@@ -268,6 +268,7 @@
 	.content_box th {
 		text-align: center;
 		background: #f8f9fa;
+		padding-top: 18px;
 	}
 	
 	.content_box #in_text {
@@ -279,11 +280,14 @@
 	
 	.content_box td {
 		text-align: left;
+		text-indent: 15px;
+		height: 60px;
+		padding-top: 18px;
 	}
 	
 	.ed_btn {
 		padding: 40px;
-		padding-right: 360px;
+		padding-right: 290px;
 		margin-bottom: 10px;
 	}
 	

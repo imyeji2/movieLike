@@ -38,8 +38,8 @@
 
 <body>
 
-<%-- <%
-request.setCharacterEncoding("utf-8");
+<%
+	request.setCharacterEncoding("utf-8");
 	String keyword=request.getParameter("searchKeyword");
 	String condition=request.getParameter("searchCondition");
 	
@@ -79,7 +79,7 @@ request.setCharacterEncoding("utf-8");
 
 	//페이지당 글 리스트 시작 번호
 	int num = totalRecord - curPos;
-%> --%>
+%>
 
 	<section id="noticeList">
 			<article id="notice_content">
@@ -100,17 +100,11 @@ request.setCharacterEncoding("utf-8");
 
 					
 					<div class="content_box">
-						<!-- <select class="form-select" aria-label="Default select example">
-						  <option selected>정렬 순서</option>
-						  <option value="1">최신순</option>
-						  <option value="2">오래된순</option>
-						  <option value="3">조회수순</option>
-						</select> -->
 						
 						<div class="search_result">           
-							<%-- <%if(keyword!=null && !keyword.isEmpty()){%>
+							<%if(keyword!=null && !keyword.isEmpty()){%>
 							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
-							<%} %> --%>
+							<%} %>
 						</div>
 						
 						<div class="bottom_input">
@@ -147,23 +141,14 @@ request.setCharacterEncoding("utf-8");
 						  </thead>
 						<tbody>
 
-							<tr style="text-align: center">
+							<%-- <tr style="text-align: center">
 								<th><input type="checkbox"></th>
 								<th scope="row">1</th>
 								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">공지</a></td>
 								<td>나다미</td>
 								<td>2023-07-05</td>
 								<td>128</td>
-							</tr> 
-							<%-- <%
-							if (list == null || list.isEmpty()) {
-							%>
-							<tr>
-								<td colspan="6" class="align_center">글이 존재하지 않습니다.</td>
-							</tr>
-							<%
-							} else {
-							%>
+							</tr>  --%>
 							<!--게시판 내용 반복문 시작  -->
 							<%
 							//10번씩만 반복
@@ -187,9 +172,6 @@ request.setCharacterEncoding("utf-8");
 							} //for
 							%>
 							<!--반복처리 끝  -->
-							<%
-							} //if
-							%> --%>
 						</tbody>
 					</table>
 						<div class="page_box">
