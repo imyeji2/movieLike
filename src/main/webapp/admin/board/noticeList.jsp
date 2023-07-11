@@ -32,6 +32,12 @@
 				return false;
 			}
 		});
+		
+		$('#button-delete').click(function(){
+			if(confirm("정말 삭제하시겠습니까?")){
+				$('form').submit(); 
+			}
+		});
 			
 	});
 
@@ -104,8 +110,7 @@
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text" >
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/admin/board/noticeList.jsp">공지사항</a></span> | 
-							<span class="span_notice"><a href="<%=request.getContextPath()%>/admin/board/faqList.jsp">FAQ</a></span>
+							<span class="span_notice">공지사항</a></span>
 						</div>			
 					</div> 
 
@@ -132,61 +137,54 @@
 							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
 							<%} %>
 						</div>
-						
-						<table class="table table-bordered">
-						  <colgroup>
-						      <col style="width:6%;" />
-						      <col style="width:6%;" />
-						      <col style="width:50%;" />
-						      <col style="width:15%;" />      
-						      <col style="width:15%;" />      
-						      <col style="width:12%;" />      
-						   </colgroup>
-						  <thead class="table-light">
-						    <tr style="text-align: center">
-						      <th scope="col">선택</th>
-						      <th scope="col">번호</th>
-						      <th scope="col">제목</th>
-						      <th scope="col">작성자</th>
-						      <th scope="col">등록일</th>
-						      <th scope="col">조회수</th>
-						    </tr>
-						  </thead>
-						<tbody>
-
-							<%-- <tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<th scope="row">1</th>
-								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/noticeDetail.jsp">공지</a></td>
-								<td>나다미</td>
-								<td>2023-07-05</td>
-								<td>128</td>
-							</tr>  --%>
-							<!--게시판 내용 반복문 시작  -->
-							<%
-							//10번씩 반복
-							for (int i = 0; i < pageSize; i++) {
-								if (num < 1) break;
-
-								BoardVO vo = list.get(curPos++);
-								num--;
-							%>
-							<tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<td><%=vo.getBoardNo()%></td>
-								<td style="text-align: left">
-								<a href="countUpdate.jsp?no=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
-								</td>
-								<td><%=vo.getAdminID()%></td>
-								<td><%=sdf.format(vo.getBoardRegdate())%></td>
-								<td><%=vo.getBoardView()%></td>
-							</tr>
-							<%
-							} //for
-							%>
-							<!--반복처리 끝  -->
-						</tbody>
-					</table>
+						<form name="delFrm" method="post" action="noticeDelete.jsp">
+							<table class="table table-bordered">
+							  <colgroup>
+							      <col style="width:6%;" />
+							      <col style="width:6%;" />
+							      <col style="width:50%;" />
+							      <col style="width:15%;" />      
+							      <col style="width:15%;" />      
+							      <col style="width:12%;" />      
+							   </colgroup>
+							  <thead class="table-light">
+							    <tr style="text-align: center">
+							      <th scope="col">선택</th>
+							      <th scope="col">번호</th>
+							      <th scope="col">제목</th>
+							      <th scope="col">작성자</th>
+							      <th scope="col">등록일</th>
+							      <th scope="col">조회수</th>
+							    </tr>
+							  </thead>
+							<tbody>
+	
+								<!--게시판 내용 반복문 시작  -->
+								<%
+								//10번씩 반복
+								for (int i = 0; i < pageSize; i++) {
+									if (num < 1) break;
+	
+									BoardVO vo = list.get(curPos++);
+									num--;
+								%>
+								<tr style="text-align: center">
+									<th><input type="checkbox" name="chk"></th>
+									<td><%=vo.getBoardNo()%></td>
+									<td style="text-align: left; text-indent: 15px">
+									<a href="countUpdate.jsp?boardNo=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
+									</td>
+									<td><%=vo.getAdminID()%></td>
+									<td><%=sdf.format(vo.getBoardRegdate())%></td>
+									<td><%=vo.getBoardView()%></td>
+								</tr>
+								<%
+								} //for
+								%>
+								<!--반복처리 끝  -->
+							</tbody>
+						</table>
+					</form>
 						<div class="page_box">
 							<nav aria-label="page">
 								
