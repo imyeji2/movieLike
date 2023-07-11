@@ -227,6 +227,7 @@ header h2{
    } 
    
    .movieWrite_box_in_right2 input{
+	   width:110px;
 	   background-color: #0d6efd;
 	   border-radius: 8px;
 	   height: 30px;
