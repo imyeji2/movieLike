@@ -164,6 +164,67 @@ public class UserDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	
+	public List<UserVO> selectOutUser() throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<UserVO> list = new ArrayList<>();
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select * from userinfo where outdate is not null";
+			ps=con.prepareStatement(sql);
+			
+			rs= ps.executeQuery();
+			while(rs.next()) {
+				String userId = rs.getString("userId");
+				String name = rs.getString("name");
+				String pwd = rs.getString("pwd");
+				String gender = rs.getString("gender");
+				String birth = rs.getString("birth");
+				String profileimg = rs.getString("profileimg");
+				int point = rs.getInt("point");
+				Timestamp outdate = rs.getTimestamp("outdate");
+				
+				UserVO vo = new UserVO(userId, name, pwd, gender, birth, profileimg, 0, outdate);
+				list.add(vo);
+			}
+			System.out.println("탈퇴회원 조회결과, list.size() = " + list.size());
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	
+	public int updateOutdate(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "update userinfo"
+					+ " set outdate = sysdate"
+					+ " where userid = ?";
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, userId);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("탈퇴 처리 결과 cnt = " + cnt);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
+	
 	public UserVO selectUserByUserId(String userid) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;

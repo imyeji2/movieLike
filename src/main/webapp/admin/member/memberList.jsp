@@ -9,7 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/user.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//글 리스트 호버 
@@ -20,7 +20,18 @@
 		});
 		
 		//수정버튼
-		
+		$('.button-edit').click(function(){
+			// 체크된 체크박스의 값을 가져옴
+			var checkedIds = [];
+			$('input[type="checkbox"]:checked').each(function() {
+				checkedIds.push($(this).closest('tr').find('.user-id').text()); // 사용자 ID를 가져옴
+			});
+			
+			if(checkedIds.length === 0 || checkedIds.length > 1) {
+				alert('한명의 회원만 수정 가능합니다.');
+				return;
+			}
+		});
 		
 		//삭제 버튼
 		$('#button-delete').click(function(){
@@ -69,7 +80,11 @@
 	List<UserVO> list = null;
 	
 	try{
-		list = userService.selectAll(keyword, condition);
+		if(condition != null && condition.equals("outdate")){
+			list = userService.selectOutUser();
+		}else{
+			list = userService.selectAll(keyword, condition);
+		}
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -186,9 +201,9 @@
 								num--;	
 							
 								//
-								if("outdate".equals(condition) && vo.getOutDate() == null){
+/* 								if("outdate".equals(condition) && vo.getOutDate() == null){
 									continue;
-								}
+								} */
 						%>
 							<tr style="text-align:center">
 								<td><input type="checkbox" id="chkid"></td>
