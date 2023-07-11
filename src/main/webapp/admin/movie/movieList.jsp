@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.semi.movie.model.MovieVO"%>
 <%@page import="java.util.List"%>
@@ -24,7 +25,7 @@
 				<h2>영화 리스트</h2>
 				
 				<div class="top_btn">
-					</a><button type="button" class="btn btn-primary" onclick="movie_write()">+ 등록하기</button>
+					<button type="button" class="btn btn-primary" onclick="movie_write()">+ 등록하기</button>
 				</div>
 				
 				<div class="notice_box">
@@ -34,16 +35,17 @@
 						</div>
 						<table class="table table-bordered">
 						  <colgroup>
-						      <col style="width:7%;" />
-						      <col style="width:10%;" />
-						      <col style="width:60%;" />
+						      <col style="width:5%;" />
+						      <col style="width:5%;" />
+						      <col style="width:30%;" />
 						      <col style="width:15%;" />      
-						      <col style="width:10%;" />      
+						      <col style="width:10%;" />   
+						      <col style="width:5%;" />    
 						   </colgroup>
 						  <thead class="table-light">
 						    <tr style="text-align: center">
 						      <th scope="col">선택</th>
-						      <th scope="col">번호</th>
+						      <th scope="col">포스터</th>
 						      <th scope="col">제목</th>
 						      <th scope="col">감독</th>
 						      <th scope="col">개봉일</th>
@@ -57,18 +59,24 @@
 									<td colspan="5">등록된 글이 없습니다.</td>
 								</tr>
 						<% }else{
+							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 							for(int i=0; i<list.size();i++){
 								vo=list.get(i);
-								
+						        String formattedDate = sdf.format(vo.getOpendate());
+						        
+						        
 							
 						
 						%>
-							<tr style="text-align: center">
-								<td><input type="checkbox" name="check" value="<%=vo.getMovieNo()%>"></th>
-								<td scope="row"><%=i+1 %></th>
-								<td style="text-align: left"><a href="#"></a><%=vo.getTitle() %></td>
-								<td>2023-07-05</td>
-								<td>128</td>
+							<tr style="text-align: center; line-height: 77px;">
+								<td><input type="checkbox" name="check" value="<%=vo.getMovieNo()%>"></td>
+								<td>
+									<img src="../../images/movie/poster/<%=vo.getPoster()%>" style="width:50px;">
+								</td>
+								<td style="text-align: left;"><a href="#"></a><%=vo.getTitle() %></td>
+								<td><a href="#"></a><%=vo.getDirectorNo1() %></td>
+								<td><%=formattedDate %></td>
+								<td><%=vo.getMovieStatus() %></td>
 							</tr>		
 						<%} 
 						}

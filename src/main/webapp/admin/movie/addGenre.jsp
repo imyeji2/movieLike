@@ -132,125 +132,18 @@ body{
 <script>
 
 $(function(){
-	$('#addPeople').click(function(){
-		if ($('#peopleName').val().length < 1) {
-			alert("이름을 입력해주세요");
-			$(this).focus();
-			return false;
-		}
-		
-		if (!$('#fileImg').val()) {
-			alert("파일을 첨부해주세요");
-			$(this).focus();
-			return false;
-		} else if ($("#fileImg").val() != "") {
-			var ext = $("#fileImg").val().split(".").pop().toLowerCase();
-			if ($.inArray(ext, ["jpg", "jpeg", "png", "gif"]) == -1) {
-				alert("이미지 파일만 등록 가능합니다.");
-				$("#fileImg").val("");
-				return false;
-			}
-		}
-		
-		var maxSize = 1 * 1024 * 1024; // 1MB
-		var fileSize = $("#fileImg")[0].files[0].size;
-		
-		if (fileSize > maxSize) {
-			alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
-			$("#fileImg").val("");
-			return false;
-		}
-	
- 		var name=$('#peopleName').val();
-		$.ajax({
-			  type: 'POST',
-			  url: 'serchActor_ok.jsp', // 서블릿 파일 경로
-			  data: { name: name }, // 전송할 데이터 (이름 변수 전달)
-			  success: function(result) {
-			    // 서버 응답 성공 시 실행할 함수
-			    var result = response.result;
-       			 console.log('배우 동명이인 검색 결과: ' + result);
-			    alert(result);
-			    if (result=="0") {
-			        $('#actorFrm').submit();
-			    } else {
-			    	
-			      if (confirm('같은 이름의 배우가 있습니다. 등록하시겠습니까?')) {
-			    	  $('#actorFrm').submit();
-			      }
-			    }
-			  },
-			  error: function() {
-			    // 서버 응답 실패 시 실행할 함수
-			    alert('서버 오류가 발생했습니다.');
-			  }
-			  
-			});  
+	$('#addGenre').click(function(){
+
 
 	});
 	
 	
-	//수정일 때는 이미지 첨부 없이도 저장 되게
-	$('#editPeple').click(function(){
-		if ($('#peopleName').val().length < 1) {
-			alert("이름을 입력해주세요");
-			$(this).focus();
-			return false;
-		}
-		
-		
-		//이미지가 첨부 된 경우
-		if ($("#fileImg2").val() != "") {
-			var ext = $("#fileImg2").val().split(".").pop().toLowerCase();
-			if ($.inArray(ext, ["jpg", "jpeg", "png", "gif"]) == -1) {
-				alert("이미지 파일만 등록 가능합니다.");
-				$("#fileImg2").val("");
-				return false;
-			}
-		
-		
-			var maxSize = 1 * 1024 * 1024; // 1MB
-			var fileSize = $("#fileImg2")[0].files[0].size;
-			
-			if (fileSize > maxSize) {
-				alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
-				$("#fileImg2").val("");
-				return false;
-			}
-		}
-
-		$('#actorFrm').submit(); 
-	});	
-	
-	
-		 
-	 $('#fileImg2').change(function(){
-		    setImageFromFile(this, '#peopleImg');
-		});
-
-		function setImageFromFile(input, expression) {
-		    if (input.files && input.files[0]) {
-		    var reader = new FileReader();
-		    reader.onload = function (e) {
-		    $(expression).attr('src', e.target.result);
-		  }
-		  reader.readAsDataURL(input.files[0]);
-		  }
-		}
-
 	
 	
 });
 </script>
 
 <%
-	//기능 설명
-	//이름랑 이미지 넣고 등록하기 버튼 클릭
-	//해당 이름을 가지고 있는 배우가 있으면 등록할지 여부를 다시 체크
-	//등록하겠다고 하면 등록, 아니면 창 끄기
-	//문제 -> 모든 기능 실행 후 서브밋 기능이 제대로 작동 안함
-	//방안1. ajax사용 -> 매핑 파일 때문인지 404에러남 
-	//일단 다른 기능들 추가 하고 수정예정
 	
 	String no=request.getParameter("no");
 	
