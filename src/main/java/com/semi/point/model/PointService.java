@@ -17,6 +17,8 @@ public class PointService {
 	public int refundPoint(int pointNo, int pointPrice, String userid) throws SQLException {
 		return pointDao.refundPoint(pointNo, pointPrice, userid);
 	}
-	
+	public int insertPoint(PointVO vo) throws SQLException {
+		return pointDao.insertPoint(vo);
+	}
 	
 }

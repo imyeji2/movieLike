@@ -58,11 +58,11 @@ public class PayHistoryDAO {
 		}
 	}
 
-	public Map<String, Integer> chartValue(String userid) throws SQLException{	//마이페이지 > 통계 > 차트 값 불러오는 메서드
+	public Map<Integer, Integer> chartValue(String userid) throws SQLException{	//마이페이지 > 통계 > 차트 값 불러오는 메서드
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Map<String, Integer> map = new HashMap();
+		Map<Integer, Integer> map = new HashMap();
 		MovieDAO dao = new MovieDAO(); 
 		try {
 			con = pool.getConnection();
@@ -75,7 +75,7 @@ public class PayHistoryDAO {
 			rs = ps.executeQuery();
 
 			while(rs.next()) {
-				String title =  dao.selectByMovieNo(rs.getInt("movieno")).getTitle();
+				int title =  dao.selectByMovieNo(rs.getInt("movieno")).getGenreNo();
 				int value = rs.getInt("count(movieno)");
 
 				map.put(title, value);

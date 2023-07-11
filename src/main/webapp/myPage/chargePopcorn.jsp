@@ -1,19 +1,12 @@
-<%@page import="com.semi.member.model.UserVO"%>
-<%@page import="com.semi.member.model.UserService"%>
 <%@page import="com.semi.payHistory.model.PayHistoryService"%>
-<%@page import="com.semi.movie.model.MovieVO"%>
-<%@page import="com.semi.movie.model.MovieService"%>
-<%@page import="java.sql.SQLException"%>
 <%@page import="com.semi.point.model.PointService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -107,38 +100,15 @@ popcornChargeMain{
 
 </style>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('button[name=quit]').click(function() {
-			window.close();
-		});
-	});
-</script>
-
 <body>
-	<%
-		String no = request.getParameter("no");
-		String userid = request.getParameter("userid");
-		
-		MovieService movieService = new MovieService();
-		UserService userService = new UserService();
-		MovieVO vo = null;
-		UserVO userVo = null;
-		try{
-		vo = movieService.selectByMovieNo(Integer.parseInt(no));
-		 userVo = userService.selectUserByUserId(userid);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-	%>
-		<form id="buyMovieForm" action="buyMovie_Ok.jsp" method="post">
-		<input type = "hidden" value="<%=no%>" name = "no">
-		<input type = "hidden" value="<%=userid%>" name = "userid">
+<%
+	String userid = request.getParameter("userid");
+%>
+<div class = "popcornChargeMain">
+<form id="chargePopcornForm" action="chargePopcorn_ok.jsp" method="post">
 		<div class="container text-center">
 		  <div class="row">
-		    <div class="col">영화 구매</div>
+		    <div class="col">팝콘충전</div>
 		  </div>
 		  
 		  <div class="row">
@@ -147,39 +117,34 @@ popcornChargeMain{
 		  </div>
 		  
 		  <div class="row">
-		    <div class="col">영화 이름</div>
+		    <div class="col">결제 수단</div>
 		    <div class="col">
-		   		<%=vo.getTitle()%>
+		   		<select class="form-select" aria-label="Default select example" name = "paymenttypeno">
+					  <option value="1">카드</option>
+					  <option value="2">무통장 입금</option>
+				</select>
 		    </div>
 		  </div>
 		  
 		  <div class="row">
-		    <div class="col">보유 팝콘</div>
+		    <div class="col">결제 금액</div>
 		    <div class="col">
 			    <div class="input-group input-group-sm mb-3">
-					  <span class="input-group-text" id="inputGroup-sizing-sm">팝콘</span>
-					  <input type="text" class="form-control" name = "price" disabled value="<%=userVo.getPoint()/100%>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-				</div>
-		    </div>
-		  </div>
-		  
-		  <div class="row">
-		    <div class="col">영화 가격</div>
-		    <div class="col">
-			    <div class="input-group input-group-sm mb-3">
-					  <span class="input-group-text" id="inputGroup-sizing-sm">팝콘</span>
-					  <input type="text" class="form-control" name = "price" disabled value="<%=vo.getPrice()/100%> 개 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+					  <span class="input-group-text" id="inputGroup-sizing-sm">금액</span>
+					  <input type="text" class="form-control" name = "price" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 				</div>
 		    </div>
 		  </div>
 		  
 		  <div class="row">
 		    <div class="col">
-			    <button type="submit" class="btn btn-success">구매</button>
+			    <button type="submit" class="btn btn-success">충전</button>
 			    <button type="button" class="btn btn-light">취소</button>
 		    </div>
 		  </div>
 		</div>
 		</form>
+</div>
+
 </body>
 </html>
