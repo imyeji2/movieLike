@@ -8,9 +8,11 @@
 <%@ include file="../../inc/admin_menu.jsp" %>
 
 <script>
+
 	function movie_write(){
 		location.href="movieWrite.jsp";
 	}
+	
 </script>
 <%
 	MovieService service = new MovieService();

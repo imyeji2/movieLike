@@ -167,11 +167,8 @@ $(function(){
 			  url: 'serchActor_ok.jsp', // 서블릿 파일 경로
 			  data: { name: name }, // 전송할 데이터 (이름 변수 전달)
 			  success: function(result) {
-			    // 서버 응답 성공 시 실행할 함수
-			    var result = response.result;
-       			 console.log('배우 동명이인 검색 결과: ' + result);
-			    alert(result);
-			    if (result=="0") {
+
+			    if (result==0) {
 			        $('#actorFrm').submit();
 			    } else {
 			    	
@@ -299,7 +296,7 @@ $(function(){
 			<div class="infoBox">
 				<div class="infoBox_left">배우명</div>
 				<div class="infoBox_right">
-					<input class="form-control info_txt" type="text" placeholder="이름을 입력하세요" name="name" id="peopleName" value="<%=name%>" autocomplete="on">
+					<input class="form-control info_txt" type="text" placeholder="이름을 입력하세요" name="name" id="peopleName" value="<%=name%>">
 				</div>
 			</div>
 			<%if(!isEdit){ %>

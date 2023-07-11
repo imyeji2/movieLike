@@ -39,20 +39,20 @@
 		
 		//1. 요청 파라미터 읽어오기
 		String name = multi.getParameter("name");
-		String no = multi.getParameter("directorNo");
+		String no = multi.getParameter("actorNo");
 		String oldFileName = multi.getParameter("oldFileName");
 		System.out.println("파일명"+fileName);
 		System.out.println("이름"+name);
 		
 		//2.db작업
-		DirectorVO vo = new DirectorVO();
-		DirectorService service = new DirectorService();
-		vo.setDirectorNo(Integer.parseInt(no));
-		vo.setDirectorName(name);
-		vo.setDirectorImg(fileName);
+		ActorVO vo = new ActorVO();
+		ActorService service = new ActorService();
+		vo.setActorNo(Integer.parseInt(no));
+		vo.setActorName(name);
+		vo.setActorImg(fileName);
 		
 		
-		int cnt = service.updateDirector(vo);
+		int cnt = service.updateActor(vo);
 		
 		if(cnt>0){
             //새로운 파일을 첨부한 경우, 기존 파일이 있을 때만 기존파일을 삭제한다
