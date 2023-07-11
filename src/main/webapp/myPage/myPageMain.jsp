@@ -215,7 +215,7 @@ $(document).ready(function() {
 		<div id="myPageBody" class="main">
 			<div id="bodyBar">
 				<nav id="myPageMenu">
-					<a href="javascript:void(0)" onclick="showContent(0);">내정보수정</a> <a
+					<a href="javascript:void(0)" onclick="showContent(0);">비밀번호 변경</a> <a
 						href="javascript:void(0)" onclick="showContent(1);">찜목록</a> <a
 						href="javascript:void(0)" onclick="showContent(2);">구매이력</a> <a
 						href="javascript:void(0)" onclick="showContent(3);">팝콘(충전/이력)</a>
