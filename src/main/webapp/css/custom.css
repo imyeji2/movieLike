@@ -12,6 +12,8 @@
    width: 50%;
    margin: 0 auto;
    }
+   
+   
    .profileBackground{
 	   width:100%;
 	   height:100%;
@@ -235,14 +237,116 @@ svg.bi.bi-gear {
 form {
     width: 100%;
 }
-.edit_user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
  .form-floating {
     height: auto;
     margin: 20px 0;
     border-radius: 6%;
 }
+
+/** 서다희 작업 **/
+
+.my-information form {
+	max-width: 300px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 15px 0;
+}
+
+.my-information h3.page-title {
+	color: #fff;
+	font-weight: 500;
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.my-information .form-floating {
+	margin: 0;
+}
+
+.my-information input {
+	width: 100% !important;
+	transition: all 0.35s;
+	outline: none;
+}
+
+.my-information input:focus {
+	border: 1px solid #13C181;
+	caret-color: #13C181;
+}
+
+.my-information input:focus + label {
+	color: #13C181;
+}
+
+.my-information p.notice {
+	color: #ff0000;
+	font-size: 12px;
+	margin-top: -5px;
+	text-align: center;
+}
+
+.my-information p.notice::before {
+	content: '*'	
+}
+
+button.certi-confirm {
+	background-color: #13C181;
+	color: #fff;
+	border: 0;
+	margin: 15px auto 0;
+	display: block;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 10px 0;
+	width: 300px;
+	transition: all 0.35s;
+}
+
+button.certi-confirm:hover {
+	background-color: #35e1a2;
+}
+
+.match {
+	display: flex;
+	gap: 0 10px;
+	justify-content: center;
+	align-items: center;
+}
+.match .gender {
+	display: flex;
+	gap: 0 5px;
+}
+
+.match .gender input {
+	display: none;
+}
+
+.match .gender label {
+	height: 58px;
+	width: 65px;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	color: #333;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+	cursor: pointer;
+	transition: all 0.15s;
+	background-color: #fff;
+}
+
+.match .gender input:checked + label {
+	background-color: #13C181;
+	border: 1px solid #13C181;
+	color: #fff;
+}
+
+.edit_user {
+	display: none;
+}
+
+/** 서다희 작업 **/
