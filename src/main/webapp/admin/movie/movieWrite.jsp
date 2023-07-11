@@ -1,3 +1,7 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.genre.model.GenreVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.semi.genre.model.GenreService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
@@ -233,16 +237,33 @@ $(function(){
 							<div class="movieWrite_box_in_right">
 								<div class="movieWrite_box_in_right1">
 									<select class="form-select form-select-sm" id="genreNo" name="genreNo">
-										<option selected value="1">로맨스</option>
-										<option value="2">액션</option>
-										<option value="3">공포</option>
-										<option value="4">SF</option>
-										<option value="5">코미디</option>
-										<option value="6">애니</option>
+									<%
+										GenreService genreService = new GenreService();
+										List<GenreVO> list = null;
+										GenreVO vo = null;
+										
+										try{
+											list = genreService.selectGenreAll();
+											
+											if(list==null || list.isEmpty()){%>
+											<option selected value="0">없음</option>	
+										<%	}else{ 
+												for(int i=0; i<list.size();i++){
+													vo=list.get(i);
+										%>
+											<option value="<%=vo.getGenreNo()%>"><%=vo.getGenreName() %></option>
+										<%	
+												}
+											} 
+										}catch(SQLException e){
+												e.printStackTrace();
+											}
+									%>
+
 									</select>
 								</div>
 								<div class="movieWrite_box_in_right2">
-									<input type="button" name="addCategory" value="카테고리 추가">
+									<input type="button" name="addCategory" value="장르 추가">
 								</div>
 							</div>
 						</div><!-- movieWrite_box_in -->															

@@ -101,7 +101,7 @@
 					<button type="submit" class="btn btn-success">구입하기</button>
 					<button type="button" class="btn btn-danger" name="quit">취소</button>
 				</div>
-				<input type = "hidden" value="no" name = "no">
+				<input type = "hidden" value="<%=no%>" name = "no">
 			</form>
 		</div>
 </body>
