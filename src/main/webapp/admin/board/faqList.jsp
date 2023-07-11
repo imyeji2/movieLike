@@ -24,7 +24,7 @@
 		});
 		
 		$('.top_btn').click(function(){
-			location.href = 'noticeWrite.jsp';
+			location.href = 'faqWrite.jsp';
 		});
 		
 		$('#button-delete').click(function(){
@@ -38,7 +38,7 @@
 </script>
 <style>
 	form {
-   		width: 1522.39px;
+    	width: 1215.35px;
 	}
 
 	section {
@@ -104,7 +104,7 @@
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text" >
-							<span class="span_notice">공지사항</a></span>
+							<span class="span_notice">FAQ</a></span>
 						</div>			
 					</div> 
 

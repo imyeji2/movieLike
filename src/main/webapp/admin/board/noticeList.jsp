@@ -44,7 +44,7 @@
 </script>
 <style>
 	form {
-   		width: 1522.39px;
+    	width: 1215.35px;
 	}
 
 	section {
