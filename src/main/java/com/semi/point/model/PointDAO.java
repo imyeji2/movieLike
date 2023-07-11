@@ -65,4 +65,34 @@ public class PointDAO {
 			pool.dbClose(ps, con);
 		}
 	}
+	
+	public int insertPoint(PointVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = pool.getConnection();
+			String sql = "insert into point"
+					+ "	values(point_seq.nextval,?,?,?,sysdate,'충전')";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1,vo.getPaymentTypeNo());
+			ps.setString(2, vo.getUserId());
+			ps.setInt(3, vo.getPointPrice());
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("팝콘 충전 결과 cnt = " + cnt + "매개변수 vo = " + vo);
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
 }
+
+
+
+
+
+
+
+
