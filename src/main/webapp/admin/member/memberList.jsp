@@ -21,7 +21,6 @@
 		
 		$('#button-delete').click(function(){
 			if(confirm('정말 삭제하시겠습니까?')){
-				<% UserService.%>
 				return false;
 			}
 		});
@@ -111,7 +110,7 @@
 								</select>
 								
 									<div class="input-group" style="width:370px">
-									  <input type="text" name = "searchKeyword" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+									  <input type="text" name = "searchKeyword" class="form-control" placeholder="검색어를 입력하세요" value = "<%=keyword%>"aria-label="Recipient's username" aria-describedby="button-addon2">
 									  <button class="btn btn-outline-secondary" type="submit" id="button-addon2" >검색</button>
 									</div>
 								</form>
