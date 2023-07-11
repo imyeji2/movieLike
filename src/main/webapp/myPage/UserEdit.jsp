@@ -1,3 +1,4 @@
+<%@page import="com.semi.member.model.UserService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -51,15 +52,16 @@
 		</div>
 	
 	</div>
+
 	<script>
 		$('.certi-btn').click( ()=>{
-			let certiPass = $('#certiPass').val();
+			var certiPass = $('#certiPass').val();
 			
-			if ( certiPass == '' || certiPass.length < 3 ) {
+			if ( certiPass == '' || certiPass != pwd) {
 				alert('비밀번호를 확인해주세요.')
 			}else {
 				$('.certification').hide();
 				$('.edit_user').show();
 			}
-		} )
+		});
 	</script>

@@ -237,10 +237,11 @@ $(function(){
 		<article class="movie_review">
 			<div class="movie_tit">코멘트</div>
 			<div class="movie_review_box">
+			<%if(reviewList != null && !reviewList.isEmpty()){%>
 				<div class="movie_review_conbox"></div>
-				<div class="movie_review_conbox"></div>
-				<div class="movie_review_conbox"></div>
-				<div class="movie_review_conbox"></div>
+			<%}else{ %>
+				<h1 style="text-align: center">아직 아무 리뷰도 없어요....</h1>
+			<%}%>
 			</div>
 		</article>
 			
