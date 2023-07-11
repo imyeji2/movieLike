@@ -44,21 +44,21 @@ public class PointDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
-	public int refundPoint(int pointNo, int pointPrice) throws SQLException {
+	public int refundPoint(int pointNo, int pointPrice,String userid) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
 		try {
 		con = pool.getConnection();
 		String sql = "update point"
-					+ " set pointkind = '환불', pointPrice = ? "
-					+ " where pointno = ?";
+					+ " set pointkind = '환불', pointPrice = 0 "
+					+ " where pointno = ? and userid = ?";
 		ps = con.prepareStatement(sql);
 		ps.setInt(1, pointNo);
-		ps.setInt(2, -pointPrice);
+		ps.setString(2, userid);
 		
 		int cnt = ps.executeUpdate();
-		System.out.println("환불 처리 결과 cnt = " + cnt + "매개변수 pointNo = " + pointNo + ", pointPrice = " + pointPrice);
+		System.out.println("환불 처리 결과 cnt = " + cnt + "매개변수 pointNo = " + pointNo + ", pointPrice = " + -pointPrice + ", userid = " + userid);
 		return cnt;
 		
 		}finally{

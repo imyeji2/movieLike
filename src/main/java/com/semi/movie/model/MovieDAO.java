@@ -121,4 +121,116 @@ public class MovieDAO {
 	
 	
 	
+	/**
+	 * 영화 등록 
+	 * @param vo
+	 * @return
+	 * @throws SQLException
+	 */
+	public int insertMovie(MovieVO vo) throws SQLException {
+		Connection con =null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			System.out.println(vo.getDirectorNo1());
+			System.out.println(vo.getDirectorNo2());
+	
+			
+			//감독이 1명일때
+			if(vo.getDirectorNo2()==0) {
+				String sql="insert into movie(movieNo, genreNo, title, runningTime, synop, poster, stilCut,"
+						+ " URL, price,openDate, ageRate, directorNo1)"
+						+ " values(movie_seq.nextval,?,?,?,?,?,?,?,?,?,?,?)";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, vo.getGenreNo());
+				ps.setString(2, vo.getTitle());
+				ps.setString(3, vo.getRunningTime());
+				ps.setString(4, vo.getSynop());
+				ps.setString(5, vo.getPoster());
+				ps.setString(6, vo.getStilcut());
+				ps.setString(7, vo.getUrl());
+				ps.setInt(8, vo.getPrice());
+				ps.setTimestamp(9, vo.getOpendate());
+				ps.setInt(10, vo.getAgeRate());
+				ps.setInt(11, vo.getDirectorNo1());
+				
+			}else {//감독이 2명일때
+				String sql="insert into movie(movieNo, genreNo, title, runningTime, synop, poster, stilCut,"
+						+ " URL, price,openDate, ageRate, directorNo1)"
+						+ " values(movie_seq.nextval,?,?,?,?,?,?,?,?,?,?,?);";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, vo.getGenreNo());
+				ps.setString(2, vo.getTitle());
+				ps.setString(3, vo.getRunningTime());
+				ps.setString(4, vo.getSynop());
+				ps.setString(5, vo.getPoster());
+				ps.setString(6, vo.getStilcut());
+				ps.setString(7, vo.getUrl());
+				ps.setInt(8, vo.getPrice());
+				ps.setTimestamp(9, vo.getOpendate());
+				ps.setInt(10, vo.getAgeRate());
+				ps.setInt(11, vo.getDirectorNo1());
+				ps.setInt(12, vo.getDirectorNo2());
+			}
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("영화 저장 결과 cnt="+cnt+",매개변수 vo="+vo);
+			return cnt;
+			
+		}finally {
+			pool.dbClose(ps, con);;
+		}
+	}//insertMovie
+	
+	
+	/**
+	 * 영화 검색
+	 * @param no
+	 * @return
+	 * @throws SQLException 
+	 */
+	public MovieVO selectMovieByNo(String title) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = pool.getConnection();
+			String sql = "select * from movie where title=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, title);
+			
+			rs=ps.executeQuery();
+			MovieVO vo = null;
+			
+			if(rs.next()) {
+				int movieNo = rs.getInt("movieNo");
+				int genreNo = rs.getInt("genreNo");
+				String runningTime = rs.getString("runningTime");
+				String synop = rs.getString("synop");
+				String poster = rs.getString("poster");
+				String stilcut = rs.getString("stilcut");
+				String url = rs.getString("url");
+				int price = rs.getInt("price");
+				Timestamp opendate = rs.getTimestamp("opendate");
+				int ageRate = rs.getInt("ageRate");
+				Timestamp regdate  = rs.getTimestamp("regdate");
+				int directorNo1 = rs.getInt("directorNo1");
+				int directorNo2 = rs.getInt("directorNo2");
+				String movieStatus = rs.getString("movieStatus");				
+				
+				vo = new MovieVO(movieNo, genreNo, title, runningTime, synop, poster, url, 
+						price, opendate, ageRate, regdate, directorNo1, directorNo2, movieStatus, stilcut);
+			}
+			System.out.println("영화 단건 검색결과 vo="+vo+",매개변수 title="+title);
+			return vo;
+			
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	
 }

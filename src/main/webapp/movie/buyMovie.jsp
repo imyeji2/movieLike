@@ -1,3 +1,8 @@
+<%@page import="com.semi.member.model.UserVO"%>
+<%@page import="com.semi.member.model.UserService"%>
+<%@page import="com.semi.payHistory.model.PayHistoryService"%>
+<%@page import="com.semi.movie.model.MovieVO"%>
+<%@page import="com.semi.movie.model.MovieService"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.semi.point.model.PointService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -56,32 +61,47 @@
 
 <body>
 	<%
-	String no = request.getParameter("no");
-	String price = request.getParameter("price");
-	String userid = request.getParameter("userid");
+		String no = request.getParameter("no");
+		String userid = request.getParameter("userid");
+		
+		MovieService movieService = new MovieService();
+		UserService userService = new UserService();
+		MovieVO vo = null;
+		UserVO userVo = null;
+		try{
+		vo = movieService.selectByMovieNo(Integer.parseInt(no));
+		 userVo = userService.selectUserByUserId(userid);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
 	%>
 	<div class = "refundMain">
 		<div>
-		<h1 class = "refundH1">&nbsp;환불 페이지</h1>
+		<h1 class = "refundH1">&nbsp;구매 페이지</h1>
 		</div>
-			<form id="refundForm" action="refund_Ok.jsp" method="post">
+			<form id="refundForm" action="buyMovie_Ok.jsp" method="post">
 				<div>
 					<h1 class = "refundH1">아이디 : <%=userid%></h1>
 				</div>
+				<div>
+					<h1 class = "refundH1">영화 : <%=vo.getTitle()%></h1>
+				</div>
 				<div id = "textbox">
 					<div class="form-floating mb-3">
-						  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="no" value="<%=no%>" disabled>
-						  <label for="floatingInput">구매 번호</label>
+						  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="<%=userVo.getPoint()%>" disabled>
+						  <label for="floatingInput">보유금액</label>
 					</div>
 					<div class="form-floating">
-						  <input type="email" class="form-control" id="floatingPassword" placeholder="Password" name="price"value="<%=price%> 원 " disabled>
-						  <label for="floatingPassword">환불 가격</label>
+						  <input type="email" class="form-control" id="floatingPassword" placeholder="Password" name="price"value="<%=vo.getPrice()%> 원 " disabled>
+						  <label for="floatingPassword">영화 가격</label>
 					</div>
 					</div>
 				<div>
-					<button type="submit" class="btn btn-success">환불하기</button>
+					<button type="submit" class="btn btn-success">구입하기</button>
 					<button type="button" class="btn btn-danger" name="quit">취소</button>
 				</div>
+				<input type = "hidden" value="no" name = "no">
 			</form>
 		</div>
 </body>

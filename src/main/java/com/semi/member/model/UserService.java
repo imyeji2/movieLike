@@ -1,6 +1,7 @@
 package com.semi.member.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserService {
 	private UserDAO dao;
@@ -27,5 +28,11 @@ public class UserService {
 	}
 	public int checkLogin(String userId, String pwd) throws SQLException {
 		return dao.checkLogin(userId, pwd);
+	}
+	public List<UserVO> selectAll(String keyword, String condition) throws SQLException{
+		return dao.selectAll(keyword, condition);
+	}
+	public UserVO selectUserByUserId(String userid) throws SQLException {
+		return dao.selectUserByUserId(userid);
 	}
 }
