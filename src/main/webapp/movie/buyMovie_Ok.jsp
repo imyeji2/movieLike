@@ -11,7 +11,7 @@
 </head>
 <body>
 <%
-	String userid = (String)session.getAttribute("userid");
+String userid = request.getParameter("userid");
 	String no = request.getParameter("no");
 	PayHistoryService payService = new PayHistoryService();
 	try{

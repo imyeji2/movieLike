@@ -14,4 +14,7 @@ public class ReviewService {
 	public Map<ReviewVO,String> selectByUserId(String userid) throws SQLException{
 		return reviewDao.selectByUserId(userid);
 	}
+	public List<ReviewVO> selectByMovieNo(int movieNo) throws SQLException{
+		return reviewDao.selectByMovieNo(movieNo);
+	}
 }

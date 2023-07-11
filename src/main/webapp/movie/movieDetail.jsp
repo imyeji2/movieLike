@@ -1,3 +1,7 @@
+<%@page import="com.semi.pick.PickVO"%>
+<%@page import="com.semi.pick.PickService"%>
+<%@page import="com.semi.review.model.ReviewVO"%>
+<%@page import="com.semi.review.model.ReviewService"%>
 <%@page import="com.semi.director.model.DirectorService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -26,11 +30,18 @@
 	ActorService actorService = new ActorService();
 	MovieService movieService = new MovieService();
 	DirectorService directorService = new DirectorService();
+	ReviewService reviewService = new ReviewService();
+	PickService pickService = new PickService();
+	
 	MovieVO movieVo = null;
 	List<CastingVO> CastingList= null;
+	List<ReviewVO> reviewList = null;
+	List<PickVO> pickList = null;
 	try{
 		movieVo = movieService.selectByMovieNo(Integer.parseInt(movieNo));
 		CastingList = castingService.selectCastingByMovieNo(Integer.parseInt(movieNo));
+		reviewList = reviewService.selectByMovieNo(Integer.parseInt(movieNo));
+		pickList = pickService.selectPick(userid);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -66,6 +77,12 @@
 		content="";
 	}
 	
+	boolean isPick;
+	
+	
+	
+	
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -75,6 +92,7 @@ $(function(){
 		var param = $('#buy_movie').val();
 		window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
 	});
+	
 })
 </script>
    

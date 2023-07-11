@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -53,6 +54,40 @@ public class ReviewDAO {
 			}
 			System.out.println("리뷰 조회 결과 map = " + map + "매개변수 userid = " + userid);
 			return map;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	public List<ReviewVO> selectByMovieNo(int movieNo) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ReviewVO> list = new ArrayList<>();
+		try {
+			con = pool.getConnection();
+			String sql = "select * from review where movieno = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, movieNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				ReviewVO vo = new ReviewVO();
+				vo.setReviewNo(rs.getInt("reviewno"));
+				vo.setMovieNo(rs.getInt("movieno"));
+				vo.setUserId(rs.getString("userid"));
+				vo.setComments(rs.getString("comments"));
+				vo.setLickCount(rs.getInt("likeCount"));
+				vo.setGroupNo(rs.getInt("groupno"));
+				vo.setStep(rs.getInt("step"));
+				vo.setSortNo(rs.getInt("sortno"));
+				vo.setViews(rs.getInt("views"));
+				vo.setScore(rs.getInt("score"));
+				vo.setReviewStatus(rs.getString("reviewstatus"));
+				
+				list.add(vo);
+			}
+			System.out.println("영화번호로 리뷰조회 결과 list.size = " + list.size() + "매개변수 movieNo = " + movieNo);
+			return list;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
