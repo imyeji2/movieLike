@@ -38,7 +38,7 @@ public class BoardDAO {
 			ps.setString(2, vo.getBoardTitle());
 			ps.setString(3, vo.getBoardContent());
 			ps.setString(4, vo.getBoardCategory());
-			ps.setString(4, vo.getBoardStatus());
+			ps.setString(5, vo.getBoardStatus());
 			
 			int cnt = ps.executeUpdate();
 			System.out.println("게시글 작성 성공, cnt = " + cnt + ", 매개변수 vo = " + vo);
@@ -51,13 +51,13 @@ public class BoardDAO {
 	
 	
 	/**
-	 * 게시글 전체 조회 메서드
+	 * 게시글 제목으로 검색 메서드
 	 * @param keyword
 	 * @param condition
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<BoardVO> selectAll(String keyword, String condition) throws SQLException{
+	public List<BoardVO> selectAll(String keyword) throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -66,16 +66,12 @@ public class BoardDAO {
 		try {
 			con=pool.getConnection();
 
-			String sql="select * from board";
-			if(keyword != null && !keyword.isEmpty()) {
-				sql+=" where "+condition+" like '%' || ? || '%'";
-			}
-			sql += " order by no desc";
+			String sql="select * from board"
+				+ " where boardTitle like '%' || ? || '%'"
+				+ " order by boardNo desc";
 			ps=con.prepareStatement(sql);
-
-			if(keyword != null && !keyword.isEmpty()) {
 				ps.setString(1, keyword);
-			}
+			
 			
 			rs=ps.executeQuery();
 			while(rs.next()) {
@@ -94,7 +90,7 @@ public class BoardDAO {
 				list.add(vo);
 			}
 			System.out.println("게시글 전체 조회 결과, list.size="+list.size()
-				+", 매개변수 keyword="+keyword+", condition="+condition);
+				+", 매개변수 keyword="+keyword);
 
 			return list;
 		}finally {
