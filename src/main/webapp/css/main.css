@@ -107,6 +107,7 @@ header li{
    line-height: 24px;
    border: 0px;
    outline: none;
+   color:#fff;
 }
 
 .login_btn, .logout_btn, .mypage{

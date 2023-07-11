@@ -135,7 +135,7 @@ public class MovieListDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<MovieListVO> selectMovieByTitle(String title) throws SQLException {
+	public List<MovieListVO> selectMovieByTitle(String serch) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -145,11 +145,11 @@ public class MovieListDAO {
 			String sql = "select * from movie m"
 					+ " left join genre g"
 					+ " on m.genreNo = g.genreNo"
-					+ " where m.title=?"
+					+ " where m.title like '%'||?||'%'"
 					+ " order by m.regdate desc";
 			
 			ps=con.prepareStatement(sql);
-			ps.setString(1, title);
+			ps.setString(1, serch);
 			
 			List<MovieListVO> list = new ArrayList<MovieListVO>();
 			MovieListVO vo = null;
@@ -159,6 +159,7 @@ public class MovieListDAO {
 			while(rs.next()) {
 				int movieNo = rs.getInt("movieNo");
 				int genreNo = rs.getInt("genreNo");
+				String title = rs.getString("title");
 				String runningTime = rs.getString("runningTime");
 				String synop = rs.getString("synop");
 				String poster = rs.getString("poster");

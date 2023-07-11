@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/DCSS/login.css" >
 
 <title>무비라이크-영화를 좋아하는 사람들을 위한 무비 라이크</title>
+
 </head>
 <body>
  <div>
@@ -53,9 +54,23 @@
 				<div class="serch_img f_left">
 					<img src="<%=request.getContextPath()%>/images/serch.svg" alt="검색이미지">
 				</div>
-				<form name="serch" method="">
+				
+				<%				
+					String cookieCheck = request.getHeader("Cookie");
+					String serchTxt="";
+					if(cookieCheck != null) {
+						Cookie[] cookies = request.getCookies();
+					    for(Cookie cookie : cookies) {
+					    	if(cookie.getName().equals("serchText")){
+					    		serchTxt = cookie.getValue();
+					    	}
+					    }
+					}
+				%>
+				<form name="serchFrm" method="get" action="<%=request.getContextPath()%>/movie/addSerchCookie.jsp">
 					<div class="header_serch f_left">
-						<input type="text" class="serch_txt" id="serch" placeholder="영화를 검색해보세요">
+						<input type="text" class="serch_txt" name="serch" 
+								placeholder="영화를 검색해보세요" value="<%=serchTxt%>">
 					</div>
 				</form>
 			</div><!-- serch_box -->

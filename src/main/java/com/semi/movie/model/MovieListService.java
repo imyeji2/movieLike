@@ -19,8 +19,8 @@ public class MovieListService {
 		return dao.selectMovieByGenre(genreNo);
 	}
 	
-	public List<MovieListVO> selectMovieByTitle(String title) throws SQLException {
-		return dao.selectMovieByTitle(title);
+	public List<MovieListVO> selectMovieByTitle(String serch) throws SQLException {
+		return dao.selectMovieByTitle(serch);
 	}
 	
 }
