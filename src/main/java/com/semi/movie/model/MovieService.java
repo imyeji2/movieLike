@@ -2,6 +2,7 @@ package com.semi.movie.model;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public class MovieService {
 	private MovieDAO movieDao;
@@ -24,5 +25,8 @@ public class MovieService {
 	
 	public MovieVO selectMovieByNo(String title) throws SQLException {
 		return movieDao.selectMovieByNo(title);
+	}
+	public Map<String, Integer> getRankByCategory() throws SQLException {
+		return movieDao.getRankByCategory();
 	}
 }

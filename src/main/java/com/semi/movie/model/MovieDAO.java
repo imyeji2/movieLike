@@ -6,9 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.semi.db.ConnectionPoolMgr;
+import com.semi.genre.model.GenreService;
 
 public class MovieDAO {
 	private ConnectionPoolMgr pool;
@@ -226,6 +229,39 @@ public class MovieDAO {
 			}
 			System.out.println("영화 단건 검색결과 vo="+vo+",매개변수 title="+title);
 			return vo;
+			
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	/**
+	 * 관리자 통계탭에서 뿌려줄 카테고리별 매출
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Integer> getRankByCategory() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Map<String, Integer> map = new HashMap();
+		try {
+			con = pool.getConnection();
+			String sql = "select count(p.movieno),g.genreName"
+					+ " from payHistory p,"
+					+ "     movie m,"
+					+ "     genre g"
+					+ " where p.movieno=m.movieno"
+					+ "      and m.genreno = g.genreno"
+					+ "      group by g.genrename";
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				map.put(rs.getString("genreName"), rs.getInt("count(p.movieno)"));
+			}
+			
+			System.out.println("장르별 매출 조회 결과 map : " + map);
+			return map;
 			
 		}finally {
 			pool.dbClose(rs, ps, con);

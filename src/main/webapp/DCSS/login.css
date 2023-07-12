@@ -127,7 +127,7 @@
 }
 
 .members .find a {
-	color: #888;
+	color: #888 !important;
 	font-size: 14px;
 	transition: all 0.15s;
 }

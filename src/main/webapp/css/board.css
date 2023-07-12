@@ -2,15 +2,6 @@
 
 /* 관리자페이지 - 공지사항/FAQ */
 #noticeList {
-
-
-	.content_box>select {
-		width:180px;
-	}
-	
-	.content_box>title_search {
-		width:250px;
-	}
 	
 	.top_btn {
 	    float: right;
@@ -33,18 +24,15 @@
 	    padding-top: 15px;
 	}
 	
-	.span_notice{
-	cursor: pointer;
-	}
-	
 	.content_box {
 		background: white;
 		height: 700px;
 	}
 	
-	.input-group.mb-3 {
+/* 	.input-group.mb-3 {
 		width: 600px;
-	}
+		margin: 0 auto;
+	} */
 	
 	.search_result {
 		height: 42px;
@@ -123,7 +111,6 @@
 	    color: black;
 	}	
 	
-	
 }
 
 #noticeWrite {
@@ -154,12 +141,8 @@
 	
 	.top_text {
 		font-size: 20px;
-		padding-left: 25px;
+		padding-left: 15px;
 	    padding-top: 15px;
-	}
-	
-	.span_notice{
-		cursor: pointer;
 	}
 	
 	.content_box {

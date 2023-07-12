@@ -1,10 +1,43 @@
+<%@page import="com.semi.board.model.BoardVO"%>
+<%@page import="com.semi.board.model.BoardDAO"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
 
 <body>
+	<%
+		String boardNo = request.getParameter("boardNo");
+		if(boardNo==null || boardNo.isEmpty()){ %>
+			<script type="text/javascript">
+				alert('잘못된 url입니다.');
+				location.href="noticeList.jsp";
+			</script>
+		
+		<%	return;
+		}
+		
+		BoardDAO boardDao = new BoardDAO();
+		BoardVO vo = null;
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try{
+			vo = boardDao.selectByNo(Integer.parseInt(boardNo));
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		String boardContent = vo.getBoardContent();
+		if(boardContent!=null){ 
+			boardContent=boardContent.replace("\r\n", "<br>");
+		}else{
+			boardContent = "";
+		}
+		
+	%>
 	<section id="noticeDetail">
 			<article id="detail_content">
 				<h2>공지/FAQ</h2>
@@ -26,11 +59,12 @@
 					
 						<div class="ed_btn">
 							<div class="ed_btn1">
-								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
+								<button class="btn btn-outline-secondary" type="button" id="button-delete">
+									<a href='noticeDelete.jsp?boardNo=<%=boardNo%>'>삭제</button>
 							</div>
 							<div class="ed_btn2">
 								<button class="btn btn-outline-secondary" type="button" id="button-edit" >
-									<a href="<%=request.getContextPath()%>/board/noticeEdit.jsp">수정</a>
+									<a href='noticeWrite.jsp?boardNo=<%=boardNo%>'>수정</a>
 								</button>
 							</div>
 						</div>
@@ -42,29 +76,29 @@
 						</colgroup>
 							<tr>
 						      <th scope="col">번호</th>
-						      <td scope="col">1</td>
+						      <td scope="col"><%=vo.getBoardNo()%></td>
 						    </tr>
 							<tr>
 						      <th>제목</th>
-						      <td>공지</td>
+						      <td><%=vo.getBoardTitle() %></td>
 						    </tr>
 							<tr>
 						      <th>작성자</th>
-						      <td>나다미</td>
+						      <td><%=vo.getAdminID() %></td>
 						    </tr>
 							<tr>
 						      <th>조회수</th>
-						      <td>128</td>
+						      <td><%=vo.getBoardView() %></td>
 						    </tr>
 							<tr>
 						      <th>등록일</th>
-						      <td>2023-07-10</td>
+						      <td><%=sdf.format(vo.getBoardRegdate())%></td>
 						    </tr>
 							<tr>
 							<div class="in_text">
 						      <th style = "padding-top : 25px ">내용</th>
 						     </div>
-						      <td>공지합니다.<br>rhdwlrhdwl<br>rhdwlrhdwl<br>rhdwlrhdwl</td>
+						      <td><%=vo.getBoardContent() %></td>
 						    </tr>
 						</table>
 					</div>

@@ -10,6 +10,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
 
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/user.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -19,19 +20,24 @@
 		},function(){
 			$(this).css('background','');
 		});
-		
+
 		//수정버튼
-		$('.button-edit').click(function(){
+		$('#button-edit').click(function(){
 			// 체크된 체크박스의 값을 가져옴
 			var checkedIds = [];
 			$('input[type="checkbox"]:checked').each(function() {
 				checkedIds.push($(this).closest('tr').find('.user-id').text()); // 사용자 ID를 가져옴
 			});
 			
-			if(checkedIds.length === 0 || checkedIds.length > 1) {
+			
+			if(checkedIds.length === 0) {
+				alert('수정할 회원을 선택해주세요.');
+				return;
+			}else if(checkedIds.length > 1) {
 				alert('한명의 회원만 수정 가능합니다.');
 				return;
 			}
+			
 		});
 		
 		//삭제 버튼
@@ -44,6 +50,9 @@
 			
 			if(checkedIds.length === 0) {
 				alert('탈퇴할 회원을 선택해주세요.');
+				return;
+			}else if(checkedIds.length > 1) {
+				alert('한명의 회원만 탈퇴 가능합니다.');
 				return;
 			}
 			
@@ -63,6 +72,9 @@
 				document.body.appendChild(form);
 				form.submit();
 			}
+			
+
+			
 		});
 			
 	});
@@ -248,6 +260,13 @@
 							</nav>
 						</div>
 				</div>
+				<form name = "editUserBox" method="post" action="memEdit_ok.jsp">
+					<div class = "outline">
+						<div class "popcorn">
+						</div>
+						
+					</div>
+				</form>
 			</article>
 			
 	</section> 

@@ -1,3 +1,7 @@
+<%@page import="com.semi.review.model.ReviewVO2"%>
+<%@page import="com.semi.review.model.ReviewDAO2"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,8 +16,8 @@
 		});
 		
 		$('#button-delete').click(function(){
-			if(confirm('정말 삭제하시겠습니까?')){
-				return false;
+			if(confirm("정말 삭제하시겠습니까?")){
+				$('form').submit(); 
 			}
 		});
 			
@@ -23,15 +27,15 @@
 
 <body>
 
-<%-- <%
+<%
 request.setCharacterEncoding("utf-8");
 	String keyword=request.getParameter("searchKeyword");
 	String condition=request.getParameter("searchCondition");
 	
-	BoardDAO boardDao = new BoardDAO();
-	List<BoardVO> list = null;
+	ReviewDAO2 reviewDao2 = new ReviewDAO2();
+	List<ReviewVO2>list2 = null;
 	try {
-		list = boardDao.selectAll(keyword, condition);
+		list2 = reviewDao2.selectAll(keyword, condition);
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
@@ -39,8 +43,7 @@ request.setCharacterEncoding("utf-8");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	//검색창(keyword) null이면 공백으로 처리
-	if (keyword == null)
-		keyword = "";
+	if (keyword == null) keyword = "";
 
 	//페이징 처리
 	int currentPage = 1; //현재 페이지
@@ -50,7 +53,7 @@ request.setCharacterEncoding("utf-8");
 	}
 
 	//[1] 현재 페이지와 무관한 변수
-	int totalRecord = list.size(); //총 레코드 개수
+	int totalRecord = list2.size(); //총 레코드 개수
 	int pageSize = 10; //한 페이지에 보여주 레코드 수
 	int blockSize = 5; //한 블럭에 보여줄 페이지 수
 	int totalPage = (int) Math.ceil((float) totalRecord / pageSize); //총 페이지 수
@@ -64,7 +67,7 @@ request.setCharacterEncoding("utf-8");
 
 	//페이지당 글 리스트 시작 번호
 	int num = totalRecord - curPos;
-%> --%>
+%>
 
 	<section id="noticeList">
 			<article id="notice_content">
@@ -79,94 +82,90 @@ request.setCharacterEncoding("utf-8");
 
 						
 					<div class="content_box">
+					
 						<div class="search_result">           
-							<%-- <%if(keyword!=null && !keyword.isEmpty()){%>
-							   <p> 검색어: <%=keyword %>, <%=list.size() %>건 검색 되었습니다.</p> 
-							<%} %> --%>
 						</div>
 						
 						<div class="search_input">
-							<select class="form-select" aria-label="Default select example">
-							  <option value="1">영화</option>
-							  <option value="2">카테고리</option>
-							  <option value="3">작성자</option>
+							<select class="searchCondition" aria-label="Default select example">
+							  <option value="movie" 
+							  	<%if("movie".equals(condition)){ %>
+				            		selected="selected" 
+				            	<%} %>
+				            	>영화 제목</option>
+							  <option value="category"
+							  	<%if("category".equals(condition)){ %>
+				            		selected="selected" 
+				            	<%} %>
+				            	>리뷰 내용</option>
+							  <option value="writer"
+							  	<%if("writer".equals(condition)){ %>
+				            		selected="selected" 
+				            	<%} %>
+				            	>작성자</option>
 							</select>
 							
 							<div class="input-group" style="width:370px">
 							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
-							  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							
 							<div class="ed_btn">
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
 							</div>
 						</div>
-						
-						<table class="table table-bordered">
-						  <colgroup>
-						      <col style="width:5%;" />
-						      <col style="width:5%;" />
-						      <col style="width:30%;" />
-						      <col style="width:30%;" />      
-						      <col style="width:15%;" />      
-						      <col style="width:15%;" />      
-						   </colgroup>
-						  <thead class="table-light">
-						    <tr style="text-align: center">
-						      <th scope="col">선택</th>
-						      <th scope="col">번호</th>
-						      <th scope="col">영화</th>
-						      <th scope="col">리뷰</th>
-						      <th scope="col">작성자</th>
-						      <th scope="col">등록일</th>
-						    </tr>
-						  </thead>
-						<tbody>
-							<tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<th scope="row">1</th>
-								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">영화제목</a></td>
-								<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">후기입니다..</td>
-								<td>ㅇㅇㅇ</td>
-								<td>2023-07-05</td>
-							</tr> 
-							<%-- <%
-							if (list == null || list.isEmpty()) {
-							%>
-							<tr>
-								<td colspan="6" class="align_center">글이 존재하지 않습니다.</td>
-							</tr>
-							<%
-							} else {
-							%>
-							<!--게시판 내용 반복문 시작  -->
-							<%
-							//10번씩만 반복
-							for (int i = 0; i < pageSize; i++) {
-								if (num < 1)
-									break;
-
-								BoardVO vo = list.get(curPos++);
-								num--;
-							%>
-							<tr style="text-align: center">
-								<th><input type="checkbox"></th>
-								<td><%=vo.getBoardNo()%></td>
-								<td style="text-align: left"><a
-									href="countUpdate.jsp?no=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
-								</td>
-								<td><%=sdf.format(vo.getBoardRegdate())%></td>
-								<td><%=vo.getBoardStatus()%></td>
-							</tr>
-							<%
-							} //for
-							%>
-							<!--반복처리 끝  -->
-							<%
-							} //if
-							%> --%>
-						</tbody>
-					</table>
+						<div class="search_result">           
+							<%if(keyword!=null && !keyword.isEmpty()){%>
+							   <p> 검색어: <%=keyword %>, <%=list2.size() %>건 검색 되었습니다.</p> 
+							<%} %>
+						</div>
+						<form name="delFrm" method="post" action="reviewDelete.jsp">
+							<table class="table table-bordered">
+							  <colgroup>
+							      <col style="width:5%;" />
+							      <col style="width:5%;" />
+							      <col style="width:30%;" />
+							      <col style="width:30%;" />      
+							      <col style="width:15%;" />      
+							      <col style="width:15%;" />      
+							   </colgroup>
+							  <thead class="table-light">
+							    <tr style="text-align: center">
+							      <th scope="col">선택</th>
+							      <th scope="col">번호</th>
+							      <th scope="col">영화 제목</th>
+							      <th scope="col">리뷰 내용</th>
+							      <th scope="col">작성자</th>
+							      <th scope="col">등록일</th>
+							    </tr>
+							  </thead>
+							<tbody>
+								
+								<!--게시판 내용 반복문 시작  -->
+								<%
+								//10번씩 반복
+								for (int i = 0; i < pageSize; i++) {
+									if (num < 1) break;
+	
+									ReviewVO2 vo2 = list2.get(curPos++);
+									num--;
+								%>
+								<tr style="text-align: center">
+									<th><input type="checkbox" name="chk"></th>
+									<th scope="row"><%=vo2.getReviewNo()%></th>
+									<td style="text-align: left; text-indent: 15px">
+										<a href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>"><%=vo2.getTitle()%></a></td>
+									<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">후기입니다..</a></td>
+									<td>ㅇㅇㅇ</td>
+									<td>2023-07-05</td>
+								</tr> 
+								<%
+								} //for
+								%>
+								<!--반복처리 끝  -->
+								</tbody>
+							</table>
+						</form>
 						<div class="page_box">
 							<nav aria-label="page">
 								<ul class="pagination">

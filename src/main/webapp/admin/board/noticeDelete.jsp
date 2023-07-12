@@ -21,12 +21,11 @@
 		BoardService service = new BoardService();
 		int cnt=0;
 		for(int i=0; i<arrNo.length;i++){
-			BoardVO  vo = service.selectByNo(Integer.parseInt(arrNo[i]));
-
-			cnt= service.deleteBoard(Integer.parseInt(arrNo[i]));
+			/* BoardVO  vo = service.selectByNo(Integer.parseInt(arrNo[i])); */
 			
-       	    }
+			cnt= service.deleteBoard(Integer.parseInt(arrNo[i]));
 			reuslt++;
+       	}
 	
 		if(cnt>0){ %>
 			<script type="text/javascript">

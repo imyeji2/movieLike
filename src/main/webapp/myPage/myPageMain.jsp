@@ -23,7 +23,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/top.jsp"%>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type = "text/javascript">
 $(document).ready(function() {
@@ -61,8 +61,20 @@ $(document).ready(function() {
 			var param = $('#pop').val();
 			window.open('chargePopcorn.jsp?userid=' + param, '_blank', 'resizable=no,width=500,height=300');
 		});
+		$('#wrtBtn').click(function(){
+			var param = $('#writeBtn').val();
+			window.open('writeReview.jsp?' + param, '_blank', 'resizable=no,width=700,height=430');
+		});
+		$('#removeReview').click(function(){
+			if(!confirm('정말 리뷰를 삭제합니까?')){
+				return false;
+			}
+			var windowFeatures = "width=1,height=1,left=2800,top=2800,scrollbars=no,status=no,toolbar=no,menubar=no,location=no";
+			var param = $('#removeReviewVal').val();
+			window.open('deleteReview.jsp?' + param, '_blank', windowFeatures);
+		});
 	});
-	
+
 	
 	
 </script>
@@ -70,7 +82,7 @@ $(document).ready(function() {
   int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 0;
 %>
 <%
-	
+	request.setCharacterEncoding("utf-8");
 
 	String userid = (String)session.getAttribute("userId");
 
@@ -208,6 +220,14 @@ $(document).ready(function() {
 <%
 		String realUser = userVo.getUserId().split("@")[0];
 
+		/* 서다희 정보수정때 필요한 것 */
+		String userId = userVo.getUserId();
+		String name = userVo.getName();
+		String pwd = userVo.getPwd();
+		String gender = userVo.getGender();
+		String birth = userVo.getBirth();
+		
+		
 		DecimalFormat df = new DecimalFormat("#,###");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	%>
@@ -252,19 +272,22 @@ $(document).ready(function() {
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
 				            	PickVO PickVo = elem.getKey();
-				            	MovieVO title = elem.getValue();%>
-					<div class="card"">
-						<img src="../images/movie/poster/그시절, 우리가 좋아했던 소녀_포스터.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<h3 class="card-title" style="color: black;"><%=title.getTitle() %></h3>
-							<p class="card-text" style="color: black;">시놉시스가 들어갈 자리 입니다</p>
-							<a href="#" class="btn btn-primary">리뷰보러가기</a>
-						</div>
-					</div>
-					<%}
+				            	MovieVO movieVo = elem.getValue();%>
+								<a href="<%=request.getContextPath() %>/movie/movieDetail.jsp?no=<%=movieVo.getMovieNo() %>">
+									<div class="movieItemBox"><!-- 리스트 중 1개  -->
+										<div><!-- 기본box -->
+											<div class="movieImg img-thumbnail">
+												<img src="../images/movie/poster/<%=movieVo.getPoster()%>">
+												<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
+													<p class="movieItemBox_hover_tit"><%=movieVo.getTitle() %></p>
+												</div><!-- hover box -->	
+											</div>
+										</div><!-- 기본box -->
+										<p class="movieItemBox_info1 text-truncate"><%=movieVo.getTitle() %></p>
+									</div><!-- 리스트 중 1개 -->
+								</a>
+							<%}
 						}%>
-
 					<!-- 페이징 처리 -->
 					<div class="pagination" style = "justify-content: center;">
 						<% if (jjimPage > 1) { %>
@@ -292,6 +315,7 @@ $(document).ready(function() {
 						      <th>결제번호</th>
 						      <th>영화제목</th>
 						      <th>리뷰관리</th>
+						      
 					    </tr>
 						    <% for (Entry<PayHistoryVO, String> elem : historyPageData) {
 						          PayHistoryVO vo = elem.getKey();
@@ -301,10 +325,12 @@ $(document).ready(function() {
 								      <td><%= sdf.format(vo.getHisRegdate()) %></td>
 								      <td><%=vo.getHisNo() %></td>
 								      <td><%=title%></td>
-								      <%if(reviewService.isReview(vo.getMovieNo(), userid)){%>
-								      <td> <button type="submit" class="btn btn-success">리뷰작성하기</button></td>
+								      <%if(!reviewService.isReview(vo.getMovieNo(), userid)){%>
+								      <input type="hidden" id="writeBtn" value="userid=<%=userVo.getUserId()%>&movieNo=<%=vo.getMovieNo()%>">
+								      <td> <button type="button" id="wrtBtn" class="btn btn-success">리뷰작성하기</button></td>
 								      <%}else{%>
-								      <td><button type="button" class="btn btn-light">취소</button></td>
+								      <input type="hidden" id="watchBtn" value="<%=vo.getMovieNo()%>">
+								      <td><button type="button"  id="wtcBtn" class="btn btn-light">리뷰보러가기</button></td>
 								      <%} %>
 							    </tr>
 						    <% } %>
@@ -386,6 +412,7 @@ $(document).ready(function() {
 					<tr>
 						<th>영화이름</th>
 						<th>리뷰내용(간소화)</th>
+						<th>관리</th>
 					</tr>
 					<%
 						if(reviewMap != null && !reviewMap.isEmpty()){
@@ -395,6 +422,8 @@ $(document).ready(function() {
 					<tr>
 						<td><%=movieTitle %></td>
 						<td><%=vo.getComments() %></td>
+						<input type = "hidden" id = "removeReviewVal" value="reviewNo=<%=vo.getReviewNo()%>">
+						<td><button type="button" id="removeReview" class="btn btn-danger">리뷰삭제</button></td>
 					</tr>
 					<%}
 						}%>

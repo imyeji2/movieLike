@@ -20,5 +20,8 @@ public class PointService {
 	public int insertPoint(PointVO vo) throws SQLException {
 		return pointDao.insertPoint(vo);
 	}
+	public int totalPrice() throws SQLException {
+		return pointDao.totalPrice();
+	}
 	
 }

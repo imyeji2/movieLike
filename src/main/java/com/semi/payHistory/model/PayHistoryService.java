@@ -20,4 +20,10 @@ public class PayHistoryService {
 	public int insertPayHistory(int movieNo, String userid) throws SQLException {
 		return pointHistoryDao.insertPayHistory(movieNo, userid);
 	}
+	public Map<String, Integer> getRankByTitle() throws SQLException {
+		return pointHistoryDao.getRankByTitle();
+	}
+	public int totalMovieIncome() throws SQLException {
+		return pointHistoryDao.totalMovieIncome();
+	}
 }
