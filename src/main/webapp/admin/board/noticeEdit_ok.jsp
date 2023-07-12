@@ -13,9 +13,8 @@
 	String boardNo = request.getParameter("boardNo");
 	String boardTitle = request.getParameter("boardTitle");
 	String adminID = request.getParameter("adminID");
-	String boardView = request.getParameter("boardView");
+	String boardCategory = request.getParameter("boardCategory");
 	String boardContent = request.getParameter("boardContent");
-	/* String boardRegdate = request.getParameter("boardRegdate"); */
 	
 	BoardDAO boardDao = new BoardDAO();
 	BoardVO vo = new BoardVO();
@@ -23,9 +22,8 @@
 	vo.setBoardNo(Integer.parseInt(boardNo));
 	vo.setBoardTitle(boardTitle);
 	vo.setAdminID(adminID);
-	vo.setBoardView(Integer.parseInt(boardView));
+	vo.setBoardCategory(boardCategory);
 	vo.setBoardContent(boardContent);
-	/* vo.setBoardRegdate(Timestamp); */
 	
 	try{
 		int cnt = boardDao.updateBoard(vo);

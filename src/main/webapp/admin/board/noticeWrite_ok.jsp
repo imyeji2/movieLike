@@ -10,33 +10,31 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	
-	String boardNo = request.getParameter("boardNo");
 	String boardTitle = request.getParameter("boardTitle");
 	String adminID = request.getParameter("adminID");
-	String boardView = request.getParameter("boardView");
 	String boardContent = request.getParameter("boardContent");
+	String boardStatus = request.getParameter("boardStatus");
 	
 	BoardDAO boardDao = new BoardDAO();
 	BoardVO vo = new BoardVO();
 	
-	vo.setBoardNo(Integer.parseInt(boardNo));
 	vo.setBoardTitle(boardTitle);
 	vo.setAdminID(adminID);
-	vo.setBoardView(Integer.parseInt(boardView));
 	vo.setBoardContent(boardContent);
+	vo.setBoardStatus(boardStatus);
 	
 	try{
 		int cnt = boardDao.insertBoard(vo);
 		
 		if(cnt>0){ %>
 			<script type="text/javascript">
-				alert("글 수정 완료");
-				location.href="noticeDetail.jsp";
+				alert("공지사항 등록 완료!");
+				location.href="noticeList.jsp";
 			</script>
 		<% }else{ %>
 			<script type="text/javascript">
-				alert("글 수정 실패");
-				location.href="noticeDetail.jsp";
+				alert("공지사항 등록 실패!");
+				location.href="noticeWrite.jsp";
 			</script>
 		<% }
 	}catch(SQLException e){

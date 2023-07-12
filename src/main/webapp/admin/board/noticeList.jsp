@@ -110,7 +110,7 @@
 	int num = totalRecord - curPos;
 %>
 <!-- <form name="notice_frm" action="noticeList.jsp"> -->
-	<section id="noticeList">
+	<section id="noticeList" style="margin: 0 auto">
 			<article id="notice_content">
 				<h2>공지/FAQ</h2>
 				
@@ -154,10 +154,11 @@
 							  <colgroup>
 							      <col style="width:6%;" />
 							      <col style="width:6%;" />
-							      <col style="width:50%;" />
-							      <col style="width:15%;" />      
-							      <col style="width:15%;" />      
+							      <col style="width:45%;" />
 							      <col style="width:12%;" />      
+							      <col style="width:15%;" />      
+							      <col style="width:10%;" />      
+							      <col style="width:10%;" />      
 							   </colgroup>
 							  <thead class="table-light">
 							    <tr style="text-align: center">
@@ -167,6 +168,7 @@
 							      <th scope="col">작성자</th>
 							      <th scope="col">등록일</th>
 							      <th scope="col">조회수</th>
+							      <th scope="col">상태</th>
 							    </tr>
 							  </thead>
 							<tbody>
@@ -193,6 +195,7 @@
 									<td><%=vo.getAdminID()%></td>
 									<td><%=sdf.format(vo.getBoardRegdate())%></td>
 									<td><%=vo.getBoardView()%></td>
+									<td><%=vo.getBoardStatus()%></td>
 								</tr>
 									<%
 									} //if
