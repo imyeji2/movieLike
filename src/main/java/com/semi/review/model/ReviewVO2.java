@@ -1,6 +1,6 @@
 package com.semi.review.model;
 
-public class ReviewVO {
+public class ReviewVO2 {
 	private int reviewNo;
 	private int	movieNo;
 	private String userId;
@@ -12,13 +12,14 @@ public class ReviewVO {
 	private int views;
 	private int score;
 	private String reviewStatus;
+	private String title;
 	
-	public ReviewVO() {
+	public ReviewVO2() {
 		super();
 	}
 
-	public ReviewVO(int reviewNo, int movieNo, String userId, String comments, int lickCount, int groupNo, int step,
-			int sortNo, int views, int score, String reviewStatus) {
+	public ReviewVO2(int reviewNo, int movieNo, String userId, String comments, int lickCount, int groupNo, int step,
+			int sortNo, int views, int score, String reviewStatus, String title) {
 		super();
 		this.reviewNo = reviewNo;
 		this.movieNo = movieNo;
@@ -31,6 +32,7 @@ public class ReviewVO {
 		this.views = views;
 		this.score = score;
 		this.reviewStatus = reviewStatus;
+		this.title = title;
 	}
 
 	public int getReviewNo() {
@@ -39,6 +41,14 @@ public class ReviewVO {
 
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getMovieNo() {
@@ -123,9 +133,9 @@ public class ReviewVO {
 
 	@Override
 	public String toString() {
-		return "ReviewVO [reviewNo=" + reviewNo + ", movieNo=" + movieNo + ", userId=" + userId + ", comments="
+		return "ReviewVO2 [reviewNo=" + reviewNo + ", movieNo=" + movieNo + ", userId=" + userId + ", comments="
 				+ comments + ", lickCount=" + lickCount + ", groupNo=" + groupNo + ", step=" + step + ", sortNo="
-				+ sortNo + ", views=" + views + ", score=" + score + ", reviewStatus=" + reviewStatus +  "]";
+				+ sortNo + ", views=" + views + ", score=" + score + ", reviewStatus=" + reviewStatus + ", title" + title + "]";
 	}
 
 	

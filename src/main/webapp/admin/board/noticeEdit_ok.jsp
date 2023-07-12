@@ -15,6 +15,7 @@
 	String adminID = request.getParameter("adminID");
 	String boardView = request.getParameter("boardView");
 	String boardContent = request.getParameter("boardContent");
+	/* String boardRegdate = request.getParameter("boardRegdate"); */
 	
 	BoardDAO boardDao = new BoardDAO();
 	BoardVO vo = new BoardVO();
@@ -24,19 +25,20 @@
 	vo.setAdminID(adminID);
 	vo.setBoardView(Integer.parseInt(boardView));
 	vo.setBoardContent(boardContent);
+	/* vo.setBoardRegdate(Timestamp); */
 	
 	try{
-		int cnt = boardDao.insertBoard(vo);
+		int cnt = boardDao.updateBoard(vo);
 		
 		if(cnt>0){ %>
 			<script type="text/javascript">
 				alert("글 수정 완료");
-				location.href="noticeDetail.jsp";
+				location.href="noticeDetail.jsp?boardNo=<%=boardNo %>";
 			</script>
 		<% }else{ %>
 			<script type="text/javascript">
 				alert("글 수정 실패");
-				location.href="noticeDetail.jsp";
+				location.href="noticeDetail.jsp?boardNo=<%=boardNo %>";
 			</script>
 		<% }
 	}catch(SQLException e){

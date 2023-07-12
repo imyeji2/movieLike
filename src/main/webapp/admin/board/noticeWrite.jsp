@@ -1,31 +1,63 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.board.model.BoardVO"%>
+<%@page import="com.semi.board.model.BoardDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
 
 <%
-   String boardNo = request.getParameter("boardNo");
-   boolean isEdit=false;
+
+	String boardNo=request.getParameter("boardNo");
+	boolean isEdit=false;
+	String pageTitle="", btLabel="";
+	if(boardNo!=null && !boardNo.isEmpty()){
+		isEdit=true; 
+		
+		pageTitle="수정하기";
+		btLabel="수정";
+	}else{ 
+		pageTitle="등록하기";
+		btLabel="등록";		
+	}	
+	
+	String boardTitle="", adminId="", boardContent="";
+	if(isEdit){
+		BoardDAO boardDao = new BoardDAO();
+		
+		try{
+			BoardVO vo=boardDao.selectByNo(Integer.parseInt(boardNo));
+			
+			boardTitle=vo.getBoardTitle();
+			adminId=vo.getAdminID();
+			boardContent=vo.getBoardContent();		
+		}catch(SQLException e){
+			e.printStackTrace();
+		}			
+		
+		if(boardContent==null) boardContent="";
+	}
+	
 %>
 
 <script language="javascript" src="/semi/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
    $(function(){
+	  $('.text_title').focus(); 
+	   
       $('.top_btn').click(function(){
          location.href = 'noticeList.jsp';
       });
       
-      /* //등록 버튼을 눌렀을 때
       $('#submit').click(function(){
          $('.infobox').each(function(idx, item){
             if($(this).val().length < 1){
                alert($(this).prev().text() + '를 입력하세요');
                $(this).focus();
                event.preventDefault();
-               return false; //each를 탈출한다 (break 역할)
             }
          });
-      }); */
+      });
    });
    
 </script>
@@ -36,33 +68,33 @@
 </style>
 
 <body>
-   
+<div class="divForm" style="width:100%">
+<form name="frmWrite" method="post" 
+ 	<%if(!isEdit){ %> 
+         action="noticeWrite_ok.jsp"
+    <%   }else{ %>
+         action="noticeEdit_ok.jsp"
+    <%   }    %> >
    <section id="noticeWrite">
          <article id="detail_content">
             <h2>공지/FAQ</h2>
             
             <div class="top_btn">
-               <button type="button" class="btn btn-primary" >
-                  <a href="noticeList.jsp">등록하기</a></button>
+               <button type="button" id="submit" class="btn btn-primary" >
+                  <a href="noticeList.jsp"><%=btLabel %></a></button>
             </div>
             <div class="top_btn">
-               <button type="button" class="btn btn-primary" style="background:gray; border:solid 1px gray">
+               <button type="button" id="cancel" class="btn btn-primary" style="background:gray; border:solid 1px gray">
                   <a href="noticeList.jsp">취소하기</a></button>
             </div>
-            
-            <%-- <%if(!isEdit){ %> 
-               action="write_ok.jsp"
-            <%   }else{ %>
-               action="edit_ok.jsp"
-            <%   }    %> --%> 
             
             <div class="notice_box">
                <div class="top_box">
                   <div class="top_text">
-                     <span class="span_notice">공지사항 등록</span>
+                     <p>공지사항 > <%=pageTitle %></p> 
                   </div>         
                </div> 
-               
+               <input type="hidden" name="boardNo" value="<%=boardNo%>">
                
                <div class="content_box">
                   <div class="textDiv">
@@ -77,7 +109,7 @@
                      </div>
                   <div class="textarea_box">
                      <form action="" method="post">
-                        <textarea id="content" name="content" rows="40">
+                        <textarea id="content" class="infobox" name="content" rows="40">
                         <script>
 						$(function () {
 							CKEDITOR.replace('contents', {
@@ -95,8 +127,10 @@
                </table> 
             </div>
    </section> 
+   </form>
    </div><!-- admin_menu->aside, session 감싸는 div -->   
 </div><!-- admin_menu->wrap -->
+
 <script>
 
 CKEDITOR.replace( 'content', {

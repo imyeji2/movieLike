@@ -27,7 +27,7 @@
 			location.href = 'noticeWrite.jsp';
 		});
 		
-		$('#button-delete').click(function(){
+		/* $('#button-delete').click(function(){
 			if(confirm('정말 삭제하시겠습니까?')){
 				return false;
 			}
@@ -37,18 +37,30 @@
 			if(confirm("정말 삭제하시겠습니까?")){
 				$('form').submit(); 
 			}
+		}); */
+		
+		
+		$('#button-delete').click(function(){
+			var chkCount = $('input[name=chk]:checked').length; 
+			var chk = $('input[name=chk]:checked').attr('id');
+			if(chkCount<=0){
+				alert("수정할 항목을 선택해주세요");
+			}else{
+				if(confirm("정말 삭제하시겠습니까?")){
+					$('form').submit(); 
+				}
+			}
 		});
 			
 	});
+	
+	
 
 </script>
 <style>
-	form {
-    	width: 1215.35px;
-	}
 
 	section {
-		width: 100%;
+		width: 80%;
 	    padding: 40px 40px 20px 40px;
 	    box-sizing: border-box;
 	    margin: 0 auto;
@@ -97,7 +109,7 @@
 	//페이지당 글 리스트 시작 번호
 	int num = totalRecord - curPos;
 %>
-<form name="notice_frm" action="noticeList.jsp">
+<!-- <form name="notice_frm" action="noticeList.jsp"> -->
 	<section id="noticeList">
 			<article id="notice_content">
 				<h2>공지/FAQ</h2>
@@ -162,23 +174,29 @@
 								<!--게시판 내용 반복문 시작  -->
 								<%
 								//10번씩 반복
-								for (int i = 0; i < pageSize; i++) {
+								for (int i = 0; i < pageSize ; i++) {
 									if (num < 1) break;
 	
 									BoardVO vo = list.get(curPos++);
-									num--;
+									
+									if("notice".equals(vo.getBoardCategory())) {
+										
 								%>
 								<tr style="text-align: center">
-									<th><input type="checkbox" name="chk"></th>
+									<td class="text-truncate">
+									  <input class="form-check-input" type="checkbox"  name="chk" value="<%=vo.getBoardNo()%>" id="<%=vo.getBoardNo()%>">
+									</td>	
 									<td><%=vo.getBoardNo()%></td>
 									<td style="text-align: left; text-indent: 15px">
-									<a href="countUpdate.jsp?boardNo=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
+										<a href="countUpdate.jsp?boardNo=<%=vo.getBoardNo()%>"><%=vo.getBoardTitle()%></a>
 									</td>
 									<td><%=vo.getAdminID()%></td>
 									<td><%=sdf.format(vo.getBoardRegdate())%></td>
 									<td><%=vo.getBoardView()%></td>
 								</tr>
-								<%
+									<%
+									} //if
+									num--;
 								} //for
 								%>
 								<!--반복처리 끝  -->
@@ -226,7 +244,7 @@
 			</article>
 			
 	</section> 
-</form>
+<!-- </form> -->
    </div><!-- admin_menu->aside, session 감싸는 div -->   
 </div><!-- admin_menu->wrap -->
 </body>
