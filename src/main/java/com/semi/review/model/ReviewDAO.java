@@ -19,7 +19,7 @@ public class ReviewDAO {
 	public ReviewDAO() {
 		pool = new ConnectionPoolMgr();
 	}
-	
+
 	public Map<ReviewVO,String> selectByUserId(String userid) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -31,9 +31,9 @@ public class ReviewDAO {
 			String sql = "select * from review where userid = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userid);
-			
+
 			rs=ps.executeQuery();
-			
+
 			while(rs.next()) {
 				ReviewVO vo = new ReviewVO();
 				vo.setReviewNo(rs.getInt("reviewno"));
@@ -47,10 +47,10 @@ public class ReviewDAO {
 				vo.setViews(rs.getInt("views"));
 				vo.setScore(rs.getInt("score"));
 				vo.setReviewStatus(rs.getString("reviewstatus"));
-				
+
 				String movieName = movieService.selectByMovieNo(vo.getMovieNo()).getTitle();
 				map.put(vo,movieName);
-				
+
 			}
 			System.out.println("리뷰 조회 결과 map = " + map + "매개변수 userid = " + userid);
 			return map;
@@ -68,7 +68,7 @@ public class ReviewDAO {
 			String sql = "select * from review where movieno = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, movieNo);
-			
+
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				ReviewVO vo = new ReviewVO();
@@ -83,7 +83,7 @@ public class ReviewDAO {
 				vo.setViews(rs.getInt("views"));
 				vo.setScore(rs.getInt("score"));
 				vo.setReviewStatus(rs.getString("reviewstatus"));
-				
+
 				list.add(vo);
 			}
 			System.out.println("영화번호로 리뷰조회 결과 list.size = " + list.size() + "매개변수 movieNo = " + movieNo);
@@ -101,27 +101,65 @@ public class ReviewDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		boolean bool = false;
 		try {
 			con = pool.getConnection();
 			String sql = "select count(reviewno) from review where movieno = ? and userid = ?";
 			ps = con.prepareStatement(sql);
-			
+
 			ps.setInt(1, movieno);
 			ps.setString(2, userid);
 			rs = ps.executeQuery();
-			if(!rs.next()) {
-				System.out.println("리뷰 없음");
-				return false;
-			}else {
-				System.out.println("리뷰 존재함");
-				return true;
+			if(rs.next()) {
+				if(rs.getInt("count(reviewno)") > 0) {
+					System.out.println(movieno + "번 영화는 리뷰 있음");
+					bool = true;
+				}
 			}
+			return bool;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
-		
-		
 	}
+	public int insertReview(ReviewVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = pool.getConnection();
+			String sql = "insert into review(reviewno,movieno,userid,comments)"
+					+ " values(review_seq.nextval,?,?,?)";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, vo.getMovieNo());
+			ps.setString(2, vo.getUserId());
+			ps.setString(3, vo.getComments());
+
+			int cnt = ps.executeUpdate();
+
+			System.out.println("리뷰 등록 결과 cnt = " + cnt + "매개변수 vo = " + vo);
+			return cnt;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	public int deleteReview(int reviewNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = pool.getConnection();
+			String sql = "delete review where reviewno = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, reviewNo);
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("리뷰 삭제 결과 cnt = " + cnt + "매개변수 reviewNo = " + reviewNo);
+			return cnt;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+
 }
 
 
