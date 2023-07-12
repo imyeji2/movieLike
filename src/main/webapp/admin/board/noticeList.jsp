@@ -110,7 +110,7 @@
 	int num = totalRecord - curPos;
 %>
 <!-- <form name="notice_frm" action="noticeList.jsp"> -->
-	<section id="noticeList" style="margin: 0 auto">
+	<section id="noticeList" >
 			<article id="notice_content">
 				<h2>공지/FAQ</h2>
 				

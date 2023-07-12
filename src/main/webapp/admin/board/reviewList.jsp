@@ -16,8 +16,14 @@
 		});
 		
 		$('#button-delete').click(function(){
-			if(confirm("정말 삭제하시겠습니까?")){
-				$('form').submit(); 
+			var chkCount = $('input[name=chk]:checked').length; 
+			var chk = $('input[name=chk]:checked').attr('id');
+			if(chkCount<=0){
+				alert("수정할 항목을 선택해주세요");
+			}else{
+				if(confirm("정말 삭제하시겠습니까?")){
+					$('form').submit(); 
+				}
 			}
 		});
 			
@@ -87,9 +93,10 @@ request.setCharacterEncoding("utf-8");
 						</div>
 						
 						<div class="search_input">
-							<select class="searchCondition" aria-label="Default select example">
-							  <option value="movie" 
-							  	<%if("movie".equals(condition)){ %>
+							<form name = "frmSearch" method ="post" action="noticList.jsp">
+								<select class="form-select" name="searchCondition" aria-label="Default select example">
+							  <option value="title" 
+							  	<%if("title".equals(condition)){ %>
 				            		selected="selected" 
 				            	<%} %>
 				            	>영화 제목</option>
@@ -106,7 +113,7 @@ request.setCharacterEncoding("utf-8");
 							</select>
 							
 							<div class="input-group" style="width:370px">
-							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+							  <input type="text" class="form-control" placeholder="영화 제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							

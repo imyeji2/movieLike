@@ -27,11 +27,25 @@
 			location.href = 'faqWrite.jsp';
 		});
 		
-		$('#button-delete').click(function(){
+		/* $('#button-delete').click(function(){
 			if(confirm('정말 삭제하시겠습니까?')){
 				return false;
 			}
+		}); */
+		
+		
+		$('#button-delete').click(function(){
+			var chkCount = $('input[name=chk]:checked').length; 
+			var chk = $('input[name=chk]:checked').attr('id');
+			if(chkCount<=0){
+				alert("수정할 항목을 선택해주세요");
+			}else{
+				if(confirm("정말 삭제하시겠습니까?")){
+					$('form').submit(); 
+				}
+			}
 		});
+		
 			
 	});
 
@@ -131,11 +145,12 @@
 						<table class="table table-bordered">
 						  <colgroup>
 						      <col style="width:6%;" />
-						      <col style="width:6%;" />
-						      <col style="width:50%;" />
-						      <col style="width:15%;" />      
-						      <col style="width:15%;" />      
-						      <col style="width:12%;" />      
+							      <col style="width:6%;" />
+							      <col style="width:45%;" />
+							      <col style="width:12%;" />      
+							      <col style="width:15%;" />      
+							      <col style="width:10%;" />      
+							      <col style="width:10%;" />    
 						   </colgroup>
 						  <thead class="table-light">
 						    <tr style="text-align: center">
@@ -145,6 +160,7 @@
 						      <th scope="col">작성자</th>
 						      <th scope="col">등록일</th>
 						      <th scope="col">조회수</th>
+						       <th scope="col">상태</th>
 						    </tr>
 						  </thead>
 						<tbody>
@@ -169,6 +185,7 @@
 								<td><%=vo.getAdminID()%></td>
 								<td><%=sdf.format(vo.getBoardRegdate())%></td>
 								<td><%=vo.getBoardView()%></td>
+								<td><%=vo.getBoardStatus()%></td>
 							</tr>
 							<%
 								} //if
