@@ -21,7 +21,7 @@ public class MovieDAO {
 	}
 	
 	/**
-	 * 영화 전체 검색 메서드
+	 * 영화 번호로 검색
 	 * @param movieNo
 	 * @return
 	 * @throws SQLException
@@ -188,12 +188,12 @@ public class MovieDAO {
 	
 	
 	/**
-	 * 영화 검색
+	 * 제목으로 영화 검색
 	 * @param no
 	 * @return
 	 * @throws SQLException 
 	 */
-	public MovieVO selectMovieByNo(String title) throws SQLException {
+	public MovieVO selectMovieByTitle(String title) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

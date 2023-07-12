@@ -73,7 +73,7 @@
                </div>
                <div class="admin_menu_box" id="main">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_main.svg" name="main" alt="메인관리아이콘 ">
-                  <span style="margin-left:20px"><a href="#">컬렉션 관리</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/collection/collectionList.jsp">컬렉션 관리</a></span>
                </div>   
                <div class="admin_menu_box" id="member">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_member.svg" name="member" alt="회원영관리아이콘 ">
