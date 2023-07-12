@@ -4,10 +4,10 @@
 body{
    font-family: RobotoInCjk, "Noto Sans KR", 
    "Apple SD Gothic Neo", "Nanum Gothic", 
-   "Malgun Gothic", sans-serif;
-   background: #101322;
-   color:#fff;
-   padding-top:65px;
+   "Malgun Gothic", sans-serif !important;
+   background: #101322 !important;
+   color:#fff !important;
+   padding-top:65px !important;
 }
 
 ul,li{
@@ -16,13 +16,13 @@ ul,li{
 }
 
 a{
-   text-decoration: none;
-   cursor: pointer;
-   color: #fff;
+   text-decoration: none !important ;
+   cursor: pointer !important;
+   color: #fff !important;
 }
 
 a:hover{
-    color: #fff;
+    color: #fff !important;
 }
 
 
@@ -39,7 +39,7 @@ a:hover{
 }
 
 p{
-   margin:0 auto;
+   margin:0 auto ;
 }
 
 
@@ -212,6 +212,12 @@ footer a:hover{
    
 }
 
+footer p{
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
 .footer_div{
    margin-top:10px;
 }
+
