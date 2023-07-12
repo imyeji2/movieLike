@@ -41,4 +41,7 @@ public class UserService {
 	public int updateOutdate(String userId) throws SQLException {
 		return dao.updateOutdate(userId);
 	}
+	public int updatePWD(String userId, String pwd) throws SQLException {
+		return dao.updatePWD(userId, pwd);
+	}
 }
