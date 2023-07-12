@@ -20,4 +20,10 @@ public class ReviewService {
 	public boolean isReview(int movieno, String userid) throws SQLException {	
 		return reviewDao.isReview(movieno, userid);
 	}
+	public int insertReview(ReviewVO vo) throws SQLException {
+		return reviewDao.insertReview(vo);
+	}
+	public int deleteReview(int reviewNo) throws SQLException {
+		return reviewDao.deleteReview(reviewNo);
+	}
 }

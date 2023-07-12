@@ -184,10 +184,92 @@
     opacity: 0.7;
     border-radius: 11px;
     font-weight: bold;
-        padding: 1.5% 0% 0% 0%;
+    padding: 1.5% 0% 0% 0%;
 	}
 	.userInfoTxt{
 		display: inline;
+	}
+	
+	
+	/*찜목록*/
+	.movieItemBox{
+		width:15%;
+		margin:0% 0.82% 0% 0.82%;
+		cursor: pointer;
+	}
+	
+	.movieItemBox:hover{
+	  transform: translateY(-20px);
+	}	
+	
+	.movieImg{
+		width:100%;
+		position: relative;
+	}
+	
+	.movieImg img{
+		width:100%;
+	}
+	
+	.movieItemBoxML{
+		margin-left: 1%;
+	}
+	
+	.movieItemBox_info1{
+		font-size: 16px;
+		font-weight: 700;
+		padding: 10px 2px 10px 2px;
+		
+	}
+	
+	
+	.movieItemBox_hover{
+		width:100%;
+		background: rgba(20, 20, 20, 0.8);
+	    position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    z-index: 1;
+	    padding: 30px 20px 30px 20px;
+	}
+	
+	.movieItemBox_hover_info{
+		width:100%;
+	}
+	
+	.movieItemBox_hover_tit{
+		font-size: 23px;
+		font-weight: 800;
+		overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.2;
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 2 ;
+        -webkit-box-orient: vertical;
+        margin-bottom: 10px;
+	}
+	.movieItemBox_hover_genre{
+		font-size: 15px;
+		margin-bottom: 10px;
+	}
+	
+	.movieItemBox_hover_txt{
+		font-size: 15px;
+		font-weight: 500;
+		overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.5;
+        text-align: left;
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 5 ;
+        -webkit-box-orient: vertical;		
 	}
 }
 #buyPopcorn{
