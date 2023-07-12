@@ -123,7 +123,6 @@
 	    color: black;
 	}	
 	
-	
 }
 
 #noticeWrite {
@@ -154,12 +153,8 @@
 	
 	.top_text {
 		font-size: 20px;
-		padding-left: 25px;
+		padding-left: 15px;
 	    padding-top: 15px;
-	}
-	
-	.span_notice{
-		cursor: pointer;
 	}
 	
 	.content_box {

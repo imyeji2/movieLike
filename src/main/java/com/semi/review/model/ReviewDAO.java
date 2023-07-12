@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -58,6 +59,8 @@ public class ReviewDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	
+	
 	public List<ReviewVO> selectByMovieNo(int movieNo) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -92,6 +95,8 @@ public class ReviewDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	
+	
 	/**
 	 * 리뷰를 작성했는지 검사하는 메서드
 	 * @return
@@ -119,8 +124,65 @@ public class ReviewDAO {
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
-		
-		
+	}
+	
+	
+	/**
+	 * 관리자페이지 - 리뷰 전체 보기
+	 * @param keyword
+	 * @param condition
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ReviewVO> selectAll(String keyword, String condition) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+
+		List<ReviewVO> list = new ArrayList<>();
+		try {
+			//1,2
+			con=pool.getConnection();
+
+			String sql="select * from review ";
+			//검색의 경우 where 조건절 추가
+			if(keyword != null && !keyword.isEmpty()) {
+				sql+=" where "+condition+" like '%' || ? || '%'";
+			}
+			sql += " order by reviewno desc";
+			ps=con.prepareStatement(sql);
+
+			if(keyword != null && !keyword.isEmpty()) {
+				ps.setString(1, keyword);
+			}
+			
+			//4
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				int reviewNo=rs.getInt("reviewno");
+				int movieNo=rs.getInt("movieNo");
+				String userid=rs.getString("userid");
+				String comments=rs.getString("comments");
+				int likeCount=rs.getInt("likeCount");
+				int groupno=rs.getInt("groupno");
+				int step=rs.getInt("step");
+				int sortno=rs.getInt("sortno");
+				int views=rs.getInt("views");
+				int score=rs.getInt("score");
+				String reviewstatus=rs.getString("reviewstatus");
+				
+				ReviewVO vo
+				=new ReviewVO(reviewNo, movieNo, userid, comments, likeCount, groupno, step, sortno, views, score, reviewstatus);
+
+				list.add(vo);
+			}
+			System.out.println("글 전체 조회 결과, list.size="+list.size()
+				+", 매개변수 keyword="+keyword+", condition="+condition);
+
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
 	}
 }
 
