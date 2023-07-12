@@ -256,7 +256,7 @@ public class MovieDAO {
 			ps=con.prepareStatement(sql);
 			rs=ps.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				map.put(rs.getString("genreName"), rs.getInt("count(p.movieno)"));
 			}
 			

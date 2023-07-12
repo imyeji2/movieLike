@@ -111,6 +111,61 @@ public class PayHistoryDAO {
 			pool.dbClose(ps, con);
 		}
 	}
+	
+	public Map<String, Integer> getRankByTitle() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Map<String, Integer> map = new HashMap();
+		try {
+			con = pool.getConnection();
+			String sql = "select title, count(p.movieno)"
+					+ " from payHistory p,"
+					+ " movie m"
+					+ " where p.movieno = m.movieno"
+					+ " group by title";
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				map.put(rs.getString("title"), rs.getInt("count(p.movieno)"));
+			}
+			System.out.println("작품별 매출 조회 결과 map : " + map);
+			return map;
+			
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	public int totalMovieIncome() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select sum(price)"
+					+ " from payHistory p,"
+					+ " movie m"
+					+ " where p.movieno = m.movieno";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			int sum = 0;
+			if(rs.next()) {
+				sum = rs.getInt("sum(price)");
+			}
+			
+			System.out.println("누적 판매금액 조회 결과 sum = " + sum);
+			return sum;
+		}finally {
+			pool.dbClose(rs, ps, con);;
+		}		
+	}
+	
+	
+	
+	
 
 }
 

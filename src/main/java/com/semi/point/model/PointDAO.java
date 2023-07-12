@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.semi.db.ConnectionPoolMgr;
 import com.semi.member.model.UserVO;
 
@@ -87,6 +89,31 @@ public class PointDAO {
 			pool.dbClose(ps, con);
 		}
 	}
+	
+	public int totalPrice() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = pool.getConnection();
+			String sql = "select sum(pointprice) from point";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			int sum = 0;
+			if(rs.next()) {
+				sum = rs.getInt("sum(pointprice)");
+			}
+			
+			System.out.println("누적 충전 팝콘 조회 결과 sum = " + sum);
+			return sum;
+		}finally {
+			pool.dbClose(rs, ps, con);;
+		}		
+
+	}
+	
+	
 }
 
 
