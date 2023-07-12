@@ -265,7 +265,7 @@ $(document).ready(function() {
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
 				            	PickVO PickVo = elem.getKey();
 				            	MovieVO movieVo = elem.getValue();%>
-								<a href="movieDetail.jsp?no=<%=movieVo.getMovieNo() %>">
+								<a href="<%=request.getContextPath() %>/movie/movieDetail.jsp?no=<%=movieVo.getMovieNo() %>">
 									<div class="movieItemBox"><!-- 리스트 중 1개  -->
 										<div><!-- 기본box -->
 											<div class="movieImg img-thumbnail">

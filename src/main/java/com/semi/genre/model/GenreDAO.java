@@ -68,6 +68,6 @@ public class GenreDAO {
 		}finally {
 			pool.dbClose(ps, con);
 		}
-		
 	}//insertGenre	
+	
 }

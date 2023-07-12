@@ -102,27 +102,9 @@
                </div>   
                <div class="admin_menu_box" id="statistics">
                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_statistics.svg" name="statistics" alt="통계관리아이콘 ">
-                  <span style="margin-left:20px"><a href="#">통계</a></span>
+                  <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin/statistics/adminStatistics.jsp">통계</a></span>
                </div>
-          
-              <div class="admin_menu_box_in" id="statistics_menu">
-                <div>
-                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
-                   <span><a href="#">카테고리별</a></span>
-                </div>
-                <div>
-                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
-                   <span><a href="#">매출금액</a></span>
-                </div>
-                <div>
-                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
-                   <span><a href="#">찜하기</a></span>
-                </div>       
-                <div>
-                   <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_arrow.svg">
-                   <span><a href="#">판매수별</a></span>
-                </div>               
-             </div>
+              
                <div class="admin_menu_box">
                  <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_logout.svg" name="logout" alt="통계관리아이콘 ">
                  <span style="margin-left:20px"><a href="#">로그아웃</a></span>
