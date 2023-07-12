@@ -138,7 +138,7 @@ $(function(){
 
 		if($('#actorBox').find('.movieWrite_box_in').length==0){
 			alert("배우를 등록해주세요");
-			$('#directorBox').focus()
+			$('#actorBox').focus()
 			return false;
 		}
 		
