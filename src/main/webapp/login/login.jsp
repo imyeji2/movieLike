@@ -48,9 +48,11 @@
 						<label for="floatingPassword">비밀번호</label>
 					</div>
 					<div class="saveId">
-						<input type="checkbox" id="saveId-chk" name ="chkSave" <%if(ck_value != null && !ck_value.isEmpty()){ %>
-							checked = "checked" <%} %>> 
-						<label for="saveId-chk" style="color: #000;">이 계정을 기억하시겠습니까?</label>
+						<div class="form-check form-switch">
+						  <input class="form-check-input" type="checkbox" role="switch" name ="chkSave" id="flexSwitchCheckChecked"<%if(ck_value != null && !ck_value.isEmpty()){ %>
+							checked = "checked" <%} %>>
+						  <label class="form-check-label" for="flexSwitchCheckChecked"style="color: #000;">이 계정을 기억하시겠습니까?</label>
+						</div> 
 					</div>
 					<div class="submit">
 						<input type="submit" value="로그인" class="login-bt">
@@ -58,9 +60,8 @@
 				</form>
 				<div class="members">
 					<div class="find">
-						<a href="#">아이디 찾기</a>
-						<div class="wall"></div>
-						<a href="#">비밀번호 찾기</a>
+
+						<a href="#">비밀번호를 잊어버리셨나요?</a>
 					</div>
 					<a class="register-btn">
 						<p>회원가입</p>
@@ -68,6 +69,12 @@
 				</div>
 			</div>
 			
+			<!-- 비번찾기 -->
+			<div class = "findPWD">
+				<form>
+									
+				</form>
+			</div>
 			<!-- 약관동의 -->
 			<div class = "agreement">
 				<form>

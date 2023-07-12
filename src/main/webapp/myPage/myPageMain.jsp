@@ -220,6 +220,14 @@ $(document).ready(function() {
 <%
 		String realUser = userVo.getUserId().split("@")[0];
 
+		/* 서다희 정보수정때 필요한 것 */
+		String userId = userVo.getUserId();
+		String name = userVo.getName();
+		String pwd = userVo.getPwd();
+		String gender = userVo.getGender();
+		String birth = userVo.getBirth();
+		
+		
 		DecimalFormat df = new DecimalFormat("#,###");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	%>

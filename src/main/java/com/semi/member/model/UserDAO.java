@@ -225,6 +225,8 @@ public class UserDAO {
 		}
 	}
 	
+	
+	
 	public UserVO selectUserByUserId(String userid) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -263,6 +265,27 @@ public class UserDAO {
 		}
 	}
 	
+	public int updatePWD(String userId, String pwd) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "update userinfo set pwd = ? where userid = ?";
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, pwd);
+			ps.setString(2, userId);
+			
+			int cnt = ps.executeUpdate();
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+		
+	}
 	
 }
 
