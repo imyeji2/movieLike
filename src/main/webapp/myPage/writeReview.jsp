@@ -98,13 +98,15 @@
 	<div class="main">
 		<div class = "box">
 			<div class="input-group mb-3" id = "title" >
-				
+				<input type = "hidden" name="userid" value="<%=userid %>">
 			  <input type="text" disabled class="form-control" placeholder="" aria-label="Username" 
-			  				aria-describedby="basic-addon1" name="userid" value="<%=userid%>"style= "font-weight:bold;width: 40%">
+			  				aria-describedby="basic-addon1" value="<%=userid%>" style= "font-weight:bold;width: 40%">
+			  
 			  <input type="text" disabled class="form-control" placeholder="" aria-label="Username" 
 			  				aria-describedby="basic-addon1" value="<%=movieVo.getTitle()%>"style="font-weight:bold;margin-left:5%; width: 20%">
+  				
   				<select class="form-select" aria-label="Default select example" style="width: 30%" name = "grade">
-					<option selected>별점</option>
+					<option selected value="0">별점</option>
 				  	<option value="1">★☆☆☆☆</option>
 				  	<option value="2">★★☆☆☆</option>
 				  	<option value="3">★★★☆☆</option>

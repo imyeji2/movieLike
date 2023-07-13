@@ -259,10 +259,10 @@ $(document).ready(function() {
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
 				            	PickVO PickVo = elem.getKey();
 				            	MovieVO movieVo = elem.getValue();%>
-							<div style="width: 30%; display: inline-block; text-align: center; text-shadow: 4 8 white;">
+							<div style="width: 30%; display: inline-block; text-align: center;">
 								<a  href="<%=request.getContextPath() %>/movie/movieDetail.jsp?no=<%=movieVo.getMovieNo() %>">
-										<div style="border-radius:2em;">		
-											<img src="../images/movie/content/<%=movieVo.getPoster()%>" style="width:80%; border-radius:1.5em;">
+										<div style="border-radius:2em; ">		
+											<img src="../images/movie/content/<%=movieVo.getPoster()%>" style="width:80%; border-radius:1.5em; border:white solid 2px;">
 										</div>
 										<p><%=movieVo.getTitle() %></p>
 								</a>

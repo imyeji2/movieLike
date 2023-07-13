@@ -283,8 +283,7 @@ $(function(){
 		
 		<article class="movie_review">
 			<div class="">
-				<div class="movie_tit1" >코멘트+(갯수)</div>
-				<div class="movie_tit2"><a href="#">더보기</a></div>
+				<div class="movie_tit1" >코멘트</div>
 			</div>
 				<br>
 				<div class="clear">
