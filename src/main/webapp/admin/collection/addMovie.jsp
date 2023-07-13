@@ -123,14 +123,14 @@ function sendWrite(no, name, img) {
 	}
 	
 	
-	List<MovieListVO> list = null;
-	MovieListVO vo = null;
-	MovieListService service = new MovieListService();
+	List<MovieVO> list = null;
+	MovieVO vo = null;
+	MovieService service = new MovieService();
 	
 	if(serch!=null&& !serch.isEmpty()){
 		
 		try{
-			list = service.selectMovieByTitle(serch);
+			list = service.serchtMovie(serch);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

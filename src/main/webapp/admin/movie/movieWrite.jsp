@@ -21,6 +21,11 @@
 <script type="text/javascript">
 $(function(){
 	
+	$(document).on('click', '.movieWrite_box_in_right a', function() {
+		  $(this).closest('.movieWrite_box_in').remove();
+		  return false;
+	});
+	
 	$('#addMovie').click(function(){
 		var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
 	});
@@ -148,9 +153,10 @@ $(function(){
 			$('#directorBox').focus()
 			return false;
 		}
-		
 
 	});
+	
+
 });
 
 </script>
@@ -235,8 +241,8 @@ $(function(){
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
-								<div class="movieWrite_box_in_right1">
-									<select class="form-select form-select-sm" id="genreNo" name="genreNo">
+								<div class="movieWrite_box_in_right">
+									<select class="form-select form-select-sm" id="genreNo" name="genreNo" style="width:100%;">
 									<%
 										GenreService genreService = new GenreService();
 										List<GenreVO> list = null;
@@ -261,9 +267,6 @@ $(function(){
 									%>
 
 									</select>
-								</div>
-								<div class="movieWrite_box_in_right2">
-									<input type="button" name="addCategory" value="장르 추가">
 								</div>
 							</div>
 						</div><!-- movieWrite_box_in -->															

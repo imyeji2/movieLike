@@ -34,4 +34,8 @@ public class DirectorService {
 	public int deleteDirector(int dirctorNo) throws SQLException {
 		return directorDao.deleteDirector(dirctorNo);
 	}
+	
+	public List<DirectorVO> serchDirector(String serch) throws SQLException {
+		return directorDao.serchDirector(serch);
+	}
 }

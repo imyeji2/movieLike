@@ -33,4 +33,8 @@ public class ActorService {
 	public int updateActor(ActorVO vo) throws SQLException {
 		return actorDao.updateActor(vo);
 	}
+	
+	public List<ActorVO> serchActor(String serch) throws SQLException {
+		return actorDao.serchActor(serch);
+	}
 }

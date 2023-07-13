@@ -22,7 +22,6 @@
 			<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
 			  <div class="carousel-inner">
 			    <div class="carousel-item active" data-bs-interval="3000">
-			    
 		    		<div class="main_box1 f_left">
 		    			<input type="hidden" name="movieNo" value="1">
 		    			<div class="main_poster img-thumbnail">
@@ -222,6 +221,13 @@
 			  </button>
 			</div>
 		</article>
+
+
+
+
+
+
+
 
 
 		<article class="main_box">

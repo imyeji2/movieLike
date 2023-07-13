@@ -14,4 +14,8 @@ public class CollectionListService {
 		return dao.selectCollectionAll();
 	}
 	
+	public List<CollectionListVO> serchCollectionAll(String serch) throws SQLException{
+		return dao.serchCollectionAll(serch);
+	}
+	
 }

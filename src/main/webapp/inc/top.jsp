@@ -41,11 +41,11 @@
 					</a>
 				</li>
 				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=1">로맨스</a></li>
-				<li><a href="movieList.jsp?genreNo=2">액션</a></li>
-				<li><a href="movieList.jsp?genreNo=3">공포</a></li>
-				<li><a href="movieList.jsp?genreNo=4">SF</a></li>
-				<li><a href="movieList.jsp?genreNo=5">코미디</a></li>
-				<li><a href="movieList.jsp?genreNo=6">애니</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=2">액션</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=3">공포</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=4">SF</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=5">코미디</a></li>
+				<li><a href="<%=request.getContextPath()%>/movie/movieList.jsp?genreNo=6">애니</a></li>
 			</ul>
 		</nav>
 		
