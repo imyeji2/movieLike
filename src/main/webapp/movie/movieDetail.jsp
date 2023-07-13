@@ -102,6 +102,7 @@ $(function(){
 		var param = $('#buy_movie').val();
 		window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
 	});
+	
 	function reloading(){
 		location.reload();
 	}
@@ -116,7 +117,19 @@ $(function(){
 		alert('로그인을 하십시오');
 		return false;
 	});
+	
+	$('.like').click(function(){
+		if($('#me').val()===$('#you').val()){
+			alert('내가 작성한 글은 좋아요를 누를 수 없습니다');
+			return false;
+		}else{
+			location.href = "iLikeThisComment.jsp?userid=<%=userid %>";
+		}
+	});
 });
+
+	
+
 </script>
    
 	<section id="movieDetail">
@@ -311,7 +324,9 @@ $(function(){
 							<%=reviewVo.getComments().replace("\r\n","<br>")%>
 							</div>
 							<div class="movie_review_conbox3">
-								<span><a href="">좋아요</a></span><span><%=reviewVo.getLickCount()%></span>
+							<input type = "hidden" id="me" value="<%=userid%>">
+							<input type = "hidden" id="you" value="<%=reviewVo.getUserId()%>">
+								<span><a href="javascript:void(0)" class="like" onclick="checkId()">좋아요</a></span><span><%=reviewVo.getLickCount()%></span>
 							</div>
 						</div>
 					<%} %>

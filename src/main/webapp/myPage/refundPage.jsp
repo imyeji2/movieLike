@@ -11,6 +11,16 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#quit').click(function() {
+		if(confirm('환불 진행을 그만두시겠습니까?')){
+			window.close();
+		}
+	});
+});
+</script>
 <style type="text/css">
 div{
 	text-align: center;
@@ -102,14 +112,7 @@ popcornChargeMain{
 
 </style>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('button[name=quit]').click(function() {
-			window.close();
-		});
-	});
-</script>
+
 
 <body>
 	<%
@@ -152,7 +155,7 @@ popcornChargeMain{
 		  <div class="row">
 		    <div class="col">
 			    <button type="submit" class="btn btn-success">환불</button>
-			    <button type="button" class="btn btn-light">취소</button>
+			    <button type="button" id="quit" class="btn btn-light">취소</button>
 		    </div>
 		  </div>
 		</div>
