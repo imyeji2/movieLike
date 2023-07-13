@@ -168,7 +168,7 @@ popcornChargeMain{
 		    <div class="col">
 			    <div class="input-group input-group-sm mb-3">
 					  <span class="input-group-text" id="inputGroup-sizing-sm">팝콘</span>
-					  <input type="text" class="form-control" name = "price" disabled value="<%=vo.getPrice()/100%> 개 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+					  <input type="text" class="form-control" name = "price" disabled value="<%=vo.getPrice()%> 개 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 				</div>
 		    </div>
 		  </div>
