@@ -25,7 +25,7 @@
 	
 	System.out.println(imgURL);
 	//최대사이즈
-	int maxSize = 1* 1024 * 1024; 
+	int maxSize = 3* 1024 * 1024; 
 	//인코딩
 	String encoding="utf-8";
 	
