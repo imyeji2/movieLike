@@ -107,7 +107,6 @@ $(function(){
 	$('#moreActor').hide();
 	
 	$('#more').click(function(){
-		$('#moreActor').slideToggle();
 	});
 });
 </script>
