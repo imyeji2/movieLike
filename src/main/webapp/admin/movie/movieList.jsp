@@ -45,8 +45,8 @@
 	//현재 페이지랑 무관한 변수
 	
 	int totalRecord = list.size(); //총 레코드 개수
-	int pageSize = 4; //한페이지에 보여주는 레코드 수
-	int blockSize = 4; // 한 블럭에 보여줄 페이지 수
+	int pageSize = 5; //한페이지에 보여주는 레코드 수
+	int blockSize = 5; // 한 블럭에 보여줄 페이지 수
 
 	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 	
@@ -184,7 +184,7 @@
 									<input class="form-check-input" type="checkbox"  name="chk" value="<%=vo.getMovieNo()%>" id="<%=vo.getMovieNo()%>">
 								</td>
 								<td>
-									<img src="../../images/movie/poster/<%=vo.getPoster()%>" style="width:50px;">
+									<img src="../../images/movie/content/<%=vo.getPoster()%>" style="width:50px;">
 								</td>
 								<td style="text-align: left;"><a href="movieDetail?no=<%=vo.getMovieNo()%>"></a><%=vo.getTitle() %></td>
 								<td><a href="#"></a><%=vo.getDirectorNo1() %></td>
