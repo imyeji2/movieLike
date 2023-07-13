@@ -104,7 +104,7 @@ $(function(){
 		location.reload();
 	}
 	
-	$('#moreActor').slidUp();
+	$('#moreActor').hide();
 	
 	$('#more').click(function(){
 		$('#moreActor').slideToggle();
@@ -176,6 +176,9 @@ $(function(){
 			    	<div class="movie_actor_box">
 			    		<div class="movie_actor_box1">
 			    			<img src="../images/movie/actor/라이언 고슬링.jpg" alt="배우 이미지">
+			    		</div>
+			    		<div class="movie_actor_box2">
+			    			<p class="actor_name">라이언 고슬링</p>
 			    		</div>
 			    	</div><!-- movie_actor_box -->
 			    	<div class="movie_actor_box">
