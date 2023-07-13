@@ -16,7 +16,13 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
 <style type="text/css">
-
+footer {
+    position: fixed !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    padding: 20px !important;
+}
 </style>
 <script type="text/javascript">
    $(function(){

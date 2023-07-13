@@ -25,7 +25,7 @@
 		if(cnt>0){%>
 		<script type="text/javascript">
 			alert("탈퇴처리 되었습니다.");
-			location.href = "<%=request.getContextPath()%>index.jsp";
+			location.href = "<%=request.getContextPath()%>/index.jsp";
 		</script>
 		<%}else {%>
 		<script type="text/javascript">

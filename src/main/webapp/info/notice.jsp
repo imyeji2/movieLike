@@ -6,7 +6,7 @@
 <%@page import="com.semi.board.model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ include file="noticeMain.jsp" %>
 <script type="text/javascript">
 	$(function(){
 		//글 리스트 호버 
@@ -25,19 +25,7 @@
 		$('.top_btn').click(function(){
 			location.href = 'noticeWrite.jsp';
 		});
-		
-		
-		$('#button-delete').click(function(){
-			var chkCount = $('input[name=chk]:checked').length; 
-			var chk = $('input[name=chk]:checked').attr('id');
-			if(chkCount<=0){
-				alert("수정할 항목을 선택해주세요");
-			}else{
-				if(confirm("정말 삭제하시겠습니까?")){
-					$('form').submit(); 
-				}
-			}
-		});
+
 			
 	});
 	
@@ -47,10 +35,11 @@
 <style>
 
 	section {
-		width: 80%;
-	    padding: 40px 40px 20px 40px;
+		width: 100%;
+	    padding: 0;
 	    box-sizing: border-box;
 	    margin: 0 auto;
+	    background: white
 	}
 </style>
 <body>
@@ -74,7 +63,7 @@
 	if (keyword == null) keyword = "";
 
 	//페이징 처리
-	currentPage = 1; //현재 페이지
+	int currentPage = 1; //현재 페이지
 
 	if (request.getParameter("currentPage") != null) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -99,16 +88,12 @@
 <!-- <form name="notice_frm" action="noticeList.jsp"> -->
 	<section id="noticeList" >
 			<article id="notice_content">			
-				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text" >
-							<span class="span_notice">공지사항</a></span>
+							<span class="span_notice" style="color:#000;">공지사항</a></span>
 						</div>			
 					</div> 
 					<div class="content_box">
-						
-						<div class="search_result">           
-						</div>
 							<table class="table table-bordered">
 							  <colgroup>
 							      <col style="width:6%;" />
@@ -205,11 +190,8 @@
 							  	aria-describedby="button-addon2" name="searchKeyword" title="검색어 입력" value="<%=keyword%>">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
-						</div>
+					</div>
 				</div>
-				
-				
 			</article>
-			
 	</section> 
 <!-- </form> -->
