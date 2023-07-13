@@ -67,8 +67,8 @@
 			// =>actorService의 번호로 배우 조회하는 메서드 => .getActorName 이용
 			// 반복문만큼 actorSb에 배우이름 + ", " append
 		}
-	}
 	actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
+	}
 	
 	String content = movieVo.getSynop();				//시놉시스 줄 나눔
 	if(content!=null){  // \r\n  => <br>
