@@ -46,7 +46,7 @@
       
       $('#board').click(function(){
           $('#board_menu').slideToggle();
-       });      
+       });   
       
    /*    var body = document.body,
       html = document.documentElement;
@@ -107,7 +107,7 @@
               
                <div class="admin_menu_box">
                  <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_logout.svg" name="logout" alt="통계관리아이콘 ">
-                 <span style="margin-left:20px"><a href="#">로그아웃</a></span>
+                 <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin_login/admin_logout.jsp">로그아웃</a></span>
                </div> 
           </aside> 
                                                      

@@ -4,13 +4,13 @@
 	<footer>
 		<div>
 			<div class="footer_div">
-				<span><a href="" style="a:hover:none">서비스 이용약관</a></span>
+				<span><a href="<%=request.getContextPath()%>/info/userServ.jsp" style="a:hover:none">서비스 이용약관</a></span>
 				<span>&nbsp;|&nbsp;</span>
-				<span><a href="#">개인정보 처리방침</a></span>
+				<span><a href="<%=request.getContextPath()%>/info/treatUserinfo.jsp" style="a:hover:none">개인정보 처리방침</a></span>
 				<span>&nbsp;|&nbsp;</span>
-				<span><a href="#">회사 안내</a></span>
+				<span><a href="<%=request.getContextPath()%>/info/aboutCom.jsp" style="a:hover:none">회사 안내</a></span>
 				<span>&nbsp;|&nbsp;</span>
-				<span><a href="#">고객센터</a></span>									
+				<span><a href="center.jsp">고객센터</a></span>									
 			</div>
 				
 			<div class="footer_div">

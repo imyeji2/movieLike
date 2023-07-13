@@ -25,253 +25,253 @@
 
 $(function(){
 
-   $('#add').click(function(){
-      var chkCount = $('input[name=chk]:checked').length; 
-      if(chkCount>0){
-         alert("선택을 해제해 주세요");
-      }else{
-         var popup = window.open('addActorPopUp.jsp?', 'add', 'width=600px,height=350px,scrollbars=yes');
-      }
-   });
-   
-   $('#checkAll').click(function(){
-      if($(this).is(':checked')){
-          $("input[name=chk]").prop("checked", true);
-      }else{
-         $("input[name=chk]").prop("checked", false);
-      }
-   })
-   
-   
-   $('#eidt').click(function(){
-      var chkCount = $('input[name=chk]:checked').length; 
-      var chkArr = $('input[name=chk]:checked').attr('id');
-      if(chkCount>1){
-         alert("수정할 항목을 하나만 선택해 주세요");
-      }else if(chkCount<=0){
-         alert("수정할 항목을 선택해주세요");
-      }else{
-         var popup = window.open('addActorPopUp.jsp?no='+chkArr, 'edit', 'width=600px,height=350px,scrollbars=yes');
-         
-      }
-   });
-   
-   $('#del').click(function(){
-      var chkCount = $('input[name=chk]:checked').length; 
-      var chk = $('input[name=chk]:checked').attr('id');
-      if(chkCount<=0){
-         alert("수정할 항목을 선택해주세요");
-      }else{
-         if(confirm("정말 삭제하시겠습니까?")){
-            $('form').submit(); 
-         }
-      }
-   });
-   
-/*    
-   $('a')click(function(){
-      var name=$(this).text();
-      var no = $(this).parent().fint()
-   });
-    */
+	$('#add').click(function(){
+		var chkCount = $('input[name=chk]:checked').length; 
+		if(chkCount>0){
+			alert("선택을 해제해 주세요");
+		}else{
+			var popup = window.open('addActorPopUp.jsp?', 'add', 'width=600px,height=350px,scrollbars=yes');
+		}
+	});
+	
+	$('#checkAll').click(function(){
+		if($(this).is(':checked')){
+			 $("input[name=chk]").prop("checked", true);
+		}else{
+			$("input[name=chk]").prop("checked", false);
+		}
+	})
+	
+	
+	$('#eidt').click(function(){
+		var chkCount = $('input[name=chk]:checked').length; 
+		var chkArr = $('input[name=chk]:checked').attr('id');
+		if(chkCount>1){
+			alert("수정할 항목을 하나만 선택해 주세요");
+		}else if(chkCount<=0){
+			alert("수정할 항목을 선택해주세요");
+		}else{
+			var popup = window.open('addActorPopUp.jsp?no='+chkArr, 'edit', 'width=600px,height=350px,scrollbars=yes');
+			
+		}
+	});
+	
+	$('#del').click(function(){
+		var chkCount = $('input[name=chk]:checked').length; 
+		var chk = $('input[name=chk]:checked').attr('id');
+		if(chkCount<=0){
+			alert("수정할 항목을 선택해주세요");
+		}else{
+			if(confirm("정말 삭제하시겠습니까?")){
+				$('form').submit(); 
+			}
+		}
+	});
+	
+/* 	
+	$('a')click(function(){
+		var name=$(this).text();
+		var no = $(this).parent().fint()
+	});
+	 */
 });
 function sendWrite(no, name, img) {
-     var htmlContent = 
-       '<div class="movieWrite_box_in">' +
-         '<div class="movieWrite_box_in_left">' +
-           '<img src="../../images/movie/actor/' + img + '" style="width: 60px;">' +
-           '<input type="hidden" name="actorNo" value="' + no + '">' +
-         '</div>' +
-         '<div class="movieWrite_box_in_right" style="line-height: 65px;">' + name + '</div>' +
-         '<div class="movieWrite_box_in_right" style="width:10%;line-height: 85px; text-align:center;"><a href="#">삭제</a></div> '+
-       '</div>';
+	  var htmlContent = 
+	    '<div class="movieWrite_box_in">' +
+	      '<div class="movieWrite_box_in_left">' +
+	        '<img src="../../images/movie/actor/' + img + '" style="width: 60px;">' +
+	        '<input type="hidden" name="actorNo" value="' + no + '">' +
+	      '</div>' +
+	      '<div class="movieWrite_box_in_right" style="line-height: 65px;">' + name + '</div>' +
+	      '<div class="movieWrite_box_in_right" style="width:10%;line-height: 85px; text-align:center;"><a href="#">삭제</a></div> '+
+	    '</div>';
 
-     $(opener.document).find('#actorBox').append(htmlContent);
-     self.close();
-   }
+	  $(opener.document).find('#actorBox').append(htmlContent);
+	  self.close();
+	}
 
 </script>
 
 <style type="text/css">
-   .warp{
-      width: 750px;
-      height:750px;
-      margin:0 auto;
-      padding:25px 25px 25px 25px;
-   }
-   
-   .warp h5{
-      margin:30px 0px 10px 10px;
-   }
-   
-   .serch_tabel{
-      margin-bottom: 30px;
-   }
-   
-   .serch_tabel a{
-      color: #212529;
-      text-decoration: none;
-   }
-   
-   .serch_tabel a:hover{
-      text-decoration: underline;
-   }
-      
-   .page_box{
-      width:350px;
-      margin:0 auto;
-      text-align: center;
-   }
-   
-   .popup_footer{
-      overflow:hidden;;
-   }
-   .del_btn_box{
-      float: right;
-      margin-bottom: 20px;
-      
-   }
-   
-   .popup_btn{      
-      widht:30px;
-      height:38px;
-      line-height:11px;
-      margin-right: 5px;
+	.warp{
+		width: 750px;
+		height:750px;
+		margin:0 auto;
+		padding:25px 25px 25px 25px;
+	}
+	
+	.warp h5{
+		margin:30px 0px 10px 10px;
+	}
+	
+	.serch_tabel{
+		margin-bottom: 30px;
+	}
+	
+	.serch_tabel a{
+		color: #212529;
+		text-decoration: none;
+	}
+	
+	.serch_tabel a:hover{
+		text-decoration: underline;
+	}
+		
+	.page_box{
+		width:350px;
+		margin:0 auto;
+		text-align: center;
+	}
+	
+	.popup_footer{
+		overflow:hidden;;
+	}
+	.del_btn_box{
+		float: right;
+		margin-bottom: 20px;
+		
+	}
+	
+	.popup_btn{		
+		widht:30px;
+		height:38px;
+		line-height:11px;
+		margin-right: 5px;
 
-   }
-   
-   .serch_left_box{
-      width:480px;
-      float: left;
-      margin-top:1px;
-   
-   }
-   
-   tbody tr{
-      height:60px;
-      padding:5px 0px 5px 0px;
-      line-height: 60px
-   }
-   
-   td img{
-      width:50px;
-      heigh:50px;
-   }
-   
-   td input[type=checkbox]{
-      vertical-align:middle;
-   }
+	}
+	
+	.serch_left_box{
+		width:480px;
+		float: left;
+		margin-top:1px;
+	
+	}
+	
+	tbody tr{
+		height:60px;
+		padding:5px 0px 5px 0px;
+		line-height: 60px
+	}
+	
+	td img{
+		width:50px;
+		heigh:50px;
+	}
+	
+	td input[type=checkbox]{
+		vertical-align:middle;
+	}
 
-   th input[type=checkbox]{
-      vertical-align:middle;
-   }   
-   
+	th input[type=checkbox]{
+		vertical-align:middle;
+	}	
+	
 </style>
 </head>
 <body>
 <%
-   
-   List<ActorVO> list = null;
-   ActorVO vo = null;
-   ActorService service = new ActorService();
-   
-   try{
-      list = service.selectActorAll();
-   }catch(SQLException e){
-      e.printStackTrace();
-   }
+	
+	List<ActorVO> list = null;
+	ActorVO vo = null;
+	ActorService service = new ActorService();
+	
+	try{
+		list = service.selectActorAll();
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
 
-   
+	
 %>
 <div class="warp">
-   <h5>배우 검색</h5>
-   <div class="serch_left_box">
-      <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="배우를 입력하세요" aria-label="serchtxt" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-      </div>   
-   </div>   
-   <div class="del_btn_box">
-      <input type="button" class="popup_btn btn btn-primary" id="add" value="추가">
-      <input type="button" class="popup_btn btn btn-primary" id="eidt" value="수정">
-      <input type="button" class="popup_btn btn btn-primary" id="del" value="삭제">
-   </div>
-   <div class="serch_tabel">
-      <form name="delFrm" method="post" action="actorDelete.jsp">
-         <table class="table table-hover" style="text-align:center;">
-           <thead>
-             <tr>
-              <th scope="col">
-                 <input class="form-check-input" type="checkbox" id="checkAll">
-              </th>
-              <th scope="col">프로필</th>   
-               <th scope="col">배우이름</th>
-              </tr>
-           </thead>
-           <tbody>
-            <%
-               if(list==null||list.isEmpty()){
-            %>
-            <tr>
-              <td colspan="3">검색된 결과가 없습니다.</td>
-             </tr>               
-            <%   
-            
-               }else{
-            
-                  for(int i=0; i<list.size();i++){
-                     vo = list.get(i);
-            %>
-            <tr>
-              <td class="text-truncate">
-                 <input class="form-check-input" type="checkbox"  name="chk" value="<%=vo.getActorNo()%>" id="<%=vo.getActorNo()%>">
-              </td>            
-              <td class="text-truncate" style="max-width: 100px;">
-                 <img src="../../images/movie/actor/<%=vo.getActorImg()%>" style="width:50px">
-              </td>
-               <td class="text-truncate" style="max-width: 150px;">
-               <a href="#" onclick="sendWrite(<%=vo.getActorNo()%>, '<%=vo.getActorName()%>', '<%=vo.getActorImg()%>');">
-                 <%=vo.getActorName()%>
-               </a>
-                  </td>
-             </tr>             
-            <%
-            
-                  }
-               }
-            %>
-                                                      
-           </tbody>
-         </table>   
-      </form>
-   </div>
-   <div class="popup_footer">
-      <div class="page_box">
-         <nav aria-label="page">
-            <ul class="pagination">
-               <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">4</a>
-                </li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">5</a>
-                </li>                                       
-                  <li class="page-item">
-                     <a class="page-link" href="#">Next</a>
-                  </li>
-              </ul>
-         </nav>
-      </div>
-   </div><!-- popup_footer, page번호 버튼 -->
+	<h5>배우 검색</h5>
+	<div class="serch_left_box">
+		<div class="input-group mb-3">
+			 <input type="text" class="form-control" placeholder="배우를 입력하세요" aria-label="serchtxt" aria-describedby="button-addon2">
+			 <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+		</div>	
+	</div>	
+	<div class="del_btn_box">
+		<input type="button" class="popup_btn btn btn-primary" id="add" value="추가">
+		<input type="button" class="popup_btn btn btn-primary" id="eidt" value="수정">
+		<input type="button" class="popup_btn btn btn-primary" id="del" value="삭제">
+	</div>
+	<div class="serch_tabel">
+		<form name="delFrm" method="post" action="actorDelete.jsp">
+			<table class="table table-hover" style="text-align:center;">
+			  <thead>
+			    <tr>
+				  <th scope="col">
+				  	<input class="form-check-input" type="checkbox" id="checkAll">
+				  </th>
+				  <th scope="col">프로필</th>	
+			      <th scope="col">배우이름</th>
+			     </tr>
+			  </thead>
+			  <tbody>
+				<%
+					if(list==null||list.isEmpty()){
+				%>
+				<tr>
+				  <td colspan="3">검색된 결과가 없습니다.</td>
+			    </tr>					
+				<%	
+				
+					}else{
+				
+						for(int i=0; i<list.size();i++){
+							vo = list.get(i);
+				%>
+				<tr>
+				  <td class="text-truncate">
+				  	<input class="form-check-input" type="checkbox"  name="chk" value="<%=vo.getActorNo()%>" id="<%=vo.getActorNo()%>">
+				  </td>				
+				  <td class="text-truncate" style="max-width: 100px;">
+				  	<img src="../../images/movie/actor/<%=vo.getActorImg()%>" style="width:50px">
+				  </td>
+			      <td class="text-truncate" style="max-width: 150px;">
+					<a href="#" onclick="sendWrite(<%=vo.getActorNo()%>, '<%=vo.getActorName()%>', '<%=vo.getActorImg()%>');">
+					  <%=vo.getActorName()%>
+					</a>
+			      	</td>
+			    </tr>		    	
+				<%
+				
+						}
+					}
+				%>
+	    		    	    		    		    		    
+			  </tbody>
+			</table>	
+		</form>
+	</div>
+	<div class="popup_footer">
+		<div class="page_box">
+			<nav aria-label="page">
+				<ul class="pagination">
+					<li class="page-item disabled">
+			     		<a class="page-link">Previous</a>
+			    	</li>
+			    	<li class="page-item"><a class="page-link" href="#">1</a></li>
+			    	<li class="page-item active" aria-current="page">
+			     		<a class="page-link" href="#">2</a>
+			    	</li>
+			    	<li class="page-item" aria-current="page">
+			     		<a class="page-link" href="#">3</a>
+			    	</li>
+			    	<li class="page-item" aria-current="page">
+			     		<a class="page-link" href="#">4</a>
+			    	</li>
+			    	<li class="page-item" aria-current="page">
+			     		<a class="page-link" href="#">5</a>
+			    	</li>		    			    			    	
+			   		<li class="page-item">
+			      		<a class="page-link" href="#">Next</a>
+			   		</li>
+			  	</ul>
+			</nav>
+		</div>
+	</div><!-- popup_footer, page번호 버튼 -->
 </div>
 
 </body>
