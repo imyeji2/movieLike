@@ -15,4 +15,7 @@ public class ReviewService2 {
 		return reviewDao2.selectAll(keyword, condition);
 	}
 	
+	public int deleteReview(int reviewNo) throws SQLException {
+		return reviewDao2.deleteReview(reviewNo);
+	}
 }

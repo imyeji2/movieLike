@@ -39,7 +39,7 @@ public class ReviewDAO2 {
 			con=pool.getConnection();
 
 			String sql="select m.title, r.*"
-					+ " from movie m left join review r"
+					+ " from movie m right join review r"
 					+ " on m.movieno = r.movieno";
 			
 			//검색의 경우 where 조건절 추가
@@ -132,7 +132,7 @@ public class ReviewDAO2 {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int deleteBoard(int reviewNo) throws SQLException {
+	public int deleteReview(int reviewNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 

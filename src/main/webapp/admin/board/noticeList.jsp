@@ -27,17 +27,6 @@
 			location.href = 'noticeWrite.jsp';
 		});
 		
-		/* $('#button-delete').click(function(){
-			if(confirm('정말 삭제하시겠습니까?')){
-				return false;
-			}
-		});
-		
-		$('#button-delete').click(function(){
-			if(confirm("정말 삭제하시겠습니까?")){
-				$('form').submit(); 
-			}
-		}); */
 		
 		
 		$('#button-delete').click(function(){
@@ -50,6 +39,11 @@
 					$('form').submit(); 
 				}
 			}
+		});
+		
+		
+		$('#addActor').click(function(){
+			var popup = window.open('serchActor.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
 		});
 			
 	});
@@ -139,7 +133,7 @@
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							
-							<div class="ed_btn">
+							<div class="ed_btn" >
 								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
 							</div>

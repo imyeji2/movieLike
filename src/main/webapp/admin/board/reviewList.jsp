@@ -26,6 +26,10 @@
 				}
 			}
 		});
+		
+		$('#detailRev').click(function(){
+			window.open('reviewDetail.jsp', 'review', 'width=800px,height=800px,scrollbars=yes');
+		});
 			
 	});
 
@@ -113,12 +117,12 @@ request.setCharacterEncoding("utf-8");
 							</select>
 							
 							<div class="input-group" style="width:370px">
-							  <input type="text" class="form-control" placeholder="영화 제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+							  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							
 							<div class="ed_btn">
-								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
+								<input type="button" class="review_btn btn btn-primary" name="Review" value="삭제" id="delReview">
 							</div>
 						</div>
 						<div class="search_result">           
@@ -126,7 +130,7 @@ request.setCharacterEncoding("utf-8");
 							   <p> 검색어: <%=keyword %>, <%=list2.size() %>건 검색 되었습니다.</p> 
 							<%} %>
 						</div>
-						<form name="delFrm" method="post" action="reviewDelete.jsp">
+						<form name="delFrm" method="post" action="">
 							<table class="table table-bordered">
 							  <colgroup>
 							      <col style="width:5%;" />
@@ -143,7 +147,7 @@ request.setCharacterEncoding("utf-8");
 							      <th scope="col">영화 제목</th>
 							      <th scope="col">리뷰 내용</th>
 							      <th scope="col">작성자</th>
-							      <th scope="col">등록일</th>
+							      <th scope="col">별점</th>
 							    </tr>
 							  </thead>
 							<tbody>
@@ -161,10 +165,11 @@ request.setCharacterEncoding("utf-8");
 									<th><input type="checkbox" name="chk"></th>
 									<th scope="row"><%=vo2.getReviewNo()%></th>
 									<td style="text-align: left; text-indent: 15px">
-										<a href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>"><%=vo2.getTitle()%></a></td>
-									<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">후기입니다..</a></td>
-									<td>ㅇㅇㅇ</td>
-									<td>2023-07-05</td>
+										<a onclick="detailRev" href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>" ><%=vo2.getTitle()%></a></td>
+									<td style="text-align: left">
+										<a onclick="detailRev" href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>" ><%=vo2.getComments() %></a></td>
+									<td><%=vo2.getUserId() %></td>
+									<td><%=vo2.getScore()%></td>
 								</tr> 
 								<%
 								} //for
