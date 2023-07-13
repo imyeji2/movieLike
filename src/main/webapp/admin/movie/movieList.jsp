@@ -96,7 +96,7 @@
 			var chkCount = $('input[name=chk]:checked').length; 
 			var chk = $('input[name=chk]:checked').attr('id');
 			if(chkCount<=0){
-				alert("수정할 항목을 선택해주세요");
+				alert("삭제할 항목을 선택해주세요");
 			}else{
 				if(confirm("정말 삭제하시겠습니까?")){
 					$('form').submit(); 
@@ -186,7 +186,7 @@
 								<td>
 									<img src="../../images/movie/content/<%=vo.getPoster()%>" style="width:50px;">
 								</td>
-								<td style="text-align: left;"><a href="movieDetail?no=<%=vo.getMovieNo()%>"></a><%=vo.getTitle() %></td>
+								<td style="text-align: left;"><a href="movieDetil.jsp?no=<%=vo.getMovieNo()%>"><%=vo.getTitle() %></a></td>
 								<td><a href="#"></a><%=vo.getDirectorNo1() %></td>
 								<td><%=formattedDate %></td>
 								<td><%=vo.getMovieStatus() %></td>

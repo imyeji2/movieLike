@@ -54,7 +54,7 @@
 				
 				<div class="notice_box">
 					
-					<div class="content_box" style="height:100%;">
+					<div class="content_box">
 						<br><br>
 						<div class="bottom_input">
 						<form name="serchFrm" method="get" action="collectionList.jsp">
@@ -75,9 +75,9 @@
 						<table class="table table-bordered">
 						  <colgroup>
 						      <col style="width:5%;" />
-						      <col style="width:5%;" />
-						      <col style="width:30%;" />
-						      <col style="width:15%;" />      
+						      <col style="width:15%;" />
+						      <col style="width:23%;" />
+						      <col style="width:10%;" />      
 						      <col style="width:10%;" />     
 						   </colgroup>
 						  <thead class="table-light">

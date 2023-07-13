@@ -193,7 +193,7 @@ $(function(){
 			
 		<article>
 			<div class="movie_actor">
-				<h4>출연/제작</h4>
+				<h4>출연</h4>
 				<div class="castingBox">
 			<%
 			

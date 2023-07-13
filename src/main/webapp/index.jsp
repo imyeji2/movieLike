@@ -388,7 +388,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
 
-		    			</div><!-- main_movie_info -->		    	`	`2		
+		    			</div><!-- main_movie_info -->		    			
 		    		</div>	
 			    </div>
 			  </div>

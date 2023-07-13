@@ -155,5 +155,44 @@ public class CollectionListDAO {
 		}
 	}//selectCollectionAll
 	
-
+	
+	
+	public List<CollectionListVO> selectCollectionY() throws SQLException {
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    
+	    try {
+	        con = pool.getConnection();
+	        String sql = "SELECT c.collectionTitle, c.content, MAX(c.regdate) AS maxRegdate, c.status, b.count"
+	                + " FROM collection c"
+	                + " JOIN ("
+	                + "    SELECT collectionTitle, COUNT(movieNo) AS count"
+	                + "    FROM collection"
+	                + "    GROUP BY collectionTitle"
+	                + " ) b ON c.collectionTitle = b.collectionTitle"
+	                + " WHERE c.status = 'N'"
+	                + " GROUP BY c.collectionTitle, c.content, c.status, b.count";
+	        
+	        ps = con.prepareStatement(sql);
+	        rs = ps.executeQuery();
+	        
+	        List<CollectionListVO> list = new ArrayList<CollectionListVO>();
+	        
+	        while (rs.next()) {
+	            CollectionListVO vo = new CollectionListVO();
+	            vo.setCollectionTitle(rs.getString(1));
+	            vo.setContent(rs.getString(2));
+	            vo.setRegdate(rs.getTimestamp(3));
+	            vo.setStatus(rs.getString(4));
+	            vo.setCount(rs.getInt(5));
+	            
+	            list.add(vo);
+	        }
+	        
+	        return list;
+	    } finally {
+	        pool.dbClose(rs, ps, con);
+	    }
+	}
 }

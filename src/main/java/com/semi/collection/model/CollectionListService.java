@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CollectionListService {
+	
 	private CollectionListDAO dao;
 
+	
 	public CollectionListService() {
 		dao = new CollectionListDAO();
 	}
@@ -18,4 +20,9 @@ public class CollectionListService {
 		return dao.serchCollectionAll(serch);
 	}
 	
+	
+	public List<CollectionListVO> selectCollectionY() throws SQLException {
+		return dao.selectCollectionY();
+	}
 }
+ 
