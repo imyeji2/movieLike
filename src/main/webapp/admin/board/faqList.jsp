@@ -1,3 +1,4 @@
+<%@page import="com.semi.common.PagingVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.semi.faq.model.FaqVO"%>
 <%@page import="java.util.List"%>
@@ -26,13 +27,6 @@
 		$('.top_btn').click(function(){
 			location.href = 'faqWrite.jsp';
 		});
-		
-		/* $('#button-delete').click(function(){
-			if(confirm('정말 삭제하시겠습니까?')){
-				return false;
-			}
-		}); */
-		
 		
 		$('#button-delete').click(function(){
 			var chkCount = $('input[name=chk]:checked').length; 
@@ -79,28 +73,24 @@
 	//검색창(keyword) null이면 공백으로 처리
 	if (keyword == null) keyword = "";
 
-	//페이징 처리
-	int currentPage = 1; //현재 페이지
 
-	if (request.getParameter("currentPage") != null) {
+	//페이징 처리
+	
+	int currentPage = 1; //현재 페이지
+	
+	if(request.getParameter("currentPage")!=null){
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
-
-	//[1] 현재 페이지와 무관한 변수
+	
+	
+	//현재 페이지랑 무관한 변수
+	
 	int totalRecord = list.size(); //총 레코드 개수
-	int pageSize = 10; //한 페이지에 보여주 레코드 수
-	int blockSize = 5; //한 블럭에 보여줄 페이지 수
-	int totalPage = (int) Math.ceil((float) totalRecord / pageSize); //총 페이지 수
+	int pageSize = 10; //한페이지에 보여주는 레코드 수
+	int blockSize = 10; // 한 블럭에 보여줄 페이지 수
 
-	//[2] 현재 페이지를 이용해서 계산해야 하는 변수
-	int firstPage = currentPage - ((currentPage - 1) % blockSize); //1,11,21..블럭의 시작페이지
-	int lastPage = firstPage + (blockSize - 1); //10,20,30.. 블럭의 마지막 페이지
-
-	//페이지당 ArrayList에서의 시작 index => 0,5,10,15..
-	int curPos = (currentPage - 1) * pageSize;
-
-	//페이지당 글 리스트 시작 번호
-	int num = totalRecord - curPos;
+	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
+	
 %>
 	<section id="noticeList">
 			<article id="notice_content">
@@ -144,7 +134,7 @@
 						
 						<table class="table table-bordered">
 						  <colgroup>
-						      <col style="width:6%;" />
+						     	 <col style="width:6%;" />
 							      <col style="width:6%;" />
 							      <col style="width:45%;" />
 							      <col style="width:12%;" />      
@@ -168,10 +158,13 @@
 							<!--게시판 내용 반복문 시작  -->
 							<%
 							//10번씩 반복
-							for (int i = 0; i < pageSize; i++) {
-								if (num < 1) break;
-
+							int num = pageVo.getNum();
+						  	int curPos = pageVo.getCurPos();
+						  	
+							for (int i = 0; i <pageVo.getPageSize(); i++) {
+								if(num<1) break;
 								FaqVO vo = list.get(curPos++);
+								num--;	
 								
 								if("faq".equals(vo.getBoardCategory())) {
 									
@@ -197,35 +190,25 @@
 					</table>
 						<div class="page_box">
 							<nav aria-label="page">
-								
 								<ul class="pagination">
-								<%if(firstPage > 1){%>
-									<li class="page-item disabled">
-      									<a href="faqList.jsp?currentPage=<%=firstPage-1%>&searchKeyword=<%=keyword %>">이전</a>
-									</li>
-									<%} %>
-                  
-								   <!-- [1][2][3][4][5]-->
-								   <%for(int i=firstPage ; i<=lastPage ; i++){
-								      if(i>totalPage) break;
-									  
-								      if(i==currentPage){ %>
-									<li class="page-item active" aria-current="page">
-									<a class="page-link"><%=i %></a>
-									</li>
-									<% }else{%>
-									<li class="page-item active" aria-current="page">
-										<a href="faqList.jsp?currentPage=<%=i %>&searchKeyword=<%=keyword %>"><%=i %></a>
-									</li>
-									 <%}//if
-   									 }//for %>
-   									 
-   									 <!-- 다음 블럭으로 이동 -->
-   									<%if(lastPage < totalPage){%>
-									<li class="page-item">
-										<a class="page-link" href="faqList.jsp?currentPage=<%=lastPage+1%>&searchKeyword=<%=keyword %>">다음</a>
-									</li>
-								<%} %>
+									<%if(pageVo.getFirstPage()>1){%>
+											<li class="page-item"><a class="page-link" href="faqList.jsp?currentPage=<%=pageVo.getFirstPage()-1%>&searchKeyword=<%=keyword%>">Previous</a></li>	
+										<%} %>
+									
+										<% for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
+											if(i>pageVo.getTotalPage()) break;
+											if(i == currentPage){ %>
+												<li class="page-item active" aria-current="page"><a class="page-link" href="faqList.jsp?currentPage=<%=i%>&searchKeyword=<%=keyword%>"><%=i %></a></li>
+										<%	}else{ %>
+												<li class="page-item"><a class="page-link" href="faqList.jsp?currentPage=<%=i%>&searchKeyword=<%=keyword%>"><%=i %></a></li>
+										<%	}//if %>
+										<%}//for %>
+									
+										<!-- 다음 블럭으로 이동 -->
+										<%if(pageVo.getLastPage()< pageVo.getTotalPage()){%>
+											<li class="page-item"><a class="page-link" 
+											href="faqList.jsp?currentPage=<%=pageVo.getLastPage()+1%>&searchKeyword=<%=keyword%>">Next</a></li>
+										<%} %>
 								</ul>
 							</nav>
 						</div>

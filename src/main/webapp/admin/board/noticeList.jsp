@@ -42,10 +42,6 @@
 		});
 		
 		
-		$('#addActor').click(function(){
-			var popup = window.open('serchActor.jsp', 'serch', 'width=800px,height=800px,scrollbars=yes');
-		});
-			
 	});
 	
 	

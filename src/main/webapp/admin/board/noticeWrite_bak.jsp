@@ -8,54 +8,45 @@
 
 <%
 
-	String boardNo=request.getParameter("boardNo");
-	boolean isEdit=false;
-	String pageTitle="", btLabel="";
-	if(boardNo!=null && !boardNo.isEmpty()){
-		isEdit=true; //수정 
-		
-		pageTitle="수정하기";
-		btLabel="수정";
-	}else{ //등록
-		pageTitle="등록하기";
-		btLabel="등록";		
-	}	
-	
-	String boardTitle="", adminId="", boardContent="", boardCategory="", boardStatus="";
-	if(isEdit){
-		BoardDAO boardDao = new BoardDAO();
-		
-		try{
-			BoardVO vo=boardDao.selectByNo(Integer.parseInt(boardNo));
-			
-			boardTitle=vo.getBoardTitle();
-			adminId=vo.getAdminID();
-			boardContent=vo.getBoardContent();		
-			boardCategory=vo.getBoardCategory();
-			boardStatus=vo.getBoardStatus();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}			
-		
-		if(boardContent==null) boardContent="";
-	}
-	
+   String boardNo=request.getParameter("boardNo");
+   boolean isEdit=false;
+   String pageTitle="", btLabel="";
+   if(boardNo!=null && !boardNo.isEmpty()){
+      isEdit=true; //수정 
+      
+      pageTitle="수정하기";
+      btLabel="수정";
+   }else{ //등록
+      pageTitle="등록하기";
+      btLabel="등록";      
+   }   
+   
+   String boardTitle="", adminId="", boardContent="", boardCategory="", boardStatus="";
+   if(isEdit){
+      BoardDAO boardDao = new BoardDAO();
+      
+      try{
+         BoardVO vo=boardDao.selectByNo(Integer.parseInt(boardNo));
+         
+         boardTitle=vo.getBoardTitle();
+         adminId=vo.getAdminID();
+         boardContent=vo.getBoardContent();      
+         boardCategory=vo.getBoardCategory();
+         boardStatus=vo.getBoardStatus();
+      }catch(SQLException e){
+         e.printStackTrace();
+      }         
+      
+      if(boardContent==null) boardContent="";
+   }
+   
 %>
 
 <script language="javascript" src="/semi/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
    $(function(){
-	  CKEDITOR.replace('content');
-
-	  var content = CKEDITOR.instances.content.getData();
-	  var result=content.replace(/<\/?p>/gi, '');
-	            
-	  $('#submit').click(function(){
-	      CKEDITOR.instances.content.setData(result);
-      })
+     $('.text_title').focus(); 
       
-	  $('.text_title').focus(); 
-	   
       $('.top_btn').click(function(){
          location.href = 'noticeList.jsp';
       });
@@ -69,8 +60,6 @@
             }
          });
       });
-      
-      
    });
    
 </script>
@@ -80,21 +69,21 @@
   .ck-content { font-size: 12px; }
   
   section {
-		width: 100%;
-	    padding: 40px 40px 20px 40px;
-	    box-sizing: border-box;
-	    margin: 0 auto;
-	}
+      width: 100%;
+       padding: 40px 40px 20px 40px;
+       box-sizing: border-box;
+       margin: 0 auto;
+   }
 </style>
 
 <body>
-<div class="divForm" style="width:1522.39px">
-<form name="frmWrite" method="post" 
- 	<%if(!isEdit){ %> 
+<div class="divForm" style="width:1215.35px">
+<form name="frmWrite" method="post" >
+    <%if(!isEdit){ %> 
          action="noticeWrite_ok.jsp"
     <%   }else{ %>
          action="noticeEdit_ok.jsp"
-    <%   }    %>>
+    <%   }    %>
    <section id="noticeWrite">
          <article id="detail_content">
             <h2>공지/FAQ</h2>
@@ -117,7 +106,8 @@
                   </div>         
                </div> 
               
-              <div class="content_box">
+               
+               <div class="content_box">
                   <div class="textDiv">
                      <div class="text_title">   
                            <label for="title">제목</label>
@@ -132,14 +122,25 @@
                            <input type="text" id="status" name="status" class="infobox" value="Y"/>
                         </div>
                      </div>
-                     
                   <div class="textarea_box">
                      <form action="" method="post">
-                        <textarea id="content" class="infobox" name="content" rows="40"><%=boardContent %></textarea>
+                        <textarea id="content" class="infobox" name="content" rows="40">
+                        <script>
+                  $(function () {
+                     CKEDITOR.replace('contents', {
+                        /* filebrowserUploadUrl :'imgupload.jsp' */
+                     });
+                  });
+                  
+                  CKEDITOR.config.extraPlugins = "base64image";
+                  
+                  </script>
+                        <%=boardContent %></textarea>
                      </form>
                   </div>
-               </div> 
-         </article>
+               </div>  
+               </table> 
+            </div>
    </section> 
    </form>
    </div><!-- admin_menu->aside, session 감싸는 div -->   

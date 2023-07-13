@@ -5,7 +5,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
-<script src = "${path}/ckeditor/ckeditor.js"></script>
+<%-- <script src = "${path}/ckeditor/ckeditor.js"></script> --%>
+<!-- <script>
+	var ckeditor_config = {
+			resize_enaleb : false,
+			enterMode : CKEDITOR.ENTER_BR,
+			shiftEnterMode : CKEDITOR.ENTER_P,
+			filebrowserUploadUrl : "/common/ckUpload"
+	};
+</script> -->
 
 <%
 
@@ -43,17 +51,21 @@
 	
 %>
 
-<script language="javascript" src="/semi/ckeditor/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
    $(function(){
-	  CKEDITOR.replace('content');
+	  CKEDITOR.replace('boardContent');
 
-	  var content = CKEDITOR.instances.content.getData();
-	  var result=content.replace(/<\/?p>/gi, '');
-	            
 	  $('#submit').click(function(){
-	      CKEDITOR.instances.content.setData(result);
-      })
+		  var boardContent = CKEDITOR.instances.boardContent.getData();
+		  var result=boardContent.replace(/<\/?p>/gi, '');
+	      CKEDITOR.instances.boardContent.setData(result);
+	      
+	      if(result.length < 1) {
+	    	  alert('내용을 입력하세요');
+	    	  return false;
+	      };
+      });
       
 	  $('.text_title').focus(); 
 	   
@@ -81,9 +93,9 @@
 		<div class="movieWrite_wrap"><!-- 전체div -->
 			<div class="movieWrite_box"> <!-- 상단 타이틀 div -->
 				<h4>공지사항 등록</h4>
-				<p><a href="movieList.jsp">공지/FAQ</a> > 공지사항 등록</p>
+				<p>공지/FAQ > 공지사항 등록</p>
 			</div>
-			<form name="movieWrite" method="post" enctype="multipart/form-data" action="movieWrite_ok.jsp">
+			<form name="movieWrite" method="post" enctype="multipart/form-data" action="noticeWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
 				
 					<div class="movieWrite_box1">
@@ -91,56 +103,43 @@
 							<div class="movieWrite_box_in_left">제목</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="제목을 입력하세요" name="title" id="movie_tit">
+								placeholder="제목을 입력하세요" name="boardTitle" id="boardTitle">
 							</div>
-						</div><!-- movieWrite_box_in -->
+						</div>
 									
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">관리자 ID</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="관리자 ID를 입력하세요" name="runningTiem" id="runningTiem">		
+								placeholder="관리자 ID를 입력하세요" name="adminID" id="adminID">		
 							</div>
-						</div><!-- movieWrite_box_in -->
+						</div>
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">노출 상태</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="Y" name="openDate" id="openDate">	
+								placeholder="Y" name="boardStatus" id="boardStatus">	
 							</div>
-						</div><!-- movieWrite_box_in -->
+						</div>
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">내용</div>
 							<div class="movieWrite_box_in_right">
-							<textarea id = "editor4" name = "editor4"></textarea>
-								<script>CKEDITOR.replace('editor4',{filebrowserUploadUrl:'/mine/imageUpload.do'});</script>
-							</div><!-- movieWrite_box_in_right -->
-						</div><!-- movieWrite_box_in -->
-					</div><!-- movieWrite_box1 -->
-				</div><!-- movieWrite_box -->
+							<textarea id = "boardContent" name = "boardContent"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
 				
 				<br>
 				<div class="btn_grop">
-					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
+					<input type="submit" class="btn_grop_input" value="등록" id="saveReview">
 					<input type="button" class="btn_grop_input" value="삭제">
 				</div>
 			</form>		
-		</div><!-- 전체div movieWrite_wrap-->
+		</div>
 	</section> 
 	</div><!-- admin_menu->aside, session 감싸는 div -->	
 </div><!-- admin_menu->wrap -->
-
-<script>
-
-CKEDITOR.replace( 'content', {
-    
-   //filebrowserImageUploadUrl: '/semi/admin/uploadIMG.php'
-   filebrowserImageUploadUrl: '/semi/admin/board/img' 
-
-    
-});
-    
-</script>
 
 </body>
 </html>
