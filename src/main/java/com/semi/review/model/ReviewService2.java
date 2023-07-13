@@ -14,5 +14,8 @@ public class ReviewService2 {
 	public List<ReviewVO2> selectAll(String keyword, String condition) throws SQLException{
 		return reviewDao2.selectAll(keyword, condition);
 	}
+	public int likeCountUpdate(String targetId,String pointId, int reviewNo) throws SQLException {
+		return reviewDao2.likeCountUpdate(targetId, pointId, reviewNo);
+	}
 	
 }
