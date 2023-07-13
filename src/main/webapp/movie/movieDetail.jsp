@@ -284,7 +284,6 @@ $(function(){
 				<%if(reviewList != null && !reviewList.isEmpty()){%>
 				<div class="movie_review_conbox"></div>
 				<%}else{ 
-				
 					line = reviewList.size()/4;
 					startPage =0;
 					endPage =0;
