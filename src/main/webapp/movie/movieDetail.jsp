@@ -111,6 +111,11 @@ $(function(){
 	$('#more').click(function(){
 		$('#moreActor').slideToggle('slow');
 	});
+	
+	$('#plzLogin').click(function() {
+		alert('로그인을 하십시오');
+		return false;
+	});
 });
 </script>
    
@@ -159,10 +164,12 @@ $(function(){
 						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
 							<a href = "javascript:void(0)">
-							<% if (isPick) { %>
+							<% if (isPick && (userid != null && !userid.isEmpty())) { %>
 							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=2" onclick="reloading()"><img id="jjimStatus" src="../images/like_on.svg" ></a>
-							<% } else { %>
+							<% } else if(!isPick && (userid != null && !userid.isEmpty())){ %>
 							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=1" onclick="reloading()"><img id="jjimStatus" src="../images/like_off.svg"></a>
+							<% } else {%>
+								<a href = "javascript:void(0)" id="plzLogin"><img id="jjimStatus" src="../images/like_off.svg"></a>
 							<% } %>
 							</a>
 						</div>

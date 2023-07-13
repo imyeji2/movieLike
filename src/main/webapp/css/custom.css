@@ -12,7 +12,9 @@
    width: 50%;
    margin: 0 auto;
    }
-   
+   .jjimbox{
+   height: 12%;
+   }
    
    .profileBackground{
 	   width:100%;
@@ -69,6 +71,7 @@
    .content table td {
       border-bottom: 1px grey solid;
 		font-size: 15px;
+		font-weight:bold;
       text-align: center;
    }
    
@@ -199,9 +202,11 @@
 	.movieItemBox:hover{
 	  transform: translateY(-20px);
 	}	
-	
+	.aaaaa{
+		width: 100%;
+	}
 	.movieImg{
-		width:100%;
+		width:30%;
 		position: relative;
 	}
 	
