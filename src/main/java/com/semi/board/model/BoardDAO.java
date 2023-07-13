@@ -246,5 +246,44 @@ public class BoardDAO {
 		}
 	}
 	
+	public BoardVO selectByCategory(String boardcategory) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
 
+		BoardVO vo = new BoardVO();
+		try {
+			con=pool.getConnection();
+
+			String sql="select * from board where boardcategory=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, boardcategory);
+
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				int boardno = rs.getInt("boardNo");
+				String adminID=rs.getString("adminID");
+				String boardTitle=rs.getString("boardTitle");
+				String boardContent=rs.getString("boardContent");
+				int boardView=rs.getInt("boardView");
+				Timestamp boardRegdate=rs.getTimestamp("boardRegdate");
+				boardcategory=rs.getString("boardCategory");
+				String boardStatus=rs.getString("boardStatus");
+				
+				vo.setAdminID(adminID);
+				vo.setBoardTitle(boardTitle);
+				vo.setBoardContent(boardContent);
+				vo.setBoardView(boardView);
+				vo.setBoardRegdate(boardRegdate);
+				vo.setBoardCategory(boardcategory);
+				vo.setBoardStatus(boardStatus);
+				vo.setBoardNo(boardno);
+			}
+
+			System.out.println("게시글 상세보기 결과, vo="+vo+", 매개변수 boardNo=" + boardcategory);
+			return vo;	
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
 }

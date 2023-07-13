@@ -10,7 +10,7 @@
 				<span>&nbsp;|&nbsp;</span>
 				<span><a href="<%=request.getContextPath()%>/info/aboutCom.jsp" style="a:hover:none">회사 안내</a></span>
 				<span>&nbsp;|&nbsp;</span>
-				<span><a href="center.jsp">고객센터</a></span>									
+				<span><a href="<%=request.getContextPath()%>/info/center.jsp">고객센터</a></span>									
 			</div>
 				
 			<div class="footer_div">

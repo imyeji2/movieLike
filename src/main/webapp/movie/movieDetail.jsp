@@ -111,6 +111,11 @@ $(function(){
 	$('#more').click(function(){
 		$('#moreActor').slideToggle('slow');
 	});
+	
+	$('#plzLogin').click(function() {
+		alert('로그인을 하십시오');
+		return false;
+	});
 });
 </script>
    
@@ -159,10 +164,12 @@ $(function(){
 						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
 							<a href = "javascript:void(0)">
-							<% if (isPick) { %>
+							<% if (isPick && (userid != null && !userid.isEmpty())) { %>
 							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=2" onclick="reloading()"><img id="jjimStatus" src="../images/like_on.svg" ></a>
-							<% } else { %>
+							<% } else if(!isPick && (userid != null && !userid.isEmpty())){ %>
 							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=1" onclick="reloading()"><img id="jjimStatus" src="../images/like_off.svg"></a>
+							<% } else {%>
+								<a href = "javascript:void(0)" id="plzLogin"><img id="jjimStatus" src="../images/like_off.svg"></a>
 							<% } %>
 							</a>
 						</div>
@@ -276,12 +283,11 @@ $(function(){
 		
 		<article class="movie_review">
 			<div class="">
-				<div class="movie_tit1" >코멘트+(갯수)</div>
-				<div class="movie_tit2"><a href="#">더보기</a></div>
+				<div class="movie_tit1" >코멘트</div>
 			</div>
 				<br>
 				<div class="clear">
-				<%if(reviewList != null && !reviewList.isEmpty()){%>
+				<%if(reviewList == null && reviewList.isEmpty()){%>
 				<div class="movie_review_conbox"></div>
 				<%}else{ 
 					line = reviewList.size()/4;
@@ -295,17 +301,17 @@ $(function(){
 						}
 				%>
 					<div class="movie_review_box">
-					<%for(int j=startPage; j<endPage;j++){ %>
+					<%for(int j=startPage; j<endPage;j++){ 
+							ReviewVO reviewVo = reviewList.get(i);%>
 						<div class="movie_review_conbox">
 							<div class="movie_review_conbox1" >
-								<span>이름</span><span>(별점:)</span>
+								<span><%=reviewVo.getUserId()%></span><span><%=reviewVo.getScore() %></span>
 							</div>
 							<div class="movie_review_conbox2">
-							내용.replace("\r\n","<br>")
+							<%=reviewVo.getComments().replace("\r\n","<br>")%>
 							</div>
-							
 							<div class="movie_review_conbox3">
-								<span><a href="">좋아요</a></span><span>좋아요갯수</span>
+								<span><a href="">좋아요</a></span><span><%=reviewVo.getLickCount()%></span>
 							</div>
 						</div>
 					<%} %>

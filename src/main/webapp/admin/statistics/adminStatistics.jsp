@@ -128,7 +128,7 @@
 %>
 		<section id="noticeList">
 		<div class="container text-center" style="border:grey solid 1px;">
-			<div class="container text-center" style="margin-top:3%; padding-top:2%;">
+			<div class="container text-center" style="margin-top:2%; padding-top:1%;">
 				  <div class="row">
 					    <div class="col">
 					     	<div class="input-group input-group-lg">
@@ -153,10 +153,10 @@
 		
 			
 			 <div class="row" id = "upperBox-categoryBox" style="margin-left:5%">
-				 <div class="row" style="margin-bottom:2%;">
+				 <div class="row" style="margin-bottom:1%;">
 				 		<h1>장르별 매출 순위</h1>
 				 </div>
-			    <div class="col-8"  style="padding-top:3%;">
+			    <div class="col-8"  style="padding-top:2%;">
 			    	<div class="row">
 			    		<div class="col-2"><%=categoryVal[0][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[0][0]%></div>
 			    	</div>
@@ -191,7 +191,7 @@
 			    </div>
 			  </div>
 	<!-- -------------------------------------------------------------------------------------------------- -->
-			   <div class="row" id = "upperBox-categoryBox" style="margin-left:5%; margin-top:3%;">
+			   <div class="row" id = "upperBox-categoryBox" style="margin-left:5%; margin-top:2%;">
 			    <div class="row" >
 				 		<h1>영화별 매출 순위</h1>
 				 </div>
