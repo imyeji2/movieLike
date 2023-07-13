@@ -11,7 +11,6 @@
 					<label for="certiPass">비밀번호</label>
 				</div>
 				<button type="button" class="certi-confirm certi-btn">확인</button>
-				<!-- 나중에 개발할때 type submit으로 변경해 -->
 			</form>
 		</div>
 		<div class="edit_user">
@@ -48,8 +47,8 @@
 				</div>
 				<button class="certi-confirm edit-bt" type="submit">정보 수정</button>
 			</form>
-			<form name ="frmOutUser" method = "post" action="#" >
-				<button class="certi-confirm out-bt" type="button">회원 탈퇴</button>
+			<form name ="frmOutUser" method = "post" action="<%=request.getContextPath()%>/myPage/UserDelete_ok.jsp" >
+				<button class="certi-confirm out-bt" type="submit">회원 탈퇴</button>
 			</form>
 		</div>
 	
@@ -67,5 +66,4 @@
 			}
 		});
 		
-		$('')
 	</script>
