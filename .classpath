@@ -12,5 +12,7 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/kobis-opcl-rest-v1.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iiuu2/Downloads/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iiuu2/Downloads/mail-1.4.7.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

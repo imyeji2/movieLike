@@ -13,6 +13,11 @@
     margin-top: 58px;
     padding: 0 150px;
 }
+
+.outter {
+    margin-top: 200px;
+}
+
 h3, h5 {
     display: flex;
     justify-content: center;
@@ -21,13 +26,14 @@ h3, h5 {
 
 }
 
+
 #map {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-left: 80px;
+    height: 700px;
 }
 
 </style>
