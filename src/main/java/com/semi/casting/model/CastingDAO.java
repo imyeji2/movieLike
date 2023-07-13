@@ -23,7 +23,7 @@ public class CastingDAO {
 		List<CastingVO> list = new ArrayList<CastingVO>();
 		try {
 			con = pool.getConnection();
-			String sql = "select * from casting where castingno = ?";
+			String sql = "select * from casting where movieno = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, movieNo);
 			
