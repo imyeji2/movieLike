@@ -104,10 +104,10 @@ $(function(){
 		location.reload();
 	}
 	
-	$('#moreActor').slidUp();
+	$('#moreActor').hide();
 	
 	$('#more').click(function(){
-		$('#moreActor').slideToggle();
+		$('#moreActor').slideToggle('slo');
 	});
 });
 </script>
@@ -177,86 +177,20 @@ $(function(){
 			    		<div class="movie_actor_box1">
 			    			<img src="../images/movie/actor/라이언 고슬링.jpg" alt="배우 이미지">
 			    		</div>
-			    	</div><!-- movie_actor_box -->
-			    	<div class="movie_actor_box">
-			    		<div class="movie_actor_box1">
-			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+			    		<div class="movie_actor_box2">
+			    			<p class="actor_name">[배우]</p>
+			    			<p class="actor_name">라이언 고슬링</p>
 			    		</div>
 			    	</div><!-- movie_actor_box -->
-			    	<div class="movie_actor_box">
-			    		<div class="movie_actor_box1">
-			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-			    		</div>
-			    	</div><!-- movie_actor_box -->
-			    	<div class="movie_actor_box">
-			    		<div class="movie_actor_box1">
-			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-			    		</div>
-			    	</div><!-- movie_actor_box -->			 
-			    	<div class="movie_actor_box">
-			    		<div class="movie_actor_box1">
-			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-			    		</div>
-			    	</div><!-- movie_actor_box -->				    	   				    				    	
+			    	    				    	
 				</div><!-- movie_box_size -->
 
 				
 				
 				<div id="moreActor">
 				<div class="movie_box_size">
-			    	<div class="movie_actor_box">
-			    		<div class="movie_actor_box1">
-			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-			    		</div>
-			    		</div><!-- movie_actor_box -->
-				    	<div class="movie_actor_box">
-				    		<div class="movie_actor_box1">
-				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-				    		</div>
-				    	</div><!-- movie_actor_box -->
-				    	<div class="movie_actor_box">
-				    		<div class="movie_actor_box1">
-				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-				    		</div>
-			    		</div><!-- movie_actor_box -->
-				    	<div class="movie_actor_box">
-				    		<div class="movie_actor_box1">
-				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-				    		</div>
-				    	</div><!-- movie_actor_box -->			 
-			    		<div class="movie_actor_box">
-				    		<div class="movie_actor_box1">
-				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-				    		</div>
-			    		</div><!-- movie_actor_box -->		
-			    				    	   				    				    	
-						</div><!-- movie_box_size -->
-						<div class="movie_box_size">
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    		</div>
-					    	</div><!-- movie_actor_box -->
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    		</div>
-					    	</div><!-- movie_actor_box -->
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    		</div>
-					    	</div><!-- movie_actor_box -->
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    		</div>
-					    	</div><!-- movie_actor_box -->			 
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    	</div>
-				    	</div><!-- movie_actor_box -->				    	   				    				    	
+			    	
+				    	<		    	   				    				    	
 					</div><!-- movie_box_size -->
 				</div>	
 				
