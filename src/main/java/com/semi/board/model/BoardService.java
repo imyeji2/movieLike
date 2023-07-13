@@ -19,4 +19,8 @@ public class BoardService {
 	public int deleteBoard(int boardNo) throws SQLException {
 		return boardDao.deleteBoard(boardNo);
 	}
+	
+	public BoardVO selectByCategory(String boardcategory) throws SQLException {
+		return boardDao.selectByCategory(boardcategory);
+	}
 }
