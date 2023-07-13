@@ -23,4 +23,8 @@ public class MovieListService {
 		return dao.selectMovieByTitle(serch);
 	}
 	
+	
+	public MovieListVO selectMovie(int movieNo) throws SQLException{
+		return dao.selectMovie(movieNo);
+	}
 }

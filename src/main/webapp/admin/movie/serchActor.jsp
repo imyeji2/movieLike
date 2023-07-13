@@ -84,6 +84,7 @@ function sendWrite(no, name, img) {
 	        '<input type="hidden" name="actorNo" value="' + no + '">' +
 	      '</div>' +
 	      '<div class="movieWrite_box_in_right" style="line-height: 65px;">' + name + '</div>' +
+	      '<div class="movieWrite_box_in_right" style="width:10%;line-height: 85px; text-align:center;"><a href="#">삭제</a></div> '+
 	    '</div>';
 
 	  $(opener.document).find('#actorBox').append(htmlContent);

@@ -24,7 +24,7 @@ public class MovieService {
 	}
 	
 	public MovieVO selectMovieByNo(String title) throws SQLException {
-		return movieDao.selectMovieByNo(title);
+		return movieDao.selectMovieByTitle(title);
 	}
 	public Map<String, Integer> getRankByCategory() throws SQLException {
 		return movieDao.getRankByCategory();

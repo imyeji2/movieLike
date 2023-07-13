@@ -2,7 +2,7 @@ package com.semi.collection.model;
 
 import java.sql.Timestamp;
 
-public class collectionVO {
+public class CollectionVO {
 	private int collectionNo;
 	private int movieNo;
 	private String collectionTitle;
@@ -10,11 +10,11 @@ public class collectionVO {
 	private Timestamp regdate;
 	private String status;
 	
-	public collectionVO() {
+	public CollectionVO() {
 
 	}
 
-	public collectionVO(int collectionNo, int movieNo, String collectionTitle, String content, Timestamp regdate,
+	public CollectionVO(int collectionNo, int movieNo, String collectionTitle, String content, Timestamp regdate,
 			String status) {
 		this.collectionNo = collectionNo;
 		this.movieNo = movieNo;

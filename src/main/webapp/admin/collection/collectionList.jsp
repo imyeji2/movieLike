@@ -1,10 +1,9 @@
-<%@page import="com.semi.collection.model.collectionVO"%>
-<%@page import="com.semi.collection.model.collectionService"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.collection.model.CollectionListVO"%>
+<%@page import="com.semi.collection.model.CollectionListService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
-<%@page import="com.semi.movie.model.MovieVO"%>
 <%@page import="java.util.List"%>
-<%@page import="com.semi.movie.model.MovieService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
@@ -17,11 +16,15 @@
 	
 </script>
 <%
-	collectionService service = new collectionService();
-	List<collectionVO> list = null;
-	MovieVO vo=null;
-	/* list = service.selectMovieAll(); */
-
+	CollectionListService service = new CollectionListService();
+	List<CollectionListVO> list = null;
+	CollectionListVO vo = null;
+	
+	try{
+		list = service.selectCollectionAll();
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
 %>
 						
 	<section id="noticeList">
@@ -59,8 +62,7 @@
 						      <col style="width:5%;" />
 						      <col style="width:30%;" />
 						      <col style="width:15%;" />      
-						      <col style="width:10%;" />   
-						      <col style="width:5%;" />    
+						      <col style="width:10%;" />     
 						   </colgroup>
 						  <thead class="table-light">
 						    <tr style="text-align: center">
@@ -73,7 +75,7 @@
 						  </thead>
 						<tbody>
 						<%
-							if(list==null&&list.isEmpty()){%>
+							if(list==null||list.isEmpty()){%>
 								<tr style="text-align: center">
 									<td colspan="5">등록된 글이 없습니다.</td>
 								</tr>
@@ -81,21 +83,18 @@
 							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 							for(int i=0; i<list.size();i++){
 								vo=list.get(i);
-						        String formattedDate = sdf.format(vo.getOpendate());
+						        String formattedDate = sdf.format(vo.getRegdate());
 						        
 						        
 							
 						
 						%>
 							<tr style="text-align: center; line-height: 77px;">
-								<td><input type="checkbox" name="check" value="<%=vo.getMovieNo()%>"></td>
-								<td>
-									<img src="../../images/movie/poster/<%=vo.getPoster()%>" style="width:50px;">
-								</td>
-								<td style="text-align: left;"><a href="#"></a><%=vo.getTitle() %></td>
-								<td><a href="#"></a><%=vo.getDirectorNo1() %></td>
+								<td><input type="checkbox" name="check" value="<%=vo.getCollectionTitle()%>"></td>
+								<td><a href="#"><%=vo.getCollectionTitle() %></a></td>
+								<td style="text-align: left;"><a href="#"></a><%=vo.getContent()%></td>
+								<td><%=vo.getCount() %></td>
 								<td><%=formattedDate %></td>
-								<td><%=vo.getMovieStatus() %></td>
 							</tr>		
 						<%} 
 						}
@@ -104,9 +103,7 @@
 					</table>
 					<br><br>
 					</div><!-- content -->
-				</div>
-				
-				
+				</div>	
 			</article>			
 		</section> 
 	</div><!-- admin_menu->aside, session 감싸는 div -->	

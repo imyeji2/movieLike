@@ -59,7 +59,7 @@
 	}
 	
 	if(list==null||list.isEmpty()){%>
-	<section id="movieList" stlye="margin:0px;"><!-- 전체 페이지 제어 width:100%-->
+	<section id="movieList" stYle="margin:0px;"><!-- 전체 페이지 제어 width:100%-->
 		<article class="moviListAlert">
 			<div class="moviListAlertInfo">
 				<div class="moviListAlertInfo1">

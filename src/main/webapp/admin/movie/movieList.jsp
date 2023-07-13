@@ -1,3 +1,5 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.semi.common.PagingVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.semi.movie.model.MovieVO"%>
@@ -18,7 +20,13 @@
 	MovieService service = new MovieService();
 	List<MovieVO> list = null;
 	MovieVO vo=null;
-	list = service.selectMovieAll();
+	
+	try{
+		list = service.selectMovieAll();
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
+	
 
 %>
 						
@@ -32,17 +40,35 @@
 				
 				<div class="notice_box">
 					
-					<div class="content_box">
-						<div class="search_result">    
+					<div class="content_box" style="height:100%;">
+						<br><br>
+						<div class="bottom_input">
+							<div class="input-group" style="width:350px; margin: 0 auto">
+							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" 
+							  	aria-describedby="button-addon2" name="searchKeyword" title="검색어 입력" value="">
+							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+							</div>
+							
+							<div class="ed_btn">
+								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
+								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
+							</div>
 						</div>
-						<table class="table table-bordered">
+						<div class="search_result">           
+							
+							   <p> 검색어: 건 검색 되었습니다.</p> 
+							
+						</div>
+						
+						<table class="table table-bordered" style="border:1px solid gary">
+						
 						  <colgroup>
 						      <col style="width:5%;" />
 						      <col style="width:5%;" />
 						      <col style="width:30%;" />
 						      <col style="width:15%;" />      
 						      <col style="width:10%;" />   
-						      <col style="width:5%;" />    
+						      <col style="width:4%;" />    
 						   </colgroup>
 						  <thead class="table-light">
 						    <tr style="text-align: center">
@@ -56,7 +82,7 @@
 						  </thead>
 						<tbody>
 						<%
-							if(list==null&&list.isEmpty()){%>
+							if(list==null||list.isEmpty()){%>
 								<tr style="text-align: center">
 									<td colspan="5">등록된 글이 없습니다.</td>
 								</tr>
@@ -65,17 +91,14 @@
 							for(int i=0; i<list.size();i++){
 								vo=list.get(i);
 						        String formattedDate = sdf.format(vo.getOpendate());
-						        
-						        
-							
-						
+
 						%>
 							<tr style="text-align: center; line-height: 77px;">
 								<td><input type="checkbox" name="check" value="<%=vo.getMovieNo()%>"></td>
 								<td>
 									<img src="../../images/movie/poster/<%=vo.getPoster()%>" style="width:50px;">
 								</td>
-								<td style="text-align: left;"><a href="#"></a><%=vo.getTitle() %></td>
+								<td style="text-align: left;"><a href="movieDetail?no=<%=vo.getMovieNo()%>"></a><%=vo.getTitle() %></td>
 								<td><a href="#"></a><%=vo.getDirectorNo1() %></td>
 								<td><%=formattedDate %></td>
 								<td><%=vo.getMovieStatus() %></td>
@@ -85,19 +108,7 @@
 						%>				
 						</tbody>
 					</table>
-						
-						<div class="bottom_input">
-							<div class="input-group mb-3">
-							  <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
-							  <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-							</div>
-							
-							<div class="ed_btn">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
-								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
-							</div>
-						</div>
-						
+					<br><br>
 					</div>
 				</div>
 				
