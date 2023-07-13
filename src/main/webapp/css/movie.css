@@ -205,13 +205,33 @@
 	
 	}
 	
-	.movie_tit{
+	.movie_tit1{
+		width: 80%;
 		padding: 10px;
-		border-top: 1px solid #606060;		
-		border-bottom: 1px solid #606060;	
+		border-top: 1px solid #414141;;		
+		border-bottom: 1px solid #414141;	
 		font-weight: 500;
 		font-size: 20px;
 		line-height: 30px;
+		float: left;
+	}
+	
+	
+	.movie_tit2{
+		width: 20%;
+		padding: 10px;
+		border-top: 1px solid #414141;;		
+		border-bottom: 1px solid #414141;	
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 30px;
+		float: left;
+		text-align: right;
+	}
+	
+	
+	.clear{
+		clear:both;
 	}
 	
 	.movie_player{
@@ -231,12 +251,11 @@
 	.movie_review{
 		width:90%;
 		margin:0 auto;
-		height: 700px;
 	}
 	
 	.movie_review_box{
 		overflow: hidden;
-		padding: 30px 0px 30px 0px;
+		padding: 10px 0px 10px 0px;
 	}
 	
 	.movie_review_conbox{
@@ -244,10 +263,32 @@
 		height: 300px;
 		margin:0% 0.5% 0% 0.5%;
 		border-radius: 20px;
-		background: rgba(255, 255, 255, 0.3);
+		background:#232c46;
 		float: left;
 	}
+	
+	.movie_review_conbox1{
+		width:95%;
+		height:50px;
+		padding:20px 10px 10px 10px;
+		border-bottom: 1px solid #414141;;	
+		margin:0 auto;
+	}
+	
+	.movie_review_conbox2{
+		width:95%;
+		height:200px;
+		padding:20px 10px 10px 10px;
+		border-bottom: 1px solid #414141;;	
+		margin:0 auto;
+	}
 
+	.movie_review_conbox3{
+		width:95%;
+		height:50px;
+		padding:10px 10px 10px 10px;
+		margin:0 auto;
+	}	
 	
 }
 

@@ -27,7 +27,7 @@ public class CastingListDAO {
 			String sql = "select c.castingNo,c.actorNo,c.movieNo, a.actorName, a.actorImg "
 					+ " from casting c left join actor a"
 					+ " on c.actorNo = a.actorNo"
-					+ " where c.movieNo=?;";
+					+ " where c.movieNo=?";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, movieNo);
 			

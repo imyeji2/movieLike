@@ -1,3 +1,5 @@
+<%@page import="com.semi.casting.model.CastingListVO"%>
+<%@page import="com.semi.casting.model.CastingListService"%>
 <%@page import="com.semi.pick.PickVO"%>
 <%@page import="com.semi.pick.PickService"%>
 <%@page import="com.semi.review.model.ReviewVO"%>
@@ -107,7 +109,7 @@ $(function(){
 	$('#moreActor').hide();
 	
 	$('#more').click(function(){
-		$('#moreActor').slideToggle('slo');
+		$('#moreActor').slideToggle('slow');
 	});
 });
 </script>
@@ -171,31 +173,92 @@ $(function(){
 			
 		<article>
 			<div class="movie_actor">
-				<h4>출연/제작</h4>
-				<div class="movie_box_size">
+				<h4>출연</h4>
+				<div class="castingBox">
+			<%
+			
+			
+				CastingListService service = new CastingListService();
+				CastingListVO vo = new CastingListVO();
+				List<CastingListVO> list =null;
+				
+				int startPage=0;
+				int endPage =0;
+				int line=0;
+				
+				try{
+					list=service.selectCastingMovie(Integer.parseInt(movieNo));
+					
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				
+				
+				if(list==null||list.isEmpty()){
+					
+				}else{
+					
+					line = list.size()/5;
+				
+				
+				
+					for(int i=0; i<line+1;i++){
+						startPage = i*5;
+						endPage=startPage+5;
+						if(endPage>list.size()){
+							endPage=list.size();
+						}
+						
+						if(line==1){
+			%>	
+					<div class="movie_box_size">
+				
+				<%
+				
+						for(int j=startPage; j<endPage; j++){
+							
+							vo=list.get(j);
+				%>
 			    	<div class="movie_actor_box">
 			    		<div class="movie_actor_box1">
-			    			<img src="../images/movie/actor/라이언 고슬링.jpg" alt="배우 이미지">
+			    			<img src="../images/movie/actor/<%=vo.getActorImg() %>" alt="배우 이미지">
 			    		</div>
 			    		<div class="movie_actor_box2">
 			    			<p class="actor_name">[배우]</p>
-			    			<p class="actor_name">라이언 고슬링</p>
+			    			<p class="actor_name"><%=vo.getActorName() %></p>
 			    		</div>
 			    	</div><!-- movie_actor_box -->
-			    	    				    	
-				</div><!-- movie_box_size -->
+			  		  <%} %>	    				    	
+					</div>
 
+				<%}else{ %>
 				
+					<div id="moreActor">
+				<%
 				
-				<div id="moreActor">
-				<div class="movie_box_size">
-			    	
-				    	<		    	   				    				    	
-					</div><!-- movie_box_size -->
-				</div>	
+					for(int j=startPage; j<endPage; j++){
+						vo=list.get(j);
+
+				%>
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/<%=vo.getActorImg() %>" alt="배우 이미지">
+			    		</div>
+			    		<div class="movie_actor_box2">
+			    			<p class="actor_name">[배우]</p>
+			    			<p class="actor_name"><%=vo.getActorName() %></p>
+			    		</div>
+			    	</div><!-- movie_actor_box -->
+			    <%} %>						
+				    </div>
+		<%} 
+		}
+				}
+		%>
 				
 				<div class="moreActorBtn" id="more">더보기</div>
-			</div><!-- movie_actor -->	
+			</div><!-- castingBox -->	
+		</div><!-- movie_actor -->
 		</article>	
 		
 
@@ -211,14 +274,46 @@ $(function(){
 		</article>
 		
 		<article class="movie_review">
-			<div class="movie_tit">코멘트</div>
-			<div class="movie_review_box">
-			<%if(reviewList != null && !reviewList.isEmpty()){%>
-				<div class="movie_review_conbox"></div>
-			<%}else{ %>
-				<h1 style="text-align: center">아직 아무 리뷰도 없어요....</h1>
-			<%}%>
+			<div class="">
+				<div class="movie_tit1" >코멘트+(갯수)</div>
+				<div class="movie_tit2"><a href="#">더보기</a></div>
 			</div>
+				<br>
+				<div class="clear">
+				<%if(reviewList != null && !reviewList.isEmpty()){%>
+				<div class="movie_review_conbox"></div>
+				<%}else{ 
+				
+					line = reviewList.size()/4;
+					startPage =0;
+					endPage =0;
+					for(int i=0;i<line+1;i++){
+						startPage=i*5;
+						endPage=startPage+5;
+						if(endPage>reviewList.size()){
+							endPage=reviewList.size();
+						}
+				%>
+					<div class="movie_review_box">
+					<%for(int j=startPage; j<endPage;j++){ %>
+						<div class="movie_review_conbox">
+							<div class="movie_review_conbox1" >
+								<span>이름</span><span>(별점:)</span>
+							</div>
+							<div class="movie_review_conbox2">
+							내용.replace("\r\n","<br>")
+							</div>
+							
+							<div class="movie_review_conbox3">
+								<span><a href="">좋아요</a></span><span>좋아요갯수</span>
+							</div>
+						</div>
+					<%} %>
+					</div>
+				<%} %>
+				</div>
+				<%} %>
+			<br><br>
 		</article>
 			
 	</section>
