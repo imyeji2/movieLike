@@ -1,5 +1,12 @@
 @charset "UTF-8";
-
+#buyPopcorn {
+  	cursor: pointer;
+    margin: -1% 0% 0% 24%;
+    width: 22%;
+    padding: 1% 0% 1% 0%;
+    opacity: 1.0;
+    border: black 2px solid;
+}
 #myPageSection {
 	height: 100%;	
 	
@@ -38,14 +45,40 @@
     margin-top: 25px;
     padding: 2% 4% 6% 4%;
    }
-   
-   .refund {
-     border: none;
-      background:limegreen;
-      color:floralwhite;
-      font-weight: bold;
-      width: 100px;
+   .writeReview{
+      	border: none;
+	    background: #198754;
+	    color: floralwhite;
+	    font-weight: bold;
+	    width: 64%;
+	    padding: 4% 0% 4% 0%;
    }
+   .watchreview{
+	 border: none;
+      background:grey;
+      color:white;
+      font-weight: bold;
+      width: 64%;
+	    padding: 4% 0% 4% 0%;
+   }
+   .refund {
+	 	border: none;
+	    background: #198754;
+	    color: floralwhite;
+	    font-weight: bold;
+	    width: 45%;
+	    padding: 2% 0% 4% 0%;
+	}
+	.removeReview{
+		    border: none;
+    background: #dc3545;
+    color: floralwhite;
+    font-weight: bold;
+    width: 89%;
+    padding: 5% 9% 7% 9%;
+	}
+   }
+   
    .refunded{
 	  border: none;
       background:grey;
@@ -64,13 +97,13 @@
    
   .content table th {
       border-bottom: 1px grey solid;
-		font-size: 21px;
+		font-size: 22px;
       text-align: center;
    }
    
    .content table td {
       border-bottom: 1px grey solid;
-		font-size: 15px;
+		font-size: 20px;
 		font-weight:bold;
       text-align: center;
    }

@@ -62,16 +62,25 @@ $(document).ready(function() {
 			var param = $('#pop').val();
 			window.open('chargePopcorn.jsp?userid=' + param, '_blank', 'resizable=no,width=500,height=300');
 		});
-		$('#wrtBtn').click(function(){
-			var param = $('#writeBtn').val();
+		$('.writeReview').click(function(){
+			var param = $(this).val();
 			window.open('writeReview.jsp?' + param, '_blank', 'resizable=no,width=700,height=430');
 		});
-		$('#removeReview').click(function(){
+
+		$('.watchreview').click(function(){
+			var param = $(this).val();
+			location.href = "/semi/movie/movieDetail.jsp?" + param;
+		});
+		
+		
+		
+		
+		$('.removeReview').click(function(){
 			if(!confirm('정말 리뷰를 삭제합니까?')){
 				return false;
 			}
 			var windowFeatures = "width=1,height=1,left=2800,top=2800,scrollbars=no,status=no,toolbar=no,menubar=no,location=no";
-			var param = $('#removeReviewVal').val();
+			var param = $(this).parent('td').prev('.removeReviewVal').val();
 			window.open('deleteReview.jsp?' + param, '_blank', windowFeatures);
 		});
 	});
@@ -308,11 +317,9 @@ $(document).ready(function() {
 								      <td><%=vo.getHisNo() %></td>
 								      <td><%=title%></td>
 								      <%if(!reviewService.isReview(vo.getMovieNo(), userid)){%>
-								      <input type="hidden" id="writeBtn" value="userid=<%=userVo.getUserId()%>&movieNo=<%=vo.getMovieNo()%>">
-								      <td> <button type="button" id="wrtBtn" class="btn btn-success">리뷰작성하기</button></td>
+								      <td> <button type="button" id="wrtBtn" value="userid=<%=userVo.getUserId()%>&movieNo=<%=vo.getMovieNo()%>" class="writeReview">리뷰작성하기</button></td>
 								      <%}else{%>
-								      <input type="hidden" id="watchBtn" value="<%=vo.getMovieNo()%>">
-								      <td><button type="button"  id="wtcBtn" class="btn btn-light">리뷰보러가기</button></td>
+								      <td><button type="button" value="no=<%=vo.getMovieNo()%>" id="wtcBtn" class="watchreview">리뷰보러가기</button></td>
 								      <%} %>
 							    </tr>
 						    <% } %>
@@ -406,8 +413,8 @@ $(document).ready(function() {
 						<td><%=movieTitle %></td>
 						<td><%=vo.getComments() %></td>
 						<td><%=vo.getScore() %></td>
-						<input type = "hidden" id = "removeReviewVal" value="reviewNo=<%=vo.getReviewNo()%>">
-						<td><button type="button" id="removeReview" class="btn btn-danger">리뷰삭제</button></td>
+						<input type = "hidden" class = "removeReviewVal" value="reviewNo=<%=vo.getReviewNo()%>">
+						<td><button type="button" id="removeReview" class="removeReview">리뷰삭제</button></td>
 					</tr>
 					<%}
 						}%>
