@@ -1,3 +1,4 @@
+<%@page import="com.semi.review.model.ReviewService2"%>
 <%@page import="com.semi.review.model.ReviewVO2"%>
 <%@page import="com.semi.review.model.ReviewDAO2"%>
 <%@page import="java.util.List"%>
@@ -35,44 +36,43 @@
 
 <%
 request.setCharacterEncoding("utf-8");
-	String keyword=request.getParameter("searchKeyword");
-	String condition=request.getParameter("searchCondition");
-	
-	ReviewDAO2 reviewDao2 = new ReviewDAO2();
-	List<ReviewVO2>list2 = null;
-	try {
-		list2 = reviewDao2.selectAll(keyword, condition);
-	} catch (SQLException e) {
-		e.printStackTrace();
+String keyword = request.getParameter("searchKeyword");
+String condition = request.getParameter("searchCondition");
+
+//2.db 작업
+ReviewService2 reviewService = new ReviewService2();
+List<ReviewVO2> list = null;
+
+try{
+	if(condition != null && condition.equals("outdate")){
+		list = reviewService.selectAll(keyword, condition);
 	}
+}catch(SQLException e){
+	e.printStackTrace();
+}
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//3.결과 출력
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
 
-	//검색창(keyword) null이면 공백으로 처리
-	if (keyword == null) keyword = "";
+if(keyword == null) keyword = "";
 
-	//페이징 처리
-	int currentPage = 1; //현재 페이지
 
-	if (request.getParameter("currentPage") != null) {
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}
+//페이징 처리
 
-	//[1] 현재 페이지와 무관한 변수
-	int totalRecord = list2.size(); //총 레코드 개수
-	int pageSize = 10; //한 페이지에 보여주 레코드 수
-	int blockSize = 5; //한 블럭에 보여줄 페이지 수
-	int totalPage = (int) Math.ceil((float) totalRecord / pageSize); //총 페이지 수
+int currentPage = 1; //현재 페이지
 
-	//[2] 현재 페이지를 이용해서 계산해야 하는 변수
-	int firstPage = currentPage - ((currentPage - 1) % blockSize); //1,11,21..블럭의 시작페이지
-	int lastPage = firstPage + (blockSize - 1); //10,20,30.. 블럭의 마지막 페이지
+if(request.getParameter("currentPage")!=null){
+	currentPage = Integer.parseInt(request.getParameter("currentPage"));
+}
 
-	//페이지당 ArrayList에서의 시작 index => 0,5,10,15..
-	int curPos = (currentPage - 1) * pageSize;
 
-	//페이지당 글 리스트 시작 번호
-	int num = totalRecord - curPos;
+//현재 페이지랑 무관한 변수
+
+int totalRecord = list.size(); //총 레코드 개수
+int pageSize = 10; //한페이지에 보여주는 레코드 수
+int blockSize = 10; // 한 블럭에 보여줄 페이지 수
+
+PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 %>
 
 	<section id="noticeList">
@@ -88,13 +88,14 @@ request.setCharacterEncoding("utf-8");
 
 						
 					<div class="content_box">
-					
-						<div class="search_result">           
+						<div class="search_result">  
+							<%=list2.size()%>건 검색되었습니다.         
 						</div>
 						
 						<div class="search_input">
-							<form name = "frmSearch" method ="post" action="noticList.jsp">
+							<form name = "frmSearch" method ="post" action="reviewList.jsp">
 								<select class="form-select" name="searchCondition" aria-label="Default select example">
+							  <option selected>카테고리</option>
 							  <option value="title" 
 							  	<%if("title".equals(condition)){ %>
 				            		selected="selected" 
@@ -113,7 +114,7 @@ request.setCharacterEncoding("utf-8");
 							</select>
 							
 							<div class="input-group" style="width:370px">
-							  <input type="text" class="form-control" placeholder="영화 제목을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+							  <input type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							
@@ -122,9 +123,6 @@ request.setCharacterEncoding("utf-8");
 							</div>
 						</div>
 						<div class="search_result">           
-							<%if(keyword!=null && !keyword.isEmpty()){%>
-							   <p> 검색어: <%=keyword %>, <%=list2.size() %>건 검색 되었습니다.</p> 
-							<%} %>
 						</div>
 						<form name="delFrm" method="post" action="reviewDelete.jsp">
 							<table class="table table-bordered">
@@ -143,60 +141,66 @@ request.setCharacterEncoding("utf-8");
 							      <th scope="col">영화 제목</th>
 							      <th scope="col">리뷰 내용</th>
 							      <th scope="col">작성자</th>
-							      <th scope="col">등록일</th>
+							      <th scope="col">별점</th>
 							    </tr>
 							  </thead>
 							<tbody>
+								<%if(list2 == null || list2.isEmpty()){ %>
+									<tr><td colspan="7" class = "align_center">리뷰가 존재하지 않습니다.</td></tr>
+								<%}else{ 
 								
-								<!--게시판 내용 반복문 시작  -->
-								<%
-								//10번씩 반복
-								for (int i = 0; i < pageSize; i++) {
-									if (num < 1) break;
-	
-									ReviewVO2 vo2 = list2.get(curPos++);
-									num--;
+									int num = pageVo.getNum();
+								  	int curPos = pageVo.getCurPos();
+									
+									for(int i = 0; i<pageVo.getPageSize(); i++){
+										if(num<1) break;
+										
+										ReviewVO2 vo2 = list2.get(curPos++);
+										num--;	
 								%>
-								<tr style="text-align: center">
-									<th><input type="checkbox" name="chk"></th>
-									<th scope="row"><%=vo2.getReviewNo()%></th>
-									<td style="text-align: left; text-indent: 15px">
-										<a href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>"><%=vo2.getTitle()%></a></td>
-									<td style="text-align: left"><a href="<%=request.getContextPath()%>/board/reviewDetail.jsp">후기입니다..</a></td>
-									<td>ㅇㅇㅇ</td>
-									<td>2023-07-05</td>
-								</tr> 
-								<%
-								} //for
-								%>
-								<!--반복처리 끝  -->
+									<tr style="text-align:center">
+										<td><input type="checkbox" id="chkid"></td>
+										<td class = "reviewNo"><%=vo2.getReviewNo() %></td>
+										<td><%=vo2.getTitle() %></td>
+										<td><%=vo2.getComments() %></td>
+										<td><%=vo2.getUserId() %></td>
+										<td><%=vo2.getScore() %></td>
+									</tr> 
+									
+									<%}//for %>
+								<%}//if %>
 								</tbody>
 							</table>
-						</form>
+						
 						<div class="page_box">
 							<nav aria-label="page">
 								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link">이전</a>
-									</li>
-									<li class="page-item active" aria-current="page"><a 
-										class="page-link" href="#">1</a></li>
-									<li class="page-item" ><a
-										class="page-link" href="#">2</a></li>
-									<li class="page-item" aria-current="page"><a
-										class="page-link" href="#">3</a></li>
-									<li class="page-item" aria-current="page"><a
-										class="page-link" href="#">4</a></li>
-									<li class="page-item" aria-current="page"><a
-										class="page-link" href="#">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">다음</a>
-									</li>
+									<%if(pageVo.getFirstPage()>1){%>
+											<li class="page-item"><a class="page-link" href="memberList.jsp?currentPage=<%=pageVo.getFirstPage()-1%>&searchKeyword=<%=keyword%>&searchCondition=<%=condition %>">Previous</a></li>	
+										<%} %>
+									
+										<% for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
+											if(i>pageVo.getTotalPage()) break;
+											if(i == currentPage){ %>
+												<li class="page-item active" aria-current="page"><a class="page-link" href="memberList.jsp?currentPage=<%=i%>&searchKeyword=<%=keyword%>&searchCondition=<%=condition %>"><%=i %></a></li>
+										<%	}else{ %>
+												<li class="page-item"><a class="page-link" href="memberList.jsp?currentPage=<%=i%>&searchKeyword=<%=keyword%>&searchCondition=<%=condition %>"><%=i %></a></li>
+										<%	}//if %>
+										<%}//for %>
+									
+										<!-- 다음 블럭으로 이동 -->
+										<%if(pageVo.getLastPage()< pageVo.getTotalPage()){%>
+											<li class="page-item"><a class="page-link" 
+											href="memberList.jsp?currentPage=<%=pageVo.getLastPage()+1%>&searchKeyword=<%=keyword%>&searchCondition=<%=condition %>">Next</a></li>
+										<%} %>
 								</ul>
 							</nav>
 						</div>
+				</div>
 					
 				</div>
 				
-				
+				</form>
 			</article>
 			
 	</section> 
