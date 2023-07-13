@@ -200,7 +200,6 @@ $(function(){
 		
 
 		<article>
-			
 			<div class="movie_video">
 				<div class="movie_tit">예고편</div>
 			

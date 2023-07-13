@@ -100,11 +100,11 @@ $(function(){
 			}
 		}
 		
-		var maxSize = 1 * 1024 * 1024; // 1MB
+		var maxSize = 3 * 1024 * 1024; // 1MB
 		var fileSize = $("#stilcut")[0].files[0].size;
 		
 		if (fileSize > maxSize) {
-			alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
+			alert("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
 			$("#stilcut").val("");
 			$('#stilcut').focus();
 			return false;
