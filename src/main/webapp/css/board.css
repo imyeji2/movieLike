@@ -177,11 +177,15 @@
 	.textDiv {
     	margin-right: 20px;
     	padding-top: 40px;
-    	padding-left: 155px;
+    	padding-left: 110px;
     	
 	}
 	
 	.text_title {
+    	margin-bottom: 15px;
+	}
+	
+	.text_name {
     	margin-bottom: 15px;
 	}
 	
@@ -193,6 +197,12 @@
 	
 	.text_name #name {
     	margin-left: 16px;
+    	width: 500px;
+    	border: solid 1px #9d9d9d;
+	}
+	
+	.text_status #status {
+    	margin-left: 53px;
     	width: 500px;
     	border: solid 1px #9d9d9d;
 	}

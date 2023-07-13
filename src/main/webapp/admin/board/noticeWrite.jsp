@@ -12,7 +12,7 @@
 	boolean isEdit=false;
 	String pageTitle="", btLabel="";
 	if(boardNo!=null && !boardNo.isEmpty()){
-		isEdit=true; //수정
+		isEdit=true; //수정 
 		
 		pageTitle="수정하기";
 		btLabel="수정";
@@ -77,12 +77,12 @@
 </style>
 
 <body>
-<div class="divForm">
+<div class="divForm" style="width:1215.35px">
 <form name="frmWrite" method="post" >
  	<%if(!isEdit){ %> 
-         action="noticeWrite_ok.jsp";
+         action="noticeWrite_ok.jsp"
     <%   }else{ %>
-         action="noticeEdit_ok.jsp";
+         action="noticeEdit_ok.jsp"
     <%   }    %>
    <section id="noticeWrite">
          <article id="detail_content">
@@ -96,7 +96,7 @@
             </div>
             <div class="top_btn">
                <button type="button" id="cancel" class="btn btn-primary" style="background:gray; border:solid 1px gray">
-                  <a href="noticeList.jsp">취소</a></button>
+                  <a href="noticeList.jsp">취소하기</a></button>
             </div>
             
             <div class="notice_box">

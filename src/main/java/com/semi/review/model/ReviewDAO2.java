@@ -82,6 +82,82 @@ public class ReviewDAO2 {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	
+	/**
+	 * 관리자 페이지 - 리뷰 상세보기 메서드
+	 * @param no
+	 * @return
+	 * @throws SQLException 
+	 */
+	public ReviewVO2 selectByNo(int reviewNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+
+		ReviewVO2 vo2 = new ReviewVO2();
+		try {
+			//1,2
+			con=pool.getConnection();
+
+			//3
+			String sql="select * from review where reviewNo=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, reviewNo);
+
+			//4
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String title=rs.getString("title");
+				String comments=rs.getString("comments");
+				String userid=rs.getString("userid");
+				int score = rs.getInt("score");
+
+				vo2.setTitle(title);
+				vo2.setComments(comments);
+				vo2.setUserId(userid);
+				vo2.setScore(score);
+			}//if
+
+			System.out.println("글 상세보기 결과, vo2="+vo2+", 매개변수 reviewNo=" + reviewNo);
+			return vo2;	
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
+	
+	/**
+	 * 관리자 페이지 - 리뷰 삭제 메서드
+	 * @param no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int deleteBoard(int reviewNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			//1,2
+			con = pool.getConnection();
+
+			//3
+			String sql = "delete from review"
+					+ " where reviewNo = ?";
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, reviewNo);
+
+			//4
+			int cnt = ps.executeUpdate();
+			System.out.println("삭제 처리 결과 : " + cnt
+					+", 매개변수 reviewNo="+reviewNo);
+			
+			return cnt;
+		} finally {
+			pool.dbClose(ps, con);
+		}
+	}
+	
 }
 
 
