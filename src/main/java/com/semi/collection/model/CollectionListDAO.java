@@ -35,7 +35,7 @@ public class CollectionListDAO {
 					+ "    SELECT collectionTitle, COUNT(movieNo) AS count"
 					+ "    FROM collection"
 					+ "    GROUP BY collectionTitle"
-					+ ") b ON c.collectionTitle = b.collectionTitle"
+					+ " ) b ON c.collectionTitle = b.collectionTitle"
 					+ " GROUP BY c.collectionTitle, c.content, c.status, b.count";
 			
 			ps=con.prepareStatement(sql);
@@ -61,6 +61,8 @@ public class CollectionListDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}//selectCollectionAll
+	
+	
 	
 	
 	public List<CollectionListVO> selectCollectionTitle() throws SQLException{
@@ -76,7 +78,7 @@ public class CollectionListDAO {
 					+ "    SELECT collectionTitle, COUNT(movieNo) AS count"
 					+ "    FROM collection"
 					+ "    GROUP BY collectionTitle"
-					+ ") b ON c.collectionTitle = b.collectionTitle"
+					+ " ) b ON c.collectionTitle = b.collectionTitle"
 					+ " GROUP BY c.collectionTitle, c.content, c.status, b.count";
 			
 			ps=con.prepareStatement(sql);
@@ -103,7 +105,55 @@ public class CollectionListDAO {
 		}
 	}//selectCollectionAll
 	
-
+	
+	
+	/**
+	 * 컬렉션 리스트 검색
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<CollectionListVO> serchCollectionAll(String serch) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "SELECT c.collectionTitle, c.content, MAX(c.regdate) AS maxRegdate, c.status, b.count" 
+					+ " FROM collection c" 
+					+ " JOIN ("
+					+ "    SELECT collectionTitle, COUNT(movieNo) AS count"
+					+ "    FROM collection"
+					+ "    GROUP BY collectionTitle"
+					+ " ) b ON c.collectionTitle = b.collectionTitle"
+					+ " WHERE c.collectionTitle LIKE '%' || ? || '%'"
+					+ " GROUP BY c.collectionTitle, c.content, c.status, b.count";
+			
+			ps=con.prepareStatement(sql);
+			ps.setString(1, serch);
+			
+			rs = ps.executeQuery();
+			
+			List<CollectionListVO> list = new ArrayList<CollectionListVO>();
+			CollectionListVO vo = null;
+			
+			
+			while(rs.next()) {
+				String title = rs.getString(1);
+				String content = rs.getString(2);
+				Timestamp regdate = rs.getTimestamp(3);
+				String status = rs.getString(4);
+				int count = rs.getInt(5);
+				
+				vo = new CollectionListVO(title, content, regdate, status, count);
+				list.add(vo);
+			}
+			System.out.println("컬렉션 검색 조회 list.size()"+list.size());
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}//selectCollectionAll
 	
 
 }

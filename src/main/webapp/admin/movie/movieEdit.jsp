@@ -249,7 +249,7 @@ $(function(){
 									<%
 										GenreService genreService = new GenreService();
 										List<GenreVO> list = null;
-										GenreVO vo = null;
+										GenreVO gernVo = null;
 										
 										try{
 											list = genreService.selectGenreAll();
@@ -258,7 +258,7 @@ $(function(){
 											<option selected value="0">없음</option>	
 										<%	}else{ 
 												for(int i=0; i<list.size();i++){
-													vo=list.get(i);
+													gernVo=list.get(i);
 										%>
 											<option value="<%=vo.getGenreNo()%>"><%=vo.getGenreName() %></option>
 										<%	

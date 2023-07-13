@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.semi.db.ConnectionPoolMgr;
+import com.semi.director.model.DirectorVO;
 import com.semi.genre.model.GenreService;
 
 public class MovieDAO {
@@ -234,6 +235,8 @@ public class MovieDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	
+	
 	/**
 	 * 관리자 통계탭에서 뿌려줄 카테고리별 매출
 	 * @return
@@ -269,4 +272,58 @@ public class MovieDAO {
 	}
 	
 	
+	/**
+	 * 감독 이름 검사
+	 * @param serch
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<MovieVO> serchtMovie(String serch) throws SQLException{
+			
+		Connection con =null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select *  from movie"
+					+ " where title like '%'||?||'%'";
+	
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, serch);
+			
+			rs = ps.executeQuery();
+			List<MovieVO> list = new ArrayList<MovieVO>();
+			MovieVO vo = null;
+			
+			while(rs.next()) {
+				int movieNo = rs.getInt("movieNo");
+				int genreNo = rs.getInt("genreNo");
+				String title = rs.getString("title");
+				String runningTime = rs.getString("runningTime");
+				String synop = rs.getString("synop");
+				String poster = rs.getString("poster");
+				String stilcut = rs.getString("stilcut");
+				String url = rs.getString("url");
+				int price = rs.getInt("price");
+				Timestamp opendate = rs.getTimestamp("opendate");
+				int ageRate = rs.getInt("ageRate");
+				Timestamp regdate  = rs.getTimestamp("regdate");
+				int directorNo1 = rs.getInt("directorNo1");
+				int directorNo2 = rs.getInt("directorNo2");
+				String movieStatus = rs.getString("movieStatus");				
+				
+				vo = new MovieVO(movieNo, genreNo, title, runningTime, synop, poster, url, 
+						price, opendate, ageRate, regdate, directorNo1, directorNo2, movieStatus, stilcut);
+				list.add(vo);
+			}
+			
+			System.out.println("감독이름 검색 결과 list.size()="+list.size()+", 매개변수 name="+serch);
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}//serchActor
+	}
+
 }

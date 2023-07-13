@@ -230,6 +230,46 @@ public class DirectorDAO {
 		
 	}//chekByDirectorName
 	
-	
+	/**
+	 * 감독 검색
+	 * @param serch
+	 * @return
+	 * @throws SQLException
+	 */
+	 public List<DirectorVO> serchDirector(String serch) throws SQLException {
+		Connection con =null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select *  from director"
+					+ " where directorName like '%'||?||'%'";
+
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, serch);
+			
+			rs = ps.executeQuery();
+			List<DirectorVO> list = new ArrayList<DirectorVO>();
+			DirectorVO vo = null;
+			
+			while(rs.next()) {
+				int directorNo = rs.getInt("directorNo");
+				String directorName = rs.getString("directorName");
+				String directorImg = rs.getString("directorImg");
+				
+				vo=new DirectorVO(directorNo, directorName, directorImg);
+				list.add(vo);
+				
+			
+			}
+			
+			System.out.println("감독이름 검색 결과 list.size()="+list.size()+", 매개변수 name="+serch);
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}//serchActor
+	}	
 	
 }
