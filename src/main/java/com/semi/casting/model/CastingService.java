@@ -17,4 +17,8 @@ public class CastingService {
 	public int insertCasting(CastingVO vo) throws SQLException {
 		return dao.insertCasting(vo);
 	}
+	
+	public int deleteCasting(int actorNo, int movieNo) throws SQLException {
+		return dao.deleteCasting(actorNo, movieNo);
+	}
 }

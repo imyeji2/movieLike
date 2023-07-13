@@ -69,6 +69,33 @@ public class CastingDAO {
 		}finally {
 			pool.dbClose(ps, con);
 		}
+	}//insertCasting
+	
+	
+	/**
+	 * 캐스팅 삭제
+	 * @throws SQLException 
+	 */
+	
+	public int deleteCasting(int actorNo, int movieNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = " delete casting"
+					+ " where actorNo =? and movieno=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, actorNo);
+			ps.setInt(2, movieNo);
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("캐스팅 삭제 결과 cnt="+cnt);
+			return cnt;
+			
+		}finally {
+			pool.dbClose(ps, con);
+		}
 	}
 
 }

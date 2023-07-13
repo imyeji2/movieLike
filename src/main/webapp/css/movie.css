@@ -188,12 +188,10 @@
 		font-size: 15px;
 		font-weight: 600;
 		clear: both;
+		border-bottom: 1px solid #414141;;	
 	}
 	
 	
-	.moreActorBtn:hover{
-		background-color:#9099a7;
-	}	
 	
 	
 	/*영화 예고편 부분*/

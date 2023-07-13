@@ -1,3 +1,9 @@
+<%@page import="com.semi.casting.model.CastingListService"%>
+<%@page import="com.semi.casting.model.CastingListVO"%>
+<%@page import="com.semi.actor.model.ActorService"%>
+<%@page import="com.semi.actor.model.ActorVO"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.semi.movie.model.MovieListService"%>
 <%@page import="com.semi.movie.model.MovieService"%>
 <%@page import="com.semi.movie.model.MovieListVO"%>
 <%@page import="java.sql.SQLException"%>
@@ -20,8 +26,64 @@
 
 
  -->
+ 
+<%	String no = request.getParameter("no"); %>
 <script type="text/javascript">
 $(function(){
+	
+	$(document).on('click', '.movieWrite_box_in_right a', function() {
+		  var actorNo = $(this).closest('.movieWrite_box_in').find('input[name="actorNo"]').val();
+		  var directorNo = $(this).closest('.movieWrite_box_in').find('input[name="directorNo"]').val();
+
+		  if(actorNo.lenth>1){
+			  if (confirm('정말 삭제하시겠습니까?')) {
+			    $.ajax({
+			      type: 'POST',
+			      url: 'movieEditActorDel.jsp?no=<%=no%>', // Servlet file path
+			      data: { actorNo: actorNo }, 
+			      success: function(result) {
+			        if (result>0) {
+			          alert('삭제가 완료되었습니다.');
+			          $(this).closest('.movieWrite_box_in').remove();
+			          return false;
+			        } else {
+			          alert('아직 등록전인 배우입니다.');
+			        }
+			      },
+			      error: function() {
+			        
+			        alert('서버 오류가 발생했습니다.');
+			      }
+			    });
+			  }
+			  
+		  }else{
+			  if (confirm('정말 삭제하시겠습니까?')) {
+				    $.ajax({
+				      type: 'POST',
+				      url: 'movieEditDirectorDel.jsp?no=<%=no%>', // Servlet file path
+				      data: { actorNo: actorNo }, 
+				      success: function(result) {
+				        if (result>0) {
+				          alert('삭제가 완료되었습니다.');
+				          $(this).closest('.movieWrite_box_in').remove();
+				          return false;
+				        } else {
+				          alert('아직 등록전인 감독입니다.');
+				        }
+				      },
+				      error: function() {
+				        
+				        alert('서버 오류가 발생했습니다.');
+				      }
+				    });
+				  }			  
+			  
+			  
+		  }
+		});
+
+	
 	
 	$('#addMovie').click(function(){
 		var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
@@ -159,8 +221,29 @@ $(function(){
 
 <%
 
+
+	if(no==null||no.isEmpty()){%>
+	<script>
+		alert('잘못된 url입니다.');
+		location.href="movieList.jsp";
+	</script>
+		
+<%	
+		return;
+	}
+	
 	MovieListVO vo = new MovieListVO();
-	MovieService servise = new MovieService();
+	MovieListService servise = new MovieListService();
+	String synop="";
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	try{
+		vo = servise.selectMovie(Integer.parseInt(no));
+		synop= vo.getSynop();
+		synop=synop.replace("\r\n", "<br>");
+		
+	}catch(SQLException e){
+		e.printStackTrace();
+	}
 	
 %>
 		<section id="movieWrite">
@@ -171,7 +254,10 @@ $(function(){
 			</div>
 			<form name="movieWrite" method="post" enctype="multipart/form-data" action="movieWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-				
+					<input type="hidden" name="movieNo" value="<%=vo.getMovieNo() %>">
+					<input type="hidden" name="oldPoster" value="<%=vo.getPoster()%>">
+					<input type="hidden" name="oldStilcut" value="<%=vo.getStilcut()%>">
+					
 					<input type="button" class="movie_btn btn btn-primary" name="movie" value="영화 검색" id="addMovie">
 					<p class="clear">영화 정보</p>
 		
@@ -180,34 +266,35 @@ $(function(){
 							<div class="movieWrite_box_in_left">영화제목</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="제목을 입력하세요" name="title" id="movie_tit">
+								placeholder="제목을 입력하세요" name="title" id="movie_tit" value="<%=vo.getTitle()%>">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">줄거리</div>
 							<div class="movieWrite_box_in_right">
-							<textarea class="form-control info_txt" id="synop" name="synop" placeholder="줄거리를 입력하세요"></textarea>
+							<textarea class="form-control info_txt" id="synop" name="synop" placeholder="줄거리를 입력하세요"><%=synop%></textarea>
+							
 							</div><!-- movieWrite_box_in_right -->
 						</div><!-- movieWrite_box_in -->			
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">상영시간</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="상영시간 입력하세요" name="runningTiem" id="runningTiem">		
+								placeholder="상영시간 입력하세요" name="runningTiem" id="runningTiem" value="<%=vo.getRunningTime()%>">		
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">개봉연도</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="개봉 연도를 입력하세요" name="openDate" id="openDate">	
+								placeholder="개봉 연도를 입력하세요" name="openDate" id="openDate" value="<%=sdf.format(vo.getOpendate())%>">	
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">연령가</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="연령가를 입력하세요" name="ageRate" id="ageRate">								
+								placeholder="연령가를 입력하세요" name="ageRate" id="ageRate" value="<%=vo.getAgeRate()%>">								
 							</div>
 						</div><!-- movieWrite_box_in -->		
 					</div><!-- movieWrite_box1 -->
@@ -220,60 +307,65 @@ $(function(){
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">팝콘금액</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control info_txt" type="text" placeholder="팝콘가를 입력하세요" name="price" id="price">
+								<input class="form-control info_txt" type="text" placeholder="팝콘가를 입력하세요" name="price" id="price" value="<%=vo.getPrice()%>">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">예고편URL</div>
 							<div class="movieWrite_box_in_right">
-								<input class="form-control info_txt info_txt"  type="text" placeholder="URL을 입력하세요" name="url" id="url">
+								<input class="form-control info_txt info_txt"  type="text" placeholder="URL을 입력하세요" name="url" id="url" value=<%=vo.getUrl() %>>
 							</div><!-- movieWrite_box_in_right -->
 						</div><!-- movieWrite_box_in -->			
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">스틸이미지</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control" type="file" id="stilcut" name="stilcut">
+								<p>기존 첨부파일 :<%=vo.getStilcut() %> </p>
+								<p>새로 지정할 경우 기존 파일은 삭제됩니다.</p>	
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">포스터이미지</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control" type="file" id="poster" name="poster">
+								<p>기존 첨부파일 :<%=vo.getPoster()%> </p>
+								<p>새로 지정할 경우 기존 파일은 삭제됩니다.</p>									
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
-								<div class="movieWrite_box_in_right1">
-									<select class="form-select form-select-sm" id="genreNo" name="genreNo">
-									<%
-										GenreService genreService = new GenreService();
-										List<GenreVO> list = null;
-										GenreVO gernVo = null;
+								<select class="form-select form-select-sm" id="genreNo" name="genreNo">
+								<%
+									GenreService genreService = new GenreService();
+									List<GenreVO> list = null;
+									GenreVO gernVo = null;
+									
+									try{
+										list = genreService.selectGenreAll();
 										
-										try{
-											list = genreService.selectGenreAll();
-											
-											if(list==null || list.isEmpty()){%>
-											<option selected value="0">없음</option>	
-										<%	}else{ 
-												for(int i=0; i<list.size();i++){
-													gernVo=list.get(i);
-										%>
-											<option value="<%=vo.getGenreNo()%>"><%=vo.getGenreName() %></option>
-										<%	
-												}
-											} 
-										}catch(SQLException e){
-												e.printStackTrace();
-											}
+										if(list==null || list.isEmpty()){%>
+										<option selected value="0">없음</option>	
+									<%	}else{ 
+											for(int i=0; i<list.size();i++){
+												gernVo=list.get(i);
+												if(vo.getGenreNo()==gernVo.getGenreNo()){
 									%>
+												<option value="<%=gernVo.getGenreNo()%>" selected><%=gernVo.getGenreName() %></option>
+									<%	
+												}else{%>
+												
+												<option value="<%=gernVo.getGenreNo()%>"><%=gernVo.getGenreName() %></option>
+											<%	}
+											
+											}
+										} 
+									}catch(SQLException e){
+											e.printStackTrace();
+										}
+								%>
 
-									</select>
-								</div>
-								<div class="movieWrite_box_in_right2">
-									<input type="button" name="addCategory" value="장르 추가">
-								</div>
+								</select>
 							</div>
 						</div><!-- movieWrite_box_in -->															
 					</div><!-- movieWrite_box1 -->
@@ -284,7 +376,28 @@ $(function(){
 					<p class="clear">출연진 정보</p>
 						
 					<div class="movieWrite_box1" id="actorBox">
+					<%
+						CastingListVO castingVo = null;
+						CastingListService castingService = new CastingListService();
+						List<CastingListVO> castingList= null;
+						try{
+							castingList =castingService.selectCastingMovie(vo.getMovieNo());
+						}catch(SQLException e){
+							e.printStackTrace();
+						}
 					
+						for(int c=0; c<castingList.size();c++){
+							castingVo = castingList.get(c);
+					%>
+					    <div class="movieWrite_box_in" id="actorBox">
+					      <div class="movieWrite_box_in_left">
+					        <img src="../../images/movie/actor/<%=castingVo.getActorImg() %>" style="width: 60px;">
+					        <input type="hidden" name="actorNo" value="<%=castingVo.getActorNo()%>">
+					      </div>
+					      <div class="movieWrite_box_in_right" style="line-height: 65px;"><%=castingVo.getActorName() %></div>
+					     <div class="movieWrite_box_in_right" style="width:10%;line-height: 85px; text-align:center;"><a href="#" id="delActor">삭제</a></div>
+					    </div>
+					 <%} %>
 					</div><!-- movieWrite_box1 -->												
 				</div><!-- movieWrite_box -->
 				

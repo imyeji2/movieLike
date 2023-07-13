@@ -186,7 +186,7 @@ public class MovieListDAO {
 	}//selectByGenreMovie	
 	
 	/**
-	 * 영화 단건 구매
+	 * 영화 단건 검색
 	 * @param movieNo
 	 * @return
 	 * @throws SQLException
@@ -198,12 +198,11 @@ public class MovieListDAO {
 		
 		try {
 			con = pool.getConnection();
-			String sql = "select * "
-					+ " from movie m "
-					+ " left join genre g"
-					+ " on m.genreNo = g.genreNo"
-					+ "where movieNo=?"
-					+ " order by m.regdate desc";
+			String sql = "select * from movie m "
+					+ " left join genre g "
+					+ " on m.genreNo = g.genreNo "
+					+ " where movieNo=?"
+					+ " order by m.regdate desc ";
 			
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, movieNo);
