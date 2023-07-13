@@ -185,5 +185,60 @@ public class MovieListDAO {
 		}		
 	}//selectByGenreMovie	
 	
-
+	/**
+	 * 영화 단건 구매
+	 * @param movieNo
+	 * @return
+	 * @throws SQLException
+	 */
+	public MovieListVO selectMovie(int movieNo) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select * "
+					+ " from movie m "
+					+ " left join genre g"
+					+ " on m.genreNo = g.genreNo"
+					+ "where movieNo=?"
+					+ " order by m.regdate desc";
+			
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, movieNo);
+			
+			MovieListVO vo = null;
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				int genreNo = rs.getInt("genreNo");
+				String title = rs.getString("title");
+				String runningTime = rs.getString("runningTime");
+				String synop = rs.getString("synop");
+				String poster = rs.getString("poster");
+				String url = rs.getString("url");
+				int price = rs.getInt("price");
+				Timestamp opendate = rs.getTimestamp("opendate");
+				int ageRate = rs.getInt("ageRate");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				int directorNo1 = rs.getInt("directorNo1");
+				int directorNo2 = rs.getInt("directorNo2");
+				String movieStatus = rs.getString("movieStatus");
+				String stilcut = rs.getString("stilcut");
+				String genreName =rs.getString("genreName");
+				
+				vo = new MovieListVO(movieNo, genreNo, title, runningTime, synop, poster, url, price, opendate, ageRate, regdate, directorNo1, directorNo2, movieStatus, stilcut, genreName);
+				
+			}
+			
+			System.out.println("영화 검색 결과 vo"+vo);
+			return vo;
+			
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
 }

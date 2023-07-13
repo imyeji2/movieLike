@@ -67,8 +67,9 @@
 			// =>actorService의 번호로 배우 조회하는 메서드 => .getActorName 이용
 			// 반복문만큼 actorSb에 배우이름 + ", " append
 		}
+		actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
 	}
-	actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
+
 	
 	String content = movieVo.getSynop();				//시놉시스 줄 나눔
 	if(content!=null){  // \r\n  => <br>
@@ -102,13 +103,19 @@ $(function(){
 	function reloading(){
 		location.reload();
 	}
+	
+	$('#moreActor').slidUp();
+	
+	$('#more').click(function(){
+		$('#moreActor').slideToggle();
+	});
 });
 </script>
    
 	<section id="movieDetail">
 		<article>
 			<div class="movie_top">
-				<img src="../images/movie/stillCut/그시절, 우리가 좋아했던 소녀, 스틸컷.jpg">
+				<img src="../images/movie/content/<%=movieVo.getStilcut()%>">
 				<div class="movie_info_txt">
 					<h1><%=movieVo.getTitle() %></h1>				<!-- 영화 제목 -->
 					<p><span><%=movieVo.getAgeRate() %></span></p>	<!-- 연령 고지 -->
@@ -121,7 +128,7 @@ $(function(){
 		<article>
 			<div class="movie_info">
 				<div class="movie_info_left">
-					<img src="../images/movie/poster/그시절, 우리가 좋아했던 소녀_포스터.jpg">
+					<img src="../images/movie/content/<%=movieVo.getPoster()%>">
 				</div>
 				<div class="movie_info_right">
 					<div class="movie_info_grade">
@@ -133,7 +140,7 @@ $(function(){
 					</div>
 					<div class="movie_info_detail">
 						<p>상세 설명</p>
-						<%=content %>
+						<%=content.replace("\r\n", "<br>") %>
 						<br>
 						<P>감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo1()).getDirectorName() %></P>		<!-- 영화 감독 -->
 						<%if(movieVo.getDirectorNo2() > 0){ %>
@@ -145,7 +152,7 @@ $(function(){
 						<div class="movie_buy_btn">
 							<a href ="javascript:void(0)">
 								<input type="hidden" value="no=<%=movieNo%>&userid=<%=userid%>" id="buy_movie">
-								단건 구매 <%=movieVo.getPrice()/100 %>팝콘
+								단건 구매 <%=movieVo.getPrice() %>팝콘
 							</a>
 						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
@@ -161,65 +168,101 @@ $(function(){
 				</div><!-- movie_info_right -->
 			</div><!-- movie_info -->
 		</article>	
-<!-- 			
+			
 		<article>
-			
 			<div class="movie_actor">
-			<h4>출연/제작</h4>
-			<div class="movie_box_size">
-					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="false">
-					  <div class="carousel-inner">
-					    <div class="carousel-item active box_control">
+				<h4>출연/제작</h4>
+				<div class="movie_box_size">
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/라이언 고슬링.jpg" alt="배우 이미지">
+			    		</div>
+			    	</div><!-- movie_actor_box -->
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+			    		</div>
+			    	</div><!-- movie_actor_box -->
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+			    		</div>
+			    	</div><!-- movie_actor_box -->
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+			    		</div>
+			    	</div><!-- movie_actor_box -->			 
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+			    		</div>
+			    	</div><!-- movie_actor_box -->				    	   				    				    	
+				</div><!-- movie_box_size -->
+
+				
+				
+				<div id="moreActor">
+				<div class="movie_box_size">
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+			    		</div>
+			    		</div><!-- movie_actor_box -->
+				    	<div class="movie_actor_box">
+				    		<div class="movie_actor_box1">
+				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+				    		</div>
+				    	</div><!-- movie_actor_box -->
+				    	<div class="movie_actor_box">
+				    		<div class="movie_actor_box1">
+				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+				    		</div>
+			    		</div><!-- movie_actor_box -->
+				    	<div class="movie_actor_box">
+				    		<div class="movie_actor_box1">
+				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+				    		</div>
+				    	</div><!-- movie_actor_box -->			 
+			    		<div class="movie_actor_box">
+				    		<div class="movie_actor_box1">
+				    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+				    		</div>
+			    		</div><!-- movie_actor_box -->		
+			    				    	   				    				    	
+						</div><!-- movie_box_size -->
+						<div class="movie_box_size">
 					    	<div class="movie_actor_box">
 					    		<div class="movie_actor_box1">
 					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
 					    		</div>
-					    		<div class="movie_actor_box2">
-					    			<div class="actor_name">가진동</div>
-					    			<div class="actor_role">주연</div>
-					    		</div>
-					    	</div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
+					    	</div><!-- movie_actor_box -->
 					    	<div class="movie_actor_box">
 					    		<div class="movie_actor_box1">
 					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
 					    		</div>
-					    		<div class="movie_actor_box2">
-					    			<div class="actor_name">가진동</div>
-					    			<div class="actor_role">주연</div>
+					    	</div><!-- movie_actor_box -->
+					    	<div class="movie_actor_box">
+					    		<div class="movie_actor_box1">
+					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
 					    		</div>
+					    	</div><!-- movie_actor_box -->
+					    	<div class="movie_actor_box">
+					    		<div class="movie_actor_box1">
+					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
+					    		</div>
+					    	</div><!-- movie_actor_box -->			 
+					    	<div class="movie_actor_box">
+					    		<div class="movie_actor_box1">
+					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
 					    	</div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>					    
-					    <div class="carousel-item">
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
-					    <div class="carousel-item">
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
-					  </div>
-					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Previous</span>
-					  </button>
-					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Next</span>
-					  </button>
-					</div>
-				</div>
-			
-			</div> 
-		</article>	-->
+				    	</div><!-- movie_actor_box -->				    	   				    				    	
+					</div><!-- movie_box_size -->
+				</div>	
+				
+				<div class="moreActorBtn" id="more">더보기</div>
+			</div><!-- movie_actor -->	
+		</article>	
 		
 
 		<article>

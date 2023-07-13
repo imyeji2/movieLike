@@ -4,14 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.semi.db.ConnectionPoolMgr;
 
-public class collectionDAO {
+public class CollectionDAO {
 	private ConnectionPoolMgr pool;
 
-	public collectionDAO() {
+	public CollectionDAO() {
 		pool = new ConnectionPoolMgr();
 	}
 	
@@ -22,7 +24,7 @@ public class collectionDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int insertCollection(collectionVO vo) throws SQLException {
+	public int insertCollection(CollectionVO vo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
@@ -44,19 +46,6 @@ public class collectionDAO {
 			pool.dbClose(ps, con);
 		}
 	}//insertCollection
-	
-	public List<collectionVO> selectCollectionAll() throws SQLException{
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			con = pool.getConnection();
-			String sql ="";
-		}finally {
-			pool.dbClose(rs, ps, con);
-		}
-	}
 	
 
 	

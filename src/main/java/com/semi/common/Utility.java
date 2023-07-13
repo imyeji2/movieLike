@@ -7,8 +7,7 @@ public class Utility {
 	public static final String UP_PATH="/upload";
 	public static final String ACTOR_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\actor";
 	public static final String DIRECTOR_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\director";
-	public static final String POSTER_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\poster";
-	public static final String STILCUT_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\stillCut";
+	public static final String MOVIE_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\content";
 		
 	public static String displayRe(int step) {
 		String result="";
