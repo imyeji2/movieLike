@@ -281,7 +281,7 @@ $(function(){
 			</div>
 				<br>
 				<div class="clear">
-				<%if(reviewList != null && !reviewList.isEmpty()){%>
+				<%if(reviewList == null && reviewList.isEmpty()){%>
 				<div class="movie_review_conbox"></div>
 				<%}else{ 
 					line = reviewList.size()/4;
@@ -295,17 +295,17 @@ $(function(){
 						}
 				%>
 					<div class="movie_review_box">
-					<%for(int j=startPage; j<endPage;j++){ %>
+					<%for(int j=startPage; j<endPage;j++){ 
+							ReviewVO reviewVo = reviewList.get(i);%>
 						<div class="movie_review_conbox">
 							<div class="movie_review_conbox1" >
-								<span>이름</span><span>(별점:)</span>
+								<span><%=reviewVo.getUserId()%></span><span><%=reviewVo.getScore() %></span>
 							</div>
 							<div class="movie_review_conbox2">
-							내용.replace("\r\n","<br>")
+							<%=reviewVo.getComments().replace("\r\n","<br>")%>
 							</div>
-							
 							<div class="movie_review_conbox3">
-								<span><a href="">좋아요</a></span><span>좋아요갯수</span>
+								<span><a href="">좋아요</a></span><span><%=reviewVo.getLickCount()%></span>
 							</div>
 						</div>
 					<%} %>
