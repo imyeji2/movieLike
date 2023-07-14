@@ -230,7 +230,7 @@
 
 
 
-		<article class="main_box">
+<!-- 		<article class="main_box">
 			<p class="main_title">여름밤 맥주와 함께하는 로맨스🍻</p>
 			<div id="carouselExampleInterval2" class="carousel slide" data-bs-ride="false">
 			  <div class="carousel-inner">
@@ -240,7 +240,7 @@
 		    			<input type="hidden" name="movieNo" value="1">
 		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/엘리멘탈.jpg">
-		    			</div><!-- main_poster -->
+		    			</div>main_poster
 		    			<div class="main_movie_info">
 		    				<p class="movie_info1">엘리멘탈</p>
 		    				<p class="movie_info2">
@@ -249,8 +249,8 @@
 			    				<span>미국</span>
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
-		    			</div><!-- main_movie_info -->
-		    		</div><!-- main_box1_margin -->
+		    			</div>main_movie_info
+		    		</div>main_box1_margin
 		    		<div class="main_box1 f_left">
 		    			<input type="hidden" name="movieNo" value="2">
 		    			<div div class="main_poster img-thumbnail">
@@ -265,7 +265,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.3</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
 		    			<input type="hidden" name="movieNo" value="3">
@@ -281,7 +281,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.1</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
 		    			<div class="main_poster img-thumbnail">
@@ -296,7 +296,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 4.3</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>	
 		    		<div class="main_box1 f_left">
 		    			<div class="main_poster img-thumbnail">
@@ -311,14 +311,14 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>			    				    					    					    	
-			    </div><!-- carousel-item -->
+			    </div>carousel-item
 			    <div class="carousel-item" data-bs-interval="3000">
 		    		<div class="main_box1 f_left">
 		    			<div class="main_poster img-thumbnail">
 		    				<img src="images/movie/엘리멘탈.jpg">
-		    			</div><!-- main_poster -->
+		    			</div>main_poster
 		    			<div class="main_movie_info">
 		    				<p class="movie_info1">엘리멘탈</p>
 		    				<p class="movie_info2">
@@ -328,8 +328,8 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
 
-		    			</div><!-- main_movie_info -->
-		    		</div><!-- main_box1_margin -->
+		    			</div>main_movie_info
+		    		</div>main_box1_margin
 		    		<div class="main_box1 f_left">
 		    			<div div class="main_poster img-thumbnail">
 		    				<img src="images/movie/Indiana_Jones_and_the_Dial_of_Destiny.jpg">
@@ -343,7 +343,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.3</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
 		    			<div class="main_poster img-thumbnail">
@@ -358,7 +358,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.1</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>
 		    		<div class="main_box1 f_left">
 		    			<div class="main_poster img-thumbnail">
@@ -373,7 +373,7 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 4.3</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>	
 		    		<div class="main_box1 f_left">
 		    			<div class="main_poster img-thumbnail">
@@ -388,22 +388,22 @@
 		    				</p>
 		    				<p class="movie_info2">평균 ★ 3.9</p>
 
-		    			</div><!-- main_movie_info -->		    			
+		    			</div>main_movie_info		    			
 		    		</div>	
 			    </div>
 			  </div>
 			  <button class="carousel-control-prev main_prev_btn" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="prev">
 			   <img src="images/arrow-left-circle-fill.svg" aria-hidden="true">
-			    <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			    <span class="visually-hidden">Previous</span>
 			  </button>
 			  <button class="carousel-control-next main_next_btn" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="next">
 			    <img src="images/arrow-right-circle-fill.svg" aria-hidden="true">
-			    <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			    <span class="visually-hidden">Next</span>
 			  </button>
 			</div>
-		</article>		
+		</article>	 -->	
 	</section>
 	<br><br><br><Br><br>
 <%@ include file="inc/bottom.jsp" %>	
