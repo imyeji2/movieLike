@@ -92,7 +92,7 @@ request.setCharacterEncoding("utf-8");
 						</div>
 						
 						<div class="search_input">
-							<form name = "frmSearch" method ="post" action="noticList.jsp">
+							<form name = "frmSearch" method ="post" action="reviewList.jsp">
 								<select class="form-select" name="searchCondition" aria-label="Default select example">
 							  <option selected>카테고리</option>
 							  <option value="title" 
@@ -113,7 +113,6 @@ request.setCharacterEncoding("utf-8");
 							</select>
 							
 							<div class="input-group" style="width:370px">
-							  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <input type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
