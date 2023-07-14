@@ -16,7 +16,13 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
 <style type="text/css">
-
+footer {
+    position: fixed !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    padding: 20px !important;
+}
 </style>
 <script type="text/javascript">
    $(function(){
@@ -46,7 +52,7 @@
       
       $('#board').click(function(){
           $('#board_menu').slideToggle();
-       });      
+       });   
       
    /*    var body = document.body,
       html = document.documentElement;
@@ -107,7 +113,7 @@
               
                <div class="admin_menu_box">
                  <img src="<%=request.getContextPath()%>/images/admin/admin_menu_icon_logout.svg" name="logout" alt="통계관리아이콘 ">
-                 <span style="margin-left:20px"><a href="#">로그아웃</a></span>
+                 <span style="margin-left:20px"><a href="<%=request.getContextPath()%>/admin_login/admin_logout.jsp">로그아웃</a></span>
                </div> 
           </aside> 
                                                      

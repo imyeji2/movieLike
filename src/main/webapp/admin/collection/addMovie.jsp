@@ -53,8 +53,8 @@ function sendWrite(no, name, img) {
 	  var htmlContent = 
 	    '<div class="movieWrite_box_in">' +
 	      '<div class="movieWrite_box_in_left">' +
-	        '<img src="../../images/movie/poster/' + img + '" style="width: 60px;">' +
-	        '<input type="text" name="movieNo" value="' + no + '">' +
+	        '<img src="../../images/movie/content/' + img + '" style="width: 60px;">' +
+	        '<input type="hidden" name="movieNo" value="' + no + '">' +
 	      '</div>' +
 	      '<div class="movieWrite_box_in_right" style="width:70%;line-height: 85px;">' + name + '</div>' +
 	      '<div class="movieWrite_box_in_right" style="width:10%;line-height: 85px; text-align:center;"><a href="#">삭제</a></div> '+
@@ -123,14 +123,14 @@ function sendWrite(no, name, img) {
 	}
 	
 	
-	List<MovieListVO> list = null;
-	MovieListVO vo = null;
-	MovieListService service = new MovieListService();
+	List<MovieVO> list = null;
+	MovieVO vo = null;
+	MovieService service = new MovieService();
 	
 	if(serch!=null&& !serch.isEmpty()){
 		
 		try{
-			list = service.selectMovieByTitle(serch);
+			list = service.serchtMovie(serch);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -187,7 +187,7 @@ function sendWrite(no, name, img) {
 		  		
 			<tr style="line-height:88px;">			
 			  <td class="text-truncate" style="max-width: 100px;">
-			  	<img src="../../images/movie/poster/<%=vo.getPoster() %>" style="width:50px">
+			  	<img src="../../images/movie/content/<%=vo.getPoster() %>" style="width:50px">
 			  </td>
 		      <td class="text-truncate" style="width:350px;">
 					<a href="#" onclick="sendWrite(<%=vo.getMovieNo()%>, '<%=vo.getTitle()%>', '<%=vo.getPoster()%>');">

@@ -104,7 +104,7 @@
 				<div class="movieItemBox"><!-- 리스트 중 1개  -->
 					<div><!-- 기본box -->
 						<div class="movieImg img-thumbnail">
-							<img src="../images/movie/poster/<%=vo.getPoster()%>">
+							<img src="../images/movie/content/<%=vo.getPoster()%>">
 							<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
 								<p class="movieItemBox_hover_tit"><%=vo.getTitle() %></p>
 								<p class="movieItemBox_hover_genre"><%=vo.getGenreName() %></p>

@@ -1,3 +1,4 @@
+<%@page import="com.semi.genre.model.GenreService"%>
 <%@page import="com.semi.member.model.UserVO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.semi.review.model.ReviewService"%>
@@ -61,16 +62,25 @@ $(document).ready(function() {
 			var param = $('#pop').val();
 			window.open('chargePopcorn.jsp?userid=' + param, '_blank', 'resizable=no,width=500,height=300');
 		});
-		$('#wrtBtn').click(function(){
-			var param = $('#writeBtn').val();
+		$('.writeReview').click(function(){
+			var param = $(this).val();
 			window.open('writeReview.jsp?' + param, '_blank', 'resizable=no,width=700,height=430');
 		});
-		$('#removeReview').click(function(){
+
+		$('.watchreview').click(function(){
+			var param = $(this).val();
+			location.href = "/semi/movie/movieDetail.jsp?" + param;
+		});
+		
+		
+		
+		
+		$('.removeReview').click(function(){
 			if(!confirm('정말 리뷰를 삭제합니까?')){
 				return false;
 			}
 			var windowFeatures = "width=1,height=1,left=2800,top=2800,scrollbars=no,status=no,toolbar=no,menubar=no,location=no";
-			var param = $('#removeReviewVal').val();
+			var param = $(this).parent('td').prev('.removeReviewVal').val();
 			window.open('deleteReview.jsp?' + param, '_blank', windowFeatures);
 		});
 	});
@@ -103,7 +113,7 @@ $(document).ready(function() {
 	Map<PayHistoryVO, String> historyList = new HashMap<>();
 	Map<ReviewVO, String> reviewMap = new HashMap<>();
 	Map<PickVO, MovieVO> pickMap = new HashMap<>();
-	Map<Integer, Integer> chartMap = new HashMap<>();
+	Map<String, Integer> chartMap = new HashMap<>();
 	UserVO userVo = new UserVO();
 	
 	try{
@@ -119,7 +129,7 @@ $(document).ready(function() {
 	
 	
 	int mostWatchedGenreVal = 0;	//가장 많이 본 장르의 시청 수치
-	int mostWatchedGenreNo = 0; 	//가장 많이 본 장르명
+	String mostWatchedGenre = ""; 	//가장 많이 본 장르명
 	int totalView = 0;				//여태 시청한 모든 영화 수
 	String lastWatchedMovie = "";
 	int usedPopcorn = 0;
@@ -127,13 +137,13 @@ $(document).ready(function() {
 	StringBuilder labels = new StringBuilder();
 	StringBuilder values = new StringBuilder();
 	if(chartMap != null && !chartMap.isEmpty()){
-		for(Entry<Integer, Integer> elem : chartMap.entrySet()){
+		for(Entry<String, Integer> elem : chartMap.entrySet()){
 			labels.append("'" + elem.getKey() + "',");
 			values.append(elem.getValue()+ ",");
 			totalView += elem.getValue();
 			if(mostWatchedGenreVal < elem.getValue()){
 				mostWatchedGenreVal = elem.getValue();
-				mostWatchedGenreNo = elem.getKey();
+				mostWatchedGenre = elem.getKey();
 			}
 		}
 	}
@@ -142,27 +152,12 @@ $(document).ready(function() {
      values.deleteCharAt(values.length() - 1);
 	}
 	
-	String mostWatchedGenre = "";
-	if(mostWatchedGenreNo == 1){
-		mostWatchedGenre = "로맨스";
-	}else if(mostWatchedGenreNo == 2){
-		mostWatchedGenre = "액션";
-	}else if(mostWatchedGenreNo == 3){
-		mostWatchedGenre = "공포";
-	}else if(mostWatchedGenreNo == 4){
-		mostWatchedGenre = "SF";
-	}else if(mostWatchedGenreNo == 5){
-		mostWatchedGenre = "코미디";
-	}else if(mostWatchedGenreNo == 6){
-		mostWatchedGenre = "애니";
-	}
-	
 	%>
 
 
 <!-- 테이블 1: 찜목록 -->
 <%
-	  int jjimPageSize = 10; // 찜목록 페이지당 표시할 항목 수
+	  int jjimPageSize = 9; // 찜목록 페이지당 표시할 항목 수
 	  int jjimTotalCount = pickMap.size(); // 찜목록 총 항목 수
 	  int jjimTotalPage = (int) Math.ceil((double) jjimTotalCount / jjimPageSize); // 찜목록 총 페이지 수
 	  int jjimPage = (request.getParameter("jjimPage") != null) ? Integer.parseInt(request.getParameter("jjimPage")) : 1; // 현재 찜목록 페이지
@@ -268,26 +263,22 @@ $(document).ready(function() {
 				</div>
 				<!-- 정보수정 -->
 				<div class="content" style="display: none" id="jjim" style="<%= (currentPage == 1) ? "display: block" : "display: none" %>">
-					<%
+					<div style="padding: 0% 0% 0% 7%;"><%
 						if(pickMap != null && !pickMap.isEmpty()){
 							for(Entry<PickVO, MovieVO> elem : pickMap.entrySet()){
 				            	PickVO PickVo = elem.getKey();
 				            	MovieVO movieVo = elem.getValue();%>
-								<a href="<%=request.getContextPath() %>/movie/movieDetail.jsp?no=<%=movieVo.getMovieNo() %>">
-									<div class="movieItemBox"><!-- 리스트 중 1개  -->
-										<div><!-- 기본box -->
-											<div class="movieImg img-thumbnail">
-												<img src="../images/movie/poster/<%=movieVo.getPoster()%>">
-												<div class="movieItemBox_hover img-thumbnail"><!-- hover box -->
-													<p class="movieItemBox_hover_tit"><%=movieVo.getTitle() %></p>
-												</div><!-- hover box -->	
-											</div>
-										</div><!-- 기본box -->
-										<p class="movieItemBox_info1 text-truncate"><%=movieVo.getTitle() %></p>
-									</div><!-- 리스트 중 1개 -->
+							<div style="width: 30%; display: inline-block; text-align: center;">
+								<a  href="<%=request.getContextPath() %>/movie/movieDetail.jsp?no=<%=movieVo.getMovieNo() %>">
+										<div style="border-radius:2em; ">		
+											<img src="../images/movie/content/<%=movieVo.getPoster()%>" style="width:80%; border-radius:1.5em; border:white solid 2px;">
+										</div>
+										<p><%=movieVo.getTitle() %></p>
 								</a>
+							</div>
 							<%}
 						}%>
+					</div>
 					<!-- 페이징 처리 -->
 					<div class="pagination" style = "justify-content: center;">
 						<% if (jjimPage > 1) { %>
@@ -326,11 +317,9 @@ $(document).ready(function() {
 								      <td><%=vo.getHisNo() %></td>
 								      <td><%=title%></td>
 								      <%if(!reviewService.isReview(vo.getMovieNo(), userid)){%>
-								      <input type="hidden" id="writeBtn" value="userid=<%=userVo.getUserId()%>&movieNo=<%=vo.getMovieNo()%>">
-								      <td> <button type="button" id="wrtBtn" class="btn btn-success">리뷰작성하기</button></td>
+								      <td> <button type="button" id="wrtBtn" value="userid=<%=userVo.getUserId()%>&movieNo=<%=vo.getMovieNo()%>" class="writeReview">리뷰작성하기</button></td>
 								      <%}else{%>
-								      <input type="hidden" id="watchBtn" value="<%=vo.getMovieNo()%>">
-								      <td><button type="button"  id="wtcBtn" class="btn btn-light">리뷰보러가기</button></td>
+								      <td><button type="button" value="no=<%=vo.getMovieNo()%>" id="wtcBtn" class="watchreview">리뷰보러가기</button></td>
 								      <%} %>
 							    </tr>
 						    <% } %>
@@ -412,6 +401,7 @@ $(document).ready(function() {
 					<tr>
 						<th>영화이름</th>
 						<th>리뷰내용(간소화)</th>
+						<th>평점</th>
 						<th>관리</th>
 					</tr>
 					<%
@@ -422,8 +412,9 @@ $(document).ready(function() {
 					<tr>
 						<td><%=movieTitle %></td>
 						<td><%=vo.getComments() %></td>
-						<input type = "hidden" id = "removeReviewVal" value="reviewNo=<%=vo.getReviewNo()%>">
-						<td><button type="button" id="removeReview" class="btn btn-danger">리뷰삭제</button></td>
+						<td><%=vo.getScore() %></td>
+						<input type = "hidden" class = "removeReviewVal" value="reviewNo=<%=vo.getReviewNo()%>">
+						<td><button type="button" id="removeReview" class="removeReview">리뷰삭제</button></td>
 					</tr>
 					<%}
 						}%>

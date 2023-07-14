@@ -158,6 +158,52 @@ public class ReviewDAO2 {
 		}
 	}
 	
+	public int likeCountUpdate(String targetId, String pointId, int reviewNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select * from likecheck "
+					+ " where targetid = ? and pointid = ? and reviewno = ?";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			ps.setString(1, targetId);
+			ps.setString(2, pointId);
+			ps.setInt(3, reviewNo);
+			int cnt = 0;
+			if(!rs.next()) {
+				sql = " update review"
+						+ " set likecount = +1"
+						+ " where userid = ? and revieNo = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, targetId);
+				ps.setInt(2, reviewNo);
+				cnt = ps.executeUpdate();
+				if(cnt > 0) {
+					sql = "insert into likecheck"
+							+ "	value(?,?,?)";
+					ps.setInt(1, reviewNo);
+					ps.setString(2, targetId);
+					ps.setString(3, pointId);
+					cnt = ps.executeUpdate();
+					if(cnt > 0) {
+						System.out.println("좋아요 반영 성공 targetid = " + targetId + ", pointId = " + pointId + ", reviewNo = " + reviewNo);
+					}
+				}
+			}else {
+				System.out.println("이미 좋아요를 눌렀어요");
+			}
+			return cnt;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+		
+	}
+
+	
 }
 
 

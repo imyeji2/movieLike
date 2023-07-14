@@ -45,11 +45,11 @@
 	   		
 	   }
 	   .col-2 {
-	     flex: 0 0 auto;
-	    width: 6.666667%;
+	       flex: 0 0 auto;
+    width: 12.666667%;
 	}
 	#titleCol {
-	        width: 93%
+	       width: 69%;
 	}
 	.row{
 		margin:bottom 2%;
@@ -128,7 +128,7 @@
 %>
 		<section id="noticeList">
 		<div class="container text-center" style="border:grey solid 1px;">
-			<div class="container text-center" style="margin-top:3%; padding-top:2%;">
+			<div class="container text-center" style="margin-top:2%; padding-top:1%;">
 				  <div class="row">
 					    <div class="col">
 					     	<div class="input-group input-group-lg">
@@ -153,32 +153,32 @@
 		
 			
 			 <div class="row" id = "upperBox-categoryBox" style="margin-left:5%">
-				 <div class="row" style="margin-bottom:2%;">
+				 <div class="row" style="margin-bottom:1%;">
 				 		<h1>장르별 매출 순위</h1>
 				 </div>
-			    <div class="col-8"  style="padding-top:3%;">
+			    <div class="col-8"  style="padding-top:2%;">
 			    	<div class="row">
-			    		<div class="col-2"><%=categoryVal[0][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[0][0]%></div>
+			    		<div class="col-2">1위</div><div class="col-2"><%=categoryVal[0][0]%></div><div class="col-4" id = "titleCol"><%=categoryVal[0][1]%></div>
 			    	</div>
 			    	<hr>
 					<div class="row">
-			    		<div class="col-2"><%=categoryVal[1][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[1][0]%></div>
+			    		<div class="col-2">2위</div><div class="col-2"><%=categoryVal[1][0]%></div><div class="col-4" id = "titleCol"><%=categoryVal[1][1]%></div>
 					</div>
 			    	<hr>
 					<div class="row">
-			    		<div class="col-2"><%=categoryVal[2][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[2][0]%></div>
+			    		<div class="col-2">3위</div><div class="col-2"><%=categoryVal[2][0]%></div><div class="col-4" id = "titleCol"><%=categoryVal[2][1]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=categoryVal[3][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[3][0]%></div>
+			    		<div class="col-2">4위</div><div class="col-2"><%=categoryVal[3][0]%></div><div class="col-4" id = "titleCol"><%=categoryVal[3][1]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=categoryVal[4][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[4][0]%></div>
+			    		<div class="col-2">5위</div><div class="col-2"><%=categoryVal[4][0]%></div><div class="col-4" id = "titleCol"><%=categoryVal[4][1]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=categoryVal[5][1]%></div><div class="col-4" id = "titleCol"><%=categoryVal[5][0]%></div>
+			    		<div class="col-2">6위</div><div class="col-2"><%=categoryVal[5][0]%></div><div class="col-4" id = "titleCol"><%=categoryVal[5][1]%></div>
 		    		</div>
 			    	<hr>
 			    </div>
@@ -191,49 +191,49 @@
 			    </div>
 			  </div>
 	<!-- -------------------------------------------------------------------------------------------------- -->
-			   <div class="row" id = "upperBox-categoryBox" style="margin-left:5%; margin-top:3%;">
+			   <div class="row" id = "upperBox-categoryBox" style="margin-left:5%; margin-top:2%;">
 			    <div class="row" >
 				 		<h1>영화별 매출 순위</h1>
 				 </div>
 			    <div class="col-8">
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[0][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[0][0]%></div>
+			    		<div class="col-2">1위</div><div class="col-2"><%=titleVal[0][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[0][0]%></div>
 			    	</div>
 			    	<hr>
 					<div class="row">
-			    		<div class="col-2"><%=titleVal[1][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[1][0]%></div>
+			    		<div class="col-2">2위</div><div class="col-2"><%=titleVal[1][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[1][0]%></div>
 					</div>
 			    	<hr>
 					<div class="row">
-			    		<div class="col-2"><%=titleVal[2][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[2][0]%></div>
+			    		<div class="col-2">3위</div><div class="col-2"><%=titleVal[2][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[2][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[3][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[3][0]%></div>
+			    		<div class="col-2">4위</div><div class="col-2"><%=titleVal[3][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[3][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[4][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[4][0]%></div>
+			    		<div class="col-2">5위</div><div class="col-2"><%=titleVal[4][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[4][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[5][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[5][0]%></div>
+			    		<div class="col-2">6위</div><div class="col-2"><%=titleVal[5][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[5][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[6][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[6][0]%></div>
+			    		<div class="col-2">7위</div><div class="col-2"><%=titleVal[6][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[6][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[7][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[7][0]%></div>
+			    		<div class="col-2">8위</div><div class="col-2"><%=titleVal[7][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[7][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[8][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[8][0]%></div>
+			    		<div class="col-2">9위</div><div class="col-2"><%=titleVal[8][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[8][0]%></div>
 			    	</div>
 			    	<hr>
 			    	<div class="row">
-			    		<div class="col-2"><%=titleVal[9][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[9][0]%></div>
+			    		<div class="col-2">10위</div><div class="col-2"><%=titleVal[9][1]%></div><div class="col-4" id = "titleCol"><%=titleVal[9][0]%></div>
 			    	</div>
 			    	<hr>
 			    </div>

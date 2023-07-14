@@ -11,7 +11,6 @@
 					<label for="certiPass">비밀번호</label>
 				</div>
 				<button type="button" class="certi-confirm certi-btn">확인</button>
-				<!-- 나중에 개발할때 type submit으로 변경해 -->
 			</form>
 		</div>
 		<div class="edit_user">
@@ -46,16 +45,15 @@
 					<input type="password" class="form-control" id="registerPassword2" name="pwd2" placeholder="비밀번호를 입력해주세요"> 
 					<label for="registerPassword">비밀번호 확인</label>
 				</div>
-				<button class="certi-confirm edit-bt" type="submit">정보 수정</button>
-			</form>
-			<form name ="frmOutUser" method = "post" action="#" >
-				<button class="certi-confirm out-bt" type="button">회원 탈퇴</button>
+				<button class="certi-confirm edit-bt" type="submit" id="edituser">정보 수정</button>
+				<button class="certi-confirm out-bt" type="submit" id="deleteuser" onclick="javascript: form.action='<%=request.getContextPath()%>/myPage/UserDelete_ok.jsp';">회원 탈퇴</button>
 			</form>
 		</div>
 	
 	</div>
 
 	<script>
+
 		$('.certi-btn').click( ()=>{
 			var certiPass = $('#certiPass').val();
 			
@@ -66,6 +64,5 @@
 				alert('비밀번호를 확인해주세요.')
 			}
 		});
-		
-		$('')
+
 	</script>

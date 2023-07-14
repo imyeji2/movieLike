@@ -1,3 +1,5 @@
+<%@page import="com.semi.casting.model.CastingListVO"%>
+<%@page import="com.semi.casting.model.CastingListService"%>
 <%@page import="com.semi.pick.PickVO"%>
 <%@page import="com.semi.pick.PickService"%>
 <%@page import="com.semi.review.model.ReviewVO"%>
@@ -67,8 +69,9 @@
 			// =>actorService의 번호로 배우 조회하는 메서드 => .getActorName 이용
 			// 반복문만큼 actorSb에 배우이름 + ", " append
 		}
+		actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
 	}
-	actorSb.deleteCharAt(actorSb.length()-2);	//마지막 배우가 입력된뒤 맨 뒤에있는 쉼표 제거
+
 	
 	String content = movieVo.getSynop();				//시놉시스 줄 나눔
 	if(content!=null){  // \r\n  => <br>
@@ -97,18 +100,52 @@
 $(function(){
 	$('.movie_buy_btn').click(function(){
 		var param = $('#buy_movie').val();
-		window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
+		<%if(userid != null && !userid.isEmpty()){%>
+			window.open('buyMovie.jsp?' + param, '_blank', 'resizable=no,width=500,height=500');
+		<%}else{%>
+			alert('로그인 먼저 해주세요');
+		<%}%>
 	});
+	
+	$('.like').click(function(){
+		<%if(userid == null || userid.isEmpty()){%>
+			alert('로그인 먼저 해주세요');
+		<%}%>
+	});
+	
 	function reloading(){
 		location.reload();
 	}
+	
+	$('#moreActor').hide();
+	
+	$('#more').click(function(){
+		$('#moreActor').slideToggle('slow');
+	});
+	
+	$('#plzLogin').click(function() {
+		alert('로그인을 하십시오');
+		return false;
+	});
+	
+	$('.like').click(function(){
+		if($('#me').val()===$('#you').val()){
+			alert('내가 작성한 글은 좋아요를 누를 수 없습니다');
+			return false;
+		}else{
+			location.href = "iLikeThisComment.jsp?pointId="+ $('#me').val() + "&targetId=" + $('#you').val() + "&reviewno=" + $('#reviewno').val();
+		}
+	});
 });
+
+	
+
 </script>
    
 	<section id="movieDetail">
 		<article>
 			<div class="movie_top">
-				<img src="../images/movie/stillCut/그시절, 우리가 좋아했던 소녀, 스틸컷.jpg">
+				<img src="../images/movie/content/<%=movieVo.getStilcut()%>">
 				<div class="movie_info_txt">
 					<h1><%=movieVo.getTitle() %></h1>				<!-- 영화 제목 -->
 					<p><span><%=movieVo.getAgeRate() %></span></p>	<!-- 연령 고지 -->
@@ -121,7 +158,7 @@ $(function(){
 		<article>
 			<div class="movie_info">
 				<div class="movie_info_left">
-					<img src="../images/movie/poster/그시절, 우리가 좋아했던 소녀_포스터.jpg">
+					<img src="../images/movie/content/<%=movieVo.getPoster()%>">
 				</div>
 				<div class="movie_info_right">
 					<div class="movie_info_grade">
@@ -133,7 +170,7 @@ $(function(){
 					</div>
 					<div class="movie_info_detail">
 						<p>상세 설명</p>
-						<%=content %>
+						<%=content.replace("\r\n", "<br>") %>
 						<br>
 						<P>감독 : <%=directorService.selectByDirectorNo(movieVo.getDirectorNo1()).getDirectorName() %></P>		<!-- 영화 감독 -->
 						<%if(movieVo.getDirectorNo2() > 0){ %>
@@ -145,15 +182,17 @@ $(function(){
 						<div class="movie_buy_btn">
 							<a href ="javascript:void(0)">
 								<input type="hidden" value="no=<%=movieNo%>&userid=<%=userid%>" id="buy_movie">
-								단건 구매 <%=movieVo.getPrice()/100 %>팝콘
+								단건 구매 <%=movieVo.getPrice() %>팝콘
 							</a>
 						</div> <!-- 실제금액/100 = 1팝콘 -->
 						<div class="movie_pick_btn">
 							<a href = "javascript:void(0)">
-							<% if (isPick) { %>
+							<% if (isPick && (userid != null && !userid.isEmpty())) { %>
 							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=2" onclick="reloading()"><img id="jjimStatus" src="../images/like_on.svg" ></a>
-							<% } else { %>
+							<% } else if(!isPick && (userid != null && !userid.isEmpty())){ %>
 							    <a href = "movieJjim.jsp?userid=<%=userid%>&movieno=<%=movieNo%>&isJjim=1" onclick="reloading()"><img id="jjimStatus" src="../images/like_off.svg"></a>
+							<% } else {%>
+								<a href = "javascript:void(0)" id="plzLogin"><img id="jjimStatus" src="../images/like_off.svg"></a>
 							<% } %>
 							</a>
 						</div>
@@ -161,69 +200,100 @@ $(function(){
 				</div><!-- movie_info_right -->
 			</div><!-- movie_info -->
 		</article>	
-<!-- 			
+			
 		<article>
-			
 			<div class="movie_actor">
-			<h4>출연/제작</h4>
-			<div class="movie_box_size">
-					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="false">
-					  <div class="carousel-inner">
-					    <div class="carousel-item active box_control">
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    		</div>
-					    		<div class="movie_actor_box2">
-					    			<div class="actor_name">가진동</div>
-					    			<div class="actor_role">주연</div>
-					    		</div>
-					    	</div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
-					    	<div class="movie_actor_box">
-					    		<div class="movie_actor_box1">
-					    			<img src="../images/movie/actor/가진동.jpg" alt="배우 이미지">
-					    		</div>
-					    		<div class="movie_actor_box2">
-					    			<div class="actor_name">가진동</div>
-					    			<div class="actor_role">주연</div>
-					    		</div>
-					    	</div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					    	<div class="movie_actor_box"></div>
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>					    
-					    <div class="carousel-item">
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
-					    <div class="carousel-item">
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
-					  </div>
-					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Previous</span>
-					  </button>
-					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="visually-hidden">Next</span>
-					  </button>
-					</div>
-				</div>
+				<h4>출연</h4>
+				<div class="castingBox">
+			<%
 			
-			</div> 
-		</article>	-->
+			
+				CastingListService service = new CastingListService();
+				CastingListVO vo = new CastingListVO();
+				List<CastingListVO> list =null;
+				
+				int startPage=0;
+				int endPage =0;
+				int line=0;
+				
+				try{
+					list=service.selectCastingMovie(Integer.parseInt(movieNo));
+					
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				
+				
+				if(list==null||list.isEmpty()){
+					
+				}else{
+					
+					line = list.size()/5;
+				
+				
+				
+					for(int i=0; i<line+1;i++){
+						startPage = i*5;
+						endPage=startPage+5;
+						if(endPage>list.size()){
+							endPage=list.size();
+						}
+						
+						if(line==1){
+			%>	
+					<div class="movie_box_size">
+				
+				<%
+				
+						for(int j=startPage; j<endPage; j++){
+							
+							vo=list.get(j);
+				%>
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/<%=vo.getActorImg() %>" alt="배우 이미지">
+			    		</div>
+			    		<div class="movie_actor_box2">
+			    			<p class="actor_name">[배우]</p>
+			    			<p class="actor_name"><%=actorSb %></p>
+			    			<p class="actor_name"><%=vo.getActorName() %></p>
+			    		</div>
+			    	</div><!-- movie_actor_box -->
+			  		  <%} %>	    				    	
+					</div>
+
+				<%}else{ %>
+				
+					<div id="moreActor">
+				<%
+				
+					for(int j=startPage; j<endPage; j++){
+						vo=list.get(j);
+
+				%>
+			    	<div class="movie_actor_box">
+			    		<div class="movie_actor_box1">
+			    			<img src="../images/movie/actor/<%=vo.getActorImg() %>" alt="배우 이미지">
+			    		</div>
+			    		<div class="movie_actor_box2">
+			    			<p class="actor_name">[배우]</p>
+			    			<p class="actor_name"><%=vo.getActorName() %></p>
+			    		</div>
+			    	</div><!-- movie_actor_box -->
+			    <%} %>						
+				    </div>
+		<%} 
+		}
+				}
+		%>
+				
+				<div class="moreActorBtn" id="more">더보기</div>
+			</div><!-- castingBox -->	
+		</div><!-- movie_actor -->
+		</article>	
 		
 
 		<article>
-			
 			<div class="movie_video">
 				<div class="movie_tit">예고편</div>
 			
@@ -235,14 +305,47 @@ $(function(){
 		</article>
 		
 		<article class="movie_review">
-			<div class="movie_tit">코멘트</div>
-			<div class="movie_review_box">
-			<%if(reviewList != null && !reviewList.isEmpty()){%>
-				<div class="movie_review_conbox"></div>
-			<%}else{ %>
-				<h1 style="text-align: center">아직 아무 리뷰도 없어요....</h1>
-			<%}%>
+			<div class="">
+				<div class="movie_tit1" >코멘트</div>
 			</div>
+				<br>
+				<div class="clear">
+				<%if(reviewList == null && reviewList.isEmpty()){%>
+				<div class="movie_review_conbox"></div>
+				<%}else{ 
+					line = reviewList.size()/4;
+					startPage =0;
+					endPage =0;
+					for(int i=0;i<line+1;i++){
+						startPage=i*5;
+						endPage=startPage+5;
+						if(endPage>reviewList.size()){
+							endPage=reviewList.size();
+						}
+				%>
+					<div class="movie_review_box">
+					<%for(int j=startPage; j<endPage;j++){ 
+							ReviewVO reviewVo = reviewList.get(i);%>
+						<div class="movie_review_conbox">
+							<div class="movie_review_conbox1" >
+								<span><%=reviewVo.getUserId()%></span><span><%=reviewVo.getScore() %></span>
+							</div>
+							<div class="movie_review_conbox2">
+							<%=reviewVo.getComments().replace("\r\n","<br>")%>
+							</div>
+							<div class="movie_review_conbox3">
+							<input type = "hidden" id="reviewno" value="<%=reviewVo.getReviewNo()%>">
+							<input type = "hidden" id="me" value="<%=userid%>">
+							<input type = "hidden" id="you" value="<%=reviewVo.getUserId()%>">
+								<span><a href="javascript:void(0)" class="like" onclick="checkId()">좋아요</a></span><span><%=reviewVo.getLickCount()%></span>
+							</div>
+						</div>
+					<%} %>
+					</div>
+				<%} %>
+				</div>
+				<%} %>
+			<br><br>
 		</article>
 			
 	</section>

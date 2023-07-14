@@ -1,6 +1,6 @@
-<%@page import="com.semi.collection.model.collectionService"%>
+<%@page import="com.semi.collection.model.CollectionService"%>
+<%@page import="com.semi.collection.model.CollectionVO"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="com.semi.collection.model.collectionVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,8 +19,8 @@
 	
 	System.out.println(movieArr.length);
 	
-	collectionVO vo = new collectionVO();
-	collectionService service = new collectionService();
+	CollectionVO vo = new CollectionVO();
+	CollectionService service = new CollectionService();
 	int result = 0;
 	try{
 		for(int i=0; i<movieArr.length;i++){

@@ -21,13 +21,11 @@
 <%
 
 	//실제 물리적 저장 경로
-	String posterURI = Utility.POSTER_PATH;
-	String stilcutURI =Utility.STILCUT_PATH;
+	String imgURL = Utility.MOVIE_PATH;
 	
-	System.out.println(posterURI);
-	System.out.println(stilcutURI);
+	System.out.println(imgURL);
 	//최대사이즈
-	int maxSize = 1* 1024 * 1024; 
+	int maxSize = 3* 1024 * 1024; 
 	//인코딩
 	String encoding="utf-8";
 	
@@ -36,7 +34,7 @@
 		DefaultFileRenamePolicy df = new DefaultFileRenamePolicy();
 		//form 태그에서 설정해준 multipart/form-data를 받아 주는 객체
 		MultipartRequest multi = 
-			new MultipartRequest(request,posterURI,maxSize,encoding,df);
+			new MultipartRequest(request,imgURL,maxSize,encoding,df);
 		String poster = multi.getFilesystemName("poster");
 		System.out.println("포스터 업로드 완료!");
 	

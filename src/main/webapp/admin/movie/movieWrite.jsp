@@ -21,6 +21,11 @@
 <script type="text/javascript">
 $(function(){
 	
+	$(document).on('click', '.movieWrite_box_in_right a', function() {
+		  $(this).closest('.movieWrite_box_in').remove();
+		  return false;
+	});
+	
 	$('#addMovie').click(function(){
 		var popup = window.open('serchMovie.jsp', 'Movieserch', 'width=800px,height=650px,scrollbars=yes');
 	});
@@ -100,11 +105,11 @@ $(function(){
 			}
 		}
 		
-		var maxSize = 1 * 1024 * 1024; // 1MB
+		var maxSize = 3 * 1024 * 1024; // 1MB
 		var fileSize = $("#stilcut")[0].files[0].size;
 		
 		if (fileSize > maxSize) {
-			alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
+			alert("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
 			$("#stilcut").val("");
 			$('#stilcut').focus();
 			return false;
@@ -148,9 +153,10 @@ $(function(){
 			$('#directorBox').focus()
 			return false;
 		}
-		
 
 	});
+	
+
 });
 
 </script>
@@ -236,8 +242,8 @@ $(function(){
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
-								<div class="movieWrite_box_in_right1">
-									<select class="form-select form-select-sm" id="genreNo" name="genreNo">
+								<div class="movieWrite_box_in_right">
+									<select class="form-select form-select-sm" id="genreNo" name="genreNo" style="width:100%;">
 									<%
 										GenreService genreService = new GenreService();
 										List<GenreVO> list = null;
@@ -262,9 +268,6 @@ $(function(){
 									%>
 
 									</select>
-								</div>
-								<div class="movieWrite_box_in_right2">
-									<input type="button" name="addCategory" value="장르 추가">
 								</div>
 							</div>
 						</div><!-- movieWrite_box_in -->															
@@ -291,7 +294,6 @@ $(function(){
 				<br>
 				<div class="btn_grop">
 					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
-					<input type="button" class="btn_grop_input" value="삭제">
 				</div>
 			</form>		
 		</div><!-- 전체div movieWrite_wrap-->

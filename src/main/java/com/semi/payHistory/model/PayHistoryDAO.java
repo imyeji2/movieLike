@@ -58,26 +58,31 @@ public class PayHistoryDAO {
 		}
 	}
 
-	public Map<Integer, Integer> chartValue(String userid) throws SQLException{	//마이페이지 > 통계 > 차트 값 불러오는 메서드
+	public Map<String, Integer> chartValue(String userid) throws SQLException{	//마이페이지 > 통계 > 차트 값 불러오는 메서드
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Map<Integer, Integer> map = new HashMap();
+		Map<String, Integer> map = new HashMap();
 		MovieDAO dao = new MovieDAO(); 
 		try {
 			con = pool.getConnection();
-			String sql = "select movieno,count(movieno)"
-					+ " from payhistory"
-					+ " where userid = ?"
-					+ " group by movieno";
+			String sql = "select count(p.movieno),g.genreName"
+					+ " from payHistory p,"
+					+ " movie m,"
+					+ " genre g"
+					+ " where p.movieno=m.movieno"
+					+ "	and m.genreno = g.genreno"
+					+ " and p.userid = ?"
+					+ " group by g.genrename";
+					
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userid);
 			rs = ps.executeQuery();
 
 			while(rs.next()) {
-				int title =  dao.selectByMovieNo(rs.getInt("movieno")).getGenreNo();
-				int value = rs.getInt("count(movieno)");
-
+				String title =  rs.getString("genreName");
+				int value = rs.getInt("count(p.movieno)");
+				
 				map.put(title, value);
 			}
 			System.out.println("통계그래프 값 조회 결과 map = " + map + "매개변수 userid = " + userid);
@@ -166,7 +171,6 @@ public class PayHistoryDAO {
 	
 	
 	
-
 }
 
 

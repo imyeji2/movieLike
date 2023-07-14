@@ -191,12 +191,13 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		try {
 			con = pool.getConnection();
-			String sql = "insert into review(reviewno,movieno,userid,comments)"
-					+ " values(review_seq.nextval,?,?,?)";
+			String sql = "insert into review(reviewno,movieno,userid,comments,score)"
+					+ " values(review_seq.nextval,?,?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getMovieNo());
 			ps.setString(2, vo.getUserId());
 			ps.setString(3, vo.getComments());
+			ps.setInt(4, vo.getScore());
 
 			int cnt = ps.executeUpdate();
 
@@ -223,7 +224,7 @@ public class ReviewDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
-
+	
 }
 
 

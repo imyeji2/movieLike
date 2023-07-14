@@ -18,10 +18,12 @@
 		if(cnt > 0){%>
 		<script type="text/javascript">
 			window.close();
+			window.opener.location.reload();
 		</script>	
 	<%}else{%>
 		<script type="text/javascript">
 			window.close();
+			window.opener.location.reload();
 		</script>	
 	<%}
 	}catch(SQLException e){

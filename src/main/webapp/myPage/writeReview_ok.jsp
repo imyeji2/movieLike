@@ -12,16 +12,24 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
-	String userid = request.getParameter("userid");
-	String movieNo = request.getParameter("movieNo");
-	String content = request.getParameter("content");
 
+	String userid = request.getParameter("userid");
+	System.out.println(userid);
+	String movieNo = request.getParameter("movieNo");
+	System.out.println(movieNo);
+	String content = request.getParameter("content");
+	System.out.println(content);
+	String grade = request.getParameter("grade");
+	System.out.println(grade);
+	
 	ReviewService service = new ReviewService();
 	ReviewVO vo = new ReviewVO();
 	
 	vo.setUserId(userid);
 	vo.setMovieNo(Integer.parseInt(movieNo));
 	vo.setComments(content);
+	vo.setScore(Integer.parseInt(grade));
+	
 	
 	try{
 	int cnt = service.insertReview(vo);

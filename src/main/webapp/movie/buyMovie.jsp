@@ -121,17 +121,21 @@ popcornChargeMain{
 		String no = request.getParameter("no");
 		String userid = request.getParameter("userid");
 		
+		if(userid == null || userid.isEmpty()){
+			%><script>alert('먼저 로그인 해주세요');
+			window.close();</script><%
+		}
+		
 		MovieService movieService = new MovieService();
 		UserService userService = new UserService();
-		MovieVO vo = null;
-		UserVO userVo = null;
+		MovieVO vo = new MovieVO();
+		UserVO userVo = new UserVO();
 		try{
 		vo = movieService.selectByMovieNo(Integer.parseInt(no));
 		 userVo = userService.selectUserByUserId(userid);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 	%>
 		<form id="buyMovieForm" action="buyMovie_Ok.jsp" method="post">
 		<input type = "hidden" value="<%=no%>" name = "no">
@@ -168,7 +172,7 @@ popcornChargeMain{
 		    <div class="col">
 			    <div class="input-group input-group-sm mb-3">
 					  <span class="input-group-text" id="inputGroup-sizing-sm">팝콘</span>
-					  <input type="text" class="form-control" name = "price" disabled value="<%=vo.getPrice()/100%> 개 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+					  <input type="text" class="form-control" name = "price" disabled value="<%=vo.getPrice()%> 개 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 				</div>
 		    </div>
 		  </div>

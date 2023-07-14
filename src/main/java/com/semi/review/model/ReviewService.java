@@ -10,7 +10,7 @@ public class ReviewService {
 	public ReviewService() {
 		reviewDao = new ReviewDAO();
 	}
-
+	
 	public Map<ReviewVO,String> selectByUserId(String userid) throws SQLException{
 		return reviewDao.selectByUserId(userid);
 	}
@@ -26,4 +26,5 @@ public class ReviewService {
 	public int deleteReview(int reviewNo) throws SQLException {
 		return reviewDao.deleteReview(reviewNo);
 	}
+	
 }
