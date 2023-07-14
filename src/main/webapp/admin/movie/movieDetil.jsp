@@ -1,5 +1,3 @@
-<%@page import="com.semi.casting.model.CastingListService"%>
-<%@page import="com.semi.casting.model.CastingListVO"%>
 <%@page import="com.semi.movie.model.MovieListService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.semi.movie.model.MovieService"%>
@@ -96,62 +94,46 @@
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">스틸이미지</div>
 							<div class="movieWrite_box_in_right">
-								<img src="../../images/movie/content/<%=vo.getStilcut()%>">
+								<img src="../../images/movie/stillCut/<%=vo.getStilcut()%>">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">포스터이미지</div>
 							<div class="movieWrite_box_in_right">
-								<img src="../../images/movie/content/<%=vo.getPoster()%>">
+								<img src="../../images/movie/poster/<%=vo.getPoster()%>">
 							</div>
 						</div><!-- movieWrite_box_in -->
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">장르</div>
 							<div class="movieWrite_box_in_right">
-								<div class="movieWrite_box_in_right1"><%=vo.getGenreName()%></div>
+								<div class="movieWrite_box_in_right1"><%=vo.getGenreName()%> %></div>
 							</div>
 						</div><!-- movieWrite_box_in -->															
 					</div><!-- movieWrite_box1 -->
 				</div><!-- movieWrite_box -->	
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
+					<input type="button" class="movie_btn btn btn-primary" name="Actor" value="배우등록" id="addActor">
 					<p class="clear">출연진 정보</p>
 						
 					<div class="movieWrite_box1" id="actorBox">
-					<%
-						CastingListVO castingVo = null;
-						CastingListService castingService = new CastingListService();
-						List<CastingListVO> castingList= null;
-						try{
-							castingList =castingService.selectCastingMovie(vo.getMovieNo());
-						}catch(SQLException e){
-							e.printStackTrace();
-						}
 					
-						for(int c=0; c<castingList.size();c++){
-							castingVo = castingList.get(c);
-					%>
-					    <div class="movieWrite_box_in" id="actorBox">
-					      <div class="movieWrite_box_in_left">
-					        <img src="../../images/movie/actor/<%=castingVo.getActorImg() %>" style="width: 60px;">
-					        <input type="hidden" name="actorNo" value="<%=castingVo.getActorNo()%>">
-					      </div>
-					      <div class="movieWrite_box_in_right" style="line-height: 65px;"><%=castingVo.getActorName() %></div>
-					    </div>
-					 <%} %>
 					</div><!-- movieWrite_box1 -->												
 				</div><!-- movieWrite_box -->
 				
 				<br>
 				<div class="movieWrite_box"><!-- 입력폼 div -->
-
+					<input type="button" class="movie_btn btn btn-primary" name="Director" value="감독등록" id="addDirector">
 					<p class="clear">감독 정보</p>
 						
 					<div class="movieWrite_box1" id="directorBox">														
 					</div><!-- movieWrite_box1 -->
 				</div><!-- movieWrite_box -->
 				<br>
-
+				<div class="btn_grop">
+					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
+					<input type="button" class="btn_grop_input" value="삭제">
+				</div>
 			</form>		
 		</div><!-- 전체div movieWrite_wrap-->
 	</section> 

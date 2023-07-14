@@ -149,7 +149,21 @@ $(function(){
 			return false;
 		}
 
-
+		
+		if (!$('#stilcut').val()) {
+			alert("스틸컷을 첨부해주세요");
+			$('#stilcut').focus()
+			return false;
+		} else if ($("#stilcut").val() != "") {
+			var ext = $("#stilcut").val().split(".").pop().toLowerCase();
+			if ($.inArray(ext, ["jpg", "jpeg", "png", "gif"]) == -1) {
+				alert("이미지 파일만 등록 가능합니다.");
+				$("#stilcut").val("");
+				$('#stilcut').focus();
+				return false;
+			}
+		}
+		
 		var maxSize = 1 * 1024 * 1024; // 1MB
 		var fileSize = $("#stilcut")[0].files[0].size;
 		
@@ -161,7 +175,21 @@ $(function(){
 		}
 		
 		
-
+		
+		if (!$('#poster').val()) {
+			alert("포스터를 첨부해주세요");
+			$('#stilcut').focus()
+			return false;
+		} else if ($("#poster").val() != "") {
+			var ext = $("#poster").val().split(".").pop().toLowerCase();
+			if ($.inArray(ext, ["jpg", "jpeg", "png", "gif"]) == -1) {
+				alert("이미지 파일만 등록 가능합니다.");
+				$("#poster").val("");
+				$('#poster').focus();
+				return false;
+			}
+		}
+		
 		var maxSize = 1 * 1024 * 1024; // 1MB
 		var fileSize = $("#poster")[0].files[0].size;
 		
@@ -383,7 +411,8 @@ $(function(){
 				</div><!-- movieWrite_box -->
 				<br>
 				<div class="btn_grop">
-					<input type="submit" class="btn_grop_input" value="수정" id="saveMovie">
+					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
+					<input type="button" class="btn_grop_input" value="삭제">
 				</div>
 			</form>		
 		</div><!-- 전체div movieWrite_wrap-->

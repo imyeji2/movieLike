@@ -166,8 +166,7 @@ $(function(){
 				<h4>영화 등록</h4>
 				<p><a href="movieList.jsp">영화관리</a>>영화등록</p>
 			</div>
-			
-			<%-- <form name="movieWrite" method="post" enctype="multipart/form-data" action="movieWrite_ok.jsp">
+			<form name="movieWrite" method="post" enctype="multipart/form-data" action="movieWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
 				
 					<input type="button" class="movie_btn btn btn-primary" name="movie" value="영화 검색" id="addMovie">
@@ -294,6 +293,7 @@ $(function(){
 				<br>
 				<div class="btn_grop">
 					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
+					<input type="button" class="btn_grop_input" value="삭제">
 				</div>
 			</form>		
 		</div><!-- 전체div movieWrite_wrap-->
@@ -301,66 +301,6 @@ $(function(){
 	</div><!-- admin_menu->aside, session 감싸는 div -->	
 </div><!-- admin_menu->wrap -->
 
-
-</body>
-</html> --%>
-
-
-<div class="top_btn">
-               <button type="button" id="submit" class="btn btn-primary" >
-                  <a href="noticeList.jsp"><%=btLabel %></a></button>
-            </div>
-            <div class="top_btn">
-               <button type="button" id="cancel" class="btn btn-primary" style="background:gray; border:solid 1px gray">
-                  <a href="noticeList.jsp">취소하기</a></button>
-            </div>
-            
-            <div class="notice_box">
-               <div class="top_box">
-                  <div class="top_text">
-                     <p>공지사항 > <%=pageTitle %></p> 
-                  </div>         
-               </div> 
-              
-              <div class="content_box">
-                  <div class="textDiv">
-                     <div class="text_title">   
-                           <label for="title">제목</label>
-                           <input type="text" id="title" name="title" class="infobox" value="<%=boardTitle %>" />
-                        </div>
-                        <div class="text_name">
-                           <label for="name">작성자 ID</label>
-                           <input type="text" id="name" name="name" class="infobox" value="<%=adminId %>"/>
-                        </div>
-                        <div class="text_status">
-                           <label for="status">상태</label>
-                           <input type="text" id="status" name="status" class="infobox" value="Y"/>
-                        </div>
-                     </div>
-                     
-                  <div class="textarea_box">
-                     <form action="" method="post">
-                        <textarea id="content" class="infobox" name="content" rows="40"><%=boardContent %></textarea>
-                     </form>
-                  </div>
-               </div> 
-         </article>
-   </section> 
-   </form>
-   </div><!-- admin_menu->aside, session 감싸는 div -->   
-</div><!-- admin_menu->wrap -->
-
-<script>
-
-CKEDITOR.replace( 'content', {
-    
-   //filebrowserImageUploadUrl: '/semi/admin/uploadIMG.php'
-   filebrowserImageUploadUrl: '/semi/admin/board/img' 
-
-    
-});
-    
-</script>
 
 </body>
 </html>
