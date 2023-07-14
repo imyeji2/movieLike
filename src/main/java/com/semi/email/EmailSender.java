@@ -12,9 +12,9 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailSender {
 	private String host = "smtp.gmail.com"; // 메일 발송에 사용할 SMTP 서버 호스트명
-	private String port = "465"; // 메일 발송에 사용할 SMTP 서버 포트번호
-	private String username = "iiuu217@google.com"; // SMTP 서버 인증에 사용할 계정 아이디
-	private String password = "semi230636!"; // SMTP 서버 인증에 사용할 계정 비밀번호
+	private String port = "587"; // 메일 발송에 사용할 SMTP 서버 포트번호
+	private String username = "iiuu21700@gmail.com"; // SMTP 서버 인증에 사용할 계정 아이디
+	private String password = "ainxkgfefmkdzcqv"; // SMTP 서버 인증에 사용할 계정 비밀번호
 
     public void sendEmail(String fromAddress, String toAddress, String subject, String content) {
     	try {
@@ -34,8 +34,8 @@ public class EmailSender {
             protected PasswordAuthentication getPasswordAuthentication() {
               return new PasswordAuthentication(username, password);
             }
-          };
-
+          };  
+          
         // 세션 생성
         Session session = Session.getInstance(properties, authenticator);
 

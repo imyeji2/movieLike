@@ -173,7 +173,6 @@
 									</div>
 								</form>
 							<div class="ed_btn">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">탈퇴</button>
 							</div>
 						</div>

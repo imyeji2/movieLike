@@ -61,7 +61,7 @@
 				<div class="members">
 					<div class="find">
 
-						<a href="#">비밀번호를 잊어버리셨나요?</a>
+						<a href="<%=request.getContextPath()%>/login/getEmail.jsp">비밀번호를 잊어버리셨나요?</a>
 					</div>
 					<a class="register-btn">
 						<p>회원가입</p>
