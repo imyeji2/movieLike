@@ -337,7 +337,6 @@ $(function(){
 							<input type = "hidden" id="reviewno" value="<%=reviewVo.getReviewNo()%>">
 							<input type = "hidden" id="me" value="<%=userid%>">
 							<input type = "hidden" id="you" value="<%=reviewVo.getUserId()%>">
-								<span><a href="javascript:void(0)" class="like" onclick="checkId()">좋아요</a></span><span><%=reviewVo.getLickCount()%></span>
 							</div>
 						</div>
 					<%} %>
