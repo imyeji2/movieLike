@@ -16,7 +16,7 @@
 	})
 	
 </script>
-	   <section id="main">
+	     <section id="main">
       <article class="main_box">
          <p class="main_title">박스오피스 top10</p>
          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -261,7 +261,8 @@
                    </div><!-- main_movie_info -->                   
                 </div>
                 <div class="main_box1 f_left">
-                   <input type="hidden" name="movieNo" value="3">
+                
+                   <input type="hidden" name="movieNo" value="29">
                    <div class="main_poster img-thumbnail">
                       <img src="images/movie/content/포스터3.jpg">
                    </div>
@@ -277,6 +278,7 @@
                    </div><!-- main_movie_info -->                   
                 </div>
                 <div class="main_box1 f_left">
+                <input type="hidden" name="movieNo" value="30">
                    <div class="main_poster img-thumbnail">
                       <img src="images/movie/content/포스터4.jpg">
                    </div>
@@ -293,6 +295,7 @@
                 </div>   
                 <div class="main_box1 f_left">
                    <div class="main_poster img-thumbnail">
+                   <input type="hidden" name="movieNo" value="31">
                       <img src="images/movie/content/포스터5.jpg">
                    </div>
                    <div class="main_movie_info">
@@ -731,7 +734,7 @@
                       </p>
                       <p class="movie_info2">평균 ★ 3.9</p>
 
-                   </div><!-- main_movie_info -->             `   `2      
+                   </div><!-- main_movie_info -->                
                 </div>   
              </div>
            </div>
