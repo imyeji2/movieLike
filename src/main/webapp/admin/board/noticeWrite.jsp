@@ -30,7 +30,7 @@
 		btLabel="등록";		
 	}	
 	
-	String boardTitle="", adminId="", boardContent="", boardCategory="", boardStatus="";
+	String boardTitle="", adminId="", boardContent="", boardStatus="";
 	if(isEdit){
 		BoardDAO boardDao = new BoardDAO();
 		
@@ -40,7 +40,6 @@
 			boardTitle=vo.getBoardTitle();
 			adminId=vo.getAdminID();
 			boardContent=vo.getBoardContent();		
-			boardCategory=vo.getBoardCategory();
 			boardStatus=vo.getBoardStatus();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -95,7 +94,7 @@
 				<h4>공지사항 등록</h4>
 				<p>공지/FAQ > 공지사항 등록</p>
 			</div>
-			<form name="movieWrite" method="post" enctype="multipart/form-data" action="noticeWrite_ok.jsp">
+			<form name="movieWrite" method="get" enctype="multipart/form-data" action="noticeWrite_ok.jsp">
 				<div class="movieWrite_box"><!-- 입력폼 div -->
 				
 					<div class="movieWrite_box1">
@@ -111,7 +110,7 @@
 							<div class="movieWrite_box_in_left">관리자 ID</div>
 							<div class="movieWrite_box_in_right">
 								<input class="form-control info_txt" type="text"
-								placeholder="관리자 ID를 입력하세요" name="adminID" id="adminID">		
+								placeholder="관리자 ID를 입력하세요" name="adminID" id="adminID">	
 							</div>
 						</div>
 						<div class="movieWrite_box_in">
@@ -124,7 +123,7 @@
 						<div class="movieWrite_box_in">
 							<div class="movieWrite_box_in_left">내용</div>
 							<div class="movieWrite_box_in_right">
-							<textarea id = "boardContent" name = "boardContent"></textarea>
+							<textarea id = "boardContent" name = "boardContent" ></textarea>
 							</div>
 						</div>
 					</div>
@@ -133,7 +132,7 @@
 				<br>
 				<div class="btn_grop">
 					<input type="submit" class="btn_grop_input" value="등록" id="saveReview">
-					<input type="button" class="btn_grop_input" value="삭제">
+					<input type="button" class="btn_grop_input" value="취소">
 				</div>
 			</form>		
 		</div>
