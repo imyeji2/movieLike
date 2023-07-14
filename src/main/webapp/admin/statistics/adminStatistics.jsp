@@ -318,9 +318,12 @@ new Chart(document.getElementById("bar-chart2"), {
 				y:{
 					beginzero:true
 				}
+			},
+			legend:{
+				display: false
 			}
-	}
-});
+		}
+	});
 </script>
 </body>
 </html>
