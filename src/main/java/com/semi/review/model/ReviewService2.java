@@ -18,4 +18,7 @@ public class ReviewService2 {
 		return reviewDao2.likeCountUpdate(targetId, pointId, reviewNo);
 	}
 	
+	public int deleteReview(int reviewNo) throws SQLException {
+		return reviewDao2.deleteReview(reviewNo);
+	}
 }

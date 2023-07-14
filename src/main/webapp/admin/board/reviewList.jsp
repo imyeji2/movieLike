@@ -27,6 +27,10 @@
 				}
 			}
 		});
+		
+		$('#detailRev').click(function(){
+			window.open('reviewDetail.jsp', 'review', 'width=800px,height=800px,scrollbars=yes');
+		});
 			
 	});
 
@@ -114,17 +118,18 @@ PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 							</select>
 							
 							<div class="input-group" style="width:370px">
+							  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <input type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
 							</div>
 							
 							<div class="ed_btn">
-								<button class="btn btn-outline-secondary" type="button" id="button-delete">삭제</button>
+								<input type="button" class="review_btn btn btn-primary" name="Review" value="삭제" id="delReview">
 							</div>
 						</div>
 						<div class="search_result">           
 						</div>
-						<form name="delFrm" method="post" action="reviewDelete.jsp">
+						<form name="delFrm" method="post" action="">
 							<table class="table table-bordered">
 							  <colgroup>
 							      <col style="width:5%;" />
@@ -158,6 +163,20 @@ PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 										ReviewVO2 vo2 = list2.get(curPos++);
 										num--;	
 								%>
+								<tr style="text-align: center">
+									<th><input type="checkbox" name="chk"></th>
+									<th scope="row"><%=vo2.getReviewNo()%></th>
+									<td style="text-align: left; text-indent: 15px">
+										<a onclick="detailRev" href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>" ><%=vo2.getTitle()%></a></td>
+									<td style="text-align: left">
+										<a onclick="detailRev" href="reviewDetail.jsp?reviewNo=<%=vo2.getReviewNo()%>" ><%=vo2.getComments() %></a></td>
+									<td><%=vo2.getUserId() %></td>
+									<td><%=vo2.getScore()%></td>
+								</tr> 
+								<%
+								} //for
+								%>
+								<!--반복처리 끝  -->
 									<tr style="text-align:center">
 										<td><input type="checkbox" id="chkid"></td>
 										<td class = "reviewNo"><%=vo2.getReviewNo() %></td>

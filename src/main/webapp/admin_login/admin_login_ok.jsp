@@ -29,7 +29,7 @@
 			session.setAttribute("adminId",adminId);
 			
 			msg = "로그인 완료";
-			url = "inc/admin_menu.jsp";
+			url = "admin/movie/movieList.jsp";
 		}else if(rst == AdminService.DISAGREE_PWD){
 			msg = "비밀번호를 체크하세요.";
 		}else if(rst == AdminService.NONE_ID){
