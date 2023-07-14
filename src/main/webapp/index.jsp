@@ -230,7 +230,7 @@
 
 
 
-<!-- 		<article class="main_box">
+< 		<article class="main_box">
 			<p class="main_title">여름밤 맥주와 함께하는 로맨스🍻</p>
 			<div id="carouselExampleInterval2" class="carousel slide" data-bs-ride="false">
 			  <div class="carousel-inner">
@@ -403,7 +403,7 @@
 			    <span class="visually-hidden">Next</span>
 			  </button>
 			</div>
-		</article>	 -->	
+		</article>	 	
 	</section>
 	<br><br><br><Br><br>
 <%@ include file="inc/bottom.jsp" %>	
