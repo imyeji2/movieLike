@@ -136,7 +136,7 @@ popcornChargeMain{
 		    <div class="col">
 		   		<div class="input-group input-group-sm mb-3">
 					  <span class="input-group-text" id="inputGroup-sizing-sm">구매번호</span>
-					  <input type="text" class="form-control" name = "price" disabled value = "<%=no%>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+					  <input type="text" class="form-control"  disabled value = "<%=no%>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 				</div>
 		   		
 		    </div>
@@ -147,19 +147,20 @@ popcornChargeMain{
 		    <div class="col">
 			    <div class="input-group input-group-sm mb-3">
 					  <span class="input-group-text" id="inputGroup-sizing-sm">금액</span>
-					  <input type="text" class="form-control" name = "price" disabled value="<%=price%>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+					  <input type="text" class="form-control"  disabled value="<%=price%>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 				</div>
 		    </div>
 		  </div>
 		  
 		  <div class="row">
 		    <div class="col">
+		    <input type="hidden" name="price" value=<%=price %>>
+		    <input type="hidden" name="no" value=<%=no %>>
 			    <button type="submit" class="btn btn-success">환불</button>
 			    <button type="button" id="quit" class="btn btn-light">취소</button>
 		    </div>
 		  </div>
 		</div>
 		</form>
-</div>
 </body>
 </html>
