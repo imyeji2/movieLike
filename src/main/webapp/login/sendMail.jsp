@@ -20,15 +20,15 @@ emailsender.sendEmail(fromAddress, toAddress, subject, content);
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$(function(){
+
 		<%if(userId == null || userId.isEmpty()){%>
 			alert('이메일 전송 실패!');
 			location.href= "<%=request.getContextPath()%>/index.jsp";
 		<%}else{%>
-			alert('이메일 전송 완료!')
+			alert('이메일 전송 완료!');
 			location.href= "<%=request.getContextPath()%>/index.jsp";
 		<%}%>
-	});
+
 </script>
 </head>
 <body>

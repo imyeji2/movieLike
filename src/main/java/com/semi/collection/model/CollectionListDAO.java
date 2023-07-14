@@ -157,6 +157,12 @@ public class CollectionListDAO {
 	
 	
 	
+	
+	/**
+	 * 활성화된 컬렉션 
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<CollectionListVO> selectCollectionY() throws SQLException {
 	    Connection con = null;
 	    PreparedStatement ps = null;
