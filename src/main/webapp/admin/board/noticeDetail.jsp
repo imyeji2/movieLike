@@ -6,7 +6,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
+<script type="text/javascript">
+	$(function(){
+		delOk() {
+			if(!confirm('삭제하시겠습니까?')){
+				return false;
+			}
+		}
+	});
 
+</script>
 <body>
 	<%
 		String boardNo = request.getParameter("boardNo");
@@ -56,19 +65,23 @@
 
 					
 					<div class="content_box">
-					
-						<div class="ed_btn">
+						
+						<div class="ed_btn" >
+								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
+								<button class="btn btn-outline-secondary" type="button" id="button-delete" onclick="delOk()">삭제</button>
+						</div>
+						
+						<%-- <div class="ed_btn">
 							<div class="ed_btn1">
 								<button class="btn btn-outline-secondary" type="button" id="button-delete">
 									<a href='noticeDelete.jsp?boardNo=<%=boardNo%>'>삭제</button>
 							</div>
 							<div class="ed_btn2">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit" >
+								<button class="btn btn-outline-secondary" type="button" id="button-edit">
 									<a href='noticeWrite.jsp?boardNo=<%=boardNo%>'>수정</a>
 								</button>
 							</div>
-						</div>
-						
+						</div> --%>
 						<table class="table table-bordered">
 						<colgroup>
 						      <col style="width:20%;" />

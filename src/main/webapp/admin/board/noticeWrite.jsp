@@ -5,6 +5,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../inc/admin_menu.jsp" %>
+<%-- <script src = "${path}/ckeditor/ckeditor.js"></script> --%>
+<!-- <script>
+	var ckeditor_config = {
+			resize_enaleb : false,
+			enterMode : CKEDITOR.ENTER_BR,
+			shiftEnterMode : CKEDITOR.ENTER_P,
+			filebrowserUploadUrl : "/common/ckUpload"
+	};
+</script> -->
 
 <%
 
@@ -42,9 +51,22 @@
 	
 %>
 
-<script language="javascript" src="/semi/ckeditor/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
    $(function(){
+	  CKEDITOR.replace('boardContent');
+
+	  $('#submit').click(function(){
+		  var boardContent = CKEDITOR.instances.boardContent.getData();
+		  var result=boardContent.replace(/<\/?p>/gi, '');
+	      CKEDITOR.instances.boardContent.setData(result);
+	      
+	      if(result.length < 1) {
+	    	  alert('내용을 입력하세요');
+	    	  return false;
+	      };
+      });
+      
 	  $('.text_title').focus(); 
 	   
       $('.top_btn').click(function(){
@@ -60,103 +82,64 @@
             }
          });
       });
+      
+      
    });
    
 </script>
 
-<style>
-  .ck-editor__editable { height: 500px; }
-  .ck-content { font-size: 12px; }
-  
-  section {
-		width: 100%;
-	    padding: 40px 40px 20px 40px;
-	    box-sizing: border-box;
-	    margin: 0 auto;
-	}
-</style>
-
-<body>
-<div class="divForm" style="width:1215.35px">
-<form name="frmWrite" method="post" >
- 	<%if(!isEdit){ %> 
-         action="noticeWrite_ok.jsp"
-    <%   }else{ %>
-         action="noticeEdit_ok.jsp"
-    <%   }    %>
-   <section id="noticeWrite">
-         <article id="detail_content">
-            <h2>공지/FAQ</h2>
-             <input type="hidden" name="boardNo" value="<%=boardNo%>">
-             <input type="hidden" name="boardCategory" value="notice">
-             
-            <div class="top_btn">
-               <button type="button" id="submit" class="btn btn-primary" >
-                  <a href="noticeList.jsp"><%=btLabel %></a></button>
-            </div>
-            <div class="top_btn">
-               <button type="button" id="cancel" class="btn btn-primary" style="background:gray; border:solid 1px gray">
-                  <a href="noticeList.jsp">취소하기</a></button>
-            </div>
-            
-            <div class="notice_box">
-               <div class="top_box">
-                  <div class="top_text">
-                     <p>공지사항 > <%=pageTitle %></p> 
-                  </div>         
-               </div> 
-              
-               
-               <div class="content_box">
-                  <div class="textDiv">
-                     <div class="text_title">   
-                           <label for="title">제목</label>
-                           <input type="text" id="title" name="title" class="infobox" value="<%=boardTitle %>" />
-                        </div>
-                        <div class="text_name">
-                           <label for="name">작성자 ID</label>
-                           <input type="text" id="name" name="name" class="infobox" value="<%=adminId %>"/>
-                        </div>
-                        <div class="text_status">
-                           <label for="status">상태</label>
-                           <input type="text" id="status" name="status" class="infobox" value="Y"/>
-                        </div>
-                     </div>
-                  <div class="textarea_box">
-                     <form action="" method="post">
-                        <textarea id="content" class="infobox" name="content" rows="40">
-                        <script>
-						$(function () {
-							CKEDITOR.replace('contents', {
-								/* filebrowserUploadUrl :'imgupload.jsp' */
-							});
-						});
-						
-						CKEDITOR.config.extraPlugins = "base64image";
-						
-						</script>
-                        <%=boardContent %></textarea>
-                     </form>
-                  </div>
-               </div>  
-               </table> 
-            </div>
-   </section> 
-   </form>
-   </div><!-- admin_menu->aside, session 감싸는 div -->   
-</div><!-- admin_menu->wrap -->
-
-<script>
-
-CKEDITOR.replace( 'content', {
-    
-   //filebrowserImageUploadUrl: '/semi/admin/uploadIMG.php'
-   filebrowserImageUploadUrl: '/semi/admin/board/img' 
-
-    
-});
-    
 </script>
+		<section id="movieWrite">
+		<div class="movieWrite_wrap"><!-- 전체div -->
+			<div class="movieWrite_box"> <!-- 상단 타이틀 div -->
+				<h4>공지사항 등록</h4>
+				<p>공지/FAQ > 공지사항 등록</p>
+			</div>
+			<form name="movieWrite" method="post" enctype="multipart/form-data" action="noticeWrite_ok.jsp">
+				<div class="movieWrite_box"><!-- 입력폼 div -->
+				
+					<div class="movieWrite_box1">
+						<div class="movieWrite_box_in">
+							<div class="movieWrite_box_in_left">제목</div>
+							<div class="movieWrite_box_in_right">
+								<input class="form-control info_txt" type="text"
+								placeholder="제목을 입력하세요" name="boardTitle" id="boardTitle">
+							</div>
+						</div>
+									
+						<div class="movieWrite_box_in">
+							<div class="movieWrite_box_in_left">관리자 ID</div>
+							<div class="movieWrite_box_in_right">
+								<input class="form-control info_txt" type="text"
+								placeholder="관리자 ID를 입력하세요" name="adminID" id="adminID">		
+							</div>
+						</div>
+						<div class="movieWrite_box_in">
+							<div class="movieWrite_box_in_left">노출 상태</div>
+							<div class="movieWrite_box_in_right">
+								<input class="form-control info_txt" type="text"
+								placeholder="Y" name="boardStatus" id="boardStatus">	
+							</div>
+						</div>
+						<div class="movieWrite_box_in">
+							<div class="movieWrite_box_in_left">내용</div>
+							<div class="movieWrite_box_in_right">
+							<textarea id = "boardContent" name = "boardContent"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<br>
+				<div class="btn_grop">
+					<input type="submit" class="btn_grop_input" value="등록" id="saveReview">
+					<input type="button" class="btn_grop_input" value="삭제">
+				</div>
+			</form>		
+		</div>
+	</section> 
+	</div><!-- admin_menu->aside, session 감싸는 div -->	
+</div><!-- admin_menu->wrap -->
 
 </body>
 </html>
