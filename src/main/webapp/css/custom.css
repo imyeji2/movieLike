@@ -50,7 +50,7 @@
 	    background: #198754;
 	    color: floralwhite;
 	    font-weight: bold;
-	    width: 64%;
+	    width: 80%;
 	    padding: 4% 0% 4% 0%;
    }
    .watchreview{
@@ -58,7 +58,7 @@
       background:grey;
       color:white;
       font-weight: bold;
-      width: 64%;
+      width: 80%;
 	    padding: 4% 0% 4% 0%;
    }
    .refund {
@@ -84,7 +84,8 @@
       background:grey;
       color:white;
       font-weight: bold;
-      width: 100px;   
+      width: 45%;
+	 padding: 2% 0% 4% 0%;
    }
    .content table {
       width: 90%;

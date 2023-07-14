@@ -411,7 +411,7 @@ $(document).ready(function() {
 								String movieTitle = elem.getValue();%>
 					<tr>
 						<td><%=movieTitle %></td>
-						<td><%=vo.getComments() %></td>
+						<td><%=vo.getComments().substring(0, 10) %></td>
 						<td><%=vo.getScore() %></td>
 						<input type = "hidden" class = "removeReviewVal" value="reviewNo=<%=vo.getReviewNo()%>">
 						<td><button type="button" id="removeReview" class="removeReview">리뷰삭제</button></td>
