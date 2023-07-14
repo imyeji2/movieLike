@@ -293,6 +293,7 @@ $(function(){
 				<br>
 				<div class="btn_grop">
 					<input type="submit" class="btn_grop_input" value="등록" id="saveMovie">
+					<input type="button" class="btn_grop_input" value="삭제">
 				</div>
 			</form>		
 		</div><!-- 전체div movieWrite_wrap-->
