@@ -328,7 +328,7 @@ $(function(){
 							ReviewVO reviewVo = reviewList.get(i);%>
 						<div class="movie_review_conbox">
 							<div class="movie_review_conbox1" >
-								<span><%=reviewVo.getUserId()%></span><span><%=reviewVo.getScore() %></span>
+								<span style="font-size:18px;">아이디 : <%=reviewVo.getUserId()%></span><span style="float:right; font-size:18px">평점 : <%=reviewVo.getScore() %></span>
 							</div>
 							<div class="movie_review_conbox2">
 							<%=reviewVo.getComments().replace("\r\n","<br>")%>

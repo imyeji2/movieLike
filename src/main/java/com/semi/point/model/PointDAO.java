@@ -25,7 +25,7 @@ public class PointDAO {
 		ResultSet rs = null;
 		try {
 			con = pool.getConnection();
-			String sql = "select * from point where userid = ? order by pointregdate";
+			String sql = "select * from point where userid = ? order by pointno desc";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userid);
 			rs = ps.executeQuery();

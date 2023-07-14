@@ -356,7 +356,7 @@ $(document).ready(function() {
 					<%
 						//pageSize = 15;
 						if(pointList != null && !pointList.isEmpty()){
-							for(int i = 0; i < pointList.size(); i++){
+							for(int i = pointList.size()-1; i > 0; i--){
 							PointVO vo = pointList.get(i);
 							usedPopcorn += vo.getPointPrice();%>
 					<tr>
