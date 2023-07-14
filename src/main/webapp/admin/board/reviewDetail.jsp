@@ -26,29 +26,29 @@
 						</colgroup>
 							<tr>
 						      <th scope="col">번호</th>
-						      <td scope="col"><%=vo.getBoardNo()%></td>
+						      <td scope="col"><%=vo2.getBoardNo()%></td>
 						    </tr>
 							<tr>
 						      <th>제목</th>
-						      <td><%=vo.getBoardTitle() %></td>
+						      <td><%=vo2.getBoardTitle() %></td>
 						    </tr>
 							<tr>
 						      <th>작성자</th>
-						      <td><%=vo.getAdminID() %></td>
+						      <td><%=vo2.getAdminID() %></td>
 						    </tr>
 							<tr>
 						      <th>조회수</th>
-						      <td><%=vo.getBoardView() %></td>
+						      <td><%=vo2.getBoardView() %></td>
 						    </tr>
 							<tr>
 						      <th>등록일</th>
-						      <td><%=sdf.format(vo.getBoardRegdate())%></td>
+						      <td><%=sdf.format(vo2.getBoardRegdate())%></td>
 						    </tr>
 							<tr>
 							<div class="in_text">
 						      <th style = "padding-top : 25px ">내용</th>
 						     </div>
-						      <td><%=vo.getBoardContent() %></td>
+						      <td><%=vo2.getBoardContent() %></td>
 						    </tr>
 		</table>
 		</div>

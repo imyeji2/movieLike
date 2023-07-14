@@ -31,14 +31,13 @@ public class BoardDAO {
 		try {
 			con = pool.getConnection();
 			
-			String sql = "insert into board(boardno, adminid, boardtitle, boardcontent, boardcategory, boardstatus)"
-					+ " values(board_seq.nextval, ?, ?, ?, ?, ?)";
+			String sql = "insert into board(boardNo, adminID, boardTitle, boardContent, boardStatus)"
+					+ " values(board_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, vo.getAdminID());
 			ps.setString(2, vo.getBoardTitle());
 			ps.setString(3, vo.getBoardContent());
-			ps.setString(4, vo.getBoardCategory());
-			ps.setString(5, vo.getBoardStatus());
+			ps.setString(4, vo.getBoardStatus());
 			
 			int cnt = ps.executeUpdate();
 			System.out.println("게시글 작성 성공, cnt = " + cnt + ", 매개변수 vo = " + vo);

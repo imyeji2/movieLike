@@ -59,7 +59,7 @@
 				<div class="notice_box">
 					<div class="top_box">
 						<div class="top_text">
-							<p>공지사항 > 상세보기</p> 
+							<p>상세보기</p> 
 						</div>			
 					</div> 
 
@@ -69,19 +69,6 @@
 						<div class="ed_btn" >
 								<button class="btn btn-outline-secondary" type="button" id="button-edit">수정</button>
 								<button class="btn btn-outline-secondary" type="button" id="button-delete" onclick="delOk()">삭제</button>
-						</div>
-						
-						<%-- <div class="ed_btn">
-							<div class="ed_btn1">
-								<button class="btn btn-outline-secondary" type="button" id="button-delete">
-									<a href='noticeDelete.jsp?boardNo=<%=boardNo%>'>삭제</button>
-							</div>
-							<div class="ed_btn2">
-								<button class="btn btn-outline-secondary" type="button" id="button-edit">
-									<a href='noticeWrite.jsp?boardNo=<%=boardNo%>'>수정</a>
-								</button>
-							</div>
-						</div> --%>
 						<table class="table table-bordered">
 						<colgroup>
 						      <col style="width:20%;" />

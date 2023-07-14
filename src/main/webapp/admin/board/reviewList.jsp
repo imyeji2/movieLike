@@ -1,3 +1,4 @@
+<%@page import="com.semi.common.PagingVO"%>
 <%@page import="com.semi.review.model.ReviewService2"%>
 <%@page import="com.semi.review.model.ReviewVO2"%>
 <%@page import="com.semi.review.model.ReviewDAO2"%>
@@ -40,43 +41,36 @@
 
 <%
 request.setCharacterEncoding("utf-8");
-String keyword = request.getParameter("searchKeyword");
-String condition = request.getParameter("searchCondition");
-
-//2.db 작업
-ReviewService2 reviewService = new ReviewService2();
-List<ReviewVO2> list = null;
-
-try{
-	if(condition != null && condition.equals("outdate")){
-		list = reviewService.selectAll(keyword, condition);
+	String keyword=request.getParameter("searchKeyword");
+	String condition=request.getParameter("searchCondition");
+	
+	ReviewService2 reviewService = new ReviewService2();
+	ReviewDAO2 reviewDao2 = new ReviewDAO2();
+	List<ReviewVO2>list2 = null;
+	try {
+		list2 = reviewDao2.selectAll(keyword, condition);
+	} catch (SQLException e) {
+		e.printStackTrace();
 	}
-}catch(SQLException e){
-	e.printStackTrace();
-}
 
-//3.결과 출력
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-if(keyword == null) keyword = "";
+	//검색창(keyword) null이면 공백으로 처리
+	if (keyword == null) keyword = "";
 
+	//페이징 처리
+	int currentPage = 1; //현재 페이지
 
-//페이징 처리
+	if (request.getParameter("currentPage") != null) {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
 
-int currentPage = 1; //현재 페이지
+	//[1] 현재 페이지와 무관한 변수
+	int totalRecord = list2.size(); //총 레코드 개수
+	int pageSize = 10; //한 페이지에 보여주 레코드 수
+	int blockSize = 5; //한 블럭에 보여줄 페이지 수
 
-if(request.getParameter("currentPage")!=null){
-	currentPage = Integer.parseInt(request.getParameter("currentPage"));
-}
-
-
-//현재 페이지랑 무관한 변수
-
-int totalRecord = list.size(); //총 레코드 개수
-int pageSize = 10; //한페이지에 보여주는 레코드 수
-int blockSize = 10; // 한 블럭에 보여줄 페이지 수
-
-PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
+	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 %>
 
 	<section id="noticeList">
@@ -92,12 +86,13 @@ PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 
 						
 					<div class="content_box">
+					
 						<div class="search_result">  
-							<%=list2.size()%>건 검색되었습니다.         
+							<%=list2.size()%>건 검색되었습니다.           
 						</div>
 						
 						<div class="search_input">
-							<form name = "frmSearch" method ="post" action="reviewList.jsp">
+							<form name = "frmSearch" method ="post" action="noticList.jsp">
 								<select class="form-select" name="searchCondition" aria-label="Default select example">
 							  <option selected>카테고리</option>
 							  <option value="title" 
@@ -124,12 +119,11 @@ PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 							</div>
 							
 							<div class="ed_btn">
-								<input type="button" class="review_btn btn btn-primary" name="Review" value="삭제" id="delReview">
+								<input type="button" class="review_btn btn btn-primary" name="Review" value="삭제" id="button-delete">
 							</div>
 						</div>
 						<div class="search_result">           
 						</div>
-						<form name="delFrm" method="post" action="">
 							<table class="table table-bordered">
 							  <colgroup>
 							      <col style="width:5%;" />
@@ -173,20 +167,9 @@ PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 									<td><%=vo2.getUserId() %></td>
 									<td><%=vo2.getScore()%></td>
 								</tr> 
-								<%
-								} //for
-								%>
-								<!--반복처리 끝  -->
-									<tr style="text-align:center">
-										<td><input type="checkbox" id="chkid"></td>
-										<td class = "reviewNo"><%=vo2.getReviewNo() %></td>
-										<td><%=vo2.getTitle() %></td>
-										<td><%=vo2.getComments() %></td>
-										<td><%=vo2.getUserId() %></td>
-										<td><%=vo2.getScore() %></td>
-									</tr> 
-									
-									<%}//for %>
+									<%
+									} //for
+									%>
 								<%}//if %>
 								</tbody>
 							</table>
