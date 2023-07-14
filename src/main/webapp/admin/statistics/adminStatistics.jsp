@@ -81,15 +81,17 @@
 	
 	String[][] categoryVal = new String[6][2];
 	String[][] titleVal = new String[10][2];
-	int i = 0;
+	
 	StringBuilder labels = new StringBuilder();
 	StringBuilder values = new StringBuilder();
 
 	StringBuilder labels2 = new StringBuilder();
 	StringBuilder values2 = new StringBuilder();
 	
+	int i = 0;
 	if(GenreMap != null && !GenreMap.isEmpty()){
 		for(Entry<String, Integer> elem : GenreMap.entrySet()){
+			if(i == 6) break;
 			categoryVal[i][0] = elem.getKey();
 			categoryVal[i][1] = Integer.toString(elem.getValue());
 			labels.append("'" + elem.getKey() + "',");
@@ -106,6 +108,7 @@
 	i=0;
 	if(TitleMap != null && !TitleMap.isEmpty()){
 		for(Entry<String, Integer> elem : TitleMap.entrySet()){
+			if(i == 10)break;
 			titleVal[i][0] = elem.getKey();
 			titleVal[i][1] = Integer.toString(elem.getValue());
 			labels2.append("'" + elem.getKey() + "',");
