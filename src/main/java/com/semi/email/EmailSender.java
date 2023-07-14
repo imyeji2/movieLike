@@ -34,8 +34,8 @@ public class EmailSender {
             protected PasswordAuthentication getPasswordAuthentication() {
               return new PasswordAuthentication(username, password);
             }
-          };
-
+          };  
+          
         // 세션 생성
         Session session = Session.getInstance(properties, authenticator);
 
