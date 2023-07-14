@@ -22,7 +22,7 @@
 <%
 
 	//실제 물리적 저장 경로
-	String imgURL = Utility.MOVIE_PATH;
+	String imgURL = "C:\\Users\\ezen\\Documents\\GitHub\\SemiProject\\src\\main\\webapp\\images\\movie\\content";
 	
 	System.out.println(imgURL);
 	//최대사이즈

@@ -12,6 +12,8 @@
 
 <%
 	String serch = request.getParameter("serch");
+	
+
 
 	MovieService service = new MovieService();
 	List<MovieVO> list = null;

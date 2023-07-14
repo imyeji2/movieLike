@@ -18,9 +18,9 @@
 </head>
 <body>
 <%   
-      
+//public static final String MOVIE_PATH="C:\\Users\\ezen\\Documents\\GitHub\\SemiProject\\src\\main\\webapp\\images\\movie\\content";
       //실제 물리적 저장 경로
-      String location = Utility.ACTOR_PATH;
+      String location = "C:\\Users\\ezen\\Documents\\GitHub\\SemiProject\\src\\main\\webapp\\images\\movie\\actor";
       System.out.println(location);
       //최대사이즈
       int maxSize = 1* 1024 * 1024; 

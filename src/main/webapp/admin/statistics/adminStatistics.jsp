@@ -290,7 +290,7 @@ new Chart(document.getElementById("bar-chart"), {
 	}
 });
 new Chart(document.getElementById("bar-chart2"), {
-	type : 'pie',	//그래프 타입 : 파이차트
+	type : 'bar',	//그래프 타입 : 파이차트
 	data : {
 		labels : [<%=labels2.toString()%>],	//영화 장르(통계에 사용될 데이터의 이름들)
 		datasets : [ {
@@ -314,13 +314,11 @@ new Chart(document.getElementById("bar-chart2"), {
 	},
 	options : {
 		responsive: false,
+		
 			scale:{
 				y:{
 					beginzero:true
 				}
-			},
-			legend:{
-				display: false
 			}
 		}
 	});
