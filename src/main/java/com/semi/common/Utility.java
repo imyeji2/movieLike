@@ -5,10 +5,10 @@ import java.util.Date;
 public class Utility {
 	//자료실 업로드 관련 상수
 	public static final String UP_PATH="/upload";
-	public static final String ACTOR_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\actor";
-	public static final String DIRECTOR_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\director";
-	public static final String MOVIE_PATH="C:\\Users\\yj\\git\\SemiProject\\src\\main\\webapp\\images\\movie\\content";
-		
+	public static final String ACTOR_PATH="D:\\lecture\\workspace_list\\semi_ws\\SemiProject\\src\\main\\webapp\\images\\movie\\actor";
+	public static final String DIRECTOR_PATH="D:\\lecture\\workspace_list\\semi_ws\\SemiProject\\src\\main\\webapp\\images\\movie\\director";
+	public static final String MOVIE_PATH="D:\\lecture\\workspace_list\\semi_ws\\SemiProject\\src\\main\\webapp\\images\\movie\\content";
+	
 	public static String displayRe(int step) {
 		String result="";
 
