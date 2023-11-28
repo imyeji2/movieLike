@@ -25,9 +25,8 @@
 
 ## ✔️ 기획의도 및 목표
    - 서비스할 영화를 등록해 사용자에게 제공하여 원하는 영화를 구매하고 구매한 상품에 대한 리뷰를 작성할 수 있도록 한다.
-   - JSP를 활용하여 [왓챠피디아](https://pedia.watcha.com/ko-KR/)/[시리즈온](https://serieson.naver.com/)/[키노라이츠](https://serieson.naver.com/)를 벤치마킹하여 실제 서비스 되는 사이트와 최대한 비슷하게 구현한다.
-   - HTML, 부트스트랩, JavaScript&J-Query를 활용하여 벤치마킹한 사이트와 비슷하게 UI/UX를 구현한다.
-   - 영화 진흥원 API를 활용하여 서비스할 영화를 등록할 수 있도록 한다.
+   - [왓챠피디아](https://pedia.watcha.com/ko-KR/),[시리즈온](https://serieson.naver.com/),[키노라이츠](https://serieson.naver.com/)를 벤치마킹하여 실제 서비스 되는 사이트와 최대한 비슷하게 구현한다.
+   - 영화 진흥원 API를 활용하여 제공된 정보를 검색해 영화를 등록할 수 있도록 한다.
 
 
 ## ✔️제작 일정(2023. 5. 22 ~ 2023. 6. 9)
