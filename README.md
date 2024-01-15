@@ -71,12 +71,16 @@
 
 ## ✔️멤버 및 역할 분담
 👩‍💻이예지(팀장)
-- [관리자 페이지 디자인](#%EF%B8%8F로그인)
-
+- [메인페이지](#%EF%B8%8F메인페이지)
+- [영화 리스트 페이지](#%EF%B8%8F영화-리스트-페이지)
+- [영화 디테일 페이지](#%EF%B8%8F영화-디테일-페이지)
+- [영화 검색 페이지](#%EF%B8%8F영화-검색-페이지)
+- 
 
   
 👩‍💻서다희
-- [로그인](#%EF%B8%8F출판사-관리)
+- [로그인](#%EF%B8%8F로그인)
+- 
 
   
 
@@ -86,7 +90,7 @@
 
 
 👨‍💻조상혁
-- [포인트 충전](#%EF%B8%8F판매-관리)
+- [마이페이지](#%EF%B8%8F마이페이지)
 
   
 👪공통    
@@ -177,8 +181,7 @@
 
 ---
 
-
-### ▶회사 위치
+### ▶️회사 위치
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/086fc118-b1d8-4262-b96c-d2efcd258fb9)
 
 
@@ -189,7 +192,7 @@
 ---
 
 
-### ▶관리자 메뉴
+### ▶️관리자 메뉴
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/12f81e49-65ef-4a93-a4f2-82ac994e6717)
 
 
@@ -200,7 +203,7 @@
 ---
 
 
-### ▶관리자 영화 관리
+### ▶️관리자 영화 관리
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/6aebf6a0-0542-4fc8-a6f3-e4f0651770ac)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/b4aedf04-f04b-4415-b81d-073dbe0f1373)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/3b6c7694-62ee-4444-bac9-4a5e585aec3c)
@@ -223,7 +226,7 @@
 ---
 
 
-### ▶관리자 컬렉션 관리
+### ▶️관리자 컬렉션 관리
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/0abe03a6-d581-4ac3-8c99-8ff503531572)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/361c7e62-c68d-4d93-8dff-3c4088e2c9a1)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/94c88bcc-39fd-4a80-a844-a55ff45c6405)
@@ -237,7 +240,7 @@
 ---
 
 
-### ▶관리자 회원 관리
+### ▶️관리자 회원 관리
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/de348240-6fdf-4551-8780-ce3c218efdee)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/bc91b90c-d163-4e80-856f-9e43b4777863)
 
@@ -249,8 +252,7 @@
 ---
 
 
-
-### ▶관리자 공지/FAQ 관리
+### ▶️관리자 공지/FAQ 관리
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/79ead2af-38f6-46c7-9829-ebf7356e149b)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/f4ee1d45-769b-4797-9649-1c7b48d55483)
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/004b204f-6fa3-4bf2-9a06-4014f1e9f07c)
@@ -263,7 +265,7 @@
 ---
 
 
-### ▶관리자 리뷰 관리
+### ▶️관리자 리뷰 관리
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/1be56204-3e7e-4958-a80b-c1e085c502fb)
 
 
@@ -275,7 +277,7 @@
 
 
 
-### ▶관리자 통계 관리
+### ▶️관리자 통계 관리
 ![image](https://github.com/imyeji2/movieLike/assets/137904402/fb8d6d90-d60a-47eb-aa3d-36b3b5b57d3b)
 
 
