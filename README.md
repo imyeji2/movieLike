@@ -25,7 +25,7 @@
 
 ## ✔️ 기획의도 및 목표
    - 사용자가 원하는 영화를 구매하고 구매한 상품에 대한 리뷰를 작성할 수 있도록 한다.(OTT+리뷰 시스템)
-   - [왓챠피디아](https://pedia.watcha.com/ko-KR/), [시리즈온](https://serieson.naver.com/), [키노라이츠](https://serieson.naver.com/)를 벤치마킹하여 실제 서비스 되는 사이트와 최대한 비슷하게 구현한다.
+   - [왓챠피디아](https://pedia.watcha.com/ko-KR/), [시리즈온](https://serieson.naver.com/), [키노라이츠](https://m.kinolights.com/)를 벤치마킹하여 실제 서비스 되는 사이트와 최대한 비슷하게 구현한다.
    - 영화 진흥원 API를 활용하여 제공된 정보를 검색해 영화를 등록할 수 있도록 한다.
 
 
